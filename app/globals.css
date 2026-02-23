@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #0d1a63; /* Institutional Blue */
+  --color-primary-dark: #1e2f6d;
+  --color-accent: #da3948; /* Accent Red */
+  --color-accent-soft: #f3be34; /* Support Yellow */
+
+  --color-bg-main: #ffffff;
+  --color-bg-section: #f8f9fa;
+  --color-bg-dark: #1d1d1e;
+
+  --color-text-main: #2f2f2f;
+  --color-text-muted: #7a7a7a;
+  --color-text-dark: #000000;
+  --color-text-light: #ffffff;
+  --color-text-muted-dark: #d7d7d7;
+
+  --color-border-light: #eeeeee;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-heading: "Outfit", system-ui, sans-serif;
+
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-premium: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground: #2d3142;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.section-padding {
+  @apply py-16 px-6 md:py-24 md:px-12 lg:px-24;
+}
+
+.container-wide {
+  @apply max-w-7xl mx-auto;
+}
+
+.btn-primary {
+  @apply bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-sm hover:shadow-md active:scale-95;
+}
+
+.btn-secondary {
+  @apply border-2 border-primary text-primary hover:bg-primary/5 px-6 py-3 rounded-full font-semibold transition-all duration-300 active:scale-95;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Academic Section Styling */
+.academic-section-title {
+  @apply text-3xl md:text-4xl font-semibold text-center text-text-dark mb-4 tracking-tight;
+}
+
+.academic-section-subtitle {
+  @apply text-xl md:text-xl font-medium text-center text-gray-800 mb-6 max-w-4xl mx-auto;
+}
+
+.academic-section-text {
+  @apply text-sm md:text-base text-center text-gray-600 leading-relaxed max-w-5xl mx-auto block;
 }
