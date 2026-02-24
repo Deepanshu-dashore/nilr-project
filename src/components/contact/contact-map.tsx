@@ -23,15 +23,11 @@ export default function ContactMap() {
              allowFullScreen
              loading="lazy"
              referrerPolicy="no-referrer-when-downgrade"
-             className="filter grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+             className="filter grayscale-20 hover:grayscale-0 transition-all duration-700"
            />
         </div>
         
-        <div className="mt-16 text-center">
-           <p className="text-xl md:text-2xl font-semibold text-primary italic">
-             🤝 {contactData.closing}
-           </p>
-        </div>
+
       </div>
     </section>
   );

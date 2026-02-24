@@ -77,14 +77,14 @@ const mainNavigation = [
   //     { name: "Internships", href: "/placements#internships" },
   //   ],
   // },
-  {
-    name: "Media",
-    href: "/media-events",
-    submenu: [
-      { name: "News & Events", href: "/media-events" },
-      { name: "Photo Gallery", href: "/media-events#gallery" },
-    ],
-  },
+  // {
+  //   name: "Media",
+  //   href: "/media-events",
+  //   submenu: [
+  //     { name: "News & Events", href: "/media-events" },
+  //     { name: "Photo Gallery", href: "/media-events#gallery" },
+  //   ],
+  // },
   { name: "Contact Us", href: "/contact" }
 ];
 

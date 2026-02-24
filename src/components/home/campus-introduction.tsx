@@ -170,7 +170,7 @@ export default function CampusIntroduction() {
                   <button 
                     key={i}
                     onClick={() => setIndex(i)}
-                    className={`h-1 transition-all duration-500 rounded-full ${index === i ? "w-8 bg-primary" : "w-4 bg-gray-200"}`}
+                    className={`h-1 transition-all duration-500 rounded-full ${index === i ? "w-8 bg-accent" : "w-4 bg-gray-200"}`}
                     aria-label={`Go to slide ${i + 1}`}
                   />
                ))}

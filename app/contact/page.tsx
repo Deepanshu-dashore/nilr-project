@@ -1,27 +1,19 @@
 import ContactHero from "@/src/components/contact/contact-hero";
-import ContactInfo from "@/src/components/contact/contact-info";
-import ContactForm from "@/src/components/contact/contact-form";
-import ContactMap from "@/src/components/contact/contact-map";
+import ContactMain from "@/src/components/contact/contact-main";
 
 export const metadata = {
   title: "Contact Us | CVRU Khandwa – NLRI Ratlam Campus",
-  description: "Get in touch with CVRU Khandwa – NLRI Ratlam Campus for admissions, programs, partnerships, or campus visits.",
+  description: "Get in touch with CVRU Khandwa – NLRI Ratlam Campus for university admissions, administration, and campus queries.",
 };
 
 export default function ContactPage() {
   return (
     <div className="flex flex-col bg-white">
-      {/* 🏛️ Contact Hero Section */}
+      {/* 🎓 University-style Hero Section */}
       <ContactHero />
 
-      {/* 📞 Contact Information Grid */}
-      <ContactInfo />
-
-      {/* ✉️ Send Us a Message (Form) */}
-      <ContactForm />
-
-      {/* 📍 Location Map & Closing */}
-      <ContactMap />
+      {/* 📞 Integrated Layout (Categories + Map/Form Overlap) */}
+      <ContactMain />
     </div>
   );
 }
