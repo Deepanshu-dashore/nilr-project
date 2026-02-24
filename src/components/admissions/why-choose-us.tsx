@@ -12,7 +12,7 @@ export default function WhyChooseData() {
            <div className="flex-1 space-y-8">
               <div className="space-y-4">
                  <span className="text-primary font-bold tracking-wider uppercase text-sm block">Why Choose Use</span>
-                 <h2 className="text-3xl md:text-5xl font-black font-heading text-text-dark">
+                 <h2 className="academic-section-title text-left! mx-0! font-black font-heading text-text-dark">
                     Why Choose <br/><span className="text-accent">CVRUK-NLRI Campus?</span>
                  </h2>
               </div>

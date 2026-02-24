@@ -6,15 +6,20 @@ import { HomeModernIcon, UserGroupIcon, WifiIcon, ShieldCheckIcon } from "@heroi
 
 export default function HostelFacilities() {
   return (
-    <section id="hostels" className="section-padding bg-white border-y border-gray-100">
+    <section id="hostels" className="section-padding relative text-white bg-primary border-y border-gray-100">
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.15),transparent)] pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_bottom_right,rgba(0,0,0,0.3),transparent)] pointer-events-none" />
+      {/* Subtle animated grain or overlay */}
+      <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
+          
       <div className="container-wide">
          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
-            <div className="max-w-3xl space-y-4">
+            <div className="max-w-4xl space-y-4 mx-auto text-center">
                <span className="text-secondary font-bold tracking-wider uppercase text-sm block">Residential Living</span>
-               <h2 className="academic-section-title text-left!">
-                  Campus <span className="text-primary">Life</span>
+               <h2 className="academic-section-title text-white!">
+                  Campus <span className="text-accent">Life</span>
                </h2>
-               <p className="text-text-muted text-lg font-medium leading-relaxed max-w-xl">
+               <p className="text-white/60 text-lg font-medium leading-relaxed max-w-3xl">
                  Two fully residential training blocks offer comfortable, secure, and inclusive accommodation.
                </p>
             </div>
@@ -22,12 +27,12 @@ export default function HostelFacilities() {
          
          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {campusData.hostels.map((hostel, index) => (
-               <div key={index} className="bg-gray-50/80 p-8 md:p-10 rounded-3xl border border-gray-100 hover:border-secondary/20 hover:bg-white hover:shadow-premium transition-all duration-300 group">
+               <div key={index} className="bg-white p-8 md:p-10 rounded-3xl border border-gray-100 hover:border-secondary/20 hover:bg-white hover:shadow-premium transition-all duration-300 group">
                   <div className="flex justify-between items-start mb-8">
-                     <div className="h-14 w-14 bg-white text-secondary rounded-2xl flex items-center justify-center border border-gray-200 shadow-sm group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition-all">
-                        <HomeModernIcon className="h-7 w-7" />
+                     <div className="h-12 w-12 bg-gray-100 text-secondary rounded-2xl flex items-center justify-center border border-gray-200 shadow-sm group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition-all">
+                        <HomeModernIcon className="h-6 w-6 text-primary" />
                      </div>
-                     <span className="px-4 py-1.5 bg-white border border-gray-200 text-gray-600 text-[11px] font-bold uppercase tracking-widest rounded-full group-hover:border-secondary group-hover:text-secondary transition-colors">
+                     <span className="px-4 py-1.5 bg-gray-100 border border-gray-200 text-gray-600 text-[11px] font-bold uppercase tracking-widest rounded-full group-hover:border-secondary group-hover:text-secondary transition-colors">
                         {hostel.capacity}
                      </span>
                   </div>

@@ -9,15 +9,17 @@ export default function ImportantDates() {
     <section id="dates" className="section-padding bg-white">
       <div className="container-wide">
         <div className="text-center mb-16 space-y-4">
-           <span className="text-primary font-bold tracking-wider uppercase text-sm block">Timeline</span>
-           <h2 className="text-3xl md:text-5xl font-black font-heading text-text-dark">
+           <h2 className="academic-section-title">
              Important <span className="text-accent">Dates</span>
            </h2>
+           <p className="academic-section-subtitle">
+             Mark your calendar for the upcoming admission milestones.
+           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-           {admissionsData.dates.map((item, index) => (
-              <div key={index} className="bg-gray-50 p-8 rounded-[2rem] border border-gray-100 text-center hover:bg-white hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden">
+            {admissionsData.dates.map((item, index) => (
+              <div key={index} className="bg-gray-50 p-8 rounded-4xl border border-gray-100 text-center hover:bg-white hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group relative overflow-hidden">
                  <div className="absolute top-0 w-full h-1 bg-linear-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                  
                  <CalendarDaysIcon className="h-10 w-10 text-gray-400 mx-auto mb-6 group-hover:text-primary transition-colors" />

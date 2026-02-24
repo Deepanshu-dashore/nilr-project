@@ -48,7 +48,7 @@ export default function CampusPage() {
       <GreenInitiatives />
 
       {/* 11. Safety & Amenities Grid */}
-      <CampusAmenities />
+      {/* <CampusAmenities /> */}
     </div>
   );
 }

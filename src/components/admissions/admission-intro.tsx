@@ -13,18 +13,18 @@ export default function AdmissionIntro() {
                Start Your Journey
             </span>
             <h2 className="academic-section-title">
-              Welcome to CVRUK – NLRI Admissions
+              {admissionsData.intro.title}
             </h2>
-            <p className="academic-section-subtitle opacity-80">
+            <p className="academic-section-subtitle">
               Your gateway to excellence in Rural Management and Sustainable Development.
             </p>
           </div>
           
           <div className="h-1.5 w-24 bg-primary mx-auto rounded-full mb-10" />
           
-          <div className="space-y-8">
+          <div className="space-y-6">
             {admissionsData.intro.description.map((para, index) => (
-              <p key={index} className="academic-section-text text-lg! text-gray-700!">
+              <p key={index} className="academic-section-text text-lg md:text-xl font-medium text-gray-700!">
                 {para}
               </p>
             ))}

@@ -6,24 +6,24 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export default function TrainingFarms() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 bg-white">
        <div className="container-wide">
-          <div className="bg-primary rounded-[3rem] p-10 md:p-16 text-center text-white relative overflow-hidden shadow-2xl group cursor-pointer">
+          <div className="bg-primary rounded-[2.5rem] p-8 md:p-12 text-center text-white relative overflow-hidden shadow-2xl group cursor-pointer">
              <div className="relative z-10 flex flex-col items-center">
-                <div className="inline-block px-5 py-2 bg-white/10 backdrop-blur-md rounded-full text-[11px] font-bold uppercase tracking-widest mb-6 border border-white/20">
+                <div className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 border border-white/20">
                   {campusData.farms.title}
                 </div>
                 
-                <h2 className="text-3xl md:text-5xl font-black font-heading mb-4 leading-tight tracking-tight">
+                <h2 className="text-2xl md:text-4xl font-black font-heading mb-3 leading-tight tracking-tight">
                    {campusData.farms.subtitle}
                 </h2>
                 
-                <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed mb-8">
+                <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto font-medium leading-relaxed mb-6">
                    {campusData.farms.description}
                 </p>
                 
-                <button className="bg-white text-primary hover:bg-secondary hover:text-white px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-3">
-                   Explore Innovations <ArrowRightIcon className="h-5 w-5" />
+                <button className="bg-white text-primary hover:bg-secondary hover:text-white px-7 py-3.5 rounded-full font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-3">
+                   Explore Innovations <ArrowRightIcon className="h-4 w-4" />
                 </button>
              </div>
              

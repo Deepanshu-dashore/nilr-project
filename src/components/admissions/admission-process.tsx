@@ -9,15 +9,17 @@ export default function AdmissionProcess() {
     <section id="process" className="section-padding bg-bg-section border-y border-gray-200">
       <div className="container-wide">
         <div className="text-center mb-16 space-y-4">
-           <span className="text-secondary font-bold tracking-wider uppercase text-sm block">Step-by-step Guide</span>
-           <h2 className="text-3xl md:text-5xl font-black font-heading text-text-dark">
+           <h2 className="academic-section-title">
              Admission <span className="text-primary">Process</span>
            </h2>
+           <p className="academic-section-subtitle">
+             Follow these simple steps to secure your future at our campus.
+           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
            {/* Connecting Line (Desktop) */}
-           <div className="hidden lg:block absolute top-[2.75rem] left-[12.5%] right-[12.5%] h-0.5 bg-gray-200 -z-0 border-t-2 border-dashed border-gray-300" />
+            <div className="hidden lg:block absolute top-11 left-[12.5%] right-[12.5%] h-0.5 bg-gray-200 z-0 border-t-2 border-dashed border-gray-300" />
            
            {admissionsData.process.map((step, i) => (
               <div key={i} className="flex flex-col items-center text-center relative z-10 group">

@@ -73,12 +73,12 @@ export const admissionsData = {
   ],
   documents: [
     "10th and 12th Mark Sheets",
-    "Graduation Degree and Mark Sheets (for PGD-RM and Diploma)",
     "Transfer Certificate (TC)",
     "Migration Certificate",
     "Caste Certificate (if applicable)",
     "Passport-size photographs",
-    "ID Proof (Aadhaar Card/PAN Card/Passport)"
+    "ID Proof (Aadhaar Card/PAN Card/Passport)",
+    "Graduation Degree and Mark Sheets (for PGD-RM and Diploma)",
   ],
   fees: {
     pg: "Affordable and industry-competitive fee structure (details available on request)",

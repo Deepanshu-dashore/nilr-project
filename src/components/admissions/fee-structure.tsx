@@ -11,11 +11,10 @@ export default function FeeStructure() {
          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
                <div className="space-y-4">
-                  <span className="text-secondary font-bold tracking-wider uppercase text-sm block">Investment</span>
-                  <h2 className="text-3xl md:text-5xl font-black font-heading text-text-dark">
+                  <h2 className="academic-section-title text-left! mx-0!">
                      Fee <span className="text-primary">Structure</span>
                   </h2>
-                  <p className="text-text-muted text-lg font-medium">
+                  <p className="academic-section-subtitle text-left! mx-0!">
                      Affordable and industry-competitive fee structure designed to be inclusive.
                   </p>
                </div>

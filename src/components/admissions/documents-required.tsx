@@ -23,8 +23,8 @@ export default function DocumentsRequired() {
             
             <div className="flex-1 space-y-10 animate-in fade-in slide-in-from-right-8 duration-1000">
                <div>
-                   <span className="text-accent font-bold tracking-wider uppercase text-sm block mb-4">Prerequisites</span>
-                   <h2 className="text-3xl md:text-5xl font-black font-heading text-text-dark">Essential <span className="text-primary">Documents</span></h2>
+                   <h2 className="academic-section-title text-left! mx-0!">Essential <span className="text-primary">Documents</span></h2>
+                   <p className="academic-section-subtitle text-left! mx-0!">Prerequisites for a smooth admission experience.</p>
                </div>
                
                <p className="text-text-muted text-lg font-medium leading-relaxed">
