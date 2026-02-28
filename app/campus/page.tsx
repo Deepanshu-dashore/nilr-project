@@ -39,7 +39,7 @@ export default function CampusPage() {
       <KnowledgeResourceCenter />
 
       {/* 8. Sports & Wellness */}
-      <SportsWellness />
+      {/* <SportsWellness /> */}
 
       {/* 9. Training Farms & Pedagogy */}
       <TrainingFarms />

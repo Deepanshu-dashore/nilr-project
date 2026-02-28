@@ -20,7 +20,7 @@ export default function InstitutionalOverview() {
             
             <div className="relative">
               {/* <div className="absolute left-0 top-0 bottom-0 w-1 bg-accent/20 rounded-full" /> */}
-              <p className="space-y-6 text-lg text-text-muted font-medium leading-relaxed py-2">
+              <p className="space-y-6 text-lg text-text-muted font-medium leading-relaxed py-2 text-justify">
                 {aboutData.intro.content}
               </p>
             </div>

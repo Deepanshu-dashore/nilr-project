@@ -11,13 +11,13 @@ export default function HeroVideo() {
           muted
           loop
           preload="metadata"
-          poster="https://mitwpu.edu.in/assets/frontend/images/video-poster.webp"
+          poster="/assets/campus-images/campusDron-1.jpeg"
           id="heroVideo"
           width="100%"
           height="100%"
           className="w-full h-full object-cover"
         >
-          <source src="https://mitwpu.edu.in/uploads/banner/banner_video_desktop.mp4" type="video/mp4" />
+          <source src="/banner_video_desktop.mp4" type="video/mp4" />
         </video>
         {/* subtle overlay to soften the video if needed */}
         <div className="absolute inset-0 bg-black/10" />

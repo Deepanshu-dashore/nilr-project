@@ -48,7 +48,7 @@ export default function CampusLocation() {
                     allowFullScreen 
                     loading="lazy" 
                     referrerPolicy="no-referrer-when-downgrade"
-                    className="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-700"
+                    className="w-full h-full  group-hover:grayscale-0 transition-all duration-700"
                  ></iframe>
                  
                  {/* Hover Effect Layer (removed to ensure interactivity, or keep with pointer-events-none if purely visual) */}

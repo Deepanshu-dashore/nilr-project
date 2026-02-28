@@ -7,25 +7,19 @@ const testimonials = [
     name: "Rahul Verma",
     role: "PGD-RM Student",
     content: "The PGD-RM program has been quite an experience. The blend of classroom theory and field exposure has not only deepened my academic knowledge, but prepared me for real-world impact.",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80",
-  },
-  {
-    name: "Priya Sharma",
-    role: "Research Scholar",
-    content: "As a Research Scholar at CVRUK-NLRI, I've gained valuable insights into rural management and local governance. The facilities here are world-class and supportive of innovation.",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80",
+    avatar: "/testimonial/image.png",
   },
   {
     name: "Amit Singh",
     role: "Management Trainee",
     content: "Being part of the CVRU ecosystem has been a journey of constant growth. The faculty and the environment foster a spirit of excellence that is visible in everything we do.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80",
+    avatar: "/testimonial/image1.png",
   },
   {
-    name: "Yangchen Tshering Sherpa",
-    role: "Social Entrepreneur",
-    content: "The support I received for my startup idea was incredible. CVRUK-NLRI isn't just a university; it's an incubator for the leaders of tomorrow.",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80",
+    name: "Vivek Kumar",
+    role: "Research Scholar",
+    content: "As a Research Scholar at CVRUK-NLRI, I've gained valuable insights into rural management and local governance. The facilities here are world-class and supportive of innovation.",
+    avatar: "/testimonial/image2.png",
   }
 ];
 
@@ -68,12 +62,12 @@ export default function StudentTestimonials() {
 
           {/* Pagination dots */}
           <div className="flex justify-center gap-2 mt-12">
-            {[0, 1, 2].map((i) => (
+            {testimonials.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setIndex(i * 2)}
+                onClick={() => setIndex(i)}
                 className={`h-2.5 rounded-full transition-all duration-300 ${
-                  index / 2 === i ? "w-6 bg-[#F3BE34]" : "w-2.5 bg-gray-300"
+                  index === i ? "w-6 bg-[#F3BE34]" : "w-2.5 bg-gray-300"
                 }`}
               />
             ))}
