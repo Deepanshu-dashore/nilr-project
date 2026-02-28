@@ -13,17 +13,22 @@ export function FeatureCard({ icon, title, desc }: { icon: React.ReactNode, titl
   );
 }
 
-export function NewsCard({ date, title, img }: { date: string, title: string, img: string }) {
+export function NewsCard({ date, title, img, desc }: { date: string, title: string, img: string, desc?: string }) {
   return (
     <div className="bg-white group cursor-pointer h-full flex flex-col shadow-lg hover:shadow-2xl transition-all duration-500 rounded-sm overflow-hidden">
        <div className="aspect-4/3 overflow-hidden border-b border-gray-100">
           <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
        </div>
        <div className="p-6 flex flex-col grow">
-         <div className="text-[14px] font-medium text-gray-500 mb-3">{date}</div>
-         <h3 className="text-[17px] font-bold text-gray-900 leading-[1.4] group-hover:text-primary transition-colors line-clamp-3">
+         <div className="text-[14px] font-medium text-primary mb-3">{date}</div>
+         <h3 className="text-[17px] font-bold text-gray-900 leading-[1.4] group-hover:text-primary transition-colors mb-3 line-clamp-2">
            {title}
          </h3>
+         {desc && (
+           <p className="text-[14px] text-gray-600 line-clamp-3 leading-relaxed">
+             {desc}
+           </p>
+         )}
        </div>
     </div>
   );

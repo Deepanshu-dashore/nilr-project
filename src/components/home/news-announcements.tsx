@@ -6,29 +6,52 @@ import { NewsCard } from "./home-ui";
 
 const newsItems = [
   {
-    date: "27/03/2026",
-    title: "International Conference on Socioeconomic Change, and Responsible Leadership",
-    img: "/dummy-Images/conference_poster_1.png"
+    date: "March 2026",
+    title: "Major Announcement: NLRI Ratlam and Dr. C.V. Raman University MoU!",
+    desc: "We are proud to announce that NLRI Ratlam is now officially collaborated with Dr. C.V. Raman University, Khandwa. This strategic partnership will offer expanded academic programs, advanced training, and new opportunities for students across India.",
+    img: "/home/NewsImage/news_mou.png"
   },
   {
-    date: "13/03/2026",
-    title: "Recent Technologies and Innovations in Electronics and Photonics Second Edition",
-    img: "/dummy-Images/conference_poster_2.png"
+    date: "March 2025",
+    title: "Admissions Open for 2025-26!",
+    desc: "Post Graduate Diploma in Rural Management (PGD-RM) (AICTE Approved). Specialized Certificate Courses in Rural Development, Organic Farming, Water Resource Management, and more. Apply Now and shape your future!",
+    img: "/home/NewsImage/news_admission.png"
   },
   {
-    date: "21/02/2028",
-    title: "9th International Conference on Recent Advances in Composite Materials (ICRACM - 2028)",
-    img: "/dummy-Images/conference_poster_3png"
+    date: "February 2026",
+    title: "New Programs Launched",
+    desc: "Certificate in Good Agriculture Practices (GAP), Certificate in Community-Based Organization and Institution Development, Diploma in Community Driven Development. Explore new-age skill programs aligned with industry and government needs!",
+    img: "/home/NewsImage/news_programs.png"
   },
   {
-    date: "10/02/2026",
-    title: "Workshop on Sustainable Agriculture: Emerging Trends and Future Prospects",
-    img: "/dummy-Images/conference_poster_1.png"
+    date: "January 2026",
+    title: "CSR and Development Projects Update",
+    desc: "NLRI is now implementing new projects in partnership with Grasim Industries (Women Empowerment), BPCL Bina Refinery (Water Conservation), and Jal Jeevan Mission Ratlam (Community IEC).",
+    img: "/home/NewsImage/news_csr.png"
   },
   {
-    date: "05/02/2026",
-    title: "CVRUK-NLRI Rural Hackathon: Solving Local Challenges Through Innovation",
-    img: "/dummy-Images/conference_poster_2.png"
+    date: "December 2025",
+    title: "Placement Update",
+    desc: "100% placement record for the previous batch of PGD-Rural Management students! Top recruiters include leading NGOs, CSR wings of corporates, rural banks, and international development organizations.",
+    img: "/home/NewsImage/news_placement.png"
+  },
+  {
+    date: "Upcoming (Oct-Dec 2025)",
+    title: "Upcoming Events",
+    desc: "National Seminar on Rural Livelihood Innovation (Oct 2025), Career Guidance Drive for Rural Youth (Nov 2025), and Farmers’ Meet & Agri-Tech Expo (Dec 2025). Stay tuned for registration details!",
+    img: "/home/NewsImage/news_events.png"
+  },
+  {
+    date: "September 2025",
+    title: "Recent Publications",
+    desc: "New research papers and case studies by our faculty and students have been published in national journals on topics like Sustainable Agriculture, Community Mobilization, and Watershed Development.",
+    img: "/home/NewsImage/news_publications.png"
+  },
+  {
+    date: "Always",
+    title: "Stay Updated",
+    desc: "Follow our Facebook, LinkedIn, and Instagram pages for daily updates, admission alerts, and event coverage.",
+    img: "/home/NewsImage/news_social.png"
   }
 ];
 
@@ -74,8 +97,8 @@ export default function NewsAnnouncements() {
               >
                 <ChevronRightIcon className="h-5 w-5" />
               </button>
-              <div className="h-10 w-px bg-gray-200 mx-2" />
-              <button className="text-[10px] font-black text-primary hover:text-accent transition-all flex items-center gap-2 uppercase tracking-[0.2em] group">
+              <div className="hidden h-10 w-px bg-gray-200 mx-2" />
+              <button className="hidden text-[10px] font-black text-primary hover:text-accent transition-all items-center gap-2 uppercase tracking-[0.2em] group">
                  View All News <ArrowRightIcon className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -88,6 +111,7 @@ export default function NewsAnnouncements() {
                    <NewsCard 
                      date={item.date} 
                      title={item.title} 
+                     desc={item.desc}
                      img={item.img} 
                    />
                 </div>

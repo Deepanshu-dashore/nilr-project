@@ -6,66 +6,62 @@ import {
   GlobeAsiaAustraliaIcon, 
   HomeModernIcon, 
   BeakerIcon, 
-  HeartIcon, 
   TrophyIcon, 
   GlobeAltIcon, 
   UserGroupIcon, 
   BookOpenIcon, 
   StarIcon,
+  MapIcon,
+  WifiIcon,
   ChevronLeftIcon,
   ChevronRightIcon
 } from "@heroicons/react/24/outline";
 
 const lifeItems = [
   {
-    title: "Academic Facilities",
-    desc: "Well-equipped classrooms, seminar halls, GIS and Computer Laboratories, and training spaces that support academic programs, research, and professional capacity building.",
+    title: "State-of-the-Art Academic Blocks",
+    desc: "Modern academic blocks featuring smart classrooms and specialized laboratories designed for advanced technical education.",
     icon: AcademicCapIcon,
   },
   {
-    title: "Rural Immersion",
-    desc: "Structured field immersion programs integrated into academic and training curricula, enabling learners to work directly with rural communities, institutions, and development projects.",
-    icon: GlobeAsiaAustraliaIcon,
+    title: "Specialized GIS Lab",
+    desc: "A high-end Geographic Information System (GIS) Laboratory for advanced rural planning and research applications.",
+    icon: MapIcon,
   },
   {
-    title: "Hostel & Residential Life",
-    desc: "On-campus residential facilities (Meerashray Hostels) providing a safe, disciplined, and community-oriented living environment for students, trainees, and professionals.",
+    title: "School of Rural Management (SRM)",
+    desc: "AICTE-approved School of Rural Management dedicated to creating future rural development leaders.",
+    icon: StarIcon,
+  },
+  {
+    title: "Residential Facilities",
+    desc: "Safe and community-oriented living at Meerashray Hostel and Balram Bhawan for students and trainees.",
     icon: HomeModernIcon,
   },
   {
-    title: "Research & Learning Support",
-    desc: "Access to applied research facilities, documentation units, and learning resources supporting natural resource management, livelihoods, agriculture, and rural governance.",
-    icon: BeakerIcon,
-  },
-  {
-    title: "Health & Medical Support",
-    desc: "Basic medical facilities and health support systems available on campus to ensure the well-being of residential participants.",
-    icon: HeartIcon,
-  },
-  {
-    title: "Sports & Recreation",
-    desc: "Open spaces and recreational facilities promoting physical well-being, teamwork, and stress management within a residential campus setting.",
-    icon: TrophyIcon,
-  },
-  {
-    title: "National Exposure & Training",
-    desc: "Participation in national-level training programs, workshops, and exposure visits conducted in collaboration with government agencies, NGOs, and CSR partners.",
-    icon: GlobeAltIcon,
-  },
-  {
-    title: "Community Engagement",
-    desc: "Opportunities to engage with self-help groups, farmer collectives, community institutions, and local governance systems as part of learning and training programs.",
-    icon: UserGroupIcon,
-  },
-  {
-    title: "Library & Learning Resources",
-    desc: "A focused library supporting rural development, agriculture, management, and social sciences, along with access to training materials and research documentation.",
+    title: "Knowledge Centre & Library",
+    desc: "A specialized Knowledge Centre and library housing more than 6,000+ resources for academic excellence.",
     icon: BookOpenIcon,
   },
   {
-    title: "Student & Participant Achievements",
-    desc: "Recognition of academic excellence, field contributions, research work, and professional achievements of students and training participants.",
-    icon: StarIcon,
+    title: "Open Laboratories & Farms",
+    desc: "A vast learning ecosystem with nurseries, research farms, and demonstration plots across 10+ hectares.",
+    icon: GlobeAsiaAustraliaIcon,
+  },
+  {
+    title: "Fully Wi-Fi Enabled Campus",
+    desc: "Complete digital connectivity with high-speed Wi-Fi, modern IT infrastructure, and dedicated media labs.",
+    icon: WifiIcon,
+  },
+  {
+    title: "Sports & Recreational Grounds",
+    desc: "Dedicated grounds for football, cricket, and volleyball to ensure holistic development and teamwork.",
+    icon: TrophyIcon,
+  },
+  {
+    title: "Training Centres",
+    desc: "Advanced Training Centres capable of hosting over 190 participants simultaneously for professional workshops.",
+    icon: UserGroupIcon,
   }
 ];
 
@@ -97,12 +93,20 @@ export default function CampusIntroduction() {
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
       
       <div className="container-wide relative z-10">
-        <div className="mb-20 text-center flex flex-col items-center">
-            <h2 className="academic-section-title text-center">🌿 Life@NLRI–CVRU Campus, Ratlam</h2>
-            <p className="academic-section-subtitle text-center">A Residential Learning Experience Rooted in the Field</p>
-            <p className="academic-section-text text-center max-w-3xl">
-              Experience a unique campus life that blends academics, field immersion, community engagement, and residential learning—designed to prepare professionals for real-world rural development challenges.
-            </p>
+        <div className="mb-16 text-center flex flex-col items-center">
+            <h2 className="academic-section-title text-center">🌿 Campus Introduction</h2>
+            <div className="max-w-7xl mx-auto space-y-4 text-gray-700">
+              <p className="text-center">
+                Located in the scenic surroundings of Bhadwasa village, Ratlam (Madhya Pradesh), the CVRU Khandwa – NLRI Campus offers a unique blend of academic excellence and hands-on rural innovation. Spread over more than 10 hectares along the banks of the Maleni River, the campus stands as a model of sustainable development, combining modern education facilities with eco-friendly infrastructure.
+              </p>
+              <p className="text-center">
+                The campus houses the National Livelihood Resources Institute (NLRI) and the School of Rural Management (SRM), both operated under the stewardship of Gramin Vikas Trust (GVT) — a national-level development organization with over three decades of field experience.
+              </p>
+              <p className="text-center">
+                Designed by experts from the Delhi School of Planning and Architecture, the earthquake-resistant structures, green landscapes, and water conservation systems make the campus a practical learning ground for rural development and natural resource management.
+              </p>
+              <h3 className="text-xl md:text-2xl font-bold mt-10 text-primary">Key features of the CVRUK-NLRI Campus include:</h3>
+            </div>
         </div>
 
         <div className="relative w-full">
@@ -175,6 +179,13 @@ export default function CampusIntroduction() {
                   />
                ))}
            </div>
+        </div>
+
+        {/* Closing Paragraph */}
+        <div className="mt-20 max-w-7xl mx-auto border-l-4 border-accent pl-6 py-4 bg-accent/5 rounded-r-2xl animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <p className="text-sm md:text-base text-text-dark font-medium leading-relaxed italic">
+            "The CVRUK-NLRI campus is not just a place for education — it’s a living ecosystem where theory meets practice, and where students, researchers, and rural communities collaborate to create lasting impact."
+          </p>
         </div>
       </div>
     </section>

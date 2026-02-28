@@ -1,3 +1,4 @@
+import Admissions from "@/src/components/home/admissions";
 import CampusIntroduction from "@/src/components/home/campus-introduction";
 import HeroVideo from "@/src/components/home/hero-video";
 import LatestHappenings from "@/src/components/home/latest-happenings";
@@ -13,7 +14,8 @@ export default function Home() {
       <PartnershipOverview />
       <CampusIntroduction />
       <NewsAnnouncements />
-      <LatestHappenings />
+      <Admissions />
+      {/* <LatestHappenings /> */}
       <QuickLinks />
       <StudentTestimonials />
     </div>
