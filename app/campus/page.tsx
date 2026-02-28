@@ -14,37 +14,19 @@ import { campusData } from "@/src/data/campus-data";
 export default function CampusPage() {
   return (
     <div className="flex flex-col bg-white font-sans text-text-main">
-      {/* 1. Hero Section */}
-      <Hero 
-        tag="OUR CAMPUS" 
-        title={campusData.introduction.title} 
-      />
-
-      {/* 2. Introduction */}
+      {/* 1. Introduction & Campus Hero Image */}
       <CampusIntroduction />
 
       {/* 3. Campus Location & Connectivity */}
       <CampusLocation />
 
-      {/* 4. Infrastructure & Academic Facilities */}
+      {/* 3. Infrastructure & Academic Facilities (Consolidated 6-card grid) */}
       <InfrastructureAcademic />
-
-      {/* 5. Laboratories & Learning Spaces */}
-      <SpecializedLabs />
-
-      {/* 6. Hostel & Residential Facilities */}
-      <HostelFacilities />
-
-      {/* 7. Knowledge Hub & Library */}
-      <KnowledgeResourceCenter />
 
       {/* 8. Sports & Wellness */}
       {/* <SportsWellness /> */}
 
-      {/* 9. Training Farms & Pedagogy */}
-      <TrainingFarms />
-
-      {/* 10. Sustainability Initiatives */}
+      {/* 4. Sustainability Initiatives (Dark Green Banner) */}
       <GreenInitiatives />
 
       {/* 11. Safety & Amenities Grid */}

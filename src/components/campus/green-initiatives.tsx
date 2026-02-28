@@ -1,53 +1,107 @@
 "use client";
 
-import React from "react";
-import { campusData } from "@/src/data/campus-data";
-import { SparklesIcon, SunIcon, GlobeAsiaAustraliaIcon } from "@heroicons/react/24/outline";
+import {
+  SparklesIcon,
+  SunIcon,
+  MapIcon,
+  GlobeAsiaAustraliaIcon,
+  BeakerIcon,
+  ArchiveBoxIcon,
+} from "@heroicons/react/24/outline";
 
 export default function GreenInitiatives() {
   return (
-    <section id="green" className="section-padding bg-bg-section border-y border-gray-200">
-      <div className="container-wide">
-         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            
-            <div className="order-2 lg:order-1 space-y-10">
-               <div className="space-y-4">
-                  <span className="text-secondary font-bold tracking-wider uppercase text-sm block">Sustainability</span>
-                  <h2 className="academic-section-title text-left!">Green Campus <br /><span className="text-primary">Philosophy</span></h2>
-                  <p className="text-lg text-text-muted font-medium leading-relaxed">
-                     {campusData.greenInitiatives.description}
-                  </p>
-               </div>
-               
-               <div className="grid grid-cols-1 gap-6">
-                  {campusData.greenInitiatives.points.map((item, index) => (
-                     <div key={index} className="flex gap-5 items-start p-6 bg-white rounded-2xl border border-gray-100 shadow-sm group hover:border-primary/30 transition-all hover:-translate-x-1">
-                        <div className="h-10 w-10 bg-green-50 text-green-600 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-green-600 group-hover:text-white transition-all mt-1">
-                           <SparklesIcon className="h-5 w-5" />
-                        </div>
-                        <p className="font-bold text-sm text-gray-700 leading-snug">{item}</p>
-                     </div>
-                  ))}
-               </div>
+    <section
+      id="green"
+      className="relative py-20 overflow-hidden"
+    >
+      {/* Background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center scale-105"
+        style={{
+          backgroundImage: "url('/green-campusBg.png')",
+        }}
+      />
+
+      {/* Soft Overlay (Less Harsh) */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#163626]/80 via-[#163626]/70 to-[#163626]/60" />
+
+      <div className="container-wide relative z-10 text-white">
+
+        {/* Header */}
+        <div className="flex items-center gap-4 mb-12 max-w-6xl">
+          <div className="h-px bg-white/20 ml-4 hidden md:block w-1/12" />
+          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-green-600 shrink-0" viewBox="0 0 48 48">
+               <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={4}>
+                  <path d="M31 43C31 43 18 44 11 36C4 28 4 4 4 4C4 4 28 3 36 9C44 15 42 32 42 32"></path>
+                  <path d="M44 44C44 44 32.8207 35.5515 26 28C19.1793 20.4485 16 13 16 13"></path>
+                  <path d="M26 28L27 15"></path>
+                  <path d="M26 28L16 27"></path>
+               </g>
+         </svg> 
+          <h2 className="text-xl md:text-2xl font-semibold tracking-tight">
+            Green Campus Initiatives
+          </h2>
+          <div className="h-px flex-1 bg-white/20 ml-4 hidden md:block" />
+        </div>
+
+        {/* Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-20 max-w-5xl mx-auto">
+
+          {/* Left Column */}
+          <div className="space-y-8">
+
+            <div className="flex gap-4 items-start">
+              <MapIcon className="w-11 h-11 p-2 text-green-100 rounded-sm mt-1 shrink-0 bg-green-500" />
+              <p className="text-sm md:text-base font-medium leading-relaxed text-white/90">
+                10.49 hectares of eco-restored land with over 5,000 trees
+              </p>
             </div>
 
-            <div className="order-1 lg:order-2 bg-white p-2 rounded-[3.5rem] shadow-2xl transform -rotate-1 hover:rotate-0 transition-transform duration-500">
-               <div className="relative rounded-[3.2rem] overflow-hidden aspect-[4/5] group">
-                  <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&q=80" alt="Green Campus" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
-                  <div className="absolute inset-0 bg-secondary/10 mix-blend-multiply" />
-                  
-                  {/* Floating Eco Badge */}
-                  <div className="absolute bottom-10 right-10 bg-white/90 backdrop-blur-md p-6 rounded-3xl shadow-lg border border-white/40 max-w-xs">
-                     <div className="flex items-center gap-4 mb-3">
-                        <SunIcon className="h-8 w-8 text-yellow-500" />
-                        <span className="text-xs font-black uppercase tracking-widest text-gray-500">Zero Waste</span>
-                     </div>
-                     <p className="text-sm font-bold text-gray-800 leading-tight">Solar powered planning & clean energy advocacy.</p>
-                  </div>
-               </div>
+            <div className="flex gap-4 items-start">
+              <GlobeAsiaAustraliaIcon className="w-11 h-11 p-2 text-green-100 rounded-sm mt-1 shrink-0 bg-green-500" />
+              <p className="text-sm md:text-base font-medium leading-relaxed text-white/90">
+                On-campus nurseries producing 10,000+ saplings annually
+              </p>
             </div>
 
-         </div>
+            <div className="flex gap-4 items-start">
+              <ArchiveBoxIcon className="w-11 h-11 p-2 text-green-100 rounded-sm mt-1 shrink-0 bg-green-500" />
+              <p className="text-sm md:text-base font-medium leading-relaxed text-white/90">
+                Water harvesting systems recharging aquifers year-round
+              </p>
+            </div>
+
+          </div>
+
+          {/* Right Column */}
+          <div className="space-y-8">
+
+            <div className="flex gap-4 items-start">
+              <BeakerIcon className="w-11 h-11 p-2 text-green-100 rounded-sm mt-1 shrink-0 bg-green-500" />
+              <p className="text-sm md:text-base font-medium leading-relaxed text-white/90">
+                Organic farming demonstration plots & seed production
+              </p>
+            </div>
+
+            <div className="flex gap-4 items-start">
+              <SunIcon className="w-11 h-11 p-2 text-green-100 rounded-sm mt-1 shrink-0 bg-green-500" />
+              <p className="text-sm md:text-base font-medium leading-relaxed text-white/90">
+                Solar energy planning & zero-waste sustainability model
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* Footer Tagline */}
+        <div className="mt-16 border-t border-white/10 pt-6 text-center">
+          <p className="text-sm md:text-base font-semibold tracking-wider text-white/80 uppercase">
+            A Living Laboratory for Sustainable Agriculture & Rural Innovation
+          </p>
+        </div>
+
       </div>
     </section>
   );

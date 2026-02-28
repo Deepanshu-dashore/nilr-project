@@ -3,57 +3,71 @@
 import React from "react";
 import { campusData } from "@/src/data/campus-data";
 import { CheckCircleIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 export default function CampusIntroduction() {
   return (
-    <section className="section-padding bg-white">
-      <div className="container-wide">
-        <div className="flex flex-col lg:flex-row gap-16 items-start">
-          {/* Content Side */}
-          <div className="flex-1 space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
-            <h2 className="academic-section-title text-left!">
-              {campusData.introduction.title}
-            </h2>
-            
-            <div className="space-y-6 text-lg text-text-muted font-medium leading-relaxed">
-              {campusData.introduction.paragraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
-              ))}
-            </div>
+    <section id="overview" className="bg-white">
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
-              {campusData.introduction.features.map((feature, index) => (
-                <div key={index} className="flex gap-3 items-start">
-                  <CheckCircleIcon className="h-6 w-6 text-primary shrink-0 mt-0.5" />
-                  <span className="text-sm font-semibold text-gray-700 leading-tight">{feature}</span>
-                </div>
-              ))}
-            </div>
-            
-            <p className="text-xl font-semibold text-primary border-l-4 border-accent pl-6 py-2 mt-8">
-              {campusData.introduction.closing}
-            </p>
-          </div>
+      {/* ── 2. Full-Width Panoramic Campus Image ── */}
+      <div className="relative w-full h-[55vh] md:h-[90vh] overflow-hidden group border-b border-gray-100">
+        <div className="pt-24 absolute z-10 pb-12 text-center inset-0 mx-auto px-6 space-y-6 bg-linear-to-t from-transparent to-black/50">
+        <div className="flex items-center justify-center gap-4">
+          <div className="h-px w-12 bg-gray-200" />
+          <span className="text-[14px] font-bold uppercase tracking-[0.3em] text-white/70">
+            The Campus
+          </span>
+          <div className="h-px w-12 bg-gray-200" />
+        </div>
+        
+        <h1 className="text-3xl md:text-4xl lg:text-5xl text-white leading-tight tracking-tight">
+          Experience Life and Learning at
+          <br />
+          CVRU Khandwa – NLRI Ratlam
+        </h1>
+        
+        <p className="text-white/70 text-lg md:text-base leading-relaxed font-medium max-w-3xl mx-auto">
+          The CVRUK – NLRI Campus, located in Bhadwasa, Ratlam (Madhya Pradesh), features top-notch academic and training infrastructure amid a sustainable, green environment.
+        </p>
+      </div>
+        <Image
+          src="/campus-img/campusDron-2.jpeg"
+          alt="CVRUK NLRI campus panoramic aerial view"
+          fill
+          priority
+          className="object-cover object-center group-hover:scale-[1.04] transition-transform duration-[5000ms]"
+          sizes="100vw"
+        />
+        {/* Subtle vignette for depth */}
+        <div className="absolute inset-0 bg-linear-to-b from-white/20 via-transparent to-black/20 pointer-events-none" />
+      </div>
 
-          {/* Image Side - Placeholder until real image is provided */}
-          <div className="w-full lg:w-5/12 sticky top-24">
-             <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl relative group">
-                <img 
-                  src="/campus-img/campusDron-2.jpeg" 
-                  alt="CVRUK NLRI Campus" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-                  onError={(e) => {
-                    // Fallback if image doesn't exist
-                    (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80";
-                  }}
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-primary/80 to-transparent opacity-60" />
-                <div className="absolute bottom-8 left-8 right-8 text-white">
-                   <span className="text-xs font-bold tracking-widest uppercase opacity-80 mb-2 block">Est. by Gramin Vikas Trust</span>
-                   <span className="text-3xl font-heading font-bold">Centre of Excellence</span>
-                </div>
-             </div>
+      {/* ── 3. Introduction Text + Features ── */}
+      <div className="container-wide py-20 space-y-16">
+        
+        {/* Intro paragraphs */}
+        <div className="w-full">
+          <div className="space-y-6 text-gray-600 text-[1.1rem] font-medium leading-[1.8]">
+            {campusData.introduction.paragraphs.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
           </div>
+          <p className="mt-10 text-xl font-bold text-primary border-l-4 border-accent pl-6 py-2">
+            {campusData.introduction.closing}
+          </p>
+        </div>
+
+        {/* Feature Highlights Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {campusData.introduction.features.map((feature, index) => (
+            <div
+              key={index}
+              className="flex items-start gap-4 p-6 rounded-2xl bg-gray-50/50 border border-gray-100 hover:bg-white hover:shadow-xl hover:border-primary/15 transition-all duration-300 group"
+            >
+              <CheckCircleIcon className="h-6 w-6 text-primary shrink-0 mt-0.5 group-hover:text-accent transition-colors duration-300" />
+              <span className="text-[15px] font-bold text-gray-700 leading-snug">{feature}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
