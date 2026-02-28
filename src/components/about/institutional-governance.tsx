@@ -2,79 +2,132 @@
 
 import React from "react";
 import { aboutData } from "@/src/data/about-data";
-import { BuildingLibraryIcon, ChevronRightIcon, ShieldCheckIcon } from "@heroicons/react/24/outline";
+import {
+  BuildingLibraryIcon,
+  ShieldCheckIcon,
+  UserGroupIcon,
+  StarIcon,
+  CheckCircleIcon,
+  GlobeAltIcon,
+} from "@heroicons/react/24/outline";
+
+const principleIcons = [StarIcon, ShieldCheckIcon, UserGroupIcon, GlobeAltIcon];
 
 export default function InstitutionalGovernance() {
   return (
-    <section id="governance" className="section-padding bg-white relative overflow-hidden">
-      <div className="container-wide px-4">
-        {/* Main Content Box */}
-        <div className="bg-[#050B20] text-white rounded-[3.5rem] p-12 lg:p-24 relative overflow-hidden shadow-2xl group">
-          
-          {/* Atmosperic Background */}
-          <div className="absolute top-0 right-0 h-full w-1/3 bg-white/5 pointer-events-none skew-x-12 translate-x-1/2 transition-transform duration-1000 group-hover:translate-x-1/3" />
-          <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[150px] pointer-events-none" />
+    <section id="governance" className="section-padding bg-[#f8f9fb] relative overflow-hidden">
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 relative z-10">
-            
-            {/* Column 1: Core Institutional Statement */}
-            <div className="lg:col-span-4 lg:border-r border-white/10 lg:pr-16 space-y-12">
-              <div className="h-20 w-20 bg-primary/20 backdrop-blur-md rounded-2xl border border-white/10 flex items-center justify-center text-white mb-10 shadow-inner">
-                 <BuildingLibraryIcon className="h-10 w-10 text-accent" />
-              </div>
-              
-              <div className="space-y-6 text-left">
-                <h2 className="academic-section-title text-left!">
-                  Academic <br /> 
-                  <span className="text-accent italic font-serif">Governance</span>
-                </h2>
-                <div className="h-1.5 w-16 bg-accent rounded-full" />
-              </div>
+      {/* Subtle decorative blobs */}
+      <div className="pointer-events-none absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px]" />
 
-              <blockquote className="relative">
-                <div className="absolute -left-6 top-0 bottom-0 w-1 bg-accent/30 rounded-full" />
-                <p className="text-gray-300 leading-relaxed text-xl font-medium italic pl-6 py-2">
-                  {aboutData.governance.trust}
-                </p>
-              </blockquote>
+      <div className="container-wide relative z-10 space-y-16">
+
+        {/* ── Section Header ── */}
+        <div className="max-w-5xl space-y-4 mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/15 text-primary text-xs font-bold uppercase tracking-widest ">
+            <BuildingLibraryIcon className="w-4 h-4" />
+            GVT · Est. 1992
+          </div>
+          <h2 className="academic-section-title">
+            Governance &{" "}
+            <span className="text-primary">Board of Trustees</span>
+          </h2>
+          <div className="h-[3px] w-14 rounded-full bg-secondary" />
+          <p className="text-gray-500 text-base leading-relaxed font-medium text-center">
+            The CVRU Khandwa – NLRI Campus operates under the leadership of Gramin Vikas Trust (GVT) — ensuring transparent, accountable, and impact-oriented institutional governance since 1992.
+          </p>
+        </div>
+
+        {/* ── Trust Description Banner ── */}
+        <div className="flex gap-6 items-start bg-primary p-7 md:p-10 rounded-2xl shadow-lg">
+          <div className="w-14 h-14 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
+            <BuildingLibraryIcon className="w-7 h-7 text-accent" />
+          </div>
+          <p className="text-white/90 text-sm md:text-base leading-relaxed font-medium">
+            {aboutData.governance.trust}
+          </p>
+        </div>
+
+        {/* ── Two column: Board + Principles ── */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+
+          {/* Board Composition */}
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+            {/* Card Header */}
+            <div className="px-8 py-6 border-b border-gray-100 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-primary/8 text-primary flex items-center justify-center">
+                <UserGroupIcon className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-lg font-extrabold text-gray-900">Board Composition</h3>
+                <p className="text-xs text-gray-400 font-medium">Apex policy-making body for NLRI</p>
+              </div>
             </div>
-            
-            {/* Column 2: Academy Oversight */}
-            <div className="lg:col-span-4 space-y-12">
-               
-              <ul className="space-y-6">
+
+            {/* Description + List */}
+            <div className="px-8 py-6 space-y-5">
+              <p className="text-gray-500 text-sm leading-relaxed">
+                The Board of Trustees of Gramin Vikas Trust serves as the apex policy-making and oversight body — composed of professionals, administrators, and subject experts.
+              </p>
+              <ul className="space-y-3">
                 {aboutData.governance.board.map((item, index) => (
-                  <li key={index} className="flex gap-6 items-center group/item cursor-default">
-                    <div className="h-10 w-10 rounded-xl border border-white/10 flex items-center justify-center shrink-0 group-hover/item:bg-accent group-hover/item:border-accent group-hover/item:rotate-3 transition-all duration-300">
-                      <ChevronRightIcon className="h-4 w-4 text-accent-soft group-hover/item:text-white" />
+                  <li
+                    key={index}
+                    className="group flex gap-4 items-start p-4 rounded-xl border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-md hover:border-primary/15 transition-all duration-300"
+                  >
+                    <div className="w-8 h-8 rounded-lg bg-primary/8 text-primary flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      <CheckCircleIcon className="w-4 h-4" />
                     </div>
-                    <span className="text-xs font-black uppercase text-white opacity-80 group-hover/item:opacity-100 transition-opacity tracking-widest leading-relaxed">
+                    <span className="text-gray-700 text-sm font-semibold leading-relaxed pt-0.5">
                       {item}
                     </span>
                   </li>
                 ))}
               </ul>
             </div>
+          </div>
 
-            {/* Column 3: Strategic Principles */}
-            <div className="lg:col-span-4 space-y-12">
-               
-              <div className="grid grid-cols-1 gap-6">
-                {aboutData.governance.principles.map((item, index) => (
-                  <div key={index} className="bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all duration-300 group/principle">
-                    <div className="flex gap-5">
-                      <ShieldCheckIcon className="h-7 w-7 text-accent shrink-0 group-hover/principle:scale-110 transition-transform" />
-                      <span className="text-[11px] font-black uppercase tracking-widest text-gray-300 group-hover/principle:text-white transition-colors leading-relaxed">
-                        {item}
-                      </span>
-                    </div>
-                  </div>
-                ))}
+          {/* Governance Principles */}
+          <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+            {/* Card Header */}
+            <div className="px-8 py-6 border-b border-gray-100 flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
+                <ShieldCheckIcon className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-lg font-extrabold text-gray-900">Governance Principles</h3>
+                <p className="text-xs text-gray-400 font-medium">Values guiding all decisions</p>
               </div>
             </div>
 
+            {/* Description + Principles */}
+            <div className="px-8 py-6 space-y-5">
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Guided by principles that uphold institutional integrity, social equity, and alignment with national development priorities and SDGs.
+              </p>
+              <div className="space-y-3">
+                {aboutData.governance.principles.map((item, index) => {
+                  const Icon = principleIcons[index % principleIcons.length];
+                  return (
+                    <div
+                      key={index}
+                      className="group flex gap-4 items-start p-4 rounded-xl border border-gray-100 bg-gray-50 hover:bg-white hover:shadow-md hover:border-secondary/15 transition-all duration-300"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-secondary/8 text-secondary flex items-center justify-center shrink-0 group-hover:bg-secondary group-hover:text-white transition-all duration-300">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <span className="text-gray-700 text-sm font-semibold leading-relaxed pt-0.5">
+                        {item}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </section>
   );

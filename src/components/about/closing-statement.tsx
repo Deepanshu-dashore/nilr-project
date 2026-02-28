@@ -14,9 +14,9 @@ export default function ClosingStatement() {
       <div className="absolute inset-0 z-0 bg-primary/40 mix-blend-multiply" />
 
       <div className="container-wide text-center relative z-10">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Simple, Minimalistic Quote */}
-          <h2 className="text-2xl md:text-4xl font-bold leading-relaxed text-white/90 mb-10 tracking-tight">
+          <h2 className="text-2xl md:text-3xl font-semibold leading-relaxed text-white/90 mb-10 tracking-tight">
             "{aboutData.closing}"
           </h2>
 

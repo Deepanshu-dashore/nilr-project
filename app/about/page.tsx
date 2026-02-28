@@ -22,27 +22,27 @@ export default function AboutUsPage() {
       {/* 1. About the Institution (Overview) */}
       <InstitutionalOverview />
 
-      {/* 2. Institutional Legacy & Background */}
-      <InstitutionalLegacy />
-
-      {/* Extra: Impact Footprint (Stats & Timeline) */}
-      <JourneyImpact />
-
       {/* 3 & 4. Vision & Mission */}
       <VisionMission />
 
+      {/* Extra: Impact Footprint (Stats & Timeline) */}
+      <JourneyImpact />
+      <InstitutionalStrengths />
+      <OrganizationalStructure />
+
+      {/* 2. Institutional Legacy & Background */}
+      {/* <InstitutionalLegacy /> */}
+
       {/* 5 & 6. Academic Collaboration & School of Rural Management (SRM) */}
-      <CollaborationSRM />
+      {/* <CollaborationSRM /> */}
 
       {/* Governance & Leadership Structure */}
-      <OrganizationalStructure />
-      {/* <InstitutionalGovernance /> */}
+      <InstitutionalGovernance />
 
       {/* 7 & 8. Campus, Learning Environment & Approach to Development */}
       {/* <LearningApproach /> */}
 
       {/* 9. Institutional Strengths */}
-      <InstitutionalStrengths />
 
       {/* 10. Commitment to Rural Development (Closing) */}
       <ClosingStatement />

@@ -74,51 +74,114 @@ export const aboutData = {
     ]
   },
   journey: {
+    title: "The NLRI Journey and Achievements",
+    description: "Established in 2006 by Gramin Vikas Trust (GVT), the National Livelihood Resources Institute (NLRI) in Ratlam, Madhya Pradesh, has emerged as one of India’s leading institutions in the field of rural development, livelihood promotion, and skill training. From its early days as a knowledge and capacity-building hub, NLRI has grown into a nationally recognized center of excellence, now operating as the second campus of Dr. C.V. Raman University, Khandwa. Built on over 10 hectares of green, sustainable land, the campus stands as a living example of rural innovation and impact.",
     timeline: [
-      { year: "2006", event: "NLRI established by GVT" },
-      { year: "2010 onwards", event: "Large-scale watershed & livelihood projects" },
-      { year: "2014", event: "Launch of AICTE-approved SRM" },
-      { year: "2020s", event: "Expansion into organic farming & seed programs" },
-      { year: "2025", event: "Official collaboration with CVRU Khandwa" }
+      { year: "2006", event: "NLRI Ratlam established as a flagship rural development and training center of GVT" },
+      { year: "2010 onwards", event: "Implementation of large-scale watershed, livelihood, and CSR projects across MP, Gujarat, and Rajasthan" },
+      { year: "2014", event: "Launch of the AICTE-approved School of Rural Management (SRM)" },
+      { year: "2020s", event: "Expansion into seed production, organic farming, and field research" },
+      { year: "2025", event: "Official collaborating with Dr. C. V. Raman University Khandwa Madhya Pradesh, marking a new era in rural higher education" }
     ],
-    achievements: [
+    stats: [
       { value: "41,000+", label: "Individuals trained" },
       { value: "1,200+", label: "Residential training programs" },
       { value: "400+", label: "Rural development projects" },
-      { value: "PAN-India", label: "Operations across multiple states" },
-      { value: "MANAGE", label: "Recognized training institute" }
+      { value: "4,500+", label: "Quintals seed distributed" },
+      { value: "17+", label: "Years of excellence" }
+    ],
+    detailedAchievements: [
+      "Trained over 41,000+ individuals through 1,200+ residential training events across 17 years",
+      "Successful implementation of 400+ rural development projects in partnership with KRIBHCO, NABARD, BPCL, Grasim Industries, PHED, and more",
+      "Produced and distributed 4500+ quintals of certified soybean seed annually under the Seed Multiplication Program",
+      "Hosted training for Patwaries, PRI members, SHGs, NGOs, and FPOs from across the country",
+      "Pioneered development models in watershed management, participatory irrigation, organic farming, and women empowerment",
+      "Developed a state-of-the-art GIS Lab, e-learning and virtual media center, and real-time demonstration plots for practical learning",
+      "Recognized by MANAGE Hyderabad as an official training institute under the AC&ABC scheme"
     ]
   },
   structure: [
     {
       category: "Governing & Advisory Bodies",
-      items: ["Board of Trustees (GVT)", "National Advisory Committee"]
+      icon: "shield",
+      desc: "Strategic oversight and institutional governance at the highest level.",
+      items: [
+        "Board of Trustees – Gramin Vikas Trust",
+        "National Advisory Committee for strategic guidance"
+      ]
     },
     {
       category: "Institutional Leadership",
-      items: ["Head / In-charge Director, NLRI", "Deputy Head & Nodal Officer (SRM)", "Training Director", "Principal, School of Rural Management"]
+      icon: "users",
+      desc: "Senior leadership driving campus management, academics, and compliance.",
+      items: [
+        "Head of NLRI / In-charge Director, SRM",
+        "Deputy Head of NLRI & Institute Nodal Officer (SRM)",
+        "Training Director, NLRI",
+        "Principal, School of Rural Management (SRM)"
+      ]
     },
     {
       category: "Academic & Training Divisions",
-      items: ["Rural Development", "Agriculture & NRM", "Social Work", "Finance & Entrepreneurship", "ICT & Development Communication"]
+      icon: "academic",
+      desc: "Faculty teams and guest experts delivering multi-disciplinary rural education.",
+      items: [
+        "Rural Development and Livelihoods",
+        "Social Work and Community Management",
+        "Agriculture and Natural Resource Management",
+        "Financial Management and Entrepreneurship",
+        "Information and Communication Technology (ICT)",
+        "Guest Faculty: NGOs, CSR leaders & Govt. advisors"
+      ]
     },
     {
-      category: "Support & Administrative Units",
-      items: ["Accounts & HR", "Admissions & Scholarships", "Placement Cell", "IT & E-learning", "Hostel & Facilities Management"]
+      category: "Specialized Departments",
+      icon: "beaker",
+      desc: "Technology-driven and knowledge-focused units for advanced learning.",
+      items: [
+        "Knowledge Centre and Library Unit",
+        "GIS and Remote Sensing Lab",
+        "Development Communication and Media Lab",
+        "Skill Development and Vocational Training Cell",
+        "Placement and Career Guidance Cell"
+      ]
+    },
+    {
+      category: "Administrative & Support Units",
+      icon: "building",
+      desc: "Operations, finance, admissions, and campus facilities management.",
+      items: [
+        "Accounts and Finance Department",
+        "Human Resource Management Unit",
+        "Admission and Scholarship Cell",
+        "Field Project Management Office",
+        "IT and E-learning Support Team",
+        "Campus Facilities and Hostel Management"
+      ]
+    },
+    {
+      category: "Field & Research Units",
+      icon: "globe",
+      desc: "On-ground research, consultancy, and monitoring for real-world impact.",
+      items: [
+        "Seed Production and Organic Farming Cell",
+        "Research and Consultancy Division",
+        "Monitoring, Evaluation & Learning Documentation (MELD) Team"
+      ]
     }
   ],
   governance: {
-    trust: "Operated under Gramin Vikas Trust (GVT) (est. 1992), supported by KRIBHCO & Govt. of India.",
+    trust: "Operated under Gramin Vikas Trust (GVT), a nationally acclaimed development organization established in 1992 with the support of KRIBHCO and the Government of India — ensuring transparent, accountable, and impact-oriented institutional governance.",
     board: [
-      "4 Trustees from KRIBHCO",
-      "2 from Ministry of Chemicals & Fertilizers (GoI)",
-      "3 Eminent Nominated Trustees"
+      "4 Trustees from KRIBHCO (Krishak Bharati Cooperative Limited)",
+      "2 Trustees from the Ministry of Chemicals & Fertilizers, Government of India",
+      "3 Eminent Nominated Trustees from social development, academia, and administration"
     ],
     principles: [
-      "Transparency & accountability",
-      "Strategic oversight",
-      "Alignment with national missions",
-      "Inclusive and participatory governance"
+      "Strategic Oversight on academic direction, project execution, financial planning, and stakeholder engagement",
+      "Transparency & Accountability in all operations, audited both internally and externally",
+      "Inclusive Representation of rural, tribal, and marginalized community concerns through participatory models",
+      "Alignment with National Priorities — Skill India, Digital India, Jal Jeevan Mission, and Sustainable Development Goals (SDGs)"
     ]
   },
   strengths: [

@@ -15,11 +15,12 @@ const mainNavigation = [
     name: "About Us",
     href: "/about",
     submenu: [
-      { name: "Overview", href: "/about" },
+      { name: "Campus Overview", href: "/about#overview" },
       { name: "Vision & Mission", href: "/about#vision" },
-      { name: "NLRI Background", href: "/about#background" },
-      { name: "Governance & Management", href: "/about#governance" },
+      { name: "Journey & Achievements", href: "/about#background" },
       { name: "Institutional Strength", href: "/about#strength" },
+      { name: "Organizational Structure", href: "/about#structure" },
+      { name: "Governance & Board", href: "/about#governance" },
     ],
   },
   {
