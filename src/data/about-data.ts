@@ -8,7 +8,8 @@ export const aboutData = {
       "Participatory & Community-Driven Focus",
       "Holistic Ecosystem for Professionals"
     ]
-  },
+  }, 
+  
   legacy: {
     title: "Institutional Legacy & Background",
     content: "NLRI has evolved as a resource and capacity-building institution supporting development initiatives across India. Backed by the long-standing experience of Gramin Vikas Trust (GVT), the institute has worked extensively in bridging theory with real-world rural challenges.",
