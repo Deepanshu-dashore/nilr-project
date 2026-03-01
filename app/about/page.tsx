@@ -10,6 +10,8 @@ import LearningApproach from "@/src/components/about/learning-approach";
 import InstitutionalStrengths from "@/src/components/about/institutional-strengths";
 import ClosingStatement from "@/src/components/about/closing-statement";
 
+import { BuildingLibraryIcon } from "@heroicons/react/24/outline";
+
 export default function AboutUsPage() {
   return (
     <div className="flex flex-col bg-white">
@@ -17,6 +19,8 @@ export default function AboutUsPage() {
       <Hero 
         tag="ABOUT US" 
         title="CVRU Khandwa – NLRI Ratlam Campus" 
+        subtitle="A unique synergy of academic excellence and grassroots transformation, building leaders for the rural landscape through innovation and sustainable growth."
+        tagIcon={BuildingLibraryIcon}
       />
 
       {/* 1. About the Institution (Overview) */}

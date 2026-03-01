@@ -37,7 +37,7 @@ export default function AdmissionsClient() {
       </section>
 
       {/* 2. PROGRAMS OPEN FOR ADMISSION */}
-      <section className="py-24 bg-white">
+      <section id="programs" className="py-24 bg-white">
         <div className="container-wide max-w-6xl">
 
           <div className="text-center md:text-center mb-16">
@@ -112,7 +112,7 @@ export default function AdmissionsClient() {
       </section>
 
       {/* 3. ADMISSION PROCEDURE (Step Layout based on Reference Image) */}
-      <section className="py-24 bg-primary/5">
+      <section id="process" className="py-24 bg-primary/5">
         <div className="container-wide max-w-6xl">
 
           <div className="text-center mb-16">
@@ -167,7 +167,7 @@ export default function AdmissionsClient() {
 
 
       {/* 5. IMPORTANT DATES SECTION */}
-      <section className="py-24 bg-gray-50/50">
+      <section id="dates" className="py-24 bg-gray-50/50">
         <div className="container-wide max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="academic-section-title">
@@ -206,7 +206,7 @@ export default function AdmissionsClient() {
       </section>
 
       {/* 5. COURSE ELIGIBILITY & FEES SECTION (Unified Format) */}
-      <section className="py-24 bg-white border-t border-gray-100">
+      <section id="fees" className="py-24 bg-white border-t border-gray-100">
         <div className="container-wide max-w-6xl">
           <div className="text-center mb-16">
             <h2 className="academic-section-title">
@@ -292,7 +292,7 @@ export default function AdmissionsClient() {
       </section>
 
       {/* 6. ADMISSIONS - CONTACT US (Based on provided Map Image Layout) */}
-      <section className="py-24 bg-white border-t border-gray-100">
+      <section id="contact-admissions" className="py-24 bg-white border-t border-gray-100">
         <div className="container-wide max-w-6xl">
           
           <div className="mb-12 text-center lg:text-left">

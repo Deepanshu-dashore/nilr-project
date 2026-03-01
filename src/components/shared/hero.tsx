@@ -1,17 +1,17 @@
-"use client";
-
 import React from "react";
+import { AcademicCapIcon } from "@heroicons/react/24/outline";
 
 interface HeroProps {
   title: string;
   subtitle?: string;
   tag?: string;
   className?: string;
+  tagIcon?: React.ElementType;
 }
 
-export default function Hero({ title, subtitle, tag, className = "" }: HeroProps) {
+export default function Hero({ title, subtitle, tag, className = "", tagIcon: TagIcon = AcademicCapIcon }: HeroProps) {
   return (
-    <section className={`relative min-h-[350px] md:min-h-[300px] flex items-center justify-center overflow-hidden ${className}`}>
+    <section className={`bg-text-dark relative text-white py-24 md:py-32 overflow-hidden ${className}`}>
       {/* Background Image Layer */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -19,36 +19,36 @@ export default function Hero({ title, subtitle, tag, className = "" }: HeroProps
           backgroundImage: "url('/HeaderBg.png')",
         }}
       />
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 -skew-x-12 translate-x-32" />
       
-      {/* Overlay for text readability (subtle) */}
-      <div className="absolute inset-0 z-10 bg-black/10" />
-
       {/* Content Layer */}
-      <div className="container-wide relative z-20 px-4 text-center">
-        <div className="flex flex-col items-center gap-8 animate-in fade-in zoom-in-95 duration-1000">
+      <div className="container-wide relative z-10 px-4 text-center">
+        <div className="flex flex-col items-center animate-in fade-in zoom-in-95 duration-1000">
           {tag && (
-            <span className="text-[14px] font-semibold md:text-[16px] text-white uppercase tracking-tight drop-shadow-md">
-              {tag}
-            </span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-linear-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 backdrop-blur-sm">
+              <TagIcon className="w-5 h-5 text-indigo-400 inline-block" />
+              <span className="text-sm font-medium bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent capitalize">
+                {tag}
+              </span>
+            </div>
           )}
           
-          <h1 className="text-4xl md:text-5xl font-semibold! text-white leading-tight max-w-5xl drop-shadow-xl">
+          <h1 className="text-4xl md:text-5xl font-semibold! leading-tight text-white mb-8 max-w-5xl">
             {title}
           </h1>
 
           {subtitle && (
-            <p className="text-lg md:text-xl text-white/90 font-medium max-w-3xl leading-relaxed drop-shadow-md mt-4 animate-in fade-in slide-in-from-bottom-2 duration-1000 delay-200">
+            <p className="max-w-4xl mx-auto text-lg md:text-xl text-gray-300 leading-relaxed font-medium animate-in fade-in slide-in-from-bottom-2 duration-1000 delay-200">
               {subtitle}
             </p>
           )}
-          
-          {/* Decorative line below title */}
-          <div className="h-1 w-24 bg-white/20 rounded-full mt-2" />
+
+          {/* Decorative separator */}
+          {!subtitle && (
+             <div className="w-24 h-1 bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full mt-4" />
+          )}
         </div>
       </div>
-      
-      {/* Bottom Shadow/Border decoration */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-black/10 shadow-[0_-10px_30px_rgba(0,0,0,0.3)]" />
     </section>
   );
 }

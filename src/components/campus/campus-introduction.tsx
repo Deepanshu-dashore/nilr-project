@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function CampusIntroduction() {
   return (
-    <section id="overview" className="bg-white">
+    <section id="introduction" className="bg-white">
 
       {/* ── 2. Full-Width Panoramic Campus Image ── */}
       <div className="relative w-full h-[55vh] md:h-[90vh] overflow-hidden group border-b border-gray-100">
@@ -34,7 +34,7 @@ export default function CampusIntroduction() {
           alt="CVRUK NLRI campus panoramic aerial view"
           fill
           priority
-          className="object-cover object-center group-hover:scale-[1.04] transition-transform duration-[5000ms]"
+          className="object-cover object-center group-hover:scale-[1.04] transition-transform duration-5000"
           sizes="100vw"
         />
         {/* Subtle vignette for depth */}

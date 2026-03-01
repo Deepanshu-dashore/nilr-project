@@ -27,8 +27,8 @@ export default function ContactClient() {
               Contact Us 2025–26
             </span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-serif font-semibold! leading-tight text-white mb-8">
-            Let&apos;s Build a <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Better Future </span> Together
+          <h1 className="text-4xl md:text-5xl font-serif font-semibold! leading-tight text-white mb-8">
+            Let&apos;s Build a <span className="text-transparent bg-clip-text bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400">Better Future </span> Together
           </h1>
           <p className="max-w-5xl mx-auto text-lg text-gray-300 leading-relaxed font-medium">
             For admissions, programs, training, partnerships, or campus visits,
@@ -56,7 +56,7 @@ export default function ContactClient() {
 
           <div className="grid lg:grid-cols-2 gap-12 items-stretch">
             {/* Left Column: Google Map */}
-            <div className="h-full min-h-[500px] rounded-[2rem] overflow-hidden shadow-2xl border border-gray-100 ring-8 ring-white/50 animate-in fade-in slide-in-from-left-8 duration-1000">
+            <div className="h-full min-h-[500px] rounded-4xl overflow-hidden shadow-2xl border border-gray-100 ring-8 ring-white/50 animate-in fade-in slide-in-from-left-8 duration-1000">
               <iframe
                 src={map.embedUrl}
                 width="100%"
@@ -68,7 +68,7 @@ export default function ContactClient() {
             </div>
 
             {/* Right Column: Contact Form */}
-            <form className="bg-white p-8 md:p-10 rounded-[2rem] shadow-2xl shadow-primary/5 border border-gray-100 space-y-6 animate-in fade-in slide-in-from-right-8 duration-1000 h-full flex flex-col justify-center">
+            <form className="bg-white p-8 md:p-10 rounded-4xl shadow-2xl shadow-primary/5 border border-gray-100 space-y-6 animate-in fade-in slide-in-from-right-8 duration-1000 h-full flex flex-col justify-center">
               <h3 className="text-2xl font-serif font-bold text-[#21325b] mb-2">Send Us a Message</h3>
               <p className="text-gray-500 text-sm mb-6 pb-6 border-b border-gray-100">Our team typically responds within 24-48 business hours.</p>
 
@@ -277,19 +277,19 @@ export default function ContactClient() {
       <section className="py-24 bg-white border-t border-gray-100">
         <div className="container-wide max-w-4xl px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-custom-title font-serif font-bold text-[#3b3378] mb-4">
+            <h2 className="text-3xl md:text-custom-title font-serif font-bold text-[#3d317c] mb-4">
               Frequently Asked Questions (FAQ&apos;s)
             </h2>
-            <div className="flex flex-wrap justify-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-widest">
-              <span>Admissions</span>
+            <div className="flex flex-wrap justify-center gap-3 text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest">
+              <a href="/admissions" className="hover:text-primary transition-colors">Admissions</a>
               <span className="opacity-30">|</span>
-              <span>Eligibility</span>
+              <a href="/admissions#eligibility" className="hover:text-primary transition-colors">Eligibility</a>
               <span className="opacity-30">|</span>
-              <span>Fees</span>
+              <a href="/admissions#fees" className="hover:text-primary transition-colors">Fees</a>
               <span className="opacity-30">|</span>
-              <span>Entrance</span>
+              <a href="/admissions#entrance" className="hover:text-primary transition-colors">Entrance</a>
               <span className="opacity-30">|</span>
-              <span>Placements</span>
+              <a href="/placements" className="hover:text-primary transition-colors">Placements</a>
             </div>
             <div className="w-16 h-1 bg-accent/20 mx-auto mt-6 rounded-full" />
           </div>

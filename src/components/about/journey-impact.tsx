@@ -33,7 +33,7 @@ function TimelineItem({ year, event, index }: { year: string; event: string; ind
 export default function JourneyImpact() {
   return (
     <section
-      id="background"
+      id="journey"
       className="section-padding bg-primary text-white relative overflow-hidden"
     >
       <div className="pointer-events-none absolute -top-40 right-0 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[150px]" />

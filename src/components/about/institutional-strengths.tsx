@@ -119,7 +119,7 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 
 export default function InstitutionalStrengths() {
   return (
-    <section id="strength" className="section-padding bg-[#f8f9fb] relative overflow-hidden">
+    <section id="strengths" className="section-padding bg-[#f8f9fb] relative overflow-hidden">
 
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[130px] -z-10 pointer-events-none" />
