@@ -41,7 +41,7 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#071630] text-white overflow-hidden relative">
+    <footer className="bg-primary border-t border-white/20 text-white overflow-hidden relative">
 
       {/* Main Footer Body */}
       <div className="container-wide pt-16 pb-10 relative z-10">
