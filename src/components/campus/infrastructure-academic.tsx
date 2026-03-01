@@ -6,9 +6,10 @@ import {
   AcademicCapIcon,
   HomeModernIcon,
   BuildingOffice2Icon,
-  ShieldCheckIcon,
   BeakerIcon,
   TrophyIcon,
+  BookOpenIcon,
+  PresentationChartBarIcon,
 } from "@heroicons/react/24/outline";
 import { CheckIcon } from "@heroicons/react/20/solid";
 
@@ -18,9 +19,9 @@ const facilityCards = [
     title: "Training Centre",
     img: "/campus-img/campusDron-2.jpeg",
     items: [
-      "Easy-access from major highways",
-      "Scenic Maleni River and green surroundings",
-      `Capacity for ${campusData.infrastructure.trainingCentre.capacity}`,
+      "Accommodate over 190 participants",
+      "Conference hall for seminars, guest lectures, and symposiums (60+ seating capacity)",
+      "3 fully equipped lecture theatres (50-seat capacity, advanced AV setups)",
     ],
   },
   {
@@ -28,40 +29,39 @@ const facilityCards = [
     title: "Hostel Facilities",
     img: "/campus-img/campusDron-1.jpeg",
     items: [
-      "48 participants | 80+ beds",
-      "Lecture theatres with AV setups",
-      "60 seats each",
+      "Meerashray Hostel Block: 16 executive rooms (48 participants capacity)",
+      "Balram Bhawan: 6 triple-sharing and 9 four-bed rooms with shared amenities",
+      "24×7 Security, Wi-Fi, and recreational areas",
     ],
   },
   {
     icon: BuildingOffice2Icon,
-    title: "Administrative & Academic Buildings",
+    title: "Administrative and Academic Buildings",
     img: "/campus-img/campusImg.jpeg",
     items: [
-      "3-storey academic block",
-      "Leadership offices & faculty workspaces",
-      "AICTE approved labs",
-    ],
-  },
-  {
-    icon: ShieldCheckIcon,
-    title: "Residential Facilities",
-    img: null,
-    items: [
-      "Meerashray Hostel Block",
-      "Balram Bhawan Dormitory",
-      "24×7 Security & Wi-Fi",
+      "Three-story SRM academic block with dedicated offices and meeting spaces",
+      "Executive cabins for Head NLRI, SRM Principal, and Training Director",
+      "Workspace for faculty, project staff, and administrative teams",
     ],
   },
   {
     icon: BeakerIcon,
-    title: "Labs & Classrooms",
+    title: "Laboratories",
     img: null,
     badge: "Smart",
     items: [
-      "GIS lab for watershed mapping",
-      "IT labs & media center",
-      "24×7 security & Wi-Fi",
+      "GIS Laboratory: RVYS 10.1 for watershed mapping and planning",
+      "Computer Lab: 30 computer systems with high-speed internet",
+      "Used for training, research, E-learning and ICT-based support",
+    ],
+  },
+  {
+    icon: PresentationChartBarIcon,
+    title: "Auditorium and Classrooms",
+    img: null,
+    items: [
+      "Upcoming 250-seat auditorium for academic and cultural events",
+      "Smart classrooms with projectors, whiteboards, and audio-visual tools",
     ],
   },
   {
@@ -69,9 +69,19 @@ const facilityCards = [
     title: "Sports Facilities",
     img: null,
     items: [
-      "4,500 sqm multipurpose ground",
-      "Volleyball court",
-      "Yoga & wellness open spaces",
+      "Football and cricket ground (4,500 sqm)",
+      "Volleyball court (2,000 sqm)",
+      "Open spaces for yoga, group activities, and wellness",
+    ],
+  },
+  {
+    icon: BookOpenIcon,
+    title: "Knowledge Centre and Library",
+    img: null,
+    items: [
+      "6,000+ books and journals in English and Hindi",
+      "Topics include: rural development, agriculture, management, gender studies",
+      "Digital learning materials, e-resources, and contemporary publications",
     ],
   },
 ];

@@ -7,7 +7,7 @@ import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
 
 export default function CollaborationSRM() {
   return (
-    <section className="bg-gray-100 py-16 md:py-24 border-y border-gray-100 overflow-hidden">
+    <section id="collaboration" className="bg-gray-100 py-16 md:py-24 border-y border-gray-100 overflow-hidden">
       <div className="pr-20">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-stretch">
           

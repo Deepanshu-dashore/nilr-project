@@ -29,6 +29,15 @@ export default function CampusPage() {
       {/* 4. Sustainability Initiatives (Dark Green Banner) */}
       <GreenInitiatives />
 
+      {/* Closing Statement */}
+      <section className="bg-primary text-white py-16 px-4 md:px-0 text-center">
+        <div className="max-w-5xl mx-auto space-y-4">
+          <p className="text-lg md:text-xl font-medium leading-relaxed">
+           "The CVRUK-NLRI campus is not just an academic facility — it’s a hands-on innovation hub where students, professionals, and rural communities collaborate to solve real-world challenges in agriculture, livelihood, and sustainable development"
+          </p>
+        </div>
+      </section>
+
       {/* 11. Safety & Amenities Grid */}
       {/* <CampusAmenities /> */}
     </div>

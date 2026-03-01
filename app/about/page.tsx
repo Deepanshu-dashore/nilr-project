@@ -34,7 +34,7 @@ export default function AboutUsPage() {
       {/* <InstitutionalLegacy /> */}
 
       {/* 5 & 6. Academic Collaboration & School of Rural Management (SRM) */}
-      {/* <CollaborationSRM /> */}
+      <CollaborationSRM />
 
       {/* Governance & Leadership Structure */}
       <InstitutionalGovernance />

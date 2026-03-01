@@ -18,6 +18,7 @@ const mainNavigation = [
       { name: "Campus Overview", href: "/about#overview" },
       { name: "Vision & Mission", href: "/about#vision" },
       { name: "Journey & Achievements", href: "/about#background" },
+      { name: "Academic Collaboration", href: "/about#collaboration" },
       { name: "Institutional Strength", href: "/about#strength" },
       { name: "Organizational Structure", href: "/about#structure" },
       { name: "Governance & Board", href: "/about#governance" },
@@ -29,8 +30,6 @@ const mainNavigation = [
     submenu: [
       { name: "Campus Overview", href: "/campus" },
       { name: "Infrastructure & Facilities", href: "/campus#infrastructure" },
-      { name: "Hostel & Accommodation", href: "/campus#hostels" },
-      { name: "Laboratories & Library", href: "/campus#labs" },
       { name: "Green Campus Initiatives", href: "/campus#green" },
     ],
   },
@@ -38,11 +37,10 @@ const mainNavigation = [
     name: "Programs",
     href: "/programs",
     submenu: [
-      { name: "School of Rural Management (PGD-RM)", href: "/programs" },
-      { name: "Diploma Programs", href: "/programs#diplomas" },
-      { name: "Certificate Courses", href: "/programs#certificates" },
-      { name: "Short-Term Training Programs", href: "/programs#short-term" },
-      { name: "Teaching & Learning Approach", href: "/programs#approach" },
+      { name: "School of Rural Management (PGD-RM)", href: "/programs#postgraduate" },
+      { name: "Diploma Programs", href: "/programs#diploma" },
+      { name: "Certificate Courses", href: "/programs#certificate" },
+      { name: "Short-Term Training Programs", href: "/programs#training" },
     ],
   },
   {
