@@ -25,35 +25,50 @@ const testimonials = [
 
 export default function StudentTestimonials() {
   const [index, setIndex] = useState(0);
+  const [cardsToShow, setCardsToShow] = useState(2);
 
-  // Auto-scroll logic could be added here, but the user requested a specific design
-  // We'll show two cards at a time on desktop as per the reference image
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1024) setCardsToShow(1);
+      else setCardsToShow(2);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const visibleTestimonials = Array.from({ length: cardsToShow }, (_, i) => 
+    testimonials[(index + i) % testimonials.length]
+  );
 
   return (
-    <section className="section-padding bg-bg-main">
+    <section className="section-padding bg-bg-main border-y border-border-light">
       <div className="container-wide">
-        <div className="mb-20 text-center">
-          <h2 className="academic-section-title text-[#4A1D1A]">Student Testimonials</h2>
-          <p className="academic-section-subtitle text-gray-800">Thoughts, takeaways, and testimonials from those who've lived it.</p>
+        <div className="mb-12 md:mb-16 text-center">
+          <h2 className="academic-section-title text-[#4A1D1A] text-2xl md:text-3xl lg:text-4xl">Student Testimonials</h2>
+          <p className="academic-section-subtitle text-gray-800 text-sm md:text-base px-4">Thoughts, takeaways, and testimonials from those who've lived it.</p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[testimonials[index % testimonials.length], testimonials[(index + 1) % testimonials.length]].map((item, i) => (
-              <div key={i} className="bg-white border-t-2 border-[#F3BE34] shadow-xl p-8 pb-5 rounded-sm hover:-translate-y-1 transition-all duration-300">
-                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-                  <div className="w-40 h-40 shrink-0 overflow-hidden rounded-sm">
+        <div className="max-w-7xl mx-auto px-2 md:px-4">
+          <div className={`grid grid-cols-1 ${cardsToShow === 2 ? 'lg:grid-cols-2' : ''} gap-6`}>
+            {visibleTestimonials.map((item, i) => (
+              <div key={`${index}-${i}`} className="bg-white border-t-4 border-[#F3BE34] shadow-xl p-6 sm:p-8 rounded-sm hover:-translate-y-1 transition-all duration-500 animate-in fade-in slide-in-from-right-4">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6">
+                  <div className="w-32 h-32 sm:w-40 sm:h-40 shrink-0 overflow-hidden rounded-sm ring-4 ring-gray-50">
                     <img 
                       src={item.avatar} 
                       alt={item.name} 
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="flex flex-col">
-                    <p className="text-gray-500 leading-relaxed mb-3 text-sm md:text-base">
-                      {item.content}
+                  <div className="flex flex-col text-center sm:text-left h-full">
+                    <p className="text-gray-600 italic leading-relaxed mb-4 text-sm md:text-base">
+                      "{item.content}"
                     </p>
-                    <h4 className="text-lg font-semibold text-gray-900 mt-auto">{item.name}</h4>
+                    <div className="mt-auto">
+                      <h4 className="text-base sm:text-lg font-bold text-gray-900 leading-tight">{item.name}</h4>
+                      <p className="text-xs sm:text-sm text-primary font-medium mt-1 uppercase tracking-wider">{item.role}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -67,8 +82,9 @@ export default function StudentTestimonials() {
                 key={i}
                 onClick={() => setIndex(i)}
                 className={`h-2.5 rounded-full transition-all duration-300 ${
-                  index === i ? "w-6 bg-[#F3BE34]" : "w-2.5 bg-gray-300"
+                  index === i ? "w-8 bg-[#F3BE34]" : "w-3 bg-gray-300"
                 }`}
+                aria-label={`Go to slide ${i + 1}`}
               />
             ))}
           </div>

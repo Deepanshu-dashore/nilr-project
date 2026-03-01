@@ -9,7 +9,7 @@ export default function AdmissionsClient() {
     <div className="flex flex-col bg-white">
       
       {/* 1. HERO SECTION (Matched to Programs Page) */}
-      <section className="bg-text-dark relative text-white py-24 overflow-hidden">
+      <section className="bg-text-dark relative text-white py-14 md:py-24 overflow-hidden">
         {/* Subtle background element */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -19,42 +19,78 @@ export default function AdmissionsClient() {
         />
         <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 -skew-x-12 translate-x-32" />
         
-        <div className="container-wide text-center max-w-4xl relative z-10">
+        <div className="container-wide pl-5 md:pl-0 text-center max-w-4xl relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-linear-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 backdrop-blur-sm">
-            <AcademicCapIcon className="w-5 h-5 text-indigo-400 inline-block" />
-            <span className="text-sm font-medium bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <AcademicCapIcon className="w-4 h-4 md:w-5 md:h-5 text-indigo-400 inline-block" />
+            <span className="text-xs md:text-sm font-medium bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               Admissions 2025–26
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-semibold! leading-tight text-white mb-6">
+          <h1 className="text-2xl md:text-5xl font-semibold! leading-tight text-white mb-6">
             Your Gateway to a Career in <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Rural Transformation</span>
           </h1>
-          <p className="max-w-5xl mx-auto text-lg text-gray-300 leading-relaxed">
+          <p className="max-w-3xl md:pr-0 pr-5 mx-auto text-sm md:text-lg text-gray-300 leading-relaxed text-justify md:text-center">
             Begin your journey in rural management, sustainable agriculture, and livelihood development 
             through AICTE-approved and skill-oriented programs at CVRU Khandwa – NLRI Campus.
           </p>
         </div>
       </section>
 
-      {/* 2. PROGRAMS OPEN FOR ADMISSION */}
-      <section id="programs" className="py-24 bg-white">
-        <div className="container-wide max-w-6xl">
+      {/* 2. WELCOME / INTRODUCTION SECTION */}
+      <section className="py-12 md:py-24 bg-white">
+        <div className="container-wide pl-5 md:pl-0 max-w-6xl">
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            <div className="lg:w-1/2 space-y-6">
+              <span className="text-accent font-bold uppercase tracking-widest text-xs">
+                Welcome to NLRI
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#21325b] leading-tight">
+                {admissionsData.intro.title}
+              </h2>
+              <div className="w-20 h-1.5 bg-accent rounded-full" />
+              <div className="space-y-4 text-gray-600 font-medium leading-relaxed text-sm md:text-base text-justify md:text-left">
+                {admissionsData.intro.description.map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
+            </div>
+            <div className="lg:w-1/2 relative">
+               <div className="aspect-video lg:aspect-square bg-gray-100 rounded-2xl overflow-hidden shadow-2xl relative group">
+                  <img 
+                    src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80" 
+                    alt="Campus Life" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                  />
+                  <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
+                  <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent/20 rounded-full blur-3xl" />
+               </div>
+               <div className="absolute -top-4 -left-4 bg-white p-4 shadow-xl rounded-xl z-10 border border-gray-100 hidden md:block">
+                  <p className="text-primary font-bold text-lg leading-tight">Build your <br/>Future here</p>
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-          <div className="text-center md:text-center mb-16">
-            <span className="text-gray-600 flex items-center gap-1 border-gray-300 font-medium capitalize border w-fit px-3 py-1.5 rounded-full mx-auto text-xs mb-3">
+      {/* 2. PROGRAMS OPEN FOR ADMISSION */}
+      <section id="programs" className="py-12 md:py-24 bg-white">
+        <div className="container-wide pl-5 md:pl-0 max-w-6xl">
+
+          <div className="text-center md:text-center mb-10 md:mb-16">
+            <span className="text-gray-600 flex items-center gap-1 border-gray-300 font-medium capitalize border w-fit px-3 py-1.5 rounded-full mx-auto text-[10px] md:text-xs mb-3">
             <AcademicCapIcon className="w-4 h-4 inline-block mr-1" />
             Academic Opportunity
             </span>
-            <h2 className="academic-section-title">
+            <h2 className="text-2xl md:text-4xl academic-section-title">
               Programs Open for Admission
             </h2>
             <div className="w-32 h-1 bg-linear-to-r from-[#21325b] to-[#9b2928] rounded-md mb-6 mx-auto" />
-            <p className="text-gray-600 academic-section-text text-lg max-w-5xl leading-relaxed font-medium mx-auto">
+            <p className="text-gray-600 academic-section-text text-sm md:text-lg max-w-5xl leading-relaxed font-medium mx-auto text-justify md:text-center">
               We offer specialized programs that bridge the gap between academic theory and practical field implementation. Choose the path that fits your career goals.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-1 gap-6">
+          <div className="grid grid-cols-1 gap-6">
             {[
               { 
                 title: "PGD – Rural Management", 
@@ -88,17 +124,17 @@ export default function AdmissionsClient() {
                   <h3 className="text-xl md:text-2xl font-bold text-[#21325b] mb-2 group-hover:text-[#9b2928] transition-colors duration-300">
                     {program.title}
                   </h3>
-                  <p className="text-[#9b2928] font-bold text-sm mb-3 uppercase tracking-wide">
+                  <p className="text-[#9b2928] font-bold text-xs md:text-sm mb-3 uppercase tracking-wide">
                     {program.type}
                   </p>
-                  <p className="text-gray-600 leading-relaxed font-medium">
+                  <p className="text-sm md:text-base text-gray-600 leading-relaxed font-medium text-justify md:text-left">
                     {program.desc}
                   </p>
                 </div>
 
                 <a 
                   href={program.link} 
-                  className="inline-flex items-center gap-2 bg-[#21325b] text-white px-8 py-3 font-bold text-sm rounded-sm hover:bg-[#9b2928] transition-all transform hover:-translate-y-1 shadow-md active:scale-95"
+                  className="inline-flex items-center justify-center gap-2 bg-[#21325b] text-white px-8 py-3 font-bold text-sm rounded-sm hover:bg-[#9b2928] transition-all transform hover:-translate-y-1 shadow-md active:scale-95 whitespace-nowrap"
                 >
                   Apply Now
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -112,16 +148,16 @@ export default function AdmissionsClient() {
       </section>
 
       {/* 3. ADMISSION PROCEDURE (Step Layout based on Reference Image) */}
-      <section id="process" className="py-24 bg-primary/5">
-        <div className="container-wide max-w-6xl">
+      <section id="process" className="py-12 md:py-24 bg-primary/5">
+        <div className="container-wide pl-5 md:pl-0 max-w-6xl">
 
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl academic-section-title font-bold text-gray-900 mb-4 tracking-tight">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-2xl md:text-4xl academic-section-title font-bold text-gray-900 mb-4 tracking-tight">
               Application Process (Indian Students)
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-0 relative">
             
             {/* Steps simulated from image */}
             {[
@@ -142,19 +178,14 @@ export default function AdmissionsClient() {
                 desc: "Complete fee payment (1st Instalment) & document verification",
               }
             ].map((item, index) => (
-              <div key={index} className="flex relative px-4">
-                {/* Connector line for desktop */}
-                {/* {index !== 3 && (
-                  <div className="hidden lg:block absolute top-[50%] right-[-50%] w-full h-[1px] bg-gray-300" />
-                )} */}
-                
-                <div className="flex gap-0 items-start relative z-10 w-full pr-8 lg:pr-0 border-l border-[#d34c5b] pl-4 lg:border-none lg:pl-0">
-                  <div className="flex flex-col items-center bg-accent p-2 px-3">
-                    <span className="text-xs font-bold text-gray-300 uppercase tracking-widest pl-1">Step</span>
-                    <span className="text-4xl font-light text-white leading-none mb-2">{item.step}</span>
+              <div key={index} className="flex relative md:px-4">
+                <div className="flex gap-0 items-start relative z-10 w-full pr-4 lg:pr-0 border-l-2 border-[#d34c5b] pl-5 lg:border-none lg:pl-0">
+                  <div className="flex flex-col items-center bg-accent p-2 px-3 shrink-0">
+                    <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest">Step</span>
+                    <span className="text-3xl md:text-4xl font-light text-white leading-none mb-2">{item.step}</span>
                   </div>
-                  <div className="lg:border-l-2 lg:border-[#d34c5b] lg:pl-4">
-                    <p className="text-[15px] text-gray-900 font-medium leading-relaxed">{item.desc}</p>
+                  <div className="lg:border-l-2 lg:border-[#d34c5b] lg:pl-4 mt-1">
+                    <p className="text-sm md:ml-0 ml-3 md:text-[15px] text-gray-900 font-medium leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               </div>
@@ -167,19 +198,19 @@ export default function AdmissionsClient() {
 
 
       {/* 5. IMPORTANT DATES SECTION */}
-      <section id="dates" className="py-24 bg-gray-50/50">
-        <div className="container-wide max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="academic-section-title">
-              Important Dates (2025–26)
+      <section id="dates" className="py-12 md:py-24 bg-gray-50/50">
+        <div className="container-wide pl-5 md:pl-0 max-w-6xl">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-xl md:text-4xl academic-section-title font-bold">
+              Important Dates <span className="md:inline-block hidden">(2025–26)</span>
             </h2>
             <div className="w-20 h-1 mb-2 bg-[#21325b]/20 mx-auto rounded-full" />
-            <p className="academic-section-text">
+            <p className="academic-section-text text-sm md:text-base">
               Key dates for the 2025–26 academic year
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
               { label: "Application Opens", date: "15 May 2025", icon: ClockIcon },
               { label: "Last Date to Apply", date: "31 July 2025", icon: CalendarIcon },
@@ -188,16 +219,16 @@ export default function AdmissionsClient() {
             ].map((item, index) => {
               const Icon = item.icon;
               return (
-                <div key={index} className="bg-white p-8 relative rounded-md shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-200 flex flex-col items-center text-center group hover:shadow-xl transition-all duration-300">
-                  <div className="w-12 h-12 mb-6 flex items-center absolute top-0 right-0 justify-center rounded-bl-2xl bg-primary/70 text-white transition-colors">
-                    <Icon className="w-8 h-8 animate-pulse" />
+                <div key={index} className="bg-white p-6 md:p-8 relative rounded-md shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-200 flex flex-col items-center text-center group hover:shadow-xl transition-all duration-300">
+                  <div className="w-10 h-10 md:w-12 md:h-12 mb-6 flex items-center absolute top-0 right-0 justify-center rounded-bl-2xl bg-primary/70 text-white transition-all">
+                    <Icon className="w-6 h-6 md:w-8 md:h-8 animate-pulse" />
                   </div>
-                  <h3 className="font-serif font-bold text-[#21325b] text-lg mb-3 ">{item.label}</h3>
+                  <h3 className="font-serif font-bold text-[#21325b] text-base md:text-lg mb-2 ">{item.label}</h3>
                   <div className="w-10 h-px bg-gray-200 mb-2" />
-                  <p className="text-gray-600 font-medium">{item.date}</p>
-                  <div className="w-16 h-6 flex items-center absolute bottom-0 left-0 justify-center rounded-tr-full bg-primary/20 text-white transition-colors"/>
-                  <div className="w-12 h-6 flex items-center absolute bottom-0 left-0 justify-center rounded-tr-full bg-primary/20 text-white transition-colors"/>
-                  <div className="w-8 h-6 flex items-center absolute bottom-0 left-0 justify-center rounded-tr-full bg-primary/20 text-white transition-colors"/>
+                  <p className="text-sm md:text-base text-gray-600 font-medium">{item.date}</p>
+                  <div className="w-12 h-4 md:w-16 md:h-6 flex items-center absolute bottom-0 left-0 justify-center rounded-tr-full bg-primary/20 text-white transition-colors"/>
+                  <div className="w-10 h-4 md:w-12 md:h-6 flex items-center absolute bottom-0 left-0 justify-center rounded-tr-full bg-primary/20 text-white transition-colors"/>
+                  <div className="w-8 h-4 md:w-8 md:h-6 flex items-center absolute bottom-0 left-0 justify-center rounded-tr-full bg-primary/20 text-white transition-colors"/>
                 </div>
               );
             })}
@@ -206,84 +237,84 @@ export default function AdmissionsClient() {
       </section>
 
       {/* 5. COURSE ELIGIBILITY & FEES SECTION (Unified Format) */}
-      <section id="fees" className="py-24 bg-white border-t border-gray-100">
-        <div className="container-wide max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="academic-section-title">
+      <section id="fees" className="py-12 md:py-24 bg-white border-t border-gray-100">
+        <div className="container-wide pl-5 md:pl-0 max-w-6xl">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-2xl md:text-4xl academic-section-title">
               Course Eligibility & Fees
             </h2>
             <div className="w-24 h-1 bg-[#21325b]/20 mx-auto rounded-full mb-3" />
-            <p className="academic-section-text">
+            <p className="academic-section-text text-sm md:text-base">
               Complete details on requirements and session investment for 2025-26.
             </p>
           </div>
 
-          <div className="overflow-x-auto border border-gray-200">
-            <table className="w-full text-left border">
-              <thead className="bg-linear-to-r from-[#3b3378] to-accent">
-                <tr className="text-white font-bold uppercase text-sm tracking-wider">
-                  <th className="p-6  w-1/4">Branch</th>
-                  <th className="p-6">Essential Qualification</th>
-                  <th className="p-6">Duration</th>
-                  <th className="p-6">Fees</th>
+          <div className="overflow-x-auto border border-gray-200 no-scrollbar">
+            <table className="w-full text-left border min-w-[700px]">
+              <thead className="bg-[#21325b]">
+                <tr className="text-white font-bold uppercase text-[10px] md:text-sm tracking-wider">
+                  <th className="p-4 md:p-6 w-1/4">Branch</th>
+                  <th className="p-4 md:p-6">Essential Qualification</th>
+                  <th className="p-4 md:p-6">Duration</th>
+                  <th className="p-4 md:p-6">Fees</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 bg-[#f8f9fa]">
                 <tr className="hover:bg-gray-50 transition-colors">
-                  <td className="p-6 border border-gray-200">
-                    <p className="font-bold text-gray-900 text-base">PGD-Rural Management</p>
+                  <td className="p-4 md:p-6 border border-gray-200">
+                    <p className="font-bold text-gray-900 text-sm md:text-base">PGD-Rural Management</p>
                   </td>
-                  <td className="p-6 border border-gray-200 max-w-[300px]">
-                    <p className="text-gray-700 text-[14px] leading-relaxed font-medium">Graduation in any discipline with min 50% marks (45% for SC/ST).</p>
+                  <td className="p-4 md:p-6 border border-gray-200 max-w-[300px]">
+                    <p className="text-gray-700 text-xs md:text-[14px] leading-relaxed font-medium">Graduation in any discipline with min 50% marks (45% for SC/ST).</p>
                   </td>
-                  <td className="p-6 border border-gray-200">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider">2 Years</span>
+                  <td className="p-4 md:p-6 border border-gray-200">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] md:text-sm font-bold uppercase tracking-wider">2 Years</span>
                   </td>
-                  <td className="p-6 border border-gray-200">
-                    <p className="font-bold text-[#21325b] text-lg">₹65,000 <span className="text-gray-400 text-xs font-medium">/ year</span></p>
-                    <p className="text-[11px] text-gray-500 font-medium mt-1 italic leading-tight">(inclusive of tuition & facilities)</p>
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50 transition-colors">
-                  <td className="p-6 border border-gray-200">
-                    <p className="font-bold text-gray-900 text-base md:text-lg">Diploma Courses</p>
-                  </td>
-                  <td className="p-6 border border-gray-200 max-w-[300px]">
-                    <p className="text-gray-700 text-[14px] leading-relaxed font-medium">Minimum 12th pass from a recognized board.</p>
-                  </td>
-                  <td className="p-6 border border-gray-200">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider">1 Year</span>
-                  </td>
-                  <td className="p-6 border border-gray-200">
-                    <p className="font-bold text-[#21325b] text-lg">₹30,000 <span className="text-gray-400 text-xs font-medium">/ total</span></p>
-                    <p className="text-[11px] text-gray-500 font-medium mt-1 italic leading-tight">(inclusive of training & field visits)</p>
+                  <td className="p-4 md:p-6 border border-gray-200">
+                    <p className="font-bold text-[#21325b] text-base md:text-lg">₹65,000 <span className="text-gray-400 text-[10px] md:text-xs font-medium">/ year</span></p>
+                    <p className="text-[10px] md:text-[11px] text-gray-500 font-medium mt-1 italic leading-tight">(inclusive of tuition & facilities)</p>
                   </td>
                 </tr>
                 <tr className="hover:bg-gray-50 transition-colors">
-                  <td className="p-6 border border-gray-200">
-                    <p className="font-bold text-gray-900 text-base md:text-lg">Certificate Courses</p>
+                  <td className="p-4 md:p-6 border border-gray-200">
+                    <p className="font-bold text-gray-900 text-sm md:text-base md:text-lg">Diploma Courses</p>
                   </td>
-                  <td className="p-6 border border-gray-200 max-w-[300px]">
-                    <p className="text-gray-700 text-[14px] leading-relaxed font-medium">10th pass / Rural professionals seeking skill upgrade.</p>
+                  <td className="p-4 md:p-6 border border-gray-200 max-w-[300px]">
+                    <p className="text-gray-700 text-xs md:text-[14px] leading-relaxed font-medium">Minimum 12th pass from a recognized board.</p>
                   </td>
-                  <td className="p-6 border border-gray-200">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-bold uppercase tracking-wider">3 Months</span>
+                  <td className="p-4 md:p-6 border border-gray-200">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] md:text-sm font-bold uppercase tracking-wider">1 Year</span>
                   </td>
-                  <td className="p-6 border border-gray-200">
-                    <p className="font-bold text-[#21325b] text-lg">₹10k – ₹15k</p>
-                    <p className="text-[11px] text-gray-500 font-medium mt-1 italic leading-tight">(depending on specialization)</p>
+                  <td className="p-4 md:p-6 border border-gray-200">
+                    <p className="font-bold text-[#21325b] text-base md:text-lg">₹30,000 <span className="text-gray-400 text-[10px] md:text-xs font-medium">/ total</span></p>
+                    <p className="text-[10px] md:text-[11px] text-gray-500 font-medium mt-1 italic leading-tight">(inclusive of training & field visits)</p>
+                  </td>
+                </tr>
+                <tr className="hover:bg-gray-50 transition-colors">
+                  <td className="p-4 md:p-6 border border-gray-200">
+                    <p className="font-bold text-gray-900 text-sm md:text-base md:text-lg">Certificate Courses</p>
+                  </td>
+                  <td className="p-4 md:p-6 border border-gray-200 max-w-[300px]">
+                    <p className="text-gray-700 text-xs md:text-[14px] leading-relaxed font-medium">10th pass / Rural professionals seeking skill upgrade.</p>
+                  </td>
+                  <td className="p-4 md:p-6 border border-gray-200">
+                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] md:text-sm font-bold uppercase tracking-wider">3 Months</span>
+                  </td>
+                  <td className="p-4 md:p-6 border border-gray-200">
+                    <p className="font-bold text-[#21325b] text-base md:text-lg">₹10k – ₹15k</p>
+                    <p className="text-[10px] md:text-[11px] text-gray-500 font-medium mt-1 italic leading-tight">(depending on specialization)</p>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <div className="mt-12 space-y-4 max-w-7xl mx-auto">
-            <div className="flex gap-4 p-5 items-center rounded-sm bg-orange-50/50 border-l-2 border-accent shadow-sm group hover:border-orange-200 transition-all duration-300">
-              <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                <AcademicCapIcon className="w-6 h-6 text-accent" />
+          <div className="mt-8 md:mt-12 space-y-4 max-w-7xl mx-auto">
+            <div className="flex gap-4 p-4 md:p-5 items-center rounded-sm bg-orange-50/50 border-l-2 border-accent shadow-sm group hover:border-orange-200 transition-all duration-300">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                <AcademicCapIcon className="w-5 h-5 md:w-6 md:h-6 text-accent" />
               </div>
-              <p className="text-accent text-sm font-medium leading-relaxed italic">
+              <p className="text-accent text-xs md:text-sm font-medium leading-relaxed italic">
                 Special fee waivers available for SC/ST, BPL, and women candidates. Scholarships may be offered under government schemes and CSR sponsorships.
               </p>
             </div>
@@ -292,22 +323,22 @@ export default function AdmissionsClient() {
       </section>
 
       {/* 6. ADMISSIONS - CONTACT US (Based on provided Map Image Layout) */}
-      <section id="contact-admissions" className="py-24 bg-white border-t border-gray-100">
-        <div className="container-wide max-w-6xl">
+      <section id="contact-admissions" className="py-12 md:py-24 bg-white border-t border-gray-100">
+        <div className="container-wide pl-5 md:pl-0 max-w-6xl">
           
-          <div className="mb-12 text-center lg:text-left">
-            <h2 className="academic-section-title">
+          <div className="mb-10 md:mb-12 text-center lg:text-left">
+            <h2 className="text-2xl md:text-4xl academic-section-title">
               Admissions - Contact Us
             </h2>
-            <div className="w-20 h-1 bg-primary mt-4 rounded-full mx-auto mb-4" />
-            <p className="academic-section-text">
+            <div className="w-20 h-1 bg-primary mt-4 rounded-full mx-auto md:ml-0 mb-4" />
+            <p className="academic-section-text text-sm md:text-base text-justify md:text-left">
               Have questions about the admission process, scholarships, or program details? Our team is here to help you every step of the way.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 items-center">
+          <div className="grid lg:grid-cols-[1.5fr_1fr] gap-x-12 gap-y-10 items-start">
             {/* Left side: Maps Iframe Simulation */}
-            <div className="w-full h-[600px] bg-gray-200 rounded-2xl overflow-hidden shadow-md border border-gray-200">
+            <div className="w-full h-[300px] md:h-[600px] bg-gray-200 rounded-2xl overflow-hidden shadow-md border border-gray-200">
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.255252157876!2d75.07872367512006!3d23.523320078826014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39640419d441a225%3A0x53063056acb1832d!2sNational%20Livelihood%20Resource%20Institute!5e0!3m2!1sen!2sin!4v171567929771!5m2!1sen!2sin" 
                 width="100%" 
@@ -388,20 +419,20 @@ export default function AdmissionsClient() {
       </section>
 
       {/* 7. FINAL APPLY CTA */}
-      <section id="apply" className="bg-linear-to-r from-primary to-accent relative overflow-hidden text-white py-14 text-center border-t border-white/10">
-        <div className="absolute w-full h-full bg-contain bg-no-repeat bg-right bg-full top-0 bg-[url('/patternSvg.svg')]" />
+      <section id="apply" className="bg-linear-to-r from-primary to-accent relative overflow-hidden text-white py-14 md:py-20 text-center border-t border-white/10">
+        <div className="absolute w-full h-full bg-contain bg-no-repeat bg-right bg-full top-0 bg-[url('/patternSvg.svg')] opacity-20" />
         
-        <div className="flex flex-col md:flex-row justify-between items-center relative z-10 max-w-6xl mx-auto px-6 lg:px-0 gap-6">
+        <div className="container-wide pl-5 md:pl-0 flex flex-col md:flex-row justify-between items-center relative z-10 max-w-6xl mx-auto gap-8 md:gap-14">
           <div className="text-center md:text-left">
-            <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Take the First Step Toward Your Future
+            <h3 className="text-2xl md:text-4xl font-bold tracking-tight mb-4 leading-tight">
+              Take the First Step <br className="hidden md:block"/> Toward Your Future
             </h3>
-            <p className="text-lg text-white/80 max-w-2xl">
+            <p className="text-base md:text-lg text-white/90 max-w-2xl px-5 md:px-0">
               Build a career in sustainable development, grassroots leadership, and social innovation.
             </p>
           </div>
           
-          <button className="h-fit rounded-xl border-2 cursor-pointer border-white/10 bg-linear-to-l from-indigo-600/40 text-white font-bold px-12 py-5 text-lg shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(255,255,255,0.2)] hover:-translate-y-1 transition-all duration-300 active:scale-95 whitespace-nowrap">
+          <button className="w-all md:w-auto h-fit rounded-xl border-2 cursor-pointer border-white/20 bg-white/10 backdrop-blur-md text-white font-bold px-12 py-5 text-base md:text-lg shadow-2xl hover:bg-white hover:text-primary transition-all duration-300 active:scale-95 whitespace-nowrap">
             Apply Online
           </button>
         </div>

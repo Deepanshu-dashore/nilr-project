@@ -71,29 +71,29 @@ export default function ProgramsClient() {
   };
 
   const renderTabCard = (title: string, duration?: string, subtext?: string) => (
-    <div className="group flex flex-col md:flex-row md:items-center justify-between bg-white border border-gray-200 rounded-sm hover:shadow-[0_4px_20px_rgb(0,0,0,0.05)] transition-shadow p-5 md:px-8 md:py-6 relative overflow-hidden pl-6 md:pl-10">
+    <div className="group flex flex-col md:flex-row md:items-center justify-between bg-white border border-gray-200 rounded-sm hover:shadow-[0_4px_20px_rgb(0,0,0,0.05)] transition-shadow p-5 md:px-8 md:py-6 relative overflow-hidden pl-7 md:pl-10">
       {/* Left Border Accent mimicking the image */}
-      <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-[#21325b] /80" />
+      <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-[#21325b]/80" />
       
-      <div className="mb-4 md:mb-0 max-w-3xl pr-4">
-        <h3 className="text-lg md:text-xl font-medium text-[#9b2928] mb-1 group-hover:text-[#a03030] transition-colors">
+      <div className="mb-5 md:mb-0 max-w-3xl pr-4">
+        <h3 className="text-lg md:text-xl font-bold text-[#9b2928] mb-1.5 group-hover:text-[#a03030] transition-colors leading-tight">
           {title}
         </h3>
         {duration && (
-          <p className="text-sm font-semibold text-gray-700">
+          <p className="text-xs md:text-sm font-semibold text-gray-700">
             Duration: <span className="font-normal text-gray-500">{duration}</span>
           </p>
         )}
         {subtext && (
-          <p className="text-sm font-semibold text-gray-700 mt-1 line-clamp-2 md:line-clamp-none">
+          <p className="text-xs md:text-sm font-semibold text-gray-700 mt-2 text-justify md:text-left leading-relaxed">
             {subtext}
           </p>
         )}
       </div>
 
-      <button className="flex items-center gap-2 border text-sm font-bold bg-[#21325b] p-3 rounded-sm py-2 text-white group-hover:text-primary group-hover:border-primary/80 group-hover:bg-white transition-colors cursor-pointer shrink-0">
+      <button className="flex items-center justify-center gap-2 border text-[13px] font-bold bg-[#21325b] p-3 rounded-sm py-2.5 px-6 text-white group-hover:text-primary group-hover:border-primary/80 group-hover:bg-white transition-all cursor-pointer shrink-0">
         Apply Now
-        <svg className="w-4 h-4 text-white group-hover:text-primary group-hover:-rotate-45 transition-transform duration-300 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg className="w-4 h-4 text-white group-hover:text-primary group-hover:-rotate-45 transition-transform duration-300 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
       </button>
@@ -104,7 +104,7 @@ export default function ProgramsClient() {
     <div className="flex flex-col bg-gray-50 min-h-screen">
       
       {/* 1. HERO SECTION (Simple & Strong) */}
-      <section className="bg-text-dark relative text-white py-24 overflow-hidden">
+      <section className="bg-text-dark relative text-white py-14 md:py-24 overflow-hidden">
         {/* Subtle background element */}
         <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -114,17 +114,17 @@ export default function ProgramsClient() {
         />
         <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 -skew-x-12 translate-x-32" />
         
-        <div className="container-wide text-center max-w-4xl relative z-10">
-        <div className="inline-flex  items-center gap-2 px-4 py-2 mb-6 rounded-full bg-linear-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 backdrop-blur-sm">
-            <AcademicCapIcon className="w-5 h-5 text-indigo-400 inline-block" />
-            <span className="text-sm font-medium bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+        <div className="container-wide pl-5 md:pl-0 text-center max-w-4xl relative z-10">
+        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-linear-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 backdrop-blur-sm">
+            <AcademicCapIcon className="w-4 h-4 md:w-5 md:h-5 text-indigo-400 inline-block" />
+            <span className="text-xs md:text-sm font-medium bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
               Programs Offered
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-semibold! leading-tight text-white mb-6">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold! leading-tight text-white mb-6">
             Building Leaders for Rural & Sustainable Development
           </h1>
-          <p className="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed">
+          <p className="max-w-3xl mx-auto pr-5 md:pr-0 text-sm md:text-lg text-gray-300 leading-relaxed text-justify md:text-center">
             At CVRU Khandwa – NLRI Campus, our programs integrate academic excellence 
             with field immersion, leadership development, and practical exposure. We empower 
             students to create sustainable solutions for real-world challenges.
@@ -133,9 +133,9 @@ export default function ProgramsClient() {
       </section>
 
       {/* 2. TAB NAVIGATION */}
-      <div id="programs-tabs" className="transition-all duration-300 z-40 bg-[#f9fafb] border-b border-gray-200">
-        <div className="container-wide">
-          <div className="flex gap-4 md:gap-8 overflow-x-auto no-scrollbar justify-start md:justify-center">
+      <div id="programs-tabs" className="transition-all duration-300 z-40 bg-white border-b border-gray-200">
+        <div className="container-wide pl-5 md:pl-0">
+          <div className="sm:flex grid grid-cols-2 gap-4 md:gap-8 overflow-x-auto no-scrollbar justify-start md:justify-center">
             {tabs.map((tab) => (
               <button
                 key={tab}
@@ -143,8 +143,8 @@ export default function ProgramsClient() {
                 className={`
                   text-sm md:text-lg font-bold whitespace-nowrap px-4 py-4 md:px-6 md:py-5 border-b-[3px] transition-colors
                   ${activeTab === tab 
-                    ? "border-primary/80 text-primary/80" 
-                    : "border-transparent cursor-pointer text-gray-500 hover:text-[#21325b] hover:border-gray-300"}
+                    ? "border-primary text-primary" 
+                    : "border-transparent cursor-pointer text-gray-500 hover:text-primary hover:border-gray-300"}
                 `}
               >
                 {tab}
@@ -155,8 +155,8 @@ export default function ProgramsClient() {
       </div>
 
       {/* 3. ACTIVE TAB CONTENT */}
-      <section className="py-20 bg-gray-50 min-h-[400px]">
-        <div className="container-wide max-w-5xl">
+      <section className="py-12 md:py-20 bg-gray-50 min-h-[400px]">
+        <div className="container-wide pl-5 md:pl-0 max-w-5xl">
           <div className="flex flex-col gap-4">
             
             {activeTab === "Postgraduate" && (
@@ -272,15 +272,15 @@ export default function ProgramsClient() {
         </svg>
       </div>
         
-        <div className="container-wide max-w-6xl relative z-10">
-           <div className="text-center max-w-3xl mx-auto mb-16">
-              <span className="text-secondary flex items-cneter mx-auto gap-2 font-bold capitalize text-sm mb-3 border w-fit p-1 px-2 rounded-full border-primary/30 text-primary/80">
-              <AcademicCapIcon className="w-4.5 h-4.5 text-secondary shrink-0" />
+        <div className="container-wide pl-5 md:pl-0 max-w-6xl relative z-10">
+           <div className="text-center max-w-3xl mx-auto mb-10 md:mb-16">
+              <span className="text-secondary flex items-center mx-auto gap-2 font-bold capitalize text-xs md:text-sm mb-3 border w-fit p-1 px-3 rounded-full border-primary/30 text-primary/80">
+              <AcademicCapIcon className="w-4 h-4 md:w-4.5 md:h-4.5 text-secondary shrink-0" />
               Our Advantage</span>
-              <h2 className="academic-section-title mb-6 tracking-tight">
+              <h2 className="text-2xl md:text-4xl academic-section-title mb-6 tracking-tight">
                 {programsData.whyStudy.title}
               </h2>
-              <p className="academic-section-text font-medium leading-relaxed">
+              <p className="academic-section-text text-sm md:text-base font-medium leading-relaxed text-justify md:text-center">
                 We combine academic excellence with rigorous field immersion, ensuring our students are equipped with practical skills, leadership qualities, and the hands-on experience needed to transform communities globally.
               </p>
            </div>
@@ -317,18 +317,18 @@ export default function ProgramsClient() {
       </section>
 
       {/* 5. FINAL CTA */}
-      <section className="bg-linear-to-r from-primary to-accent  relative overflow-hidden text-white py-14 text-center border-t border-white/10">
-        <div className="absolute w-full h-full bg-contain bg-no-repeat bg-right bg-full top-0 bg-[url('/patternSvg.svg')]" />
-        <div className="flex justify-between items-center relative z-10 max-w-6xl mx-auto">
-            <div>
-          <h3 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Ready to Build a Career in Rural Development?
+      <section className="bg-linear-to-r from-primary to-accent relative overflow-hidden text-white py-14 md:py-20 text-center border-t border-white/10">
+        <div className="absolute w-full h-full bg-contain bg-no-repeat bg-right bg-full top-0 bg-[url('/patternSvg.svg')] opacity-20" />
+        <div className="container-wide pl-5 md:pl-0 flex flex-col md:flex-row justify-between items-center relative z-10 max-w-6xl mx-auto gap-8 md:gap-14">
+            <div className="text-center md:text-left">
+          <h3 className="text-2xl md:text-4xl font-bold tracking-tight mb-4 leading-tight">
+            Ready to Build a Career <br className="hidden md:block"/> in Rural Development?
           </h3>
-          <p className="text-lg text-white/80">
+          <p className="text-base md:text-lg text-white/90 max-w-2xl">
             Join a community of impact makers and leaders dedicated to sustainable transformation.
           </p>
             </div>
-          <button className="h-fit border-2 cursor-pointer border-white/10 bg-linear-to-l from-indigo-600/40 to-rose-500/30 text-white font-bold px-10 py-4 text-lg rounded-md shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:shadow-[0_8px_30px_rgb(255,255,255,0.2)] hover:-translate-y-1 transition-all duration-300 active:scale-95">
+          <button className="w-fit md:w-auto h-fit pl border-2 cursor-pointer border-white/20 bg-white/10 backdrop-blur-md text-white font-bold px-10 py-4 text-base md:text-lg rounded-md shadow-2xl hover:bg-white hover:text-primary transition-all duration-300 active:scale-95">
             Apply Now
           </button>
         </div>

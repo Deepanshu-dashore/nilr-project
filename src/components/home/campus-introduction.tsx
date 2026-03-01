@@ -76,15 +76,26 @@ export default function CampusIntroduction() {
     return () => clearInterval(timer);
   }, []);
 
+  const [itemsToShow, setItemsToShow] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) setItemsToShow(1);
+      else if (window.innerWidth < 1024) setItemsToShow(2);
+      else setItemsToShow(3);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const next = () => setIndex((prev) => (prev + 1) % lifeItems.length);
   const prev = () => setIndex((prev) => (prev - 1 + lifeItems.length) % lifeItems.length);
 
-  // Logic to show 3 items at a time
-  const visibleItems = [
-    lifeItems[index % lifeItems.length],
-    lifeItems[(index + 1) % lifeItems.length],
-    lifeItems[(index + 2) % lifeItems.length]
-  ];
+  // Logic to show items based on screen size
+  const visibleItems = Array.from({ length: itemsToShow }, (_, i) => 
+    lifeItems[(index + i) % lifeItems.length]
+  );
 
   return (
     <section id="campus-intro" className="section-padding bg-bg-section border-y border-border-light relative overflow-hidden">
@@ -93,23 +104,23 @@ export default function CampusIntroduction() {
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
       
       <div className="container-wide relative z-10">
-        <div className="mb-16 text-center flex flex-col items-center">
-            <h2 className="academic-section-title text-center">🌿 Campus Introduction</h2>
-            <div className="max-w-7xl mx-auto space-y-4 text-gray-700">
+        <div className="mb-10 md:mb-16 text-center flex flex-col items-center">
+            <h2 className="academic-section-title text-center text-2xl md:text-3xl lg:text-4xl">🌿 Campus Introduction</h2>
+            <div className="max-w-7xl mx-auto space-y-4 text-gray-700 text-sm md:text-base px-2">
               <p className="text-center">
                 Located in the scenic surroundings of Bhadwasa village, Ratlam (Madhya Pradesh), the CVRU Khandwa – NLRI Campus offers a unique blend of academic excellence and hands-on rural innovation. Spread over more than 10 hectares along the banks of the Maleni River, the campus stands as a model of sustainable development, combining modern education facilities with eco-friendly infrastructure.
               </p>
-              <p className="text-center">
+              <p className="text-center hidden sm:block">
                 The campus houses the National Livelihood Resources Institute (NLRI) and the School of Rural Management (SRM), both operated under the stewardship of Gramin Vikas Trust (GVT) — a national-level development organization with over three decades of field experience.
               </p>
               <p className="text-center">
-                Designed by experts from the Delhi School of Planning and Architecture, the earthquake-resistant structures, green landscapes, and water conservation systems make the campus a practical learning ground for rural development and natural resource management.
+                Designed by experts from the Delhi School of Planning and Architecture, the earthquake-resistant structures, green landscapes, and water conservation systems make the campus a practical learning ground for rural development.
               </p>
-              <h3 className="text-xl md:text-2xl font-bold mt-10 text-primary">Key features of the CVRUK-NLRI Campus include:</h3>
+              <h3 className="text-lg md:text-2xl font-bold mt-6 text-primary">Key features of the CVRUK-NLRI Campus include:</h3>
             </div>
         </div>
 
-        <div className="relative w-full">
+        <div className="relative w-full px-2 sm:px-0">
           {/* Navigation Arrows positioned on the left and right */}
           <button 
             onClick={prev}
@@ -127,22 +138,22 @@ export default function CampusIntroduction() {
             <ChevronRightIcon className="h-6 w-6 text-gray-500 group-hover:text-white transition-colors" />
           </button>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className={`grid grid-cols-1 md:grid-cols-${itemsToShow === 3 ? '3' : itemsToShow === 2 ? '2' : '1'} gap-6`}>
             {visibleItems.map((item, idx) => {
               const ItemIcon = item.icon;
               return (
-                <div key={`${index}-${idx}`} className="p-8 bg-white relative rounded-2xl border border-gray-100 overflow-hidden hover:border-accent/30 hover:shadow-2xl hover:shadow-accent/10 transition-all duration-500 group cursor-default animate-in fade-in slide-in-from-right-4">
+                <div key={`${index}-${idx}`} className="p-6 sm:p-8 bg-white relative rounded-2xl border border-gray-100 overflow-hidden hover:border-accent/30 hover:shadow-2xl hover:shadow-accent/10 transition-all duration-500 group cursor-default animate-in fade-in slide-in-from-right-4">
                   {/* Animated Background Reveal */}
                   <div className="absolute -top-12 -right-12 h-24 w-24 bg-accent rounded-full opacity-0 group-hover:opacity-100 group-hover:scale-[12] transition-all duration-700 ease-in-out transform-gpu z-0"></div>
                   
                   <div className="relative z-10">
-                   <div className="mb-6 transform group-hover:-translate-y-1 transition-transform duration-300">
-                      <div className="w-16 h-16 bg-accent/5 group-hover:bg-white/30 rounded-2xl flex items-center justify-center transition-colors">
-                        <ItemIcon className="w-8 h-8 text-accent group-hover:text-white transition-colors" />
+                   <div className="mb-4 sm:mb-6 transform group-hover:-translate-y-1 transition-transform duration-300">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-accent/5 group-hover:bg-white/30 rounded-2xl flex items-center justify-center transition-colors">
+                        <ItemIcon className="w-6 h-6 sm:w-8 sm:h-8 text-accent group-hover:text-white transition-colors" />
                       </div>
                    </div>
-                   <h4 className="text-xl font-bold group-hover:text-white text-text-dark mb-4 leading-tight">{item.title}</h4>
-                   <p className="text-gray-600 group-hover:text-white/90 text-[14px] leading-relaxed font-medium">{item.desc}</p>
+                   <h4 className="text-lg sm:text-xl font-bold group-hover:text-white text-text-dark mb-2 sm:mb-4 leading-tight">{item.title}</h4>
+                   <p className="text-gray-600 group-hover:text-white/90 text-xs sm:text-[14px] leading-relaxed font-medium">{item.desc}</p>
                   </div>
                 </div>
               );

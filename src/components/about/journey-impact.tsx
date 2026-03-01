@@ -7,25 +7,41 @@ import { RocketLaunchIcon } from "@heroicons/react/24/outline";
 /* ─── Timeline Item ─── */
 function TimelineItem({ year, event, index }: { year: string; event: string; index: number }) {
   const isEven = index % 2 === 0;
+  
   const card = (
-    <div className="bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 rounded-2xl p-6 group">
-      <span className="text-accent font-black text-2xl block tracking-tight mb-2 leading-none">{year}</span>
-      <p className="text-gray-200 text-base font-medium leading-relaxed">{event}</p>
+    <div className="bg-white/5 border border-white/15 hover:bg-white/20 hover:border-accent/40 transition-all duration-500 rounded-2xl p-6 md:p-8 group shadow-lg">
+      <span className="text-accent font-black text-2xl md:text-3xl block tracking-tight mb-3 leading-none group-hover:scale-105 transition-transform duration-500 origin-left lg:origin-center">{year}</span>
+      <p className="text-gray-200 text-sm md:text-base font-semibold leading-relaxed group-hover:text-white transition-colors duration-500">{event}</p>
     </div>
   );
 
   return (
-    <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-6 lg:gap-10">
-      {/* Left */}
-      <div className={isEven ? "flex justify-end" : ""}>{isEven ? card : <span />}</div>
+    <div className="relative">
+      {/* Desktop View: Alternating */}
+      <div className="hidden lg:grid lg:grid-cols-[1fr_auto_1fr] items-start gap-12">
+        <div className={isEven ? "flex justify-end animate-in fade-in slide-in-from-left-8 duration-1000" : "invisible"}>
+          {isEven && card}
+        </div>
 
-      {/* Centre node */}
-      <div className="flex flex-col items-center pt-6">
-        <div className="w-4 h-4 rounded-full bg-accent border-2 border-primary shadow-[0_0_0_4px_rgba(255,255,255,0.15)] shrink-0" />
+        <div className="flex flex-col items-center pt-8">
+          <div className="w-5 h-5 rounded-full bg-accent border-4 border-primary shadow-[0_0_0_8px_rgba(255,255,255,0.05)] shrink-0 z-20 group-hover:scale-125 transition-transform duration-500" />
+        </div>
+
+        <div className={!isEven ? "animate-in fade-in slide-in-from-right-8 duration-1000" : "invisible"}>
+          {!isEven && card}
+        </div>
       </div>
 
-      {/* Right */}
-      <div>{!isEven ? card : <span />}</div>
+      {/* Mobile/Tablet View: One-sided */}
+      <div className="lg:hidden grid grid-cols-[auto_1fr] gap-6 items-start">
+        <div className="flex flex-col items-center pt-6 h-full relative">
+          <div className="w-4 h-4 rounded-full bg-accent border-2 border-primary shadow-[0_0_0_4px_rgba(255,255,255,0.1)] shrink-0 z-10" />
+          <div className="absolute top-8 bottom-[-40px] w-0.5 bg-white/10 group-last:hidden" />
+        </div>
+        <div className="pb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          {card}
+        </div>
+      </div>
     </div>
   );
 }
@@ -63,10 +79,7 @@ export default function JourneyImpact() {
           </div> */}
 
           <div className="relative">
-            {/* vertical stem */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-8 bottom-8 w-0.5 bg-white/15" />
-
-            <div className="flex flex-col gap-10 relative z-10">
+            <div className="flex flex-col gap-0 lg:gap-10 relative z-10 px-2 sm:px-4">
               {aboutData.journey.timeline.map(
                 (item: { year: string; event: string }, index: number) => (
                   <TimelineItem key={index} year={item.year} event={item.event} index={index} />

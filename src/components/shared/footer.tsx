@@ -45,11 +45,11 @@ export default function Footer() {
 
       {/* Main Footer Body */}
       <div className="container-wide pt-16 pb-10 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-16 mb-14">
 
-          {/* Brand column */}
-          <div className="lg:col-span-4">
-            <Link href="/" className="inline-block mb-5">
+          {/* 1. Brand column */}
+          <div className="lg:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-left">
+            <Link href="/" className="inline-block mb-6">
               <Image
                 src="/Logo.png"
                 alt="CVRUK-NLRI Logo"
@@ -58,14 +58,12 @@ export default function Footer() {
                 className="h-14 w-auto brightness-0 invert opacity-90"
               />
             </Link>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
-              A pioneering collaboration between Dr. C.V. Raman University and National Livelihood
-              Resources Institute, dedicated to excellence in rural management and sustainable
-              innovation.
+            <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-sm">
+              Empowering rural communities through innovation, leadership, and professional excellence. A global benchmark for sustainable grassroots transformation.
             </p>
 
             {/* Social Icons */}
-            <div className="flex gap-3">
+            <div className="flex gap-3 mt-auto">
               <SocialLink href="#" label="Facebook">
                 <FacebookIcon />
               </SocialLink>
@@ -84,22 +82,22 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Link columns */}
-          <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-3 gap-10">
-            {footerLinks.map((section) => (
-              <div key={section.title}>
-                <h3 className="font-bold text-white text-xs uppercase tracking-[0.2em] mb-6 relative inline-block">
+          {/* 2. Link columns - mapped */}
+          <div className="lg:col-span-5 grid grid-cols-2 gap-8">
+            {footerLinks.slice(0, 2).map((section) => (
+              <div key={section.title} className="flex flex-col items-start">
+                <h3 className="font-bold text-white text-[11px] uppercase tracking-[0.2em] mb-7 relative inline-block">
                   {section.title}
-                  <span className="absolute -bottom-2 left-0 w-8 h-0.5 bg-accent rounded-full" />
+                  <span className="absolute -bottom-2.5 left-0 w-8 h-[2px] bg-accent rounded-full" />
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-4 w-full">
                   {section.links.map((link) => (
                     <li key={link.name}>
                       <Link
                         href={link.href}
-                        className="text-gray-400 hover:text-white transition-colors duration-200 text-sm flex items-center group/item gap-2"
+                        className="text-gray-400 hover:text-white transition-all duration-300 text-[13.5px] flex items-center group/item gap-2"
                       >
-                        <span className="w-0 group-hover/item:w-3 h-px bg-accent transition-all duration-200 shrink-0" />
+                        <span className="w-0 group-hover/item:w-4 h-[1px] bg-accent transition-all duration-300 shrink-0" />
                         {link.name}
                       </Link>
                     </li>
@@ -108,22 +106,58 @@ export default function Footer() {
               </div>
             ))}
           </div>
+
+          {/* 3. Contact Details column */}
+          <div className="lg:col-span-3 flex flex-col items-start gap-8">
+            <h3 className="font-bold text-white text-[11px] uppercase tracking-[0.2em] mb-2 relative inline-block">
+              Get in Touch
+              <span className="absolute -bottom-2.5 left-0 w-8 h-[2px] bg-accent rounded-full" />
+            </h3>
+            
+            <div className="space-y-6 w-full pt-2">
+              <ContactDetail 
+                icon={<MapPinIcon className="w-5 h-5"/>}
+                title="Office Location"
+                text="Bhadwasa, Mhow-Neemuch Road, Ratlam (M.P.)"
+                href="/contact"
+              />
+              <ContactDetail 
+                icon={<PhoneIcon className="w-5 h-5"/>}
+                title="Admissions Helpline"
+                text="+91 91110 03000 / 07412 284300"
+                href="tel:+919111003000"
+              />
+              <ContactDetail 
+                icon={<EnvelopeIcon className="w-5 h-5"/>}
+                title="Official Email"
+                text="info@nlri-cvruk.ac.in"
+                href="mailto:info@nlri-cvruk.ac.in"
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-          <p>© {new Date().getFullYear()} CVRUK – NLRI Partnership. All Rights Reserved.</p>
-          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2">
-            {["Privacy Policy", "Disclaimer", "Sitemap", "Mandatory Disclosures"].map((item) => (
-              <Link key={item} href="#" className="hover:text-gray-300 transition-colors">
-                {item}
+        {/* Divider & Footer Bottom */}
+        <div className="border-t border-white/5 pt-10 mt-10">
+          <div className="flex flex-col lg:flex-row justify-between items-center gap-8 text-[11px] font-medium tracking-wide text-gray-500 text-center lg:text-left">
+            <div className="space-y-2 lg:space-y-0 lg:flex lg:items-center lg:gap-6">
+               <p className="border-b lg:border-b-0 border-white/5 pb-2 lg:pb-0">© {new Date().getFullYear()} CVRUK – NLRI Partnership. All Rights Reserved.</p>
+               <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-gray-400 uppercase tracking-widest text-[10px]">
+                {["Privacy Policy", "Disclaimer", "Mandatory Disclosures"].map((item) => (
+                  <Link key={item} href="#" className="hover:text-accent transition-colors">
+                    {item}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-2 text-gray-400">
+              <span>Designed & Developed by</span>
+              <Link href="#" className="text-white hover:text-accent transition-colors font-bold uppercase tracking-widest border-b border-white/30 hover:border-accent">
+                Dipanshu Dashore
               </Link>
-            ))}
+            </div>
           </div>
-          <p>
-            Designed & Developed by{" "}
-            <span className="text-gray-300 font-medium">Dipanshu Dashore</span>
-          </p>
         </div>
       </div>
 

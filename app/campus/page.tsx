@@ -41,7 +41,7 @@ export default function CampusPage() {
         <div className="container-wide text-center relative z-10">
           <div className="max-w-6xl mx-auto">
             {/* Simple, Minimalistic Quote */}
-            <h2 className="text-2xl md:text-3xl font-semibold leading-relaxed text-white/90 mb-10 tracking-tight">
+            <h2 className="text-xl px-5 md:px-0 md:text-3xl font-semibold! leading-relaxed text-white/90 mb-10 tracking-tight">
               "The CVRUK-NLRI campus is not just an academic facility — it’s a hands-on innovation hub where students, professionals, and rural communities collaborate to solve real-world challenges in agriculture, livelihood, and sustainable development"
             </h2>
 

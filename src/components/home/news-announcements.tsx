@@ -66,34 +66,45 @@ export default function NewsAnnouncements() {
     return () => clearInterval(timer);
   }, []);
 
+  const [itemsToShow, setItemsToShow] = useState(3);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) setItemsToShow(1);
+      else if (window.innerWidth < 1024) setItemsToShow(2);
+      else setItemsToShow(3);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const next = () => setIndex((prev) => (prev + 1) % newsItems.length);
   const prev = () => setIndex((prev) => (prev - 1 + newsItems.length) % newsItems.length);
 
-  // Logic to show 3 items at a time
-  const visibleItems = [
-    newsItems[index % newsItems.length],
-    newsItems[(index + 1) % newsItems.length],
-    newsItems[(index + 2) % newsItems.length]
-  ];
+  // Logic to show items based on screen size
+  const visibleItems = Array.from({ length: itemsToShow }, (_, i) => 
+    newsItems[(index + i) % newsItems.length]
+  );
 
   return (
     <section className="section-padding bg-bg-main border-y border-border-light overflow-hidden">
       <div className="container-wide">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-10">
-            <div className="max-w-2xl">
-                <h2 className="text-3xl md:text-4xl font-semibold text-text-dark mb-4 tracking-tight">News & Announcements</h2>
-                <p className="text-gray-600 font-medium">Keep up with the latest updates, conferences, and achievements from the CVRUK-NLRI community.</p>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-20 gap-6 md:gap-10">
+            <div className="max-w-2xl px-2 md:px-0">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-text-dark mb-4 tracking-tight">News & Announcements</h2>
+                <p className="text-sm md:text-base text-gray-600 font-medium leading-relaxed">Keep up with the latest updates, conferences, and achievements from the CVRUK-NLRI community.</p>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 px-2 md:px-0">
               <button 
                 onClick={prev}
-                className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+                className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm"
               >
                 <ChevronLeftIcon className="h-5 w-5" />
               </button>
               <button 
                 onClick={next}
-                className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+                className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm"
               >
                 <ChevronRightIcon className="h-5 w-5" />
               </button>
@@ -104,8 +115,8 @@ export default function NewsAnnouncements() {
             </div>
         </div>
         
-        <div className="relative">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="relative px-2 md:px-0">
+          <div className={`grid grid-cols-1 md:grid-cols-${itemsToShow === 3 ? '3' : itemsToShow === 2 ? '2' : '1'} gap-6 lg:gap-8`}>
              {visibleItems.map((item, idx) => (
                 <div key={`${index}-${idx}`} className="transition-all duration-500 transform animate-in fade-in slide-in-from-right-4">
                    <NewsCard 

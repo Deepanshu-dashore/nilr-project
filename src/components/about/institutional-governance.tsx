@@ -40,11 +40,12 @@ export default function InstitutionalGovernance() {
         </div>
 
         {/* ── Trust Description Banner ── */}
-        <div className="flex gap-6 items-start bg-primary p-7 md:p-10 rounded-2xl shadow-lg">
-          <div className="w-14 h-14 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
-            <BuildingLibraryIcon className="w-7 h-7 text-accent" />
+        <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start bg-primary p-6 md:p-10 rounded-2xl shadow-xl border border-white/10 relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 -rotate-45 translate-x-16 -translate-y-16 group-hover:bg-white/10 transition-colors duration-500" />
+          <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0 shadow-inner">
+            <BuildingLibraryIcon className="w-8 h-8 text-accent animate-pulse" />
           </div>
-          <p className="text-white/90 text-sm md:text-base leading-relaxed font-medium">
+          <p className="text-white/90 text-sm md:text-lg leading-relaxed font-semibold text-center md:text-left">
             {aboutData.governance.trust}
           </p>
         </div>
@@ -55,7 +56,7 @@ export default function InstitutionalGovernance() {
           {/* Board Composition */}
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
             {/* Card Header */}
-            <div className="px-8 py-6 border-b border-gray-100 flex items-center gap-3">
+            <div className="px-6 md:px-8 py-6 border-b border-gray-100 flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-primary/8 text-primary flex items-center justify-center">
                 <UserGroupIcon className="w-5 h-5" />
               </div>
@@ -66,7 +67,7 @@ export default function InstitutionalGovernance() {
             </div>
 
             {/* Description + List */}
-            <div className="px-8 py-6 space-y-5">
+            <div className="px-6 md:px-8 py-6 space-y-5">
               <p className="text-gray-500 text-sm leading-relaxed">
                 The Board of Trustees of Gramin Vikas Trust serves as the apex policy-making and oversight body — composed of professionals, administrators, and subject experts.
               </p>
@@ -91,7 +92,7 @@ export default function InstitutionalGovernance() {
           {/* Governance Principles */}
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
             {/* Card Header */}
-            <div className="px-8 py-6 border-b border-gray-100 flex items-center gap-3">
+            <div className="px-6 md:px-8 py-6 border-b border-gray-100 flex items-center gap-3">
               <div className="w-10 h-10 rounded-lg bg-secondary/10 text-secondary flex items-center justify-center">
                 <ShieldCheckIcon className="w-5 h-5" />
               </div>
@@ -102,7 +103,7 @@ export default function InstitutionalGovernance() {
             </div>
 
             {/* Description + Principles */}
-            <div className="px-8 py-6 space-y-5">
+            <div className="px-6 md:px-8 py-6 space-y-5">
               <p className="text-gray-500 text-sm leading-relaxed">
                 Guided by principles that uphold institutional integrity, social equity, and alignment with national development priorities and SDGs.
               </p>

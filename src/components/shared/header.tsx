@@ -7,12 +7,19 @@ import {
   Bars3Icon,
   XMarkIcon,
   ChevronDownIcon,
+  HomeIcon,
+  UserIcon,
+  BuildingLibraryIcon,
+  BookOpenIcon,
+  EnvelopeIcon,
 } from "@heroicons/react/24/outline";
+import { UserPlusIcon } from "@heroicons/react/16/solid";
 
 const mainNavigation = [
-  { name: "Home", href: "/" },
+  { name: "Home", href: "/",icon: HomeIcon },
   {
     name: "About Us",
+    icon: UserIcon,
     href: "/about",
     submenu: [
       { name: "Campus Overview", href: "/about#overview" },
@@ -26,6 +33,7 @@ const mainNavigation = [
   },
   {
     name: "The Campus",
+    icon: BuildingLibraryIcon,
     href: "/campus",
     submenu: [
       { name: "Campus Location", href: "/campus#location" },
@@ -35,6 +43,7 @@ const mainNavigation = [
   },
   {
     name: "Programs Offered",
+    icon: BookOpenIcon,
     href: "/programs",
     submenu: [
       { name: "School of Rural Management (SRM)", href: "/programs#postgraduate" },
@@ -45,6 +54,7 @@ const mainNavigation = [
   },
   {
     name: "Admissions",
+    icon: UserPlusIcon,
     href: "/admissions",
     submenu: [
       { name: "Admission Procedure", href: "/admissions#process" },
@@ -83,13 +93,14 @@ const mainNavigation = [
   //     { name: "Photo Gallery", href: "/media-events#gallery" },
   //   ],
   // },
-  { name: "Contact Us", href: "/contact" }
+  { name: "Contact Us", href: "/contact", icon: EnvelopeIcon }
 ];
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeMobileSection, setActiveMobileSection] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -99,9 +110,22 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+      setActiveMobileSection(null); // Reset mobile dropdowns when closing
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileMenuOpen]);
+
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-500 ${
+      className={`md:sticky top-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-white backdrop-blur-xl shadow-premium border-b border-border-light/50 py-2"
           : "bg-white py-4"
@@ -110,14 +134,14 @@ export default function Header() {
       <nav className="px-4 md:px-16" aria-label="Global">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex lg:flex-none items-center">
+          <div className="flex md:flex-none items-center">
             <Link href="/" className="flex items-center group">
               <Image
                 src="/Logo.png"
                 alt="CVRUK-NLRI Logo"
                 width={320}
                 height={60}
-                className="h-12 md:h-17 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                className="h-12 md:h-12 xl:h-17 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                 priority
               />
             </Link>
@@ -125,7 +149,7 @@ export default function Header() {
 
           {/* Desktop Nav - Middle */}
           <div className="flex items-center gap-3">
-          <div className="hidden lg:flex items-center gap-x-1.5 ml-8">
+          <div className="hidden md:flex items-center xl:gap-x-1.5 gap-x-1 ml-8">
             {mainNavigation.map((item) => (
               <div
                 key={item.name}
@@ -135,7 +159,7 @@ export default function Header() {
               >
                 <div
                   className={`
-                  flex items-center gap-1 px-3 py-2 text-[14px] font-medium tracking-tight transition-all duration-300 rounded-lg cursor-pointer
+                  flex items-center gap-1 px-3 py-2 xl:text-[14px] text-xs font-medium tracking-tight transition-all duration-300 rounded-lg cursor-pointer
                   ${
                     activeDropdown === item.name
                       ? "bg-primary/5 text-primary"
@@ -189,25 +213,25 @@ export default function Header() {
           </div>
 
           {/* Call to Action */}
-          <div className="hidden lg:flex items-center ml-auto">
+          <div className="hidden md:flex items-center ml-auto">
             <Link 
               href="/admissions" 
-              className="bg-primary text-white text-[13px] font-semibold capitalize tracking-wider px-7 py-3 rounded-full shadow-premium hover:bg-primary-dark transition-all duration-300 hover:shadow-[0_8px_30px_rgb(13,26,99,0.3)] active:scale-95 whitespace-nowrap"
+              className="bg-primary text-white xl:text-[13px] text-xs font-semibold capitalize tracking-wider xl:px-7 xl:py-3 px-5 py-2 rounded-full shadow-premium hover:bg-primary-dark transition-all duration-300 hover:shadow-[0_8px_30px_rgb(13,26,99,0.3)] active:scale-95 whitespace-nowrap"
             >
-              Apply Now
+              Apply <span className="xl:inline hidden">Now</span>
             </Link>
           </div>
           </div>
 
           {/* Mobile menu button */}
-          <div className="flex lg:hidden">
+          <div className="flex md:hidden">
             <button
               type="button"
               className="inline-flex items-center justify-center p-2 rounded-xl text-text-dark bg-bg-section hover:bg-border-light transition-colors"
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Open main menu</span>
-              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+              <Bars3Icon className="h-6 w-6" title="Open main menu" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -231,15 +255,15 @@ export default function Header() {
             className="absolute inset-0 bg-text-dark/40 backdrop-blur-sm transition-opacity animate-in fade-in duration-300"
             onClick={() => setMobileMenuOpen(false)}
           />
-
-          <div className="absolute inset-y-0 right-0 max-w-xs w-full bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-500 ease-out">
+          
+          <div className="absolute inset-y-0 right-0 w-[280px] sm:w-[350px] bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-500 ease-out">
             <div className="flex items-center justify-between p-6 border-b border-border-light">
               <Image
-                src="/longLogo.png"
+                src="/Logo.png"
                 alt="Logo"
                 width={180}
                 height={40}
-                className="h-8 w-auto"
+                className="h-10 w-auto object-contain"
               />
               <button
                 type="button"
@@ -250,36 +274,57 @@ export default function Header() {
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto py-6 px-6 pb-20 custom-scrollbar">
-              <div className="space-y-2">
+            <div className="flex-1 overflow-y-auto py-6 px-4 pb-20 custom-scrollbar">
+              <div className="space-y-4">
                 {mainNavigation.map((item) => (
                   <div
                     key={item.name}
-                    className="border-b border-border-light/50 last:border-0 pb-2 mb-2"
+                    className="overflow-hidden"
                   >
-                    <div className="flex items-center justify-between py-2">
-                      <Link
-                        href={item.href || "#"}
-                        className="text-sm font-bold text-text-dark uppercase tracking-wide hover:text-primary transition-colors"
-                        onClick={() =>
-                          !item.submenu && setMobileMenuOpen(false)
-                        }
-                      >
-                        {item.name}
-                      </Link>
+                    <div className="flex items-center justify-between ml-4">
+                      {item.href && !item.submenu ? (
+                        <Link
+                          href={item.href}
+                          className="flex-1 flex items-center gap-2 py-3 text-[13px] font-bold text-text-dark uppercase hover:text-primary transition-colors"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <item.icon className="h-5 w-5" /> {item.name}
+                        </Link>
+                      ) : (
+                        <button
+                           onClick={() => setActiveMobileSection(activeMobileSection === item.name ? null : item.name)}
+                           className="flex-1 flex items-center justify-between py-3 text-[13px] font-bold text-text-dark uppercase hover:text-primary transition-colors text-left"
+                        >
+                          <span className="flex items-center gap-2"><item.icon className="h-5 w-5" /> {item.name}</span>
+                          {item.submenu && (
+                            <ChevronDownIcon 
+                              className={`h-4 w-4 text-gray-400 transition-transform duration-300 ${activeMobileSection === item.name ? "rotate-180 text-primary" : ""}`}
+                            />
+                          )}
+                        </button>
+                      )}
                     </div>
+
+                    {/* Mobile Submenu Accordion */}
                     {item.submenu && (
-                      <div className="mt-1 mb-4 space-y-1 ml-2">
-                        {item.submenu.map((sub) => (
-                          <Link
-                            key={sub.name}
-                            href={sub.href}
-                            className="block py-2.5 px-4 text-[11px] font-semibold text-text-muted hover:text-primary hover:bg-primary/5 rounded-lg border-l-2 border-transparent hover:border-primary transition-all"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            {sub.name}
-                          </Link>
-                        ))}
+                      <div 
+                        className={`
+                          overflow-hidden transition-all duration-300 ease-in-out
+                          ${activeMobileSection === item.name ? "max-h-[500px] mt-2 mb-4 opacity-100" : "max-h-0 opacity-0"}
+                        `}
+                      >
+                        <div className="space-y-1 pl-3 border-l-2 border-primary/10 ml-1">
+                          {item.submenu.map((sub) => (
+                            <Link
+                              key={sub.name}
+                              href={sub.href}
+                              className="block py-2.5 px-4 text-[12px] font-semibold text-text-muted hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              {sub.name}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
@@ -287,7 +332,7 @@ export default function Header() {
               </div>
             </div>
 
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-border-light">
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-border-light shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
               <Link
                 href="/admissions"
                 className="block w-full text-center py-4 text-xs font-black uppercase tracking-widest text-white bg-primary rounded-xl shadow-premium active:scale-95 transition-all"

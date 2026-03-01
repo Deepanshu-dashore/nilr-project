@@ -57,9 +57,9 @@ function StatCard({ value, label, index }: { value: string; label: string; index
       ref={ref}
       className={`${solidColors[index % solidColors.length]} flex flex-col items-center justify-center text-center px-6 py-10 rounded-xl hover:brightness-110 transition-all duration-300 cursor-default shadow-md`}
     >
-      <p className="text-5xl font-black text-white tracking-tight leading-none">
+      <p className="md:text-5xl text-2xl font-black text-white tracking-tight leading-none">
         {isNumeric ? count.toLocaleString() : value}
-        <span className="text-4xl font-black">{suffix}</span>
+        <span className="md:text-4xl text-xl font-black">{suffix}</span>
       </p>
       <p className="text-white/85 text-xs font-semibold uppercase tracking-widest mt-3">{label}</p>
     </div>
@@ -128,54 +128,50 @@ export default function InstitutionalStrengths() {
       <div className="container-wide relative z-10 space-y-8">
 
         {/* ── Section Header ── */}
-        <div className="flex flex-col items-center text-center gap-4">
-          <span className="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/8 border border-primary/15 px-4 py-2 rounded-full">
+        <div className="flex flex-col items-center text-center gap-4 mb-4 md:mb-12">
+          <span className="inline-block text-[10px] md:text-xs font-bold uppercase tracking-widest text-primary bg-primary/8 border border-primary/15 px-3 md:px-4 py-1.5 md:py-2 rounded-full">
             Achievements & Impact
           </span>
-          <h2 className="academic-section-title">
+          <h2 className="academic-section-title text-2xl md:text-4xl">
             Our <span className="text-primary">Achievements</span>
           </h2>
-          <div className="h-1 w-16 rounded-full bg-secondary mx-auto -mt-4" />
-          <p className="text-gray-500 text-base font-medium leading-relaxed max-w-5xl">
+          <div className="h-1 w-12 md:w-16 rounded-full bg-secondary mx-auto -mt-2 md:-mt-4" />
+          <p className="text-gray-500 text-sm md:text-base font-medium leading-relaxed max-w-4xl px-4 md:px-0 mt-2">
             Over 17 years of measurable impact in rural development, education, and livelihood promotion across India — driven by expertise, partnerships, and purpose.
           </p>
         </div>
 
         {/* ── Impact by Numbers ── */}
-        <div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-5">
+        <div className="px-2 md:px-0">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-6">
             {aboutData.journey.stats.map((stat: { value: string; label: string }, index: number) => (
               <StatCard key={index} value={stat.value} label={stat.label} index={index} />
             ))}
           </div>
         </div>
 
-        {/* ── Major Achievements — rich expanded cards ── */}
-        <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-6">
+        {/* ── Major Achievements — expanded cards ── */}
+        <div className="px-2 md:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {achievementDetails.map((item, index) => (
               <div
                 key={index}
-                className="group relative bg-white p-7 rounded-xl overflow-hidden border border-gray-200 border-b-4 border-b-transparent hover:border-b-secondary hover:shadow-2xl transition-all duration-500 flex flex-col gap-5"
+                className="group relative bg-white p-6 md:p-8 rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col gap-4 md:gap-5 animate-in fade-in slide-in-from-bottom-4 duration-700"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                {/* Icon */}
-                {/* <div className="w-12 h-12 rounded-xl bg-primary/8 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300 shrink-0">
-                  <item.icon className="w-6 h-6" />
-                </div> */}
-
                 {/* Title */}
-                <h3 className="font-extrabold text-lg text-gray-900 leading-snug">
+                <h3 className="font-extrabold text-base md:text-lg text-gray-900 leading-snug">
                   {item.title}
                   <span className="text-secondary"> .</span>
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-500 text-sm font-medium leading-relaxed flex-1">
+                <p className="text-gray-500 text-xs md:text-sm font-semibold leading-relaxed flex-1">
                   {item.desc}
                 </p>
 
                 {/* Animated bottom bar */}
-                <div className="absolute inset-x-0 bottom-0 h-0.5 bg-linear-to-r from-accent to-primary rounded-full scale-x-100 transition-transform duration-500 origin-left" />
+                <div className="absolute inset-x-0 bottom-0 h-1 bg-linear-to-r from-accent to-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
               </div>
             ))}
           </div>
