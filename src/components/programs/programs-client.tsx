@@ -57,9 +57,8 @@ export default function ProgramsClient() {
     return () => {
       window.removeEventListener('hashchange', handleHash);
       history.pushState = originalPushState;
-      history.replaceState = originalReplaceState;
     };
-  }, [window.location.pathname.includes("programs")]);
+  }, []);
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
