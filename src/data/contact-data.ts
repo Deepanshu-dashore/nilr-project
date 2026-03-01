@@ -51,7 +51,7 @@ export const contactData = {
     submitButton: "Contact Us"
   },
   map: {
-    embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14665.418042571439!2d74.9656825!3d23.2302066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3963fc2310129219%3A0xe962534f3b762514!2sNational%20Livelihood%20Resources%20Institute!5e0!3m2!1sen!2sin!4v1707466585324!5m2!1sen!2sin",
+    embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.255252157876!2d75.07872367512006!3d23.523320078826014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39640419d441a225%3A0x53063056acb1832d!2sNational%20Livelihood%20Resource%20Institute!5e0!3m2!1sen!2sin!4v171567929771!5m2!1sen!2sin",
     locationName: "NLRI Ratlam Campus"
   },
   socials: {

@@ -1,5 +1,4 @@
-import ContactHero from "@/src/components/contact/contact-hero";
-import ContactMain from "@/src/components/contact/contact-main";
+import ContactClient from "@/src/components/contact/contact-client";
 
 export const metadata = {
   title: "Contact Us | CVRU Khandwa – NLRI Ratlam Campus",
@@ -9,11 +8,8 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <div className="flex flex-col bg-white">
-      {/* 🎓 University-style Hero Section */}
-      <ContactHero />
-
-      {/* 📞 Integrated Layout (Categories + Map/Form Overlap) */}
-      <ContactMain />
+      {/* 🏛️ Professional Unitary Layout */}
+      <ContactClient />
     </div>
   );
 }
