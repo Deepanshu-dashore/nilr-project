@@ -30,11 +30,29 @@ export default function CampusPage() {
       <GreenInitiatives />
 
       {/* Closing Statement */}
-      <section className="bg-primary text-white py-16 px-4 md:px-0 text-center">
-        <div className="max-w-5xl mx-auto space-y-4">
-          <p className="text-lg md:text-xl font-medium leading-relaxed">
-           "The CVRUK-NLRI campus is not just an academic facility — it’s a hands-on innovation hub where students, professionals, and rural communities collaborate to solve real-world challenges in agriculture, livelihood, and sustainable development"
-          </p>
+      <section className="relative py-16 md:py-24 overflow-hidden border-t border-white/5 text-white bg-primary">
+        {/* Background Image with Overlay */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-top bg-no-repeat"
+          style={{ backgroundImage: "url('/HeaderBg.png')" }}
+        />
+        <div className="absolute inset-0 z-0 bg-primary/40 mix-blend-multiply" />
+
+        <div className="container-wide text-center relative z-10">
+          <div className="max-w-6xl mx-auto">
+            {/* Simple, Minimalistic Quote */}
+            <h2 className="text-2xl md:text-3xl font-semibold leading-relaxed text-white/90 mb-10 tracking-tight">
+              "The CVRUK-NLRI campus is not just an academic facility — it’s a hands-on innovation hub where students, professionals, and rural communities collaborate to solve real-world challenges in agriculture, livelihood, and sustainable development"
+            </h2>
+
+            <div className="flex justify-center items-center gap-4 opacity-50">
+               <div className="h-px bg-white/20 w-12" />
+               <span className="text-[10px] font-bold uppercase tracking-widest text-white/60">
+                  CVRUK–NLRI Campus
+               </span>
+               <div className="h-px bg-white/20 w-12" />
+            </div>
+          </div>
         </div>
       </section>
 

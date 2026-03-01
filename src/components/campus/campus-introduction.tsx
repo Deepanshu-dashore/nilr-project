@@ -2,7 +2,7 @@
 
 import React from "react";
 import { campusData } from "@/src/data/campus-data";
-import { CheckCircleIcon } from "@heroicons/react/24/outline";
+import { CheckCircleIcon, AcademicCapIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
 export default function CampusIntroduction() {
@@ -12,12 +12,11 @@ export default function CampusIntroduction() {
       {/* ── 2. Full-Width Panoramic Campus Image ── */}
       <div className="relative w-full h-[55vh] md:h-[90vh] overflow-hidden group border-b border-gray-100">
         <div className="pt-24 absolute z-10 pb-12 text-center inset-0 mx-auto px-6 space-y-6 bg-linear-to-t from-transparent to-black/50">
-        <div className="flex items-center justify-center gap-4">
-          <div className="h-px w-12 bg-gray-200" />
-          <span className="text-[14px] font-bold uppercase tracking-[0.3em] text-white/70">
+        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-linear-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 backdrop-blur-sm">
+          <AcademicCapIcon className="w-5 h-5 text-indigo-400 inline-block" />
+          <span className="text-sm font-medium bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
             The Campus
           </span>
-          <div className="h-px w-12 bg-gray-200" />
         </div>
         
         <h1 className="text-3xl md:text-4xl lg:text-5xl text-white leading-tight tracking-tight">
