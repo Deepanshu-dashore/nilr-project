@@ -132,7 +132,7 @@ export default function ContactClient() {
       </section>
 
       {/* 🔹 3. CONTACT INFORMATION GRID (Professional Card Layout) */}
-      <section className="py-12 md:py-24 bg-white border-t border-gray-200">
+      <section className="py-12 md:py-24 px-5 md:px-0 bg-white border-t border-gray-200">
         <div className="container-wide pl-5 md:pl-0 max-w-6xl">
           {/* Section Header */}
           <div className="text-center mb-10 md:mb-16">
@@ -243,7 +243,7 @@ export default function ContactClient() {
 
       {/* 🔹 5. FAQ SECTION (Accordion Style based on Reference) */}
       <section className="py-12 md:py-24 bg-white border-t border-gray-100">
-        <div className="container-wide pl-5 md:pl-0 max-w-4xl">
+        <div className="container-wide px-10 md:px-0 max-w-4xl">
           <div className="text-center mb-10 md:mb-16">
             <h2 className="text-2xl md:text-custom-title font-serif font-bold text-[#3d317c] mb-4">
               Frequently Asked Questions (FAQ&apos;s)

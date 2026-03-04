@@ -13,7 +13,7 @@ export default function CampusLocation() {
       {/* Soft Background Accent */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] z-0 pointer-events-none" />
 
-      <div className="container-wide py-12 pl-5 md:py-20 relative z-10">
+      <div className="container-wide py-12 px-5 md:py-20 relative z-10">
         
         {/* Section Header */}
         <div className="mb-8 md:mb-10 max-w-2xl">

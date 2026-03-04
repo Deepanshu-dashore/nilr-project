@@ -44,7 +44,7 @@ export default function Footer() {
     <footer className="bg-primary border-t border-white/20 text-white overflow-hidden relative">
 
       {/* Main Footer Body */}
-      <div className="container-wide pt-16 pb-10 relative z-10">
+      <div className="container-wide pt-16 px-10 pb-10 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-10 gap-y-16 mb-14">
 
           {/* 1. Brand column */}

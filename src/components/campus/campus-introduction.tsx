@@ -40,7 +40,7 @@ export default function CampusIntroduction() {
       </div>
 
       {/* ── 3. Introduction Text + Features ── */}
-      <div className="container-wide md:ml-0 pl-5 py-12 md:py-20 space-y-12 md:space-y-16">
+      <div className="container-wide md:ml-0 max-w-7xl md:w-full px-5 py-12 md:py-20 space-y-12 md:space-y-16">
         
         {/* Intro paragraphs */}
         <div className="w-full">

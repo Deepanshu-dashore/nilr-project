@@ -102,7 +102,7 @@ export default function InfrastructureAcademic() {
           </h2>
           <div className="flex-1 h-px bg-gray-300 hidden md:block" />
         </div>
-        <p className="text-sm md:text-base md:text-left text-justify text-gray-600 max-w-6xl mb-8 md:mb-12">
+        <p className="text-sm md:text-base md:text-left text-justify text-gray-600 max-w-6xl mb-8 md:mb-12 pr-5">
           At Nilr CVRUK, we prioritize sustainable development and provide modern facilities to support our academic and research programs. Our campus is equipped with state-of-the-art infrastructure, including classrooms, labs, and research facilities, to ensure a conducive learning environment.
         </p>
 

@@ -199,7 +199,7 @@ export default function AdmissionsClient() {
 
       {/* 5. IMPORTANT DATES SECTION */}
       <section id="dates" className="py-12 md:py-24 bg-gray-50/50">
-        <div className="container-wide pl-5 md:pl-0 max-w-6xl">
+        <div className="container-wide px-12 md:px-0 max-w-6xl">
           <div className="text-center mb-10 md:mb-16">
             <h2 className="text-xl md:text-4xl academic-section-title font-bold">
               Important Dates <span className="md:inline-block hidden">(2025–26)</span>
@@ -238,7 +238,7 @@ export default function AdmissionsClient() {
 
       {/* 5. COURSE ELIGIBILITY & FEES SECTION (Unified Format) */}
       <section id="fees" className="py-12 md:py-24 bg-white border-t border-gray-100">
-        <div className="container-wide pl-5 md:pl-0 max-w-6xl">
+        <div className="container-wide px-5 md:px-0 max-w-6xl">
           <div className="text-center mb-10 md:mb-16">
             <h2 className="text-2xl md:text-4xl academic-section-title">
               Course Eligibility & Fees
@@ -351,7 +351,7 @@ export default function AdmissionsClient() {
             </div>
 
             {/* Right side: Contact Details */}
-            <div className="space-y-8">
+            <div className="space-y-8 px-5 md:px-0">
               <div>
                 <h3 className="text-2xl font-black text-gray-900 mb-2 tracking-tight">
                   CVRU Khandwa – NLRI Campus

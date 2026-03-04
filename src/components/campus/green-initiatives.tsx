@@ -26,7 +26,7 @@ export default function GreenInitiatives() {
       {/* Soft Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#163626]/90 via-[#163626]/80 to-[#163626]/70 md:from-[#163626]/80 md:via-[#163626]/70 md:to-[#163626]/60" />
 
-      <div className="container-wide pl-5 md:pl-0 relative z-10 text-white">
+      <div className="container-wide px-5 lg:px-0 md:pl-0 relative z-10 text-white">
 
         {/* Header */}
         <div className="flex items-center gap-4 mb-10 md:mb-12 max-w-6xl">
@@ -46,7 +46,7 @@ export default function GreenInitiatives() {
         </div>
 
         {/* Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-y-8 md:gap-y-10 gap-x-10 lg:gap-x-20 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:pl-10 gap-y-8 md:gap-y-10 gap-x-10 lg:gap-x-20 max-w-5xl mx-auto">
 
           {/* Left Column */}
           <div className="space-y-6 md:space-y-8">
