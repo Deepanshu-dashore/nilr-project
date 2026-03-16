@@ -13,6 +13,7 @@ import {
   AcademicCapIcon,
   PaperAirplaneIcon
 } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 export default function EnquiryPage() {
   const [formData, setFormData] = useState({
@@ -60,7 +61,7 @@ export default function EnquiryPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
       
       {/* 1. Top Section - Banner */}
-      <section className="bg-slate-100 pt-32 pb-20 px-4 md:px-8 xl:px-0">
+      <section className="bg-gray-50 pt-32 pb-20 px-4 md:px-8 xl:px-0">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
           
           {/* Left: Text & Search */}
@@ -82,25 +83,34 @@ export default function EnquiryPage() {
             </div>
           </div>
 
-          {/* Right: SVG Illustration */}
+          {/* Right: Illustration */}
           <div className="w-full md:w-1/2 flex justify-center md:justify-end">
-            <div className="w-full max-w-md relative">
-              {/* Replace with your actual SVG if you have one. This is a generic vector illustration placeholder. */}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 350" className="w-full h-auto drop-shadow-lg">
-                <rect x="0" y="0" width="500" height="350" fill="transparent" />
-                <path d="M50 250 L450 250 L450 300 L50 300 Z" fill="#60A5FA" opacity="0.8" rx="10"/>
-                <circle cx="250" cy="150" r="60" fill="#3B82F6"/>
-                <path d="M210 250 L250 150 L290 250 Z" fill="#2563EB"/>
-                <rect x="230" y="200" width="40" height="30" fill="#1E3A8A"/>
-                {/* Plants/Decorations */}
-                <circle cx="430" cy="180" r="25" fill="#10B981" />
-                <rect x="420" y="200" width="20" height="50" fill="#047857" />
-                {/* Chat Bubble */}
-                <path d="M300 80 C300 50, 350 50, 350 50 C380 50, 400 70, 400 90 C400 110, 380 130, 360 130 L350 150 L340 130 C310 120, 300 100, 300 80 Z" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="2"/>
-                <circle cx="330" cy="90" r="5" fill="#3B82F6"/>
-                <circle cx="350" cy="90" r="5" fill="#3B82F6"/>
-                <circle cx="370" cy="90" r="5" fill="#3B82F6"/>
-              </svg>
+            <div className="w-full max-w-lg relative">
+              {/* Decorative background elements */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-linear-to-tr from-blue-100 to-indigo-50 rounded-full blur-3xl opacity-60 -z-10 animate-pulse"></div>
+              
+              <figure className="relative z-10 drop-shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
+                <Image 
+                  src="/support2.jpg" 
+                  alt="Support Specialist" 
+                  width={600} 
+                  height={450} 
+                  className="w-full h-auto rounded-3xl"
+                  priority
+                />
+                
+                {/* Floating Micro-animations */}
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-white/40 backdrop-blur-md rounded-2xl border border-white/50 flex items-center justify-center shadow-lg animate-bounce-slow">
+                  <ChatBubbleBottomCenterTextIcon className="w-8 h-8 text-primary" />
+                </div>
+                
+                <div className="absolute -bottom-6 -left-6 px-4 py-3 bg-white/80 backdrop-blur-md rounded-xl border border-white/50 shadow-lg animate-float">
+                  <div className="flex items-center gap-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-ping"></div>
+                    <span className="text-xs font-bold text-gray-800">Online Support Available</span>
+                  </div>
+                </div>
+              </figure>
             </div>
           </div>
 
@@ -108,7 +118,7 @@ export default function EnquiryPage() {
       </section>
 
       {/* 2. Middle Section - Common Enquiry Cards */}
-      <section className="bg-gray-50 -mt-10 mb-16 px-4 md:px-8 xl:px-0">
+      <section className="bg-slate-100 -mt-10 mb-16 px-4 md:px-8 xl:px-0 pt-16">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
@@ -177,7 +187,7 @@ export default function EnquiryPage() {
             
             {/* Left: Popular Topics Grid (like the reference image) */}
             <div className="w-full lg:w-1/2">
-              <h3 className="text-lg font-bold text-gray-900 mb-6 border-b pb-2">Popular topics</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-6 border-b border-gray-300 pb-2">Popular topics</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 
                 {/* Topic 1 */}
