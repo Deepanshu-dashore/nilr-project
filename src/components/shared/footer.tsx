@@ -14,6 +14,7 @@ const footerLinks = [
       { name: "About Us", href: "/about" },
       { name: "Programs Offered", href: "/programs" },
       { name: "Admissions", href: "/admissions" },
+      { name: "Enquiry Form", href: "/enquiry" },
       { name: "Contact Us", href: "/contact" },
     ],
   },

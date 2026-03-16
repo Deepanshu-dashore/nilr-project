@@ -15,7 +15,9 @@ const programCategories = [
   {
     icon: AcademicCapIcon,
     label: "Postgraduate Program",
-    color: "bg-[#4a6741]",   // forest green
+    color: "bg-primary",   // forest green
+    description: "A comprehensive 2-year postgraduate diploma designed to build strong leadership and management skills for rural development and allied sectors.",
+    link: "/programs#postgraduate",
     items: [
       "PGD in Rural Management",
       "2 Years | AICTE Approved",
@@ -26,6 +28,8 @@ const programCategories = [
     icon: DocumentTextIcon,
     label: "Diploma Programs",
     color: "bg-[#c47c2b]",   // amber
+    description: "1-year skill-based diploma courses focusing on practical knowledge in areas like organic farming and community development.",
+    link: "/programs#diploma",
     items: [
       "Organic Farming",
       "Community Development",
@@ -36,6 +40,8 @@ const programCategories = [
     icon: SparklesIcon,
     label: "Certificate Courses",
     color: "bg-[#2b6b8a]",   // steel blue
+    description: "Short-term 3-month specialized certification programs aimed at quick skill acquisition and career advancement.",
+    link: "/programs#certificate",
     items: [
       "3 Month Short-Term",
       "14 Specialized Programs",
@@ -46,6 +52,8 @@ const programCategories = [
     icon: WrenchScrewdriverIcon,
     label: "Specialized Training",
     color: "bg-[#4a6741]",   // forest green (same as first)
+    description: "Focused training modules on watershed management, FPOs, and climate resilience for targeted professional growth.",
+    link: "/programs#training",
     items: [
       "Watershed & FPO",
       "Agri-Business Courses",
@@ -92,100 +100,27 @@ export default function Admissions() {
           {programCategories.map((cat, idx) => {
             const Icon = cat.icon;
             return (
-              <div
+              <Link
+                href={cat.link}
                 key={idx}
-                className="bg-white flex flex-col border-b last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0 border-gray-100 hover:shadow-lg transition-shadow duration-300"
+                className="bg-white flex flex-col border-b last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0 border-gray-100 hover:shadow-xl transition-all duration-300 group cursor-pointer relative overflow-hidden"
               >
-                {/* Coloured Header */}
-                <div className={`${cat.color} text-white flex items-center gap-3 px-6 py-4`}>
-                  <div className="w-9 h-9 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
-                    <Icon className="w-5 h-5" />
+                {/* Coloured Header / Entire Card */}
+                <div className={`${cat.color} text-white flex flex-col justify-center items-center text-center gap-3 px-4 py-8 md:py-10 h-full relative z-10 transition-transform duration-300 group-hover:scale-[1.02]`}>
+                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center shadow-inner">
+                    <Icon className="w-6 h-6" />
                   </div>
-                  <span className="font-bold text-sm leading-tight tracking-wide">{cat.label}</span>
+                  <span className="font-bold text-sm md:text-base leading-tight tracking-wide">{cat.label}</span>
+                  {/* <div className="flex items-center gap-2 mt-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                    <span className="text-xs uppercase tracking-wider font-semibold">Explore</span>
+                    <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                  </div> */}
                 </div>
-
-                {/* Bullet List */}
-                <ul className="px-6 py-6 space-y-3.5 flex-1">
-                  {cat.items.map((item, i) => (
-                    <li key={i} className="flex items-center gap-3">
-                      <span className={`w-5 h-5 rounded-full ${cat.color} flex items-center justify-center shrink-0`}>
-                        <CheckIcon className="w-3 h-3 text-white" />
-                      </span>
-                      <span className="text-xs md:text-sm text-gray-700 font-medium">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                {/* Background overlay on hover */}
+                <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20" />
+              </Link>
             );
           })}
-        </div>
-
-        {/* PGD-RM Feature Banner */}
-        <div className="rounded-2xl overflow-hidden shadow-premium border border-gray-100 flex flex-col md:flex-row mb-12 bg-white">
-          {/* Left: Image */}
-          <div className="relative w-full md:w-[40%] h-[240px] md:h-auto shrink-0 overflow-hidden">
-            <Image
-              src="/home/admissions-campus.png"
-              alt="Students at NLRI Campus"
-              fill
-              className="object-cover"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = "none";
-              }}
-            />
-          </div>
-
-          {/* Right: Details */}
-          <div className="flex-1 flex flex-col">
-            {/* Dark header bar */}
-            <div className="bg-primary text-white px-6 md:px-8 py-5">
-              <h3 className="text-lg md:text-xl font-bold leading-tight">
-                Post Graduate Diploma in Rural Management (PGD-RM)
-              </h3>
-              <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
-                <span className="text-[10px] md:text-xs text-white/80 uppercase tracking-widest font-semibold flex items-center gap-1.5 border-r border-white/20 pr-4">AICTE Approved</span>
-                <span className="text-[10px] md:text-xs text-white/80 uppercase tracking-widest font-semibold flex items-center gap-1.5 border-r border-white/20 pr-4">2 Years Full-Time</span>
-                <span className="text-[10px] md:text-xs text-white/80 uppercase tracking-widest font-semibold">60 Seats Available</span>
-              </div>
-            </div>
-
-            {/* Feature Grid */}
-            <div className="p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-5 flex-1 bg-white">
-              {/* Left column – key program details */}
-              <ul className="space-y-4">
-                {pgdFeatures.map((f, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <CheckIcon className="w-3 h-3 text-primary" />
-                    </span>
-                    <span className="text-xs md:text-sm text-gray-700">
-                      <span className="font-bold text-gray-900">{f.label}:</span>{" "}
-                      {f.value}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Right column – extra benefits */}
-              <ul className="space-y-4">
-                {pgdExtras.map((f, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <span className="w-5 h-5 rounded-full bg-green-50 flex items-center justify-center shrink-0 mt-0.5">
-                      <CheckIcon className="w-3 h-3 text-green-600" />
-                    </span>
-                    <span className="text-xs md:text-sm text-gray-700 font-medium">{f}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Apply Now CTA */}
-            <div className="px-6 md:px-8 pb-8">
-              <button className="w-full sm:w-auto px-8 py-3 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary-dark transition-all shadow-md hover:shadow-lg active:scale-95">
-                Apply Now
-              </button>
-            </div>
-          </div>
         </div>
 
         {/* View All Courses CTA */}
