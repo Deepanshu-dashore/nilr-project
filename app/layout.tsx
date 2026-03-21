@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter, Outfit,Poppins } from "next/font/google";
 import "./globals.css";
-import Header from "@/src/components/shared/header";
-import Footer from "@/src/components/shared/footer";
+import MainLayoutWrapper from "@/src/components/shared/main-layout-wrapper";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -12,6 +11,12 @@ const inter = Inter({
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
+});
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -26,12 +31,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${outfit.variable} antialiased min-h-screen flex flex-col`}>
-        <Header />
-        <main className="grow">
-          {children}
-        </main>
-        <Footer />
+      <body className={`${inter.variable} ${outfit.variable} ${poppins.variable} antialiased min-h-screen flex flex-col`}>
+        <MainLayoutWrapper>{children}</MainLayoutWrapper>
       </body>
     </html>
   );
