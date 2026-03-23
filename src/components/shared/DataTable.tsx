@@ -387,7 +387,7 @@ export function DataTable<T>({
                           key={`${id}-${cIdx}`} 
                           className={`px-4 ${col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'}`}
                         >
-                           {col.custom ? col.render?.(row) : 
+                           {col.type === 'custom' ? col.render?.(row) : 
                             col.type === 'user' ? (
                                <div className="flex items-center gap-4">
                                   {/* Avatar Gen */}
