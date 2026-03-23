@@ -144,9 +144,13 @@ export default function Footer() {
             <div className="space-y-2 lg:space-y-0 lg:flex lg:items-center lg:gap-6">
                <p className="border-b lg:border-b-0 border-white/5 pb-2 lg:pb-0">© {new Date().getFullYear()} CVRUK – NLRI Partnership. All Rights Reserved.</p>
                <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-gray-400 uppercase tracking-widest text-[10px]">
-                {["Privacy Policy", "Disclaimer", "Mandatory Disclosures"].map((item) => (
-                  <Link key={item} href="#" className="hover:text-accent transition-colors">
-                    {item}
+                {[
+                  { name: "Privacy Policy", href: "/privacy-policy" },
+                  { name: "Disclaimer", href: "/disclaimer" },
+                  { name: "Terms & Conditions", href: "/terms" }
+                ].map((link) => (
+                  <Link key={link.name} href={link.href} className="hover:text-accent transition-colors">
+                    {link.name}
                   </Link>
                 ))}
               </div>

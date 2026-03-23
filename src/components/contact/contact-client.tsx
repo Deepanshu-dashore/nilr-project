@@ -6,6 +6,46 @@ import { MapPinIcon, PhoneIcon, EnvelopeIcon, GlobeAltIcon, ClockIcon, ChevronDo
 
 export default function ContactClient() {
   const { map } = contactData;
+  const [formData, setFormData] = React.useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "Other/General Enquiry",
+    message: ""
+  });
+  const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = React.useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+        setErrorMessage(data.message || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      setStatus("error");
+      setErrorMessage("Network error. Please try again.");
+    }
+  };
 
   return (
     
@@ -69,67 +109,117 @@ export default function ContactClient() {
             </div>
 
             {/* Right Column: Contact Form */}
-            <form className="bg-white p-6 md:p-10 rounded-2xl md:rounded-4xl shadow-2xl shadow-primary/5 border border-gray-100 space-y-5 md:space-y-6 animate-in fade-in slide-in-from-right-8 duration-1000 h-full flex flex-col justify-center mr-5 md:mr-0">
-              <h3 className="text-xl md:text-2xl font-serif font-bold text-[#21325b] mb-1 md:mb-2">Send Us a Message</h3>
-              <p className="text-gray-500 text-xs md:text-sm mb-4 md:mb-6 pb-4 md:pb-6 border-b border-gray-100">Our team typically responds within 24-48 business hours.</p>
-
-              <div className="grid md:grid-cols-2 gap-5 md:gap-6">
-                <div className="space-y-1 md:space-y-2">
-                  <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 pl-1">Full Name</label>
-                  <input
-                    type="text"
-                    placeholder="John Doe"
-                    className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-xl px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
-                  />
+            <div className="bg-white p-6 md:p-10 rounded-2xl md:rounded-4xl shadow-2xl shadow-primary/5 border border-gray-100 animate-in fade-in slide-in-from-right-8 duration-1000 h-full flex flex-col justify-center mr-5 md:mr-0">
+              {status === "success" ? (
+                <div className="text-center py-10 animate-in fade-in zoom-in duration-500">
+                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-serif font-bold text-[#21325b] mb-4">Inquiry Received!</h3>
+                  <p className="text-gray-600 mb-8 max-w-sm mx-auto">
+                    Thank you for reaching out. We have received your inquiry and our team will get back to you within 24–48 hours.
+                  </p>
+                  <button 
+                    onClick={() => setStatus("idle")}
+                    className="text-primary font-bold uppercase tracking-wider text-sm hover:underline"
+                  >
+                    Send another message
+                  </button>
                 </div>
-                <div className="space-y-1 md:space-y-2">
-                  <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 pl-1">Email Address</label>
-                  <input
-                    type="email"
-                    placeholder="john@example.com"
-                    className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-xl px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
-                  />
-                </div>
-              </div>
+              ) : (
+                <>
+                  <h3 className="text-xl md:text-2xl font-serif font-bold text-[#21325b] mb-1 md:mb-2">Send Us a Message</h3>
+                  <p className="text-gray-500 text-xs md:text-sm mb-4 md:mb-6 pb-4 md:pb-6 border-b border-gray-100">Our team typically responds within 24-48 business hours.</p>
 
-              <div className="grid md:grid-cols-2 gap-5 md:gap-6">
-                <div className="space-y-1 md:space-y-2">
-                  <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 pl-1">Phone Number</label>
-                  <input
-                    type="tel"
-                    placeholder="+91-1234567890"
-                    className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-xl px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
-                  />
-                </div>
-                <div className="space-y-1 md:space-y-2">
-                  <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 pl-1">Subject</label>
-                  <input
-                    type="text"
-                    placeholder="Inquiry about Course"
-                    className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-xl px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
-                  />
-                </div>
-              </div>
+                  <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
+                    <div className="grid md:grid-cols-2 gap-5 md:gap-6">
+                      <div className="space-y-1 md:space-y-2">
+                        <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 pl-1">Full Name</label>
+                        <input
+                          type="text"
+                          name="name"
+                          required
+                          value={formData.name}
+                          onChange={handleChange}
+                          placeholder="John Doe"
+                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-xl px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
+                        />
+                      </div>
+                      <div className="space-y-1 md:space-y-2">
+                        <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 pl-1">Email Address</label>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder="john@example.com"
+                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-xl px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
+                        />
+                      </div>
+                    </div>
 
-              <div className="space-y-1 md:space-y-2">
-                <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 pl-1">Your Message</label>
-                <textarea
-                  rows={4}
-                  placeholder="How can we help you today?"
-                  className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-3xl px-4 md:px-5 py-3 md:py-3.5 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium resize-none shadow-sm text-xs md:text-sm"
-                />
-              </div>
+                    <div className="grid md:grid-cols-2 gap-5 md:gap-6">
+                      <div className="space-y-1 md:space-y-2">
+                        <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 pl-1">Phone Number</label>
+                        <input
+                          type="tel"
+                          name="phone"
+                          required
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder="+91-1234567890"
+                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-xl px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
+                        />
+                      </div>
+                      {/* <div className="space-y-1 md:space-y-2">
+                        <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 pl-1">Subject</label>
+                        <input
+                          type="text"
+                          name="subject"
+                          required
+                          value={formData.subject}
+                          onChange={handleChange}
+                          placeholder="Inquiry about Course"
+                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-xl px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
+                        />
+                      </div> */}
+                    </div>
 
-              <button
-                type="submit"
-                className="w-full bg-primary hover:bg-[#21325b] text-white py-3.5 md:py-4.5 rounded-sm font-black uppercase tracking-[2px] md:tracking-[3px] shadow-xl shadow-primary/10 hover:shadow-primary/30 transition-all duration-300 transform hover:-translate-y-1 active:scale-95 cursor-pointer border border-white/10 text-xs md:text-sm"
-              >
-                Send Inquiry Now
-              </button>
-            </form>
+                    <div className="space-y-1 md:space-y-2">
+                      <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 pl-1">Your Message</label>
+                      <textarea
+                        rows={4}
+                        name="message"
+                        required
+                        value={formData.message}
+                        onChange={handleChange}
+                        placeholder="How can we help you today?"
+                        className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-3xl px-4 md:px-5 py-3 md:py-3.5 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium resize-none shadow-sm text-xs md:text-sm"
+                      />
+                    </div>
+
+                    {status === "error" && (
+                      <p className="text-red-500 text-xs font-bold text-center">{errorMessage}</p>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={status === "loading"}
+                      className="w-full bg-primary hover:bg-[#21325b] text-white py-3.5 md:py-4.5 rounded-sm font-black uppercase tracking-[2px] md:tracking-[3px] shadow-xl shadow-primary/10 hover:shadow-primary/30 transition-all duration-300 transform hover:-translate-y-1 active:scale-95 cursor-pointer border border-white/10 text-xs md:text-sm disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                      {status === "loading" ? "Sending..." : "Send Inquiry Now"}
+                    </button>
+                  </form>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* 🔹 3. CONTACT INFORMATION GRID (Professional Card Layout) */}
       <section className="py-12 md:py-24 px-5 md:px-0 bg-white border-t border-gray-200">

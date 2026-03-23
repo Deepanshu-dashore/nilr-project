@@ -1,6 +1,5 @@
 import { connectDB } from "../../db/connectDB";
-import { comparePasswords, hashPassword } from "../../security/password";
-import { ApiResponse } from "../../utils/ApiResponse";
+import { hashPassword } from "../../security/password";
 import { User } from "./user.model";
 
 export class UserService {

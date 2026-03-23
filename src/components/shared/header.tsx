@@ -215,7 +215,7 @@ export default function Header() {
           {/* Call to Action */}
           <div className="hidden md:flex items-center ml-auto">
             <Link 
-              href="/admissions" 
+              href="/apply-now" 
               className="bg-primary text-white xl:text-[13px] text-xs font-semibold capitalize tracking-wider xl:px-7 xl:py-3 px-5 py-2 rounded-full shadow-premium hover:bg-primary-dark transition-all duration-300 hover:shadow-[0_8px_30px_rgb(13,26,99,0.3)] active:scale-95 whitespace-nowrap"
             >
               Apply <span className="xl:inline hidden">Now</span>
@@ -334,7 +334,7 @@ export default function Header() {
 
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-border-light shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
               <Link
-                href="/admissions"
+                href="/apply-now"
                 className="block w-full text-center py-4 text-xs font-black uppercase tracking-widest text-white bg-primary rounded-xl shadow-premium active:scale-95 transition-all"
                 onClick={() => setMobileMenuOpen(false)}
               >

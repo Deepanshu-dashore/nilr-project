@@ -1,19 +1,28 @@
 import mongoose from "mongoose";
-import { ApiResponse } from "../utils/ApiResponse";
 
-export const connectDB = async () => {
-    if(mongoose.connection.readyState === 1) {
+type ConnectionObject = {
+  isConnected?: number;
+};
+
+const connection: ConnectionObject = {};
+
+export const connectDB = async (): Promise<void> => {
+    if (connection.isConnected) {
         return;
     }
-    const connectionString = process.env.MONGODB_URI!;
+    if (mongoose.connection.readyState >= 1) {
+        return;
+    }
+    const connectionString = process.env.MONGODB_URI;
     if(!connectionString){
-        return ApiResponse(404, "", "MongoDB URI is not defined");
+        throw new Error("MongoDB URI is not defined");
     }
     try {
-        await mongoose.connect(connectionString);
+        const db = await mongoose.connect(connectionString);
+        connection.isConnected = db.connections[0].readyState;
         console.log("NLRI-Database connected");
     } catch (error) {
         console.error("NLRI-Database connection error:", error);
-        return ApiResponse(500, "", "NLRI-Database connection error");
+        throw error;
     }
 }

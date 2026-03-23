@@ -9,8 +9,10 @@ import {
   UserGroupIcon, 
   CheckCircleIcon 
 } from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
 
 export default function ProgramsClient() {
+  const navigate = useRouter();
   const [activeTab, setActiveTab] = useState("Postgraduate");
 
   const tabs = ["Postgraduate", "Diploma", "Certificate", "Training"];
@@ -91,7 +93,7 @@ export default function ProgramsClient() {
         )}
       </div>
 
-      <button className="flex items-center justify-center gap-2 border text-[13px] font-bold bg-[#21325b] p-3 rounded-sm py-2.5 px-6 text-white group-hover:text-primary group-hover:border-primary/80 group-hover:bg-white transition-all cursor-pointer shrink-0">
+      <button onClick={()=>navigate.push(`/apply-now?program=${title}`)} className="flex items-center justify-center gap-2 border text-[13px] font-bold bg-[#21325b] p-3 rounded-sm py-2.5 px-6 text-white group-hover:text-primary group-hover:border-primary/80 group-hover:bg-white transition-all cursor-pointer shrink-0">
         Apply Now
         <svg className="w-4 h-4 text-white group-hover:text-primary group-hover:-rotate-45 transition-transform duration-300 ease-in-out" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
