@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { contactData } from "@/src/data/contact-data";
 import { MapPinIcon, PhoneIcon, EnvelopeIcon, GlobeAltIcon, ClockIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 
@@ -112,10 +113,8 @@ export default function ContactClient() {
             <div className="bg-white p-6 md:p-10 rounded-2xl md:rounded-4xl shadow-2xl shadow-primary/5 border border-gray-100 animate-in fade-in slide-in-from-right-8 duration-1000 h-full flex flex-col justify-center mr-5 md:mr-0">
               {status === "success" ? (
                 <div className="text-center py-10 animate-in fade-in zoom-in duration-500">
-                  <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                    </svg>
+                  <div className="w-full h-48 md:h-64 relative flex items-center justify-center mx-auto mb-6">
+                    <Image src="/EnquirySubmit.png" alt="Success" className="w-full h-full object-contain" fill />
                   </div>
                   <h3 className="text-2xl font-serif font-bold text-[#21325b] mb-4">Inquiry Received!</h3>
                   <p className="text-gray-600 mb-8 max-w-sm mx-auto">
@@ -144,7 +143,7 @@ export default function ContactClient() {
                           value={formData.name}
                           onChange={handleChange}
                           placeholder="John Doe"
-                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-xl px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
+                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-sm px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
                         />
                       </div>
                       <div className="space-y-1 md:space-y-2">
@@ -156,7 +155,7 @@ export default function ContactClient() {
                           value={formData.email}
                           onChange={handleChange}
                           placeholder="john@example.com"
-                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-xl px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
+                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-sm px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
                         />
                       </div>
                     </div>
@@ -171,7 +170,7 @@ export default function ContactClient() {
                           value={formData.phone}
                           onChange={handleChange}
                           placeholder="+91-1234567890"
-                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-xl px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
+                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-sm px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
                         />
                       </div>
                       {/* <div className="space-y-1 md:space-y-2">
@@ -183,7 +182,7 @@ export default function ContactClient() {
                           value={formData.subject}
                           onChange={handleChange}
                           placeholder="Inquiry about Course"
-                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-xl px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
+                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-sm px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
                         />
                       </div> */}
                     </div>
@@ -197,7 +196,7 @@ export default function ContactClient() {
                         value={formData.message}
                         onChange={handleChange}
                         placeholder="How can we help you today?"
-                        className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-3xl px-4 md:px-5 py-3 md:py-3.5 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium resize-none shadow-sm text-xs md:text-sm"
+                        className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-sm px-4 md:px-5 py-3 md:py-3.5 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium resize-none shadow-sm text-xs md:text-sm"
                       />
                     </div>
 
@@ -208,7 +207,7 @@ export default function ContactClient() {
                     <button
                       type="submit"
                       disabled={status === "loading"}
-                      className="w-full bg-primary hover:bg-[#21325b] text-white py-3.5 md:py-4.5 rounded-sm font-black uppercase tracking-[2px] md:tracking-[3px] shadow-xl shadow-primary/10 hover:shadow-primary/30 transition-all duration-300 transform hover:-translate-y-1 active:scale-95 cursor-pointer border border-white/10 text-xs md:text-sm disabled:opacity-70 disabled:cursor-not-allowed"
+                      className="w-full bg-primary hover:bg-[#21325b] text-white py-3.5 md:py-4.5 rounded-sm font-semibold uppercase tracking-[2px] shadow-xl shadow-primary/10 hover:shadow-primary/30 transition-all duration-300 transform hover:-translate-y-1 active:scale-95 cursor-pointer border border-white/10 text-xs md:text-sm disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                       {status === "loading" ? "Sending..." : "Send Inquiry Now"}
                     </button>

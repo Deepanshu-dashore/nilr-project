@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Logo } from "@/src/components/shared/Logo";
 import { usePathname } from "next/navigation";
 import {
   HomeIcon,
@@ -87,14 +88,10 @@ export default function DashboardLayout({
         } transition-all duration-300 bg-white border-r border-dashed border-gray-200 flex flex-col z-50 relative shrink-0`}
       >
         <div className="px-6 py-6 flex flex-col gap-1 items-center bg-gray-50 border-b border-dashed border-gray-200">
+
           <Link href="/admin/dashboard" className="flex items-end gap-2.5">
              {isSidebarOpen ? (
-               <>
-                 <Image src="/Logo.png" alt="NLRI Admin Logo" width={130} height={42} className="object-contain shrink-0 w-10/12" priority />
-                 {/* <span className="font-heading font-black text-[10px] text-primary tracking-widest uppercase bg-primary/10 px-2 py-0.5 rounded-md self-end mb-1">
-                   Admin
-                 </span> */}
-               </>
+               <Logo variant="admin" />
              ) : (
                 <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary font-heading font-black text-xl shrink-0">
                   N

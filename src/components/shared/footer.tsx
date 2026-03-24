@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Logo } from "./Logo";
 import {
   EnvelopeIcon,
   PhoneIcon,
@@ -50,14 +51,9 @@ export default function Footer() {
 
           {/* 1. Brand column */}
           <div className="lg:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-left">
+
             <Link href="/" className="inline-block mb-6">
-              <Image
-                src="/Logo.png"
-                alt="CVRUK-NLRI Logo"
-                width={260}
-                height={60}
-                className="h-14 w-auto brightness-0 invert opacity-90"
-              />
+              <Logo variant="white" size="sm" />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-sm">
               Empowering rural communities through innovation, leadership, and professional excellence. A global benchmark for sustainable grassroots transformation.

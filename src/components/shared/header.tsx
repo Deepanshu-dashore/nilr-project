@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { Logo } from "./Logo";
 import { useState, useEffect } from "react";
 import {
   Bars3Icon,
@@ -46,7 +47,8 @@ const mainNavigation = [
     icon: BookOpenIcon,
     href: "/programs",
     submenu: [
-      { name: "School of Rural Management (SRM)", href: "/programs#postgraduate" },
+      { name: "School of Rural Management (SRM)", href: "/programs/srm" },
+      { name: "Postgraduate Programs", href: "/programs#postgraduate" },
       { name: "Certificate Courses (3 Months)", href: "/programs#certificate" },
       { name: "Diploma Courses (1 Year)", href: "/programs#diploma" },
       { name: "Short-term Training Programs", href: "/programs#training" },
@@ -133,17 +135,11 @@ export default function Header() {
     >
       <nav className="px-4 md:px-16" aria-label="Global">
         <div className="flex justify-between items-center h-16">
+
           {/* Logo */}
           <div className="flex md:flex-none items-center">
-            <Link href="/" className="flex items-center group">
-              <Image
-                src="/Logo.png"
-                alt="CVRUK-NLRI Logo"
-                width={320}
-                height={60}
-                className="h-12 md:h-12 xl:h-17 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                priority
-              />
+            <Link href="/" className="flex items-center">
+              <Logo scrolled={scrolled} />
             </Link>
           </div>
 
@@ -257,14 +253,8 @@ export default function Header() {
           />
           
           <div className="absolute inset-y-0 right-0 w-[280px] sm:w-[350px] bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-500 ease-out">
-            <div className="flex items-center justify-between p-6 border-b border-border-light">
-              <Image
-                src="/Logo.png"
-                alt="Logo"
-                width={180}
-                height={40}
-                className="h-10 w-auto object-contain"
-              />
+            <div className="flex items-center justify-between p-4 border-b border-border-light">
+              <Logo size="sm" />
               <button
                 type="button"
                 className="p-2 rounded-xl text-text-dark hover:bg-bg-section transition-colors"
