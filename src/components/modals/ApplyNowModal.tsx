@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import Image from "next/image";
 
 const COURSES = [
   "Vocational training",
@@ -107,12 +108,13 @@ export default function ApplyNowModal() {
       <div className="relative w-full max-w-lg mx-4 bg-white shadow-2xl rounded-sm overflow-hidden animate-in zoom-in duration-300 origin-center max-h-[90vh] overflow-y-auto custom-scrollbar">
         {/* Header - Red as per image */}
         <div className="bg-[#ba303b] text-white py-4 px-6 relative">
-          <h2 className="text-xl md:text-2xl font-black text-center uppercase tracking-tighter">
+          <h2 className="text-lg md:text-xl font-medium text-center uppercase tracking-tighter">
             ENQUIRE NOW/APPLY NOW
           </h2>
           <button 
+          title="Close"
             onClick={handleClose}
-            className="absolute top-1/2 -translate-y-1/2 right-4 text-white hover:text-gray-200 transition-colors"
+            className="absolute top-1/2 bg-gray-300/50 p-0.5 rounded-lg cursor-pointer -translate-y-1/2 right-4 text-white hover:text-gray-200 transition-colors"
           >
             <XMarkIcon className="w-5 h-5" />
           </button>
@@ -121,21 +123,19 @@ export default function ApplyNowModal() {
         <div className="p-6 md:p-8">
           {status === "success" ? (
             <div className="text-center py-10">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                </svg>
+              <div className="w-full h-64 relative flex items-center justify-center mx-auto mb-6">
+               <Image src="/EnquirySubmit.png" alt="Success" className="w-full h-full object-contain" fill />
               </div>
               <h3 className="text-2xl font-bold text-[#21325b] mb-4">Inquiry Received!</h3>
               <p className="text-gray-600 mb-8">
                 Thank you for applying. Our team will contact you soon.
               </p>
-              <button 
+              {/* <button 
                 onClick={handleClose}
                 className="bg-[#21325b] text-white px-8 py-3 rounded-sm font-bold uppercase text-sm tracking-widest shadow-lg active:scale-95 transition-all"
               >
                 Close
-              </button>
+              </button> */}
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -161,9 +161,7 @@ export default function ApplyNowModal() {
                 />
 
                 <div className="flex items-center gap-2 border-b border-gray-300">
-                  <div className="flex items-center gap-1 text-sm font-medium py-3 border-r pr-2 shrink-0">
-                    +91 <span className="text-[8px] rotate-180">▲</span>
-                  </div>
+                  
                   <input
                     type="tel"
                     name="phone"

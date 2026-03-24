@@ -22,6 +22,7 @@ export interface ColumnDef<T> {
   type?: ColumnType;
   sortable?: boolean;
   align?: 'left' | 'center' | 'right';
+  custom?: boolean;
   
   // Custom Render
   render?: (row: T) => React.ReactNode;
@@ -387,7 +388,7 @@ export function DataTable<T>({
                           key={`${id}-${cIdx}`} 
                           className={`px-4 ${col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'}`}
                         >
-                           {col.type === 'custom' ? col.render?.(row) : 
+                           {col.custom ? col.render?.(row) : 
                             col.type === 'user' ? (
                                <div className="flex items-center gap-4">
                                   {/* Avatar Gen */}
