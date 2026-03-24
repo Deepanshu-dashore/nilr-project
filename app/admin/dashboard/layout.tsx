@@ -91,11 +91,18 @@ export default function DashboardLayout({
 
           <Link href="/admin/dashboard" className="flex items-end gap-2.5">
              {isSidebarOpen ? (
-               <Logo variant="admin" />
+               <Logo variant="admin" size="xs" />
              ) : (
-                <div className="w-10 h-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary font-heading font-black text-xl shrink-0">
-                  N
-                </div>
+                  <div className="relative shrink-0">
+                        <Image
+                          src="/NLRILOGO.png"
+                          alt="CVRUK-NLRI Logo"
+                          width={50}
+                          height={50}
+                          className="h-6 md:h-8 xl:h-10"
+                          priority
+                        />
+                      </div>
              )}
           </Link>
         </div>

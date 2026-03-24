@@ -31,13 +31,36 @@ export class EnquiryController {
         return ApiResponse(500, null, "Internal server error");
     }
     }
-
-    static async getAllEnquiries() {
+    static async updateStatus({params}: {params: Promise<{id: string}>}) {
+        const {id} = await params;
         const user = await verifyJWT();
         if(!user){
             return ApiResponse(401,null,"Unauthorized request");
         }
-        const result = await EnquiryService.getAllEnquiries();
+        const enquiry = await EnquiryService.getEnquiryById(id);
+        if(!enquiry){
+            return ApiResponse(404, null, "Enquiry not found");
+        }
+        if(enquiry.status === "resolved"){
+            return ApiResponse(400, null, "Enquiry is already resolved");
+        }
+        const result = await EnquiryService.updateEnquiry(id, {status:"resolved"});
+        return ApiResponse(200,result,"Enquiry status updated successfully");
+    }
+
+    static async getAllEnquiries( Params?:any) {
+        const user = await verifyJWT();
+        if(!user){
+            return ApiResponse(401,null,"Unauthorized request");
+        }
+        const filter:{subject?:string,status?:string} = {};
+        if(Params.subject){
+            filter.subject = Params.subject;
+        }
+        if(Params.status){
+            filter.status = Params.status;
+        }
+        const result = await EnquiryService.getAllEnquiries(filter);
         return ApiResponse(200,result,"Enquiries fetched successfully");
     }
 

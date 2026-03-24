@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { TrashIcon, EyeIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { TrashIcon, EyeIcon, XMarkIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 import { DataTable, ColumnDef } from "@/src/components/shared/DataTable";
 import { PageHeader } from "@/src/components/shared/PageHeader";
+import { StatusBadge } from "@/src/components/shared/StatusBadge";
 
 interface Enquiry {
   _id: string;
@@ -12,6 +13,7 @@ interface Enquiry {
   email: string;
   phone: string;
   subject: string;
+  status: string;
   message: string;
   createdAt: string;
 }
@@ -55,6 +57,23 @@ export default function EnquiriesPage() {
     }
   };
 
+  const handleResolveStatus = async (id: string) => {
+    try {
+      const response = await axios.put(`/api/enquiry/status/${id}`);
+      if (response.data.success) {
+        setEnquiries((prev) => 
+          prev.map((enq) => enq._id === id ? { ...enq, status: "resolved" } : enq)
+        );
+        if (selectedEnquiry?._id === id) {
+          setSelectedEnquiry({ ...selectedEnquiry, status: "resolved" });
+        }
+      }
+    } catch (error: any) {
+      console.error("Failed to update status:", error);
+      alert(error.response?.data?.message || "Failed to update status");
+    }
+  };
+
   /* 
    Map Enquiries table layout over DataTable
   */
@@ -67,6 +86,11 @@ export default function EnquiriesPage() {
        getAvatar: (row) => row.name ? row.name.charAt(0).toUpperCase() : "?",
        getTitle: (row) => row.name,
        getSubtitle: (row) => row.email,
+    },
+    {
+       key: "status",
+       label: "Status",
+       type: "status",
     },
     {
        key: "phone",
@@ -87,6 +111,7 @@ export default function EnquiriesPage() {
        getDate: (row) => row.createdAt,
     }
   ];
+  console.log(enquiries)
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-5 duration-700 space-y-8 pb-10">
@@ -113,6 +138,13 @@ export default function EnquiriesPage() {
         hiddenActions={['edit']}
         onView={(row) => setSelectedEnquiry(row)}
         onDelete={(row) => handleDelete(row._id)}
+        additionalActions={[
+          {
+            label: "Resolve",
+            icon: CheckCircleIcon,
+            onClick: (row) => handleResolveStatus(row._id)
+          }
+        ]}
       />
 
       {/* View Modal */}
@@ -154,6 +186,13 @@ export default function EnquiriesPage() {
                <div className="flex flex-col sm:flex-row border-b border-dashed border-gray-200 hover:bg-gray-50/50 transition-colors">
                 <div className="sm:w-1/3 px-5 py-3.5 bg-gray-50/50 text-[13px] font-semibold text-slate-500 flex items-center">Subject</div>
                 <div className="sm:w-2/3 px-5 py-3.5 text-[14px] font-medium text-gray-900">{selectedEnquiry.subject}</div>
+              </div>
+
+               <div className="flex flex-col sm:flex-row border-b border-dashed border-gray-200 hover:bg-gray-50/50 transition-colors">
+                <div className="sm:w-1/3 px-5 py-3.5 bg-gray-50/50 text-[13px] font-semibold text-slate-500 flex items-center">Process Status</div>
+                <div className="sm:w-2/3 px-5 py-3.5">
+                    <StatusBadge status={selectedEnquiry.status} size="xs" />
+                </div>
               </div>
               
               <div className="flex flex-col hover:bg-gray-50/50 transition-colors">

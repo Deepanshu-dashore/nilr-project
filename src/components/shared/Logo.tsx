@@ -3,7 +3,7 @@ import Image from "next/image";
 interface LogoProps {
   scrolled?: boolean;
   variant?: "default" | "white" | "admin";
-  size?: "sm" | "md" | "lg";
+  size?: "sm" | "md" | "lg" | "xs";
   className?: string;
   showText?: boolean;
 }
@@ -43,6 +43,14 @@ export function Logo({
       subText: "text-[9px] md:text-xs lg:text-sm",
       gap: "gap-1",
       marginY: "my-1"
+    },
+    xs: {
+      image: "h-6 md:h-8 xl:h-10",
+      hindiText: "text-[6px] md:text-[8px] lg:text-[13px]",
+      englishText: "text-[7px] md:text-[10px] lg:text-[10px] text-wrap",
+      subText: "text-[5px] md:text-[7px] lg:text-[8px]",
+      gap: "gap-0",
+      marginY: "my-0"
     }
   };
 
@@ -93,13 +101,13 @@ export function Logo({
           `}>
             National Livelihood Resources Institute
           </h1>
-          <p className={`
+          {/* <p className={`
             font-normal leading-tight transition-all duration-300 whitespace-nowrap
             ${style.subText}
             ${variant === "white" ? "text-white/80" : "text-primary"}
           `}>
-            Under CVRU, Deemed to be University
-          </p>
+            Empowered gains livelihood
+          </p> */}
         </div>
       )}
     </div>
