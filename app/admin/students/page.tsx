@@ -6,8 +6,8 @@ export default function page() {
       <PageHeader
         title="Student Lists"
         breadcrumbs={[
-          { label: "Dashboard", href: "/admin/dashboard" },
-          { label: "Students", href: "/admin/dashboard/students" },
+          { label: "Admin", href: "/admin" },
+          { label: "Students", href: "/admin/students" },
         ]}
       />
       <div className="bg-gray-100 h-96 w-full flex flex-col justify-center items-center gap-4">

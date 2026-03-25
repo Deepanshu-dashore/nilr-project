@@ -26,7 +26,7 @@ export default function AdminLoginPage() {
       const result = await response.json();
 
       if (response.ok) {
-        router.push("/admin/dashboard"); 
+        router.push("/admin"); 
       } else {
         setError(result.message || "Invalid credentials");
       }

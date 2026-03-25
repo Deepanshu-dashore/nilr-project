@@ -5,7 +5,8 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const subject = searchParams.get("subject");
     const status = searchParams.get("status");
-    return await EnquiryController.getAllEnquiries({ subject, status });
+    const excludeSubject = searchParams.get("excludeSubject");
+    return await EnquiryController.getAllEnquiries({ subject, status, excludeSubject });
 }
 
 export async function POST(request: NextRequest) {

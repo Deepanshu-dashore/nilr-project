@@ -53,10 +53,13 @@ export class EnquiryController {
         if(!user){
             return ApiResponse(401,null,"Unauthorized request");
         }
-        const filter:{subject?:string,status?:string} = {};
+        const filter: any = {};
         if(Params.subject){
             filter.subject = Params.subject;
+        } else if (Params.excludeSubject) {
+            filter.subject = { $ne: Params.excludeSubject };
         }
+        
         if(Params.status){
             filter.status = Params.status;
         }

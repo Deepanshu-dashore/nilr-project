@@ -5,8 +5,8 @@ export default function page() {
     <div>
         <PageHeader title="Settings" 
         breadcrumbs={[
-            { label: "Dashboard", href: "/admin/dashboard" },
-            { label: "Settings", href: "/admin/dashboard/settings" },
+            { label: "Admin", href: "/admin" },
+            { label: "Settings", href: "/admin/settings" },
         ]}/>
         <div className="bg-gray-100 h-96 w-full flex flex-col justify-center items-center gap-4">
             <div className="p-2 bg-gray-200 rounded-lg flex items-baseline">

@@ -25,8 +25,9 @@ export default function EnquiriesPage() {
   const [isDeleting, setIsDeleting] = useState<string | null>(null);
 
   const fetchEnquiries = async () => {
+    setIsLoading(true);
     try {
-      const response = await axios.get("/api/enquiry");
+      const response = await axios.get(`/api/enquiry?subject=Other/General Enquiry`);
       if (response.data.success) {
         setEnquiries(response.data.data);
       }
@@ -45,10 +46,8 @@ export default function EnquiriesPage() {
     if (!confirm("Are you sure you want to delete this enquiry?")) return;
     setIsDeleting(id);
     try {
-      const response = await axios.delete(`/api/enquiry/${id}`);
-      if (response.data.success) {
-        setEnquiries((prev) => prev.filter((enq) => enq._id !== id));
-      }
+      setEnquiries((prev) => prev.filter((enq) => enq._id !== id));
+      await axios.delete(`/api/enquiry/${id}`);
     } catch (error) {
       console.error("Failed to delete enquiry:", error);
       alert("Failed to delete enquiry");
@@ -111,7 +110,7 @@ export default function EnquiriesPage() {
        getDate: (row) => row.createdAt,
     }
   ];
-  console.log(enquiries)
+  // console.log(enquiries)
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-5 duration-700 space-y-8 pb-10">
@@ -122,8 +121,8 @@ export default function EnquiriesPage() {
       <PageHeader
         title="Enquiry"
         breadcrumbs={[
-          { label: "Dashboard", href: "/admin/dashboard" },
-          { label: "Enquiry", href: "/admin/dashboard/enquiries" },
+          { label: "Admin", href: "/admin" },
+          { label: "Enquiry", href: "/admin/enquiries" },
           { label: "List" }
         ]}
       />
