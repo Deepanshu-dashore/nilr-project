@@ -158,6 +158,7 @@ export default function AdmissionPage() {
           {
             label: "Resolve",
             icon: CheckCircleIcon,
+            disabled: (row) => row.status === "resolved",
             onClick: (row) => handleResolveStatus(row._id)
           }
         ]}

@@ -141,6 +141,7 @@ export default function EnquiriesPage() {
           {
             label: "Resolve",
             icon: CheckCircleIcon,
+            disabled: (row) => row.status === "resolved",
             onClick: (row) => handleResolveStatus(row._id)
           }
         ]}
@@ -190,7 +191,7 @@ export default function EnquiriesPage() {
                <div className="flex flex-col sm:flex-row border-b border-dashed border-gray-200 hover:bg-gray-50/50 transition-colors">
                 <div className="sm:w-1/3 px-5 py-3.5 bg-gray-50/50 text-[13px] font-semibold text-slate-500 flex items-center">Process Status</div>
                 <div className="sm:w-2/3 px-5 py-3.5">
-                    <StatusBadge status={selectedEnquiry.status} size="xs" />
+                    <StatusBadge status={selectedEnquiry.status} size="sm" />
                 </div>
               </div>
               

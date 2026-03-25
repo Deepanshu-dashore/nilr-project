@@ -46,6 +46,7 @@ export interface ActionDef<T> {
   label: string;
   icon?: React.ElementType;
   isDanger?: boolean;
+  disabled?: (row: T) => boolean;
   onClick: (row: T) => void;
 }
 
@@ -130,24 +131,31 @@ function DropdownMenu<T>({
       style={style}
       className="fixed z-50 w-40 bg-white rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 py-2 animate-in fade-in zoom-in-95 duration-200"
     >
-      {actions.map((action, idx) => (
-        <button
-          key={idx}
-          onClick={(e) => {
-             e.stopPropagation();
-             action.onClick(row);
-             onClose();
-          }}
-          className={`w-full cursor-pointer text-left px-4 py-2.5 text-sm font-semibold tracking-wide flex items-center gap-3 transition-colors ${
-            action.isDanger 
-              ? 'text-red-500 hover:bg-red-50' 
-              : 'text-gray-700 hover:bg-gray-50'
-          }`}
-        >
-          {action.icon && <action.icon className="w-4 h-4" strokeWidth={2.5} />}
-          {action.label}
-        </button>
-      ))}
+      {actions.map((action, idx) => {
+        const isDisabled = action.disabled?.(row);
+        return (
+          <button
+            key={idx}
+            disabled={isDisabled}
+            onClick={(e) => {
+               e.stopPropagation();
+               if (isDisabled) return;
+               action.onClick(row);
+               onClose();
+            }}
+            className={`w-full text-left px-4 py-2.5 text-sm font-semibold tracking-wide flex items-center gap-3 transition-colors ${
+              isDisabled 
+                ? 'opacity-40 cursor-not-allowed text-gray-400'
+                : action.isDanger 
+                  ? 'text-red-500 hover:bg-red-50 cursor-pointer' 
+                  : 'text-gray-700 hover:bg-gray-50 cursor-pointer'
+            }`}
+          >
+            {action.icon && <action.icon className="w-4 h-4" strokeWidth={2.5} />}
+            {action.label}
+          </button>
+        );
+      })}
     </div>
   );
 }
