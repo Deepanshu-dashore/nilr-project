@@ -5,12 +5,17 @@ const ProgramSchema = new Schema({
         type:String,
         required:true
     },
+    slug:{
+        type:String,
+        required:true,
+        unique:true
+    },
     description:{
         type:String,
         required:true
     },
     duration:{
-        type:String,
+        type:Number,
         required:true
     },
     lastApplyDate: {
@@ -56,5 +61,6 @@ const ProgramSchema = new Schema({
         required:true
     },
     
-},{timestamps:true})
+},{timestamps:true});
+
 export const Program = models.Program || model("Program",ProgramSchema);

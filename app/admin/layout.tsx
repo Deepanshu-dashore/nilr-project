@@ -23,11 +23,12 @@ const sidebarLinks = [
 	<path fill="currentColor" d="M15 11V4H4v8.17l.59-.58l.58-.59H6z" opacity={0.3}></path>
 	<path fill="currentColor" d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1m-5 7c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4zM4.59 11.59l-.59.58V4h11v7H5.17z"></path>
 </svg>) },
-  { name: "Admission", href: "/admin/admission", icon: ({className}: {className: string}) => (<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24">
+  { name: "Admission", href: "/admin/admission", icon: ({className}: {className: string}) => (<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 640 640"><path fill="currentColor" d="M288 32h64c17.7 0 32 14.3 32 32v64H256V64c0-17.7 14.3-32 32-32M96 96h112v32c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V96h112c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64m112 368c0 8.8 7.2 16 16 16h192c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80h-64c-44.2 0-80 35.8-80 80m112-120c30.9 0 56-25.1 56-56s-25.1-56-56-56s-56 25.1-56 56s25.1 56 56 56"/></svg>) },
+  { name: "Programs", href: "/admin/programs", icon: ({className}: {className: string}) => (<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24">
 	<path fill="currentColor" d="M14.217 3.5a5.17 5.17 0 0 0-4.434 0L5.489 5.512a2.25 2.25 0 0 1 .647 4.306l-1.076.461c-.534.23-.837.362-1.042.467l-.003.05L9.783 13.5a5.17 5.17 0 0 0 4.434 0l6.691-3.137c1.456-.682 1.456-3.044 0-3.726z"></path>
 	<path fill="currentColor" d="M5.545 8.44a.75.75 0 0 0-.59-1.38l-1.112.477c-.557.239-1.03.441-1.4.65c-.395.222-.734.482-.989.868c-.254.386-.36.8-.408 1.25C1 10.729 1 11.243 1 11.85v2.901a.75.75 0 0 0 1.5 0v-2.862c0-.656.001-1.088.037-1.421c.034-.315.093-.47.17-.586c.075-.115.195-.231.471-.387c.292-.164.689-.335 1.292-.593z"></path>
 	<path fill="currentColor" d="M5 11.258L9.783 13.5a5.17 5.17 0 0 0 4.434 0L19 11.258v5.367c0 1.008-.503 1.952-1.385 2.44C16.146 19.88 13.796 21 12 21s-4.146-1.121-5.615-1.935C5.504 18.577 5 17.633 5 16.625z" opacity={0.5}></path>
-</svg>) },
+</svg>)  },
   { name: "Settings", href: "/admin/settings", icon: Cog6ToothIcon },
 ];
 

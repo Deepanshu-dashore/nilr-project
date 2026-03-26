@@ -19,19 +19,6 @@ export interface PageHeaderProps {
 export function PageHeader({ title, breadcrumbs, actionNode, backLink }: PageHeaderProps) {
   return (
     <div className="flex flex-col gap-4 w-full mb-8">
-      {/* Optional Back Button */}
-      {backLink && (
-        <div className="flex">
-          <Link 
-            href={backLink}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50/80 hover:bg-gray-100 text-gray-800 text-[13px] font-bold rounded-lg transition-colors border border-gray-100"
-          >
-            <ChevronLeftIcon className="w-4 h-4 text-gray-600 stroke-[3px]" />
-            Back
-          </Link>
-        </div>
-      )}
-
       {/* Main Bar */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div className="flex flex-col gap-2.5">
@@ -67,6 +54,17 @@ export function PageHeader({ title, breadcrumbs, actionNode, backLink }: PageHea
              {actionNode}
            </div>
         )}
+        {backLink && (
+        <div className="flex">
+          <Link 
+            href={backLink}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-50/80 hover:bg-gray-100 text-gray-800 text-[13px] font-bold rounded-lg transition-colors border border-gray-100"
+          >
+            <ChevronLeftIcon className="w-4 h-4 text-gray-600 stroke-[3px]" />
+            Back
+          </Link>
+        </div>
+      )}
       </div>
     </div>
   );
