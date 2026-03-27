@@ -16,7 +16,10 @@ interface Program {
   createdAt: string;
 }
 
+import { useRouter } from "next/navigation";
+
 export default function ProgramsPage() {
+  const router = useRouter();
   const [programs, setPrograms] = useState<Program[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -60,7 +63,7 @@ export default function ProgramsPage() {
        sortable: true,
        getAvatar: (row) => row.name ? row.name.charAt(0).toUpperCase() : "P",
        getTitle: (row) => row.name,
-       getSubtitle: (row) => row.programType || "N/A",
+       getSubtitle: (row: any) => row.programType?.name || row.programType || "N/A",
     },
     {
        key: "duration",
@@ -112,7 +115,8 @@ export default function ProgramsPage() {
         searchPlaceholder="Search program name..."
         rowKey={(row) => row._id}
         onDelete={(row) => handleDelete(row._id)}
-        // onView={(row) => window.location.href = `/admin/programs/edit/${row._id}`}
+        onView={(row) => router.push(`/admin/programs/view/${row._id}`)}
+        onEdit={(row) => router.push(`/admin/programs/edit/${row._id}`)}
       />
     </div>
   );

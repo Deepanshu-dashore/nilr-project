@@ -60,6 +60,10 @@ const ProgramSchema = new Schema({
         type:[String],
         required:true
     },
+    programType:{
+        type: Schema.Types.ObjectId,
+        ref:"ProgramType",
+    },
     
 },{timestamps:true});
 

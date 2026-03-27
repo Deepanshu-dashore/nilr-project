@@ -2,11 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { PageHeader } from "@/src/components/shared/PageHeader";
 import { Stepper } from "@/src/components/shared/Stepper";
 import {
-  CloudArrowUpIcon,
   CheckCircleIcon,
   XCircleIcon,
   AcademicCapIcon,
@@ -102,19 +101,17 @@ function TagList({
 }
 
 // ── Main page ──────────────────────────────────────────────────────────────────
-export default function AddProgramPage() {
+export default function EditProgramPage() {
   const router = useRouter();
+  const params = useParams();
+  const programId = params?.id as string;
+  
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [programTypes, setProgramTypes] = useState<{ _id: string; name: string }[]>([]);
-
-  useEffect(() => {
-    axios.get("/api/program-type").then((res) => {
-      if (res.data.success) setProgramTypes(res.data.data);
-    }).catch(() => {});
-  }, []);
 
   // Simple scalar fields
   const [formData, setFormData] = useState({
@@ -139,6 +136,48 @@ export default function AddProgramPage() {
   ]);
 
   const [file, setFile] = useState<File | null>(null);
+  const [existingFileUrl, setExistingFileUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const init = async () => {
+      setIsLoading(true);
+      try {
+        const [typesRes, programRes] = await Promise.all([
+          axios.get("/api/program-type"),
+          axios.get(`/api/program/${programId}`)
+        ]);
+
+        if (typesRes.data.success) {
+          setProgramTypes(typesRes.data.data);
+        }
+
+        if (programRes.data.success) {
+          const prog = programRes.data.data;
+          setFormData({
+            name: prog.name || "",
+            description: prog.description || "",
+            duration: prog.duration?.toString() || "",
+            fee: prog.fee?.toString() || "",
+            lastApplyDate: prog.lastApplyDate ? new Date(prog.lastApplyDate).toISOString().split('T')[0] : "",
+            programType: typeof prog.programType === 'object' ? prog.programType._id : (prog.programType || ""),
+          });
+
+          if (prog.highlights?.length) setHighlights(prog.highlights);
+          if (prog.outcomes?.length) setOutcomes(prog.outcomes);
+          if (prog.careerPaths?.length) setCareerPaths(prog.careerPaths);
+          if (prog.termsAndConditions?.length) setTermsAndConditions(prog.termsAndConditions);
+          if (prog.eligibility?.length) setEligibility(prog.eligibility);
+          if (prog.programStructure?.length) setProgramStructure(prog.programStructure);
+          if (prog.feeStructureDoc) setExistingFileUrl(prog.feeStructureDoc);
+        }
+      } catch (err: any) {
+        setError("Failed to load program data.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    if (programId) init();
+  }, [programId]);
 
   const steps = [
     { id: 1, title: "Basic Info", icon: AcademicCapIcon },
@@ -206,14 +245,14 @@ export default function AddProgramPage() {
 
       if (file) data.append("feeStructureDoc", file);
 
-      const response = await axios.post("/api/program", data);
+      const response = await axios.put(`/api/program/${programId}`, data);
 
       if (response.data.success) {
         setSuccess(true);
         window.scrollTo({ top: 0, behavior: "smooth" });
         setTimeout(() => router.push("/admin/programs"), 2000);
       } else {
-        setError(response.data.message || "Failed to add program.");
+        setError(response.data.message || "Failed to update program.");
       }
     } catch (err: any) {
       setError(err.response?.data?.message || err.message || "Something went wrong.");
@@ -229,15 +268,23 @@ export default function AddProgramPage() {
 
   const labelCls = "text-[14px] font-bold text-gray-800 mb-2 ml-1 inline-block";
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-96">
+        <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="animate-in fade-in slide-in-from-bottom-5 duration-700 pb-20">
       <PageHeader
-        title="Add New Program"
+        title="Edit Program"
         backLink="/admin/programs"
         breadcrumbs={[
           { label: "Admin", href: "/admin" },
           { label: "Programs", href: "/admin/programs" },
-          { label: "Add Form" },
+          { label: "Edit" },
         ]}
       />
 
@@ -246,7 +293,7 @@ export default function AddProgramPage() {
           <div className="mb-6 bg-emerald-50 border border-emerald-100 p-4 rounded-xl flex items-center gap-4 text-emerald-800 animate-in zoom-in-95">
             <CheckCircleIcon className="w-6 h-6 text-emerald-500 shrink-0" />
             <div>
-              <p className="font-bold">Program added successfully!</p>
+              <p className="font-bold">Program updated successfully!</p>
               <p className="text-sm">Redirecting back to programs list…</p>
             </div>
           </div>
@@ -539,16 +586,23 @@ export default function AddProgramPage() {
                           }`}  viewBox="0 0 24 24"><path fill="currentColor" fillRule="evenodd" d="M12 2v6.5a1.5 1.5 0 0 0 1.356 1.493L13.5 10H20v10a2 2 0 0 1-1.85 1.995L18 22H6a2 2 0 0 1-1.995-1.85L4 20V4a2 2 0 0 1 1.85-1.995L6 2z" className="duoicon-secondary-layer" opacity="0.3"/><path fill="currentColor" fillRule="evenodd" d="M14 2.043a2 2 0 0 1 .877.43l.123.113L19.414 7c.234.234.407.523.502.84l.04.16H14zm-2.707 9.13l-2.121 2.121a1 1 0 1 0 1.414 1.414l.414-.414V17a1 1 0 1 0 2 0v-2.706l.414.414a1 1 0 1 0 1.414-1.414l-2.12-2.121a1 1 0 0 0-1.415 0" className="duoicon-primary-layer"/></svg>
                         <div className="flex flex-col text-sm text-gray-600">
                           <span className="font-bold text-gray-800 text-lg">
-                            {file ? file.name : "Choose a file to upload"}
+                            {file ? file.name : existingFileUrl ? "Document Uploaded (Click to change)" : "Choose a file to upload"}
                           </span>
-                          {!file && <p className="text-slate-400">or drag and drop your document here</p>}
+                          {!file && !existingFileUrl && <p className="text-slate-400">or drag and drop your document here</p>}
                         </div>
                         <p className="text-[10px] text-slate-400 uppercase tracking-widest font-medium bg-white/50 px-3 py-1 rounded-full inline-block border border-gray-100">
-                          PDF, PNG, JPG (MAX. 10MB)
+                          {existingFileUrl ? "A file is already uploaded" : "PDF, PNG, JPG (MAX. 10MB)"}
                         </p>
                       </div>
                       <input id="file-upload" name="feeStructureDoc" type="file" className="sr-only" onChange={handleFileChange} />
                     </div>
+                    {existingFileUrl && (
+                      <div className="mt-2 text-sm text-indigo-600">
+                        <a href={existingFileUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:underline">
+                          <DocumentTextIcon className="w-4 h-4" /> View existing document
+                        </a>
+                      </div>
+                    )}
                   </div>
 
                   {/* Eligibility */}
@@ -607,6 +661,7 @@ export default function AddProgramPage() {
 
               {currentStep < 3 ? (
                 <button
+                  key="continue-btn"
                   type="button"
                   onClick={nextStep}
                   disabled={currentStep === 1 && !formData.name}
@@ -621,6 +676,7 @@ export default function AddProgramPage() {
                 </button>
               ) : (
                 <button
+                  key="submit-btn"
                   type="submit"
                   disabled={isSubmitting}
                   className={`px-12 py-3 bg-gray-900 text-white font-bold rounded-xl shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5)] hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.6)] hover:bg-black transition-all flex items-center gap-3 ${
@@ -630,11 +686,11 @@ export default function AddProgramPage() {
                   {isSubmitting ? (
                     <>
                       <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      Finalizing…
+                      Updating…
                     </>
                   ) : (
                     <>
-                      Publish Program
+                      Update Program
                       <div className="p-0.5 bg-white/20 rounded-md">
                         <CheckCircleIcon className="w-4 h-4" />
                       </div>

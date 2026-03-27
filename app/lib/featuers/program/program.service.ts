@@ -1,33 +1,40 @@
+import { connectDB } from "../../db/connectDB";
 import { Program } from "./program.model";
 
 export class ProgramService {
     static async createProgram(programData: any) {
+        await connectDB();
         const slug = programData.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
         const program = await Program.create({ ...programData, slug });
         return program;
     }
 
     static async getAllPrograms() {
-        const programs = await Program.find();
+        await connectDB();
+        const programs = await Program.find().select("name description duration fee programType createdAt").populate("programType", "name");
         return programs;
     }
 
     static async getProgramById(id: string) {
-        const program = await Program.findById(id);
+        await connectDB();
+        const program = await Program.findById(id).populate("programType", "name");
         return program;
     }
 
     static async getProgramBySlug(slug: string) {
-        const program = await Program.findOne({ slug });
+        await connectDB();
+        const program = await Program.findOne({ slug }).populate("programType", "name");
         return program;
     }
 
     static async updateProgram(id: string, programData: any) {
-        const program = await Program.findByIdAndUpdate(id, programData, { new: true });
+        await connectDB();
+        const program = await Program.findByIdAndUpdate(id, programData, { returnDocument: 'after' });
         return program;
     }
 
     static async deleteProgram(id: string) {
+        await connectDB();
         const program = await Program.findByIdAndDelete(id);
         return program;
     }

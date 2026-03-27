@@ -29,7 +29,7 @@ export async function POST(req: Request) {
         feeStructureDoc: file,
     };
     if (file) {
-        const uploaded:any = await CloudinaryService.upload(file);
+        const uploaded:any = await CloudinaryService.upload(file,"programs","raw","pdf");
         body.feeStructureDoc = uploaded?.url;
     }
     return await ProgramController.createProgram(body);
