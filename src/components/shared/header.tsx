@@ -13,6 +13,7 @@ import {
   BuildingLibraryIcon,
   BookOpenIcon,
   EnvelopeIcon,
+  BeakerIcon,
 } from "@heroicons/react/24/outline";
 import { UserPlusIcon } from "@heroicons/react/16/solid";
 
@@ -65,6 +66,11 @@ const mainNavigation = [
       { name: "Fees Structure", href: "/admissions#fees" },
       { name: "Apply Now (Online Application)", href: "/admissions#apply" },
     ],
+  },
+  {
+    name: "Research",
+    icon: BeakerIcon,
+    href: "/research",
   },
   // {
   //   name: "Academics",
