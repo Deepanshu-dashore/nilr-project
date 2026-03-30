@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function StudentResearch() {
   return (
-    <section className="relative w-full h-[350px] md:h-[450px] lg:h-[500px] overflow-hidden">
+    <section className="relative w-full h-[350px] md:h-[450px] lg:h-[450px] overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img 
           src="/research/reasearchHero.png" 
