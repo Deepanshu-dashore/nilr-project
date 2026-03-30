@@ -22,14 +22,14 @@ export default function ResearchPage() {
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-linear-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 backdrop-blur-sm">
             <BeakerIcon className="w-4 h-4 md:w-5 md:h-5 text-indigo-400 inline-block" />
             <span className="text-xs md:text-sm font-medium bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              RESEARCH AT NLRI
+              RESEARCH & DEVELOPMENT CELL
             </span>
           </div>
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold! leading-tight text-white mb-6">
-            Breaking Boundaries, Elevating Research Culture
+            Pioneering Innovations for Rural Transformation
           </h1>
           <p className="max-w-3xl mx-auto px-4 md:px-0 text-sm md:text-lg text-gray-300 leading-relaxed text-center">
-            Empowering students and faculty to drive impactful discoveries and sustainable innovations for the rural landscape and beyond.
+            Driven by a commitment to grassroots development, our research initiatives bridge theoretical knowledge with on-ground realities to build sustainable and thriving communities.
           </p>
         </div>
       </section>
