@@ -41,7 +41,7 @@ export default function ResearchPage() {
       <ResearchOverview />
 
       {/* 4. Stats / State Section */}
-      <ResearchStats />
+      {/* <ResearchStats /> */}
 
       {/* 5. Research Areas */}
       <ResearchAreas />
