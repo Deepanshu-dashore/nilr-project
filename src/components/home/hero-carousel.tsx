@@ -31,7 +31,7 @@ const slides = [
     color: "from-purple-900/60 to-purple-600/30",
   },
   {
-    image: "/research/researchHeroGenerated.png",
+    image: "/campus-img/IMG_3587.jpg",
     title: "A Grade Accreditation",
     subtitle: "Recognized for Academic Excellence",
     stat: "#1",
