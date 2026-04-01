@@ -33,7 +33,6 @@ export default function EnquiryPage() {
     "Diploma in Community Development",
     "Certificate in Watershed Management",
     "Certificate in Agri-Business",
-    "Other/General Enquiry"
   ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {

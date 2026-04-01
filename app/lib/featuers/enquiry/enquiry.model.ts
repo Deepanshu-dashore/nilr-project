@@ -13,6 +13,11 @@ const enquirySchema = new Schema({
         type: String,
         required: true
     },
+    status: {
+        type: String,
+        enum: ["pending", "resolved"],
+        default: "pending"
+    },
     subject: {
         type: String,
         required: true

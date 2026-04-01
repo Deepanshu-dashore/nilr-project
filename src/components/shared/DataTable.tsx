@@ -12,6 +12,7 @@ import {
   PencilIcon,
   TrashIcon
 } from "@heroicons/react/24/outline";
+import { StatusBadge } from "./StatusBadge";
 
 export type ColumnType = 'text' | 'user' | 'date' | 'status' | 'custom';
 export type StatusColor = 'success' | 'warning' | 'error' | 'info' | 'default';
@@ -22,6 +23,7 @@ export interface ColumnDef<T> {
   type?: ColumnType;
   sortable?: boolean;
   align?: 'left' | 'center' | 'right';
+  custom?: boolean;
   
   // Custom Render
   render?: (row: T) => React.ReactNode;
@@ -34,14 +36,17 @@ export interface ColumnDef<T> {
   // For 'date' type
   getDate?: (row: T) => string | Date; // We'll extract date and time
   
+  
   // For 'status' type
-  getStatus?: (row: T) => { label: string, color: StatusColor };
+  getStatus?: (row: T) => string; // Now can return a status key like "pending", "active"
+  getStatusColor?: (row: T) => string; // Optional direct color override
 }
 
 export interface ActionDef<T> {
   label: string;
   icon?: React.ElementType;
   isDanger?: boolean;
+  disabled?: (row: T) => boolean;
   onClick: (row: T) => void;
 }
 
@@ -126,24 +131,31 @@ function DropdownMenu<T>({
       style={style}
       className="fixed z-50 w-40 bg-white rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.08)] border border-gray-100 py-2 animate-in fade-in zoom-in-95 duration-200"
     >
-      {actions.map((action, idx) => (
-        <button
-          key={idx}
-          onClick={(e) => {
-             e.stopPropagation();
-             action.onClick(row);
-             onClose();
-          }}
-          className={`w-full text-left px-4 py-2.5 text-sm font-semibold tracking-wide flex items-center gap-3 transition-colors ${
-            action.isDanger 
-              ? 'text-red-500 hover:bg-red-50' 
-              : 'text-gray-700 hover:bg-gray-50'
-          }`}
-        >
-          {action.icon && <action.icon className="w-4 h-4" strokeWidth={2.5} />}
-          {action.label}
-        </button>
-      ))}
+      {actions.map((action, idx) => {
+        const isDisabled = action.disabled?.(row);
+        return (
+          <button
+            key={idx}
+            disabled={isDisabled}
+            onClick={(e) => {
+               e.stopPropagation();
+               if (isDisabled) return;
+               action.onClick(row);
+               onClose();
+            }}
+            className={`w-full text-left px-4 py-2.5 text-sm font-semibold tracking-wide flex items-center gap-3 transition-colors ${
+              isDisabled 
+                ? 'opacity-40 cursor-not-allowed text-gray-400'
+                : action.isDanger 
+                  ? 'text-red-500 hover:bg-red-50 cursor-pointer' 
+                  : 'text-gray-700 hover:bg-gray-50 cursor-pointer'
+            }`}
+          >
+            {action.icon && <action.icon className="w-4 h-4" strokeWidth={2.5} />}
+            {action.label}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -220,14 +232,6 @@ export function DataTable<T>({
   const totalPages = Math.ceil(totalCount / rowsPerPage) || 1;
   const currentData = processedData.slice((page - 1) * rowsPerPage, page * rowsPerPage);
 
-  // Status mapping
-  const statusStyles: Record<StatusColor, string> = {
-    success: 'bg-green-100 text-green-700',
-    warning: 'bg-yellow-100 text-yellow-700',
-    error: 'bg-red-100 text-red-700',
-    info: 'bg-blue-100 text-blue-700',
-    default: 'bg-gray-100 text-gray-700',
-  };
 
   const handleSort = (key: string) => {
      setSortConfig(prev => {
@@ -423,12 +427,12 @@ export function DataTable<T>({
                                );
                             })() :
                             col.type === 'status' ? (() => {
-                               const status = col.getStatus?.(row);
-                               if(!status) return "-";
+                               const statusKey = col.getStatus ? col.getStatus(row) : String((row as any)[col.key]);
                                return (
-                                 <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-black uppercase tracking-wider ${statusStyles[status.color]}`}>
-                                    {status.label}
-                                 </span>
+                                 <StatusBadge 
+                                   status={statusKey} 
+                                   className={col.getStatusColor?.(row)} 
+                                 />
                                )
                             })() :
                             col.type === 'text' ? (

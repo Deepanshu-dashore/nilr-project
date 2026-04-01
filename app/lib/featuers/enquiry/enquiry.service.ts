@@ -7,9 +7,9 @@ export class EnquiryService {
         return await Enquiry.create(enquiry);
     }
 
-    static async getAllEnquiries() {
+    static async getAllEnquiries(filter:any) {
         await connectDB();
-        return await Enquiry.find();
+        return await Enquiry.find(filter);
     }
 
     static async getEnquiryById(id: string) {

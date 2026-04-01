@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Logo } from "./Logo";
 import {
   EnvelopeIcon,
   PhoneIcon,
@@ -50,14 +51,9 @@ export default function Footer() {
 
           {/* 1. Brand column */}
           <div className="lg:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-left">
+
             <Link href="/" className="inline-block mb-6">
-              <Image
-                src="/Logo.png"
-                alt="CVRUK-NLRI Logo"
-                width={260}
-                height={60}
-                className="h-14 w-auto brightness-0 invert opacity-90"
-              />
+              <Logo variant="white" size="sm" />
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-8 max-w-sm">
               Empowering rural communities through innovation, leadership, and professional excellence. A global benchmark for sustainable grassroots transformation.
@@ -144,9 +140,13 @@ export default function Footer() {
             <div className="space-y-2 lg:space-y-0 lg:flex lg:items-center lg:gap-6">
                <p className="border-b lg:border-b-0 border-white/5 pb-2 lg:pb-0">© {new Date().getFullYear()} CVRUK – NLRI Partnership. All Rights Reserved.</p>
                <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-gray-400 uppercase tracking-widest text-[10px]">
-                {["Privacy Policy", "Disclaimer", "Mandatory Disclosures"].map((item) => (
-                  <Link key={item} href="#" className="hover:text-accent transition-colors">
-                    {item}
+                {[
+                  { name: "Privacy Policy", href: "/privacy-policy" },
+                  { name: "Disclaimer", href: "/disclaimer" },
+                  { name: "Terms & Conditions", href: "/terms" }
+                ].map((link) => (
+                  <Link key={link.name} href={link.href} className="hover:text-accent transition-colors">
+                    {link.name}
                   </Link>
                 ))}
               </div>

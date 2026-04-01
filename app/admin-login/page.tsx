@@ -26,7 +26,7 @@ export default function AdminLoginPage() {
       const result = await response.json();
 
       if (response.ok) {
-        router.push("/admin/dashboard"); 
+        router.push("/admin"); 
       } else {
         setError(result.message || "Invalid credentials");
       }
@@ -40,7 +40,7 @@ export default function AdminLoginPage() {
   return (
     <div 
       className="min-h-screen relative flex items-center justify-center bg-contain bg-center overflow-hidden"
-      style={{ backgroundImage: "url('/loginBg2.png')" }}
+      style={{ backgroundImage: "url('/adminloginBg.png')" }}
     >
       {/* Dark Overlay for better contrast */}
       {/* <div className="absolute inset-0 bg-primary/40 backdrop-blur-[2px]"></div> */}

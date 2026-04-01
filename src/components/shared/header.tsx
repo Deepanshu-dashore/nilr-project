@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { Logo } from "./Logo";
 import { useState, useEffect } from "react";
 import {
   Bars3Icon,
@@ -12,6 +13,7 @@ import {
   BuildingLibraryIcon,
   BookOpenIcon,
   EnvelopeIcon,
+  BeakerIcon,
 } from "@heroicons/react/24/outline";
 import { UserPlusIcon } from "@heroicons/react/16/solid";
 
@@ -46,7 +48,8 @@ const mainNavigation = [
     icon: BookOpenIcon,
     href: "/programs",
     submenu: [
-      { name: "School of Rural Management (SRM)", href: "/programs#postgraduate" },
+      { name: "School of Rural Management (SRM)", href: "/programs/srm" },
+      { name: "Postgraduate Programs", href: "/programs#postgraduate" },
       { name: "Certificate Courses (3 Months)", href: "/programs#certificate" },
       { name: "Diploma Courses (1 Year)", href: "/programs#diploma" },
       { name: "Short-term Training Programs", href: "/programs#training" },
@@ -63,6 +66,11 @@ const mainNavigation = [
       { name: "Fees Structure", href: "/admissions#fees" },
       { name: "Apply Now (Online Application)", href: "/admissions#apply" },
     ],
+  },
+  {
+    name: "Research",
+    icon: BeakerIcon,
+    href: "/research",
   },
   // {
   //   name: "Academics",
@@ -133,17 +141,11 @@ export default function Header() {
     >
       <nav className="px-4 md:px-16" aria-label="Global">
         <div className="flex justify-between items-center h-16">
+
           {/* Logo */}
           <div className="flex md:flex-none items-center">
-            <Link href="/" className="flex items-center group">
-              <Image
-                src="/Logo.png"
-                alt="CVRUK-NLRI Logo"
-                width={320}
-                height={60}
-                className="h-12 md:h-12 xl:h-17 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                priority
-              />
+            <Link href="/" className="flex items-center">
+              <Logo scrolled={scrolled} />
             </Link>
           </div>
 
@@ -215,7 +217,7 @@ export default function Header() {
           {/* Call to Action */}
           <div className="hidden md:flex items-center ml-auto">
             <Link 
-              href="/admissions" 
+              href="/apply-now" 
               className="bg-primary text-white xl:text-[13px] text-xs font-semibold capitalize tracking-wider xl:px-7 xl:py-3 px-5 py-2 rounded-full shadow-premium hover:bg-primary-dark transition-all duration-300 hover:shadow-[0_8px_30px_rgb(13,26,99,0.3)] active:scale-95 whitespace-nowrap"
             >
               Apply <span className="xl:inline hidden">Now</span>
@@ -257,14 +259,8 @@ export default function Header() {
           />
           
           <div className="absolute inset-y-0 right-0 w-[280px] sm:w-[350px] bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-500 ease-out">
-            <div className="flex items-center justify-between p-6 border-b border-border-light">
-              <Image
-                src="/Logo.png"
-                alt="Logo"
-                width={180}
-                height={40}
-                className="h-10 w-auto object-contain"
-              />
+            <div className="flex items-center justify-between p-4 border-b border-border-light">
+              <Logo size="sm" />
               <button
                 type="button"
                 className="p-2 rounded-xl text-text-dark hover:bg-bg-section transition-colors"
@@ -334,7 +330,7 @@ export default function Header() {
 
             <div className="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-border-light shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
               <Link
-                href="/admissions"
+                href="/apply-now"
                 className="block w-full text-center py-4 text-xs font-black uppercase tracking-widest text-white bg-primary rounded-xl shadow-premium active:scale-95 transition-all"
                 onClick={() => setMobileMenuOpen(false)}
               >
