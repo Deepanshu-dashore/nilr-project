@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Logo } from "./Logo";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Bars3Icon,
   XMarkIcon,
@@ -14,6 +14,7 @@ import {
   BookOpenIcon,
   EnvelopeIcon,
   BeakerIcon,
+  Square3Stack3DIcon,
 } from "@heroicons/react/24/outline";
 import { UserPlusIcon } from "@heroicons/react/16/solid";
 
@@ -72,6 +73,11 @@ const mainNavigation = [
     icon: BeakerIcon,
     href: "/research",
   },
+  {
+    name: "Gallery",
+    icon: Square3Stack3DIcon,
+    href: "/gallery",
+  },
   // {
   //   name: "Academics",
   //   href: "#",
@@ -104,6 +110,8 @@ const mainNavigation = [
   { name: "Contact Us", href: "/contact", icon: EnvelopeIcon }
 ];
 
+import TopBar from "./TopBar";
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -132,13 +140,17 @@ export default function Header() {
   }, [mobileMenuOpen]);
 
   return (
-    <header
-      className={`md:sticky top-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white backdrop-blur-xl shadow-premium border-b border-border-light/50 py-2"
-          : "bg-white py-4"
-      }`}
-    >
+    <div className="flex flex-col">
+      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${scrolled ? "max-h-0 opacity-0 shadow-none" : "max-h-10 opacity-100"}`}>
+        <TopBar />
+      </div>
+      <header
+        className={`md:sticky border-t border-gray-200/80 top-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "bg-white backdrop-blur-xl shadow-premium border-b border-border-light/50 py-2"
+            : "bg-white py-4"
+        }`}
+      >
       <nav className="px-4 md:px-16" aria-label="Global">
         <div className="flex justify-between items-center h-16">
 
@@ -215,14 +227,14 @@ export default function Header() {
           </div>
 
           {/* Call to Action */}
-          <div className="hidden md:flex items-center ml-auto">
+          {/* <div className="hidden md:flex items-center ml-auto">
             <Link 
               href="/apply-now" 
               className="bg-primary text-white xl:text-[13px] text-xs font-semibold capitalize tracking-wider xl:px-7 xl:py-3 px-5 py-2 rounded-full shadow-premium hover:bg-primary-dark transition-all duration-300 hover:shadow-[0_8px_30px_rgb(13,26,99,0.3)] active:scale-95 whitespace-nowrap"
             >
               Apply <span className="xl:inline hidden">Now</span>
             </Link>
-          </div>
+          </div> */}
           </div>
 
           {/* Mobile menu button */}
@@ -340,6 +352,7 @@ export default function Header() {
           </div>
         </div>
       )}
-    </header>
+      </header>
+    </div>
   );
 }
