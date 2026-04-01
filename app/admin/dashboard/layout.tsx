@@ -161,7 +161,15 @@ export default function DashboardLayout({
 
               {/* Logout TopBar Button */}
               <button 
-                onClick={() => router.push("/admin-login")}
+                onClick={async () => {
+                  try {
+                    await fetch("/api/auth/logout", { method: "POST" });
+                    router.push("/admin-login");
+                  } catch (err) {
+                    console.error("Logout failed:", err);
+                    router.push("/admin-login"); // fallback redirect
+                  }
+                }}
                 className="p-2 py-1.5 flex text-xs font-medium items-center gap-2 bg-red-600 text-red-200 rounded-lg transition-colors group cursor-pointer"
                 title="Logout"
               >
