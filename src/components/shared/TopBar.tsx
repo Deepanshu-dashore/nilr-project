@@ -6,9 +6,9 @@ import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 const topLinks = [
   { 
-    name: "Important Notices & Announcements", 
-    href: "#", 
-    bgColor: "bg-[#A53F3F]" 
+    name: "Approval & Recognition", 
+    href: "/approvals", 
+    bgColor: "bg-[#B34141]" 
   },
   { 
     name: "Admissions", 

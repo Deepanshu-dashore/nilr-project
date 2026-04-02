@@ -69,10 +69,7 @@ export default function GalleryPage() {
       });
 
       if (res.data.success) {
-        setItems((prev) => [res.data.data, ...prev]);
-        setNewName("");
-        setNewUrl("");
-        setNewFile(null);
+        await fetchItems();
         setShowAddForm(false);
       }
     } catch {

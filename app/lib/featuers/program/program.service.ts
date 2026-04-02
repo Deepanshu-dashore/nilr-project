@@ -1,5 +1,6 @@
 import { connectDB } from "../../db/connectDB";
 import { Program } from "./program.model";
+import { ProgramType } from "../program-type/programType.model";
 
 export class ProgramService {
     static async createProgram(programData: any) {
