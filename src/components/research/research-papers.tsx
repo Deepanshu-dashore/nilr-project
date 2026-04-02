@@ -1,5 +1,5 @@
 import React from 'react';
-import { DocumentTextIcon, ArrowDownTrayIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { DocumentTextIcon, ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 
 const researchPapers = [
   { file: "Agri_Business_Management - GVT study.pdf", title: "Agri Business Management - GVT study", description: "Comprehensive study detailing agribusiness practices and viable market strategies within rural sectors." },
@@ -32,43 +32,61 @@ export default function ResearchPapers() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto mt-5">
-          {researchPapers.map((paper, index) => (
-            <a 
-              key={index} 
-              href={`/research/${paper.file}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-primary/5 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
-            >
-              <div className="flex items-start gap-4 mb-8">
-                <div className="w-12 h-12 shrink-0 bg-red-50 text-red-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-red-100 shadow-sm">
-                  <DocumentTextIcon className="w-6 h-6" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold text-slate-800 leading-snug group-hover:text-primary transition-colors line-clamp-2">
-                    {paper.title}
-                  </h3>
-                  <p className="text-sm text-slate-500 mt-2 line-clamp-2 leading-relaxed">
-                    {paper.description}
-                  </p>
-                  <p className="text-[10px] text-slate-400 mt-4 font-bold uppercase tracking-wider flex items-center gap-1">
-                    PDF Document
-                  </p>
-                </div>
-              </div>
-              
-              <div className="flex items-center justify-between border-t border-slate-100 pt-4 mt-auto">
-                <span className="text-sm font-bold text-slate-500 group-hover:text-primary transition-colors flex items-center gap-2">
-                  <ArrowDownTrayIcon className="w-4 h-4" />
-                  View Paper
-                </span>
-                <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-primary/50 group-hover:text-white transition-colors text-slate-400">
-                  <ChevronRightIcon className="w-4 h-4" />
-                </div>
-              </div>
-            </a>
-          ))}
+        <div className="max-w-7xl mx-auto mt-8 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-slate-50/80 border-bottom border-slate-200">
+                  <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest text-center w-16">#</th>
+                  <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest">Publication Details</th>
+                  <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest text-center">Type</th>
+                  <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-widest text-right">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {researchPapers.map((paper, index) => (
+                  <tr 
+                    key={index} 
+                    className="hover:bg-slate-50/50 transition-colors group cursor-default"
+                  >
+                    <td className="px-6 py-8 text-sm font-medium text-slate-400 text-center">
+                      {(index + 1).toString().padStart(2, '0')}
+                    </td>
+                    <td className="px-6 py-8">
+                      <div className="flex flex-col gap-1.5">
+                        <h3 className="text-base font-bold text-slate-800 group-hover:text-primary transition-colors leading-snug">
+                          {paper.title}
+                        </h3>
+                        <p className="text-sm text-slate-500 max-w-2xl leading-relaxed">
+                          {paper.description}
+                        </p>
+                      </div>
+                    </td>
+                    <td className="px-6 py-8">
+                      <div className="flex items-center justify-center">
+                        <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-50 text-red-600 border border-red-100/50">
+                          <DocumentTextIcon className="w-4 h-4" />
+                          <span className="text-[10px] font-bold uppercase tracking-wider">PDF</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-8 text-right">
+                      <a 
+                        href={`/research/${paper.file}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 text-white text-xs font-semibold hover:bg-primary transition-all duration-300 shadow-sm hover:shadow-primary/20 hover:-translate-y-0.5"
+                      >
+                        {/* <ArrowDownTrayIcon className="w-4 h-4" /> */}
+                        <span>View Paper</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 rotate-90 transition-all duration-300 group-hover:rotate-45" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M24 6v36M12 18L24 6l12 12"/></svg>
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </section>

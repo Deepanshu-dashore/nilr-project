@@ -17,7 +17,7 @@ export default function ResearchPage() {
       {hasContent && (
         <section className="bg-text-dark relative text-white py-12 md:py-20 overflow-hidden shadow-inner border-b border-white/5">
           <div 
-            className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40"
+            className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat "
             style={{ backgroundImage: "url('/HeaderBg.png')" }}
           />
           <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/20 -skew-x-12 translate-x-24 blur-3xl" />
@@ -29,7 +29,7 @@ export default function ResearchPage() {
                 RESEARCH & DEVELOPMENT CELL
               </span>
             </div>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6 tracking-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white mb-6 tracking-tight">
               Pioneering Innovations for Rural Transformation
             </h1>
             <p className="max-w-2xl mx-auto text-sm md:text-base text-gray-400 leading-relaxed font-medium">
