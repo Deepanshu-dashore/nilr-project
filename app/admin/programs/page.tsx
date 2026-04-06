@@ -12,11 +12,14 @@ interface Program {
   name: string;
   duration: string;
   fee: string;
-  programType: string;
+  programType: any;
   createdAt: string;
+  brochureDoc?: string;
+  feeStructureDoc?: string;
 }
 
 import { useRouter } from "next/navigation";
+import { DocumentArrowDownIcon } from "@heroicons/react/24/outline";
 
 export default function ProgramsPage() {
   const router = useRouter();
@@ -27,8 +30,6 @@ export default function ProgramsPage() {
     setIsLoading(true);
     try {
       const response = await axios.get("/api/program");
-      // Assuming the response structure is { success: true, data: [...] }
-      // If it's just an array, adjust accordingly.
       const data = response.data.success ? response.data.data : response.data;
       setPrograms(Array.isArray(data) ? data : []);
     } catch (error) {
@@ -70,12 +71,19 @@ export default function ProgramsPage() {
        label: "Duration",
        type: "text",
        sortable: true,
+       getSubtitle: (row) => `${row.duration} Years`,
     },
     {
        key: "fee",
-       label: "Fee",
+       label: "Documents",
        type: "text",
-       sortable: true,
+       sortable: false,
+       getSubtitle: (row) => {
+         const docs = [];
+         if (row.brochureDoc) docs.push("Brochure");
+         if (row.feeStructureDoc) docs.push("Fee Structure");
+         return docs.length > 0 ? docs.join(", ") : "No Documents";
+       }
     },
     {
        key: "createdAt",

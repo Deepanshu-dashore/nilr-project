@@ -13,6 +13,7 @@ const parseJSON = (str: any) => {
 export async function POST(req: Request) {
     const formData = await req.formData();
     const file = formData.get("feeStructureDoc");
+    const brochureFile = formData.get("brochureDoc");
     const body = {
         name: formData.get("name"),
         description: formData.get("description"),
@@ -27,10 +28,19 @@ export async function POST(req: Request) {
         outcomes: parseJSON(formData.get("outcomes")),
         careerPaths: parseJSON(formData.get("careerPaths")),
         feeStructureDoc: file,
-    };
-    if (file) {
-        const uploaded:any = await CloudinaryService.upload(file,"programs","raw","pdf");
+        brochureDoc: brochureFile,
+    } as any;
+    if (file && file !== "null" && file !== "undefined" && typeof file !== "string") {
+        const uploaded: any = await CloudinaryService.upload(file, "programs", "raw", "pdf");
         body.feeStructureDoc = uploaded?.url;
+    } else {
+        delete body.feeStructureDoc;
+    }
+    if (brochureFile && brochureFile !== "null" && brochureFile !== "undefined" && typeof brochureFile !== "string") {
+        const uploaded: any = await CloudinaryService.upload(brochureFile, "programs", "raw", "pdf");
+        body.brochureDoc = uploaded?.url;
+    } else {
+        delete body.brochureDoc;
     }
     return await ProgramController.createProgram(body);
 }

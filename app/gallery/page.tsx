@@ -18,6 +18,7 @@ function GalleryContent() {
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [activeTab] = useState<"image">("image");
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -95,7 +96,8 @@ function GalleryContent() {
             {filteredItems.map((item,index) => (
               <div 
                 key={item._id+index} 
-                className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100 flex flex-col h-full"
+                className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100 flex flex-col h-full cursor-pointer"
+                onClick={() => setSelectedImage(item)}
               >
                 <div className="relative aspect-4/3 overflow-hidden">
                   <Image
@@ -106,7 +108,7 @@ function GalleryContent() {
                   />
                 </div>
                 <div className="p-6 py-3 flex flex-col grow">
-                  <h3 className="text-base font-medium! text-slate-700 line-clamp-2 leading-snug">
+                  <h3 className="text-base capitalize font-medium! text-slate-700 line-clamp-2 leading-snug">
                     {item.name}
                   </h3>
                 </div>
@@ -123,6 +125,50 @@ function GalleryContent() {
           </div>
         ) }
       </div>
+
+      {/* Lightbox / Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-slate-950/95 backdrop-blur-md animate-in fade-in duration-300"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="absolute cursor-pointer top-6 right-6 p-2.5 text-white/70 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all duration-300 z-[110] group"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedImage(null);
+            }}
+            aria-label="Close modal"
+          >
+            <XMarkIcon className="w-7 h-7 group-hover:rotate-90 transition-transform duration-300" />
+          </button>
+          
+          <div 
+            className="relative w-full max-w-6xl max-h-[90vh] flex flex-col items-center animate-in zoom-in-95 duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="relative w-full h-full overflow-hidden rounded-xl shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)]">
+               <div className="relative w-full h-[70vh] md:h-[80vh]">
+                  <Image
+                    src={selectedImage.url}
+                    alt={selectedImage.name}
+                    fill
+                    className="object-contain"
+                    priority
+                    sizes="(max-width: 1200px) 100vw, 1200px"
+                  />
+               </div>
+            </div>
+            {selectedImage.name && (
+              <div className="mt-6 text-center max-w-2xl px-4">
+                <h3 className="text-white text-lg md:text-xl font-medium tracking-tight">
+                  {selectedImage.name}
+                </h3>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

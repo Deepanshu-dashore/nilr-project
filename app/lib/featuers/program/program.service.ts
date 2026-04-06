@@ -28,6 +28,12 @@ export class ProgramService {
         return program;
     }
 
+    static async getProgramByType(type: string) {
+        await connectDB();
+        const programs = await Program.find({ programType: type }).populate("programType", "name").select("name description duration fee programType createdAt slug");
+        return programs;
+    }
+
     static async updateProgram(id: string, programData: any) {
         await connectDB();
         const program = await Program.findByIdAndUpdate(id, programData, { returnDocument: 'after' });

@@ -137,6 +137,8 @@ export default function EditProgramPage() {
 
   const [file, setFile] = useState<File | null>(null);
   const [existingFileUrl, setExistingFileUrl] = useState<string | null>(null);
+  const [brochureFile, setBrochureFile] = useState<File | null>(null);
+  const [existingBrochureUrl, setExistingBrochureUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const init = async () => {
@@ -169,6 +171,7 @@ export default function EditProgramPage() {
           if (prog.eligibility?.length) setEligibility(prog.eligibility);
           if (prog.programStructure?.length) setProgramStructure(prog.programStructure);
           if (prog.feeStructureDoc) setExistingFileUrl(prog.feeStructureDoc);
+          if (prog.brochureDoc) setExistingBrochureUrl(prog.brochureDoc);
         }
       } catch (err: any) {
         setError("Failed to load program data.");
@@ -195,6 +198,10 @@ export default function EditProgramPage() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.[0]) setFile(e.target.files[0]);
+  };
+
+  const handleBrochureFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.[0]) setBrochureFile(e.target.files[0]);
   };
 
   // ── Generic tag-list helpers ─────────────────────────────────────────────────
@@ -244,6 +251,7 @@ export default function EditProgramPage() {
       );
 
       if (file) data.append("feeStructureDoc", file);
+      if (brochureFile) data.append("brochureDoc", brochureFile);
 
       const response = await axios.put(`/api/program/${programId}`, data);
 
@@ -571,38 +579,75 @@ export default function EditProgramPage() {
               {/* ════════════════ STEP 3 ════════════════ */}
               {currentStep === 3 && (
                 <div className="space-y-8 animate-in fade-in slide-in-from-right-3 duration-500">
-                  {/* File upload */}
-                  <div className="space-y-2">
-                    <label className={labelCls}>Fee Structure Document</label>
-                    <div
-                      className={`flex justify-center px-6 pt-10 pb-10 border ${
-                        file ? "border-emerald-200 bg-emerald-50/20" : "border-dashed border-gray-200 bg-gray-50"
-                      } rounded-2xl cursor-pointer hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5 group transition-all`}
-                      onClick={() => document.getElementById("file-upload")?.click()}
-                    >
-                      <div className="space-y-3 text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className={`mx-auto h-12 w-12 ${
-                            file ? "text-emerald-500" : "text-slate-300 group-hover:text-indigo-500 transition-colors duration-500"
-                          }`}  viewBox="0 0 24 24"><path fill="currentColor" fillRule="evenodd" d="M12 2v6.5a1.5 1.5 0 0 0 1.356 1.493L13.5 10H20v10a2 2 0 0 1-1.85 1.995L18 22H6a2 2 0 0 1-1.995-1.85L4 20V4a2 2 0 0 1 1.85-1.995L6 2z" className="duoicon-secondary-layer" opacity="0.3"/><path fill="currentColor" fillRule="evenodd" d="M14 2.043a2 2 0 0 1 .877.43l.123.113L19.414 7c.234.234.407.523.502.84l.04.16H14zm-2.707 9.13l-2.121 2.121a1 1 0 1 0 1.414 1.414l.414-.414V17a1 1 0 1 0 2 0v-2.706l.414.414a1 1 0 1 0 1.414-1.414l-2.12-2.121a1 1 0 0 0-1.415 0" className="duoicon-primary-layer"/></svg>
-                        <div className="flex flex-col text-sm text-gray-600">
-                          <span className="font-bold text-gray-800 text-lg">
-                            {file ? file.name : existingFileUrl ? "Document Uploaded (Click to change)" : "Choose a file to upload"}
-                          </span>
-                          {!file && !existingFileUrl && <p className="text-slate-400">or drag and drop your document here</p>}
+                  {/* File upload grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Fee Structure upload */}
+                    <div className="space-y-2">
+                      <label className={labelCls}>Fee Structure Document</label>
+                      <div
+                        className={`flex justify-center px-6 pt-10 pb-10 border ${
+                          file ? "border-emerald-200 bg-emerald-50/20" : "border-dashed border-gray-200 bg-gray-50"
+                        } rounded-2xl cursor-pointer hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5 group transition-all`}
+                        onClick={() => document.getElementById("file-upload")?.click()}
+                      >
+                        <div className="space-y-3 text-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" className={`mx-auto h-12 w-12 ${
+                              file ? "text-emerald-500" : "text-slate-300 group-hover:text-indigo-500 transition-colors duration-500"
+                            }`}  viewBox="0 0 24 24"><path fill="currentColor" fillRule="evenodd" d="M12 2v6.5a1.5 1.5 0 0 0 1.356 1.493L13.5 10H20v10a2 2 0 0 1-1.85 1.995L18 22H6a2 2 0 0 1-1.995-1.85L4 20V4a2 2 0 0 1 1.85-1.995L6 2z" className="duoicon-secondary-layer" opacity="0.3"/><path fill="currentColor" fillRule="evenodd" d="M14 2.043a2 2 0 0 1 .877.43l.123.113L19.414 7c.234.234.407.523.502.84l.04.16H14zm-2.707 9.13l-2.121 2.121a1 1 0 1 0 1.414 1.414l.414-.414V17a1 1 0 1 0 2 0v-2.706l.414.414a1 1 0 1 0 1.414-1.414l-2.12-2.121a1 1 0 0 0-1.415 0" className="duoicon-primary-layer"/></svg>
+                          <div className="flex flex-col text-sm text-gray-600">
+                            <span className="font-bold text-gray-800 text-lg line-clamp-1">
+                              {file ? file.name : existingFileUrl ? "Doc Uploaded (Change)" : "Fee Structure"}
+                            </span>
+                            {!file && !existingFileUrl && <p className="text-slate-400">Choose fee doc</p>}
+                          </div>
+                          <p className="text-[10px] text-slate-400 uppercase tracking-widest font-medium bg-white/50 px-3 py-1 rounded-full inline-block border border-gray-100">
+                            PDF, PNG, JPG (MAX. 10MB)
+                          </p>
                         </div>
-                        <p className="text-[10px] text-slate-400 uppercase tracking-widest font-medium bg-white/50 px-3 py-1 rounded-full inline-block border border-gray-100">
-                          {existingFileUrl ? "A file is already uploaded" : "PDF, PNG, JPG (MAX. 10MB)"}
-                        </p>
+                        <input id="file-upload" name="feeStructureDoc" type="file" className="sr-only" onChange={handleFileChange} />
                       </div>
-                      <input id="file-upload" name="feeStructureDoc" type="file" className="sr-only" onChange={handleFileChange} />
+                      {existingFileUrl && !file && (
+                        <div className="mt-2 text-sm text-indigo-600">
+                          <a href={existingFileUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:underline">
+                            <DocumentTextIcon className="w-4 h-4" /> View existing fee structure
+                          </a>
+                        </div>
+                      )}
                     </div>
-                    {existingFileUrl && (
-                      <div className="mt-2 text-sm text-indigo-600">
-                        <a href={existingFileUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:underline">
-                          <DocumentTextIcon className="w-4 h-4" /> View existing document
-                        </a>
+
+                    {/* Brochure upload */}
+                    <div className="space-y-2">
+                      <label className={labelCls}>Program Brochure</label>
+                      <div
+                        className={`flex justify-center px-6 pt-10 pb-10 border ${
+                          brochureFile ? "border-emerald-200 bg-emerald-50/20" : "border-dashed border-gray-200 bg-gray-50"
+                        } rounded-2xl cursor-pointer hover:bg-white hover:shadow-xl hover:shadow-indigo-500/5 group transition-all`}
+                        onClick={() => document.getElementById("brochure-upload")?.click()}
+                      >
+                        <div className="space-y-3 text-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" className={`mx-auto h-12 w-12 ${
+                              brochureFile ? "text-emerald-500" : "text-slate-300 group-hover:text-amber-500 transition-colors duration-500"
+                            }`}  viewBox="0 0 24 24"><path fill="currentColor" fillRule="evenodd" d="M12 2v6.5a1.5 1.5 0 0 0 1.356 1.493L13.5 10H20v10a2 2 0 0 1-1.85 1.995L18 22H6a2 2 0 0 1-1.995-1.85L4 20V4a2 2 0 0 1 1.85-1.995L6 2z" className="duoicon-secondary-layer" opacity="0.3"/><path fill="currentColor" fillRule="evenodd" d="M14 2.043a2 2 0 0 1 .877.43l.123.113L19.414 7c.234.234.407.523.502.84l.04.16H14zm-2.707 9.13l-2.121 2.121a1 1 0 1 0 1.414 1.414l.414-.414V17a1 1 0 1 0 2 0v-2.706l.414.414a1 1 0 1 0 1.414-1.414l-2.12-2.121a1 1 0 0 0-1.415 0" className="duoicon-primary-layer"/></svg>
+                          <div className="flex flex-col text-sm text-gray-600">
+                            <span className="font-bold text-gray-800 text-lg line-clamp-1">
+                              {brochureFile ? brochureFile.name : existingBrochureUrl ? "Brochure Uploaded (Change)" : "Program Brochure"}
+                            </span>
+                            {!brochureFile && !existingBrochureUrl && <p className="text-slate-400">Choose brochure</p>}
+                          </div>
+                          <p className="text-[10px] text-slate-400 uppercase tracking-widest font-medium bg-white/50 px-3 py-1 rounded-full inline-block border border-gray-100">
+                            PDF, PNG, JPG (MAX. 10MB)
+                          </p>
+                        </div>
+                        <input id="brochure-upload" name="brochureDoc" type="file" className="sr-only" onChange={handleBrochureFileChange} />
                       </div>
-                    )}
+                      {existingBrochureUrl && !brochureFile && (
+                        <div className="mt-2 text-sm text-indigo-600">
+                          <a href={existingBrochureUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:underline">
+                            <DocumentTextIcon className="w-4 h-4" /> View existing brochure
+                          </a>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   {/* Eligibility */}

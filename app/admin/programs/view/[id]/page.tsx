@@ -229,10 +229,10 @@ export default function ViewProgramPage() {
           </div>
         )}
 
-        {/* Terms & Conditions & Document */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Terms & Conditions & Documents */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {program.termsAndConditions && program.termsAndConditions.length > 0 && (
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 space-y-4">
+            <div className={`bg-white rounded-2xl shadow-sm border border-gray-100 p-6 space-y-4 ${(!program.feeStructureDoc && !program.brochureDoc) ? 'md:col-span-2 lg:col-span-3' : 'lg:col-span-1'}`}>
               <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
                 <DocumentTextIcon className="w-5 h-5 text-red-500" />
                 Terms & Conditions
@@ -248,18 +248,41 @@ export default function ViewProgramPage() {
             </div>
           )}
 
+          {program.brochureDoc && (
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 space-y-4 flex flex-col justify-center items-center text-center">
+              <div className="p-4 bg-amber-50 rounded-full">
+                <DocumentTextIcon className="w-10 h-10 text-amber-400" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-gray-900">Program Brochure</h3>
+                <p className="text-sm text-gray-500 mt-1">Official brochure with program details.</p>
+              </div>
+              <a 
+                href={program.brochureDoc} 
+                target="_blank" 
+                rel="noreferrer"
+                className="mt-2 w-full flex items-center justify-center gap-2 px-6 py-2.5 bg-amber-50 text-amber-600 font-bold rounded-xl hover:bg-amber-100 transition-colors"
+              >
+                View Brochure
+                <ArrowTopRightOnSquareIcon className="w-4 h-4" />
+              </a>
+            </div>
+          )}
+
           {program.feeStructureDoc && (
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 space-y-4 flex flex-col justify-center items-center text-center">
-              <DocumentTextIcon className="w-16 h-16 text-indigo-200" />
+              <div className="p-4 bg-indigo-50 rounded-full">
+                <DocumentTextIcon className="w-10 h-10 text-indigo-400" />
+              </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900">Fee Structure Document</h3>
-                <p className="text-sm text-gray-500 mt-1">Download or view the official document.</p>
+                <h3 className="text-lg font-bold text-gray-900">Fee Structure</h3>
+                <p className="text-sm text-gray-500 mt-1">Detailed fee breakdown and schedules.</p>
               </div>
               <a 
                 href={program.feeStructureDoc} 
                 target="_blank" 
                 rel="noreferrer"
-                className="mt-2 flex items-center gap-2 px-6 py-2.5 bg-indigo-50 text-indigo-600 font-bold rounded-xl hover:bg-indigo-100 transition-colors"
+                className="mt-2 w-full flex items-center justify-center gap-2 px-6 py-2.5 bg-indigo-50 text-indigo-600 font-bold rounded-xl hover:bg-indigo-100 transition-colors"
               >
                 View Document
                 <ArrowTopRightOnSquareIcon className="w-4 h-4" />

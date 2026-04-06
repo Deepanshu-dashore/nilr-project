@@ -17,7 +17,7 @@ export default function PartnershipOverview() {
       desc: "Expanding academic and training ecosystems through joint initiatives."
     },
     {
-      title: "Center of Excellence",
+      title: "Center for Excellence",
       desc: "Producing socially responsible change-makers for a better tomorrow."
     }
   ];

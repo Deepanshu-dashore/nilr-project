@@ -26,7 +26,10 @@ const ProgramSchema = new Schema({
         required:true
     },
     feeStructureDoc:{
-        type:String,  
+        type:String,
+    },
+    brochureDoc:{
+        type:String,
     },
     termsAndConditions:{
         type:[String],

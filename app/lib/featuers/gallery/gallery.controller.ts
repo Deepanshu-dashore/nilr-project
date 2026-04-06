@@ -32,8 +32,8 @@ export class GalleryController {
   static async getAllGalleryItems() {
     try {
       const result = await GalleryService.getAllGalleryItems();
-      const gallery = (result as any).map((item: any) => {
-        const doc = item.toObject();
+      const gallery = (result || []).map((item: any) => {
+        const doc = item.toObject ? item.toObject() : item;
         return {
           ...doc,
           url: doc.type === "image" ? getUrls.getUrl(doc.url, "image") : doc.url,

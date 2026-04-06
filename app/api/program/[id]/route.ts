@@ -13,6 +13,7 @@ const parseJSON = (str: any) => {
 export async function PUT(req: Request, { params }: { params: Promise<{ id: string }> }) {
     const formData = await req.formData();
     const file = formData.get("feeStructureDoc");
+    const brochureFile = formData.get("brochureDoc");
     const body: any = {
         name: formData.get("name"),
         description: formData.get("description"),
@@ -27,9 +28,13 @@ export async function PUT(req: Request, { params }: { params: Promise<{ id: stri
         outcomes: parseJSON(formData.get("outcomes")),
         careerPaths: parseJSON(formData.get("careerPaths")),
     };
-    if (file && file !== "null" && file !== "undefined") {
-        const uploaded:any = await CloudinaryService.upload(file,"programs","raw","pdf");
+    if (file && file !== "null" && file !== "undefined" && typeof file !== "string") {
+        const uploaded: any = await CloudinaryService.upload(file, "programs", "raw", "pdf");
         body.feeStructureDoc = uploaded?.url;
+    }
+    if (brochureFile && brochureFile !== "null" && brochureFile !== "undefined" && typeof brochureFile !== "string") {
+        const uploaded: any = await CloudinaryService.upload(brochureFile, "programs", "raw", "pdf");
+        body.brochureDoc = uploaded?.url;
     }
     return await ProgramController.updateProgram({ params }, body);
 }
