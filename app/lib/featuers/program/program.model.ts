@@ -1,4 +1,5 @@
-import { Schema,model,models } from "mongoose";
+import { Schema, model, models } from "mongoose";
+import "../program-type/programType.model"; // Ensure ProgramType schema is registered
 
 const ProgramSchema = new Schema({
     name:{
