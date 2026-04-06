@@ -55,9 +55,9 @@ export default function AdmissionsClient() {
               </div>
             </div>
             <div className="lg:w-1/2 relative">
-               <div className="aspect-video lg:aspect-square bg-gray-100 rounded-2xl overflow-hidden shadow-2xl relative group">
+               <div className="aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-2xl relative group">
                   <img 
-                    src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80" 
+                    src="/addmision.jpeg" 
                     alt="Campus Life" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                   />
@@ -65,7 +65,7 @@ export default function AdmissionsClient() {
                   <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent/20 rounded-full blur-3xl" />
                </div>
                <div className="absolute -top-4 -left-4 bg-white p-4 shadow-xl rounded-xl z-10 border border-gray-100 hidden md:block">
-                  <p className="text-primary font-bold text-lg leading-tight">Build your <br/>Future here</p>
+                  <p className="text-primary font-bold text-base leading-tight">Build your <br/>Future here</p>
                </div>
             </div>
           </div>
