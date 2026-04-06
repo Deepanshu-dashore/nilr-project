@@ -38,6 +38,7 @@ export class ProgramController {
             
             const doc = result.toObject();
             if (doc.feeStructureDoc) doc.feeStructureDoc = getUrls.getUrl(doc.feeStructureDoc, "raw");
+            if (doc.brochureDoc) doc.brochureDoc = getUrls.getUrl(doc.brochureDoc, "raw");
             
             return ApiResponse(200, doc, "Program fetched successfully");
         } catch (error) {
@@ -54,6 +55,7 @@ export class ProgramController {
 
             const doc = result.toObject();
             if (doc.feeStructureDoc) doc.feeStructureDoc = getUrls.getUrl(doc.feeStructureDoc, "raw");
+            if (doc.brochureDoc) doc.brochureDoc = getUrls.getUrl(doc.brochureDoc, "raw");
             
             return ApiResponse(200, doc, "Program fetched successfully");
         } catch (error) {
@@ -81,6 +83,10 @@ export class ProgramController {
     static async deleteProgram({ params }: { params: Promise<{ id: string }> }) {
         try {
             const { id } = await params;
+            const program = await ProgramService.getProgramById(id);
+            if (!program) return ApiResponse(404, null, "Program not found");
+            if (program.feeStructureDoc) await CloudinaryService.delete(program.feeStructureDoc, "raw");
+            if (program.brochureDoc) await CloudinaryService.delete(program.brochureDoc, "raw");
             const result = await ProgramService.deleteProgram(id);
             if (!result) return ApiResponse(404, null, "Program not found");
             return ApiResponse(200, result, "Program deleted successfully");
