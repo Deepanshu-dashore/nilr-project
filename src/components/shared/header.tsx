@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Logo } from "./Logo";
 import React, { useState, useEffect } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
 import {
   Bars3Icon,
   XMarkIcon,
@@ -15,6 +16,7 @@ import {
   EnvelopeIcon,
   BeakerIcon,
   Square3Stack3DIcon,
+  ChatBubbleLeftEllipsisIcon,
 } from "@heroicons/react/24/outline";
 import { UserPlusIcon } from "@heroicons/react/16/solid";
 
@@ -113,10 +115,12 @@ const mainNavigation = [
 import TopBar from "./TopBar";
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [activeMobileSection, setActiveMobileSection] = useState<string | null>(null);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const enquiryHref = `${pathname}?${(() => { const p = new URLSearchParams(searchParams.toString()); p.set("modal", "enquiry"); return p.toString(); })()}`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -125,19 +129,6 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-      setActiveMobileSection(null); // Reset mobile dropdowns when closing
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [mobileMenuOpen]);
 
   return (
     <div className="flex flex-col">
@@ -151,7 +142,7 @@ export default function Header() {
             : "bg-white py-4"
         }`}
       >
-      <nav className="px-4 md:px-16" aria-label="Global">
+      <nav className="px-4 md:px-12" aria-label="Global">
         <div className="flex justify-between items-center h-16">
 
           {/* Logo */}
@@ -162,7 +153,7 @@ export default function Header() {
           </div>
 
           {/* Desktop Nav - Middle */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
           <div className="hidden md:flex items-center xl:gap-x-1.5 gap-x-1 ml-8">
             {mainNavigation.map((item) => (
               <div
@@ -237,16 +228,30 @@ export default function Header() {
           </div> */}
           </div>
 
-          {/* Mobile menu button */}
-          <div className="flex md:hidden">
-            <button
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-xl text-text-dark bg-bg-section hover:bg-border-light transition-colors"
-              onClick={() => setMobileMenuOpen(true)}
+          {/* Menu Trigger CTA - Desktop */}
+          <div className="hidden md:flex items-center shrink-0">
+            <Link
+              href={enquiryHref}
+              scroll={false}
+              id="mega-menu-trigger"
+              className="inline-flex items-center justify-center w-11 h-11 rounded-full text-[#1a2849] hover:shadow-lg active:scale-95 transition-all duration-200"
+              title="Open Menu"
             >
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon className="h-6 w-6" title="Open main menu" aria-hidden="true" />
-            </button>
+              <Bars3Icon className="h-6 w-6" />
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="flex md:hidden gap-2">
+            <Link
+              href={enquiryHref}
+              scroll={false}
+              id="mega-menu-trigger-mobile"
+              className="inline-flex items-center justify-center p-2 rounded-xl bg-[#21325b] text-white hover:bg-[#1a2849] transition-colors"
+              title="Open Menu"
+            >
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </Link>
           </div>
         </div>
       </nav>
@@ -262,96 +267,6 @@ export default function Header() {
         />
       </div>
 
-      {/* Mobile menu - Premium Drawer */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-100 overflow-hidden">
-          <div
-            className="absolute inset-0 bg-text-dark/40 backdrop-blur-sm transition-opacity animate-in fade-in duration-300"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          
-          <div className="absolute inset-y-0 right-0 w-[280px] sm:w-[350px] bg-white shadow-2xl flex flex-col animate-in slide-in-from-right duration-500 ease-out">
-            <div className="flex items-center justify-between p-4 border-b border-border-light">
-              <Logo size="sm" />
-              <button
-                type="button"
-                className="p-2 rounded-xl text-text-dark hover:bg-bg-section transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
-
-            <div className="flex-1 overflow-y-auto py-6 px-4 pb-20 custom-scrollbar">
-              <div className="space-y-4">
-                {mainNavigation.map((item) => (
-                  <div
-                    key={item.name}
-                    className="overflow-hidden"
-                  >
-                    <div className="flex items-center justify-between ml-4">
-                      {item.href && !item.submenu ? (
-                        <Link
-                          href={item.href}
-                          className="flex-1 flex items-center gap-2 py-3 text-[13px] font-bold text-text-dark uppercase hover:text-primary transition-colors"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          <item.icon className="h-5 w-5" /> {item.name}
-                        </Link>
-                      ) : (
-                        <button
-                           onClick={() => setActiveMobileSection(activeMobileSection === item.name ? null : item.name)}
-                           className="flex-1 flex items-center justify-between py-3 text-[13px] font-bold text-text-dark uppercase hover:text-primary transition-colors text-left"
-                        >
-                          <span className="flex items-center gap-2"><item.icon className="h-5 w-5" /> {item.name}</span>
-                          {item.submenu && (
-                            <ChevronDownIcon 
-                              className={`h-4 w-4 text-gray-400 transition-transform duration-300 ${activeMobileSection === item.name ? "rotate-180 text-primary" : ""}`}
-                            />
-                          )}
-                        </button>
-                      )}
-                    </div>
-
-                    {/* Mobile Submenu Accordion */}
-                    {item.submenu && (
-                      <div 
-                        className={`
-                          overflow-hidden transition-all duration-300 ease-in-out
-                          ${activeMobileSection === item.name ? "max-h-[500px] mt-2 mb-4 opacity-100" : "max-h-0 opacity-0"}
-                        `}
-                      >
-                        <div className="space-y-1 pl-3 border-l-2 border-primary/10 ml-1">
-                          {item.submenu.map((sub) => (
-                            <Link
-                              key={sub.name}
-                              href={sub.href}
-                              className="block py-2.5 px-4 text-[12px] font-semibold text-text-muted hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
-                              onClick={() => setMobileMenuOpen(false)}
-                            >
-                              {sub.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-border-light shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
-              <Link
-                href="/apply-now"
-                className="block w-full text-center py-4 text-xs font-black uppercase tracking-widest text-white bg-primary rounded-xl shadow-premium active:scale-95 transition-all"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Apply Online 2026
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
       </header>
     </div>
   );
