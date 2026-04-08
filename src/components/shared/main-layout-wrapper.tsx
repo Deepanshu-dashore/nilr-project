@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import Header from "./header";
 import Footer from "./footer";
 import ApplyNowModal from "../modals/ApplyNowModal";
-import EnquiryModal from "../modals/EnquiryModal";
+import NavigationLinkModel from "../modals/NavigationLinkModel";
 
 export default function MainLayoutWrapper({
   children,
@@ -21,7 +21,7 @@ export default function MainLayoutWrapper({
       <main className="grow">{children}</main>
       <Suspense fallback={null}>
         <ApplyNowModal />
-        <EnquiryModal />
+        <NavigationLinkModel />
       </Suspense>
       {!isAuthPage && <Footer />}
     </>
