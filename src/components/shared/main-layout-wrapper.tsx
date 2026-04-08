@@ -17,7 +17,11 @@ export default function MainLayoutWrapper({
 
   return (
     <>
-      {!isAuthPage && <Header />}
+      {!isAuthPage && (
+        <Suspense fallback={null}>
+          <Header />
+        </Suspense>
+      )}
       <main className="grow">{children}</main>
       <Suspense fallback={null}>
         <ApplyNowModal />
