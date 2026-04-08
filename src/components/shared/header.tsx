@@ -75,11 +75,11 @@ const mainNavigation = [
     icon: BeakerIcon,
     href: "/research",
   },
-  {
-    name: "Gallery",
-    icon: Square3Stack3DIcon,
-    href: "/gallery",
-  },
+  // {
+  //   name: "Gallery",
+  //   icon: Square3Stack3DIcon,
+  //   href: "/gallery",
+  // },
   // {
   //   name: "Academics",
   //   href: "#",
@@ -226,8 +226,6 @@ export default function Header() {
               Apply <span className="xl:inline hidden">Now</span>
             </Link>
           </div> */}
-          </div>
-
           {/* Menu Trigger CTA - Desktop */}
           <div className="hidden md:flex items-center shrink-0">
             <Link
@@ -240,6 +238,8 @@ export default function Header() {
               <Bars3Icon className="h-6 w-6" />
             </Link>
           </div>
+          </div>
+
 
           {/* Mobile menu button */}
           <div className="flex md:hidden gap-2">

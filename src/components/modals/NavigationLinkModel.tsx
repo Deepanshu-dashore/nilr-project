@@ -40,38 +40,42 @@ export default function EnquiryModal() {
       <div className="absolute inset-0 bg-black/50" onClick={handleClose} />
 
       {/* Panel */}
-      <div className="relative w-full h-full bg-[#1e2d6b] overflow-hidden flex flex-col animate-in slide-in-from-top-4 duration-500 ease-out">
+      <div className="relative w-full h-full bg-[#293786] overflow-hidden flex flex-col animate-in slide-in-from-top-4 duration-500 ease-out">
 
         {/* ── Left decorative pattern ── */}
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-[130px] md:w-[185px] z-0 select-none opacity-100">
+        <div className="pointer-events-none absolute left-0 -top-1/10 h-full w-[130px] md:w-[185px] z-0 select-none opacity-100">
           <Image
             src="/leftPattern.svg"
             alt=""
             width={184}
             height={638}
-            className="h-full w-auto object-cover object-left"
+            className="h-full w-auto object-contain object-left"
             aria-hidden="true"
           />
         </div>
 
         {/* ── Header bar ── */}
-        <div className="relative z-10 flex items-center justify-between px-6 md:px-10 py-4 border-b border-white/10 shrink-0">
+        <div className="relative z-10 mt-4 flex items-center justify-between px-6 md:px-16 py-4 border-b border-white/10 shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-1 h-6 rounded-full bg-[#ba303b]" />
             <span className="text-white font-bold text-sm uppercase tracking-widest">
-              Site Navigation
+              National Livelihood Resources Institute Navigation
             </span>
           </div>
+          <div className="relative">
+            <Image src="/banner-side-bg.webp" alt="" width={50} height={50} className="w-8 h-12 object-cover absolute -right-16 top-0" />
+            <Image src="/banner-side-bg.webp" alt="" width={50} height={50} className="w-8 h-20 object-cover absolute rotate-90 -right-2 -top-14" />
           <button
             onClick={handleClose}
             title="Close"
-            className="flex items-center gap-2 text-white/60 hover:text-white transition-colors text-xs font-semibold uppercase tracking-widest group"
+            className="flex pt-3 cursor-pointer items-center gap-2 text-white/60 hover:text-white transition-colors text-xs font-semibold uppercase tracking-widest group"
           >
             Close
-            <span className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white/60 group-hover:bg-white/10 transition-all">
-              <XMarkIcon className="w-4 h-4" />
+            <span className="w-6 h-6 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white/60 group-hover:bg-white/10 transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" className="rotate-90 w-4 h-4" viewBox="-5 -4.5 24 24"><path fill="currentColor" d="m6 4.071l-3.95 3.95A1 1 0 0 1 .636 6.607L6.293.95a.997.997 0 0 1 1.414 0l5.657 5.657A1 1 0 0 1 11.95 8.02L8 4.07v9.586a1 1 0 1 1-2 0z"></path></svg>
             </span>
           </button>
+          </div>
         </div>
 
         {/* ── Scrollable mega-menu grid ── */}
@@ -140,19 +144,19 @@ export default function EnquiryModal() {
         <div className="relative z-10 shrink-0 border-t border-white/10 px-6 md:px-10 py-4 flex items-center justify-between gap-4">
           <div className="flex items-center gap-4">
             <Link
+              href="/admissions"
+              onClick={handleClose}
+              className="text-white/60 hover:text-white text-[11px] font-semibold uppercase tracking-widest transition-colors"
+            >
+              Admissions Info
+            </Link>
+            <Link
               href="/apply-now"
               onClick={handleClose}
               className="inline-flex items-center gap-2 bg-[#ba303b] hover:bg-[#a02831] text-white text-[11px] font-bold uppercase tracking-widest px-5 py-2.5 rounded-full transition-all active:scale-95 shadow"
             >
               Apply Now
               <ArrowRightIcon className="w-3.5 h-3.5" />
-            </Link>
-            <Link
-              href="/admissions"
-              onClick={handleClose}
-              className="text-white/60 hover:text-white text-[11px] font-semibold uppercase tracking-widest transition-colors"
-            >
-              Admissions Info
             </Link>
           </div>
           <p className="text-white/30 text-[10px] hidden md:block">

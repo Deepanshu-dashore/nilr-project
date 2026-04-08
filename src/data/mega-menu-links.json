@@ -2,122 +2,59 @@
   {
     "title": "Why Us?",
     "links": [
-      { "name": "University at Glance", "href": "/about#overview" },
-      { "name": "Life at NLRI", "href": "/about#life" },
-      { "name": "Faculty", "href": "/about#faculty" },
-      { "name": "Placements", "href": "/placements" },
-      { "name": "Club & Societies", "href": "/about#clubs" },
-      { "name": "Student Testimonial", "href": "/about#testimonials" },
-      { "name": "Centre of Excellence", "href": "/about#excellence" },
-      { "name": "Incubation Center", "href": "/innovation#incubation" },
-      { "name": "Awards & Rankings", "href": "/approvals" },
-      { "name": "Teaching Practices & Pedagogy", "href": "/about#pedagogy" },
-      { "name": "Virtual Tour", "href": "/campus" },
-      { "name": "Flashes", "href": "/media-events" }
+      { "name": "Why Choose NLRI?", "href": "/about#excellence" },
+      { "name": "Faculty & Experts", "href": "/about#faculty" }
     ]
   },
   {
-    "title": "Student Life",
+    "title": "Academics",
     "links": [
-      { "name": "Sports facilities", "href": "/campus#sports" },
-      { "name": "Hostel details", "href": "/campus#hostels" },
-      { "name": "Placement Cell and its Activities", "href": "/placements" },
-      { "name": "Health facilities", "href": "/campus#health" },
-      { "name": "Anti Ragging Cell", "href": "/about#anti-ragging" }
+      { "name": "Programs Offered", "href": "/programs" },
+      { "name": "Academic Collaboration", "href": "/about#collaboration" },
+      { "name": "Academic Resources", "href": "/about#excellence" }
     ]
   },
   {
-    "title": "Facilities",
+    "title": "Specialized Units",
     "links": [
-      { "name": "Academic Facilities", "href": "/campus#infrastructure" },
-      { "name": "Campus Facilities", "href": "/campus" },
-      { "name": "Sport & Gym", "href": "/campus#sports" },
-      { "name": "Other Facilities", "href": "/campus#facilities" }
+      { "name": "ACBC (Agri-Clinics & Agri-Business)", "href": "/about#strengths" },
+      { "name": "SMU (Seed Manufacturing Unit)", "href": "/about#strengths" },
+      { "name": "Mission Happy Ratlam", "href": "/about#journey" }
     ]
   },
   {
-    "title": "Alumni",
+    "title": "Admissions",
     "links": [
-      { "name": "Overview", "href": "/about#alumni" },
-      { "name": "Alumni Testimonials", "href": "/about#alumni-testimonials" },
-      { "name": "Distinguished Alumni", "href": "/about#distinguished" },
-      { "name": "City Chapters", "href": "/about#chapters" },
-      { "name": "Connect", "href": "/contact" },
-      { "name": "Prominent Alumni", "href": "/about#prominent" }
-    ]
-  },
-  {
-    "title": "IQAC",
-    "links": [
-      { "name": "Overview", "href": "/approvals" },
-      { "name": "Certificates", "href": "/approvals#certificates" },
-      { "name": "Ranking", "href": "/approvals#ranking" },
-      { "name": "Approval Letters", "href": "/approvals#letters" }
-    ]
-  },
-  {
-    "title": "Internationalism & Collaboration",
-    "links": [
-      { "name": "Internationalism Overview", "href": "/about#international" },
-      { "name": "Ongoing Programs", "href": "/programs" }
-    ]
-  },
-  {
-    "title": "Happenings",
-    "links": [
-      { "name": "Events", "href": "/media-events" },
-      { "name": "Media Coverage", "href": "/media-events#media" },
-      { "name": "News", "href": "/media-events#news" }
+      { "name": "Admission Procedure", "href": "/admissions" },
+      { "name": "Apply Now", "href": "/admissions" }
     ]
   },
   {
     "title": "Gallery",
     "links": [
-      { "name": "Photo gallery", "href": "/gallery" },
-      { "name": "Video Gallery", "href": "/gallery#video" }
+      { "name": "Photo Gallery", "href": "/gallery" }
     ]
   },
   {
-    "title": "Innovation",
-    "links": [{ "name": "Innovation Center", "href": "/innovation" }]
-  },
-  {
-    "title": "Collaboration Cell",
-    "links": [{ "name": "Collaboration Overview", "href": "/csr-partnerships" }]
-  },
-  {
-    "title": "Testimonials",
-    "links": [{ "name": "Student Stories", "href": "/about#testimonials" }]
-  },
-  {
-    "title": "Careers",
+    "title": "Approvals",
     "links": [
-      { "name": "Current Openings", "href": "/contact" },
-      { "name": "Faculty Positions", "href": "/contact" }
+      { "name": "Statutory Approvals", "href": "/approvals" },
+      { "name": "Recognition", "href": "/approvals#certificates" }
+    ]
+  },
+  {
+    "title": "Contact",
+    "links": [
+      { "name": "Contact Us", "href": "/contact" }
     ]
   },
   {
     "title": "Quick Links",
     "links": [
       { "name": "PM Vidyalaxmi Scheme", "href": "/admissions" },
-      { "name": "UGC e-Samadhan Portal", "href": "#" },
-      { "name": "Important Notices & Announcements", "href": "/media-events" },
-      { "name": "Cancellation & Refund Policy", "href": "/terms" },
-      { "name": "MOOC", "href": "#" },
-      { "name": "Medicaps Law", "href": "#" },
-      { "name": "Staff ERP", "href": "#" },
-      { "name": "Student ERP", "href": "#" },
-      { "name": "NPTEL", "href": "#" },
-      { "name": "Swayam", "href": "#" },
-      { "name": "Suggestions & Grievances", "href": "/contact" },
+      { "name": "Important Notices", "href": "/media-events" },
       { "name": "Privacy Policy", "href": "/privacy-policy" },
-      { "name": "Terms of Use", "href": "/terms" },
-      { "name": "Results", "href": "#" },
-      { "name": "Examination", "href": "#" },
-      { "name": "Anti Ragging", "href": "/about#anti-ragging" },
-      { "name": "NIRF Ranking", "href": "/approvals" },
-      { "name": "Reservation Roster", "href": "/admissions" },
-      { "name": "Admission procedure and facilities provided to International", "href": "/admissions" }
+      { "name": "Terms of Use", "href": "/terms" }
     ],
     "accent": true
   }
