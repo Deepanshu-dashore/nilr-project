@@ -375,8 +375,8 @@ export function DataTable<T>({
                </tr>
              ) : (
                // ----- ACTUAL DATA -----
-               currentData.map((row) => {
-                 const id = rowKey(row);
+               currentData.map((row, idx) => {
+                 const id = rowKey(row) || `row-${idx}`;
                  return (
                    <tr key={id} className={`hover:bg-gray-50/50 transition-colors ${isDense ? 'h-14' : 'h-[72px]'}`}>
                       {/* Checkbox */}

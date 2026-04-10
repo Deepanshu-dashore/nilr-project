@@ -36,6 +36,13 @@
     ]
   },
   {
+    "title": "Media",
+    "links": [
+      { "name": "Latest Events", "href": "/media-events/events" },
+      { "name": "News & Announcements", "href": "/media-events/news" }
+    ]
+  },
+  {
     "title": "Approvals",
     "links": [
       { "name": "Statutory Approvals", "href": "/approvals" },
@@ -52,7 +59,7 @@
     "title": "Quick Links",
     "links": [
       { "name": "PM Vidyalaxmi Scheme", "href": "/admissions" },
-      { "name": "Important Notices", "href": "/media-events" },
+      { "name": "Important Notices", "href": "/media-events/news" },
       { "name": "Privacy Policy", "href": "/privacy-policy" },
       { "name": "Terms of Use", "href": "/terms" }
     ],

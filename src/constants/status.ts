@@ -40,6 +40,22 @@ export const STATUS_STYLES: Record<string, StatusStyle> = {
     label: "Completed",
     color: "bg-indigo-100 text-indigo-700",
   },
+  announcement: {
+    label: "Announcement",
+    color: "bg-purple-100 text-purple-700",
+  },
+  event: {
+    label: "Event",
+    color: "bg-blue-100 text-blue-700",
+  },
+  news: {
+    label: "News",
+    color: "bg-sky-100 text-sky-700",
+  },
+  annoucment: {
+    label: "Announcement",
+    color: "bg-purple-100 text-purple-700",
+  },
 };
 
 export const getStatusStyle = (status: string): StatusStyle => {
