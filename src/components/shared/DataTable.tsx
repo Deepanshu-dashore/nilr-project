@@ -405,9 +405,9 @@ export function DataTable<T>({
                                         return ava; // node
                                      }
                                   })()}
-                                  <div className="flex flex-col text-left">
-                                     <span className="font-semibold text-gray-900">{col.getTitle?.(row)}</span>
-                                     <span className="text-[13px] text-gray-500 font-medium tracking-tight">{col.getSubtitle?.(row)}</span>
+                                  <div className="flex flex-col text-left max-w-[250px]">
+                                     <span className="font-semibold text-gray-900 line-clamp-1">{col.getTitle?.(row)}</span>
+                                     <span className="text-[13px] text-gray-500 font-medium tracking-tight line-clamp-1">{col.getSubtitle?.(row)}</span>
                                   </div>
                                </div>
                             ) :
