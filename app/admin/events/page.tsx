@@ -84,13 +84,7 @@ export default function EventsManagementPage() {
         }
         return <CalendarIcon className="w-5 h-5 text-gray-400" />;
       },
-      getTitle: (row) => {
-        const words = row.title.split(' ');
-        if (words.length > 5) {
-          return words.slice(0, 5).join(' ') + '...';
-        }
-        return row.title;
-      },
+      getTitle: (row) => row.title,
       getSubtitle: (row) => row.location || "Online / No Location",
     },
     {
