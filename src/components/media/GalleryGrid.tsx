@@ -33,7 +33,7 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
           <div 
             key={img._id} 
             onClick={() => setSelectedImage(idx)}
-            className={`${idx === 0 ? 'md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto' : 'aspect-square'} rounded-[2rem] overflow-hidden bg-slate-200 shadow-sm relative group cursor-pointer`}
+            className={`${idx === 0 ? 'md:col-span-2 md:row-span-2 aspect-[4/3] md:aspect-auto' : 'aspect-square'} rounded-lg overflow-hidden bg-slate-200 shadow-sm relative group cursor-pointer`}
           >
             {img.url ? (
               <img src={img.url} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={img.title} />

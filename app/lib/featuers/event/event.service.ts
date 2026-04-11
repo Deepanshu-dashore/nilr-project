@@ -117,7 +117,7 @@ export class EventService {
             },
             status: "published"
         })
-        .select("title description date time location highlight")
+        .select("title description date time location highlight url")
         .sort({ date: 1 });
 
         return eventsRaw.map(item => {
@@ -125,6 +125,7 @@ export class EventService {
             return {
                 ...obj,
                 _id: obj._id.toString(),
+                url: obj.url ? getUrls.getUrl(obj.url, "image") : null
             };
         });
     }

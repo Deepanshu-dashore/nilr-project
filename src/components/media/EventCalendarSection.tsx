@@ -82,8 +82,8 @@ export function EventCalendarSection() {
 
             {/* Calendar Grid */}
             <div className="grid grid-cols-7 gap-1 mb-2">
-              {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(day => (
-                <div key={day} className="text-center text-[10px] font-black text-slate-400 py-2 uppercase tracking-tighter">
+              {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((day, idx) => (
+                <div key={idx} className="text-center text-[10px] font-black text-slate-400 py-2 uppercase tracking-tighter">
                   {day}
                 </div>
               ))}
@@ -114,9 +114,9 @@ export function EventCalendarSection() {
             </div>
           </div>
           
-          <div className="mt-8 bg-accent/5 p-4 rounded-2xl border border-accent/10">
-            <p className="text-xs text-accent font-bold flex items-center gap-2">
-              <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+          <div className="mt-8 bg-accent/5 p-4 py-2 rounded-lg border border-accent/10">
+            <p className="text-xs text-primary font-bold flex items-center gap-2">
+              <span className="w-3 h-3 border-3 border-gray-200/80 bg-accent rounded-full animate-pulse" ></span>
               {events.length} Events scheduled in {currentDate.toLocaleDateString('en-US', { month: 'long' })}
             </p>
           </div>
@@ -168,17 +168,17 @@ function EventItem({ title, time, venue, date, description }: { title: string, t
     <div className="flex bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden group hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 transition-all">
       <div className="bg-primary px-10 flex flex-col items-center justify-center text-white min-w-[140px] transform group-hover:scale-105 transition-transform">
         <span className="block text-4xl mb-2 font-semibold! text-white font-heading leading-none">
-            {day}
-          </span>
-          <span className="text-xs text-nowrap font-semibold! text-white capitalize tracking-widest">
-            {month}
-          </span>
-           </div>
-      <div className="p-8 py-5 flex flex-col justify-center flex-grow">
-        <h4 className="text-2xl font-bold mb-2 text-slate-900 group-hover:text-primary transition-colors tracking-tight">
+          {day}
+        </span>
+        <span className="text-sm text-nowrap font-semibold! text-white capitalize tracking-widest">
+          {month}
+        </span>
+      </div>
+      <div className="p-8 py-4 flex flex-col justify-center flex-grow">
+        <h4 className="text-xl font-bold mb-1 text-slate-900 group-hover:text-primary transition-colors tracking-tight">
           {title}
         </h4>
-        <p className="text-sm font-semibold text-slate-500 transition-colors tracking-tight">
+        <p className="text-sm font-medium! text-slate-500 transition-colors tracking-tight">
           {description}
         </p>
       </div>

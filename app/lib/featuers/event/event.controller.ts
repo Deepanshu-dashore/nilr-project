@@ -69,15 +69,7 @@ export class EventController {
             const data = await EventService.getAllEvents(filter);
             const counts = await EventService.getCounts();
             
-            const items = data.map((item: any) => {
-                const plainItem = item.toObject ? item.toObject() : item;
-                return {
-                    ...plainItem,
-                    url: plainItem.url ? getUrls.getUrl(plainItem.url, "image") : null
-                };
-            });
-
-            return ApiResponse(200, { items, counts }, "Events fetched successfully");
+            return ApiResponse(200, { items: data, counts }, "Events fetched successfully");
         } catch (error: any) {
             console.error("Error in getAllEvents:", error);
             return ApiResponse(500, null, error.message || "Failed to fetch events");
