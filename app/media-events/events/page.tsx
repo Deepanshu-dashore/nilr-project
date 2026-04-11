@@ -70,7 +70,8 @@ export default async function EventsPage({ searchParams }: { searchParams: Promi
         <section>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-slate-900 mb-4 flex items-center justify-center gap-3">
-              <PhotoIcon className="w-8 h-8 text-primary" /> Event Gallery
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-9 h-9 text-primary bg-gray-200 p-1 rounded-md" viewBox="0 0 24 24"><path fill="currentColor" d="M22 10H2v9a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3zM7 8a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v4a1 1 0 0 1-1 1m10 0a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v4a1 1 0 0 1-1 1" opacity={0.5}></path><path fill="currentColor" d="M19 4h-1v3a1 1 0 0 1-2 0V4H8v3a1 1 0 0 1-2 0V4H5a3 3 0 0 0-3 3v3h20V7a3 3 0 0 0-3-3"></path></svg>
+               Event Gallery
             </h2>
             <p className="text-slate-500 max-w-xl mx-auto">Capturing memories from our past achievements and celebrations.</p>
           </div>

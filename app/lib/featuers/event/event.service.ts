@@ -110,14 +110,13 @@ export class EventService {
         const endDate = new Date(year, month + 1, 0, 23, 59, 59);
 
         const eventsRaw = await Event.find({
-            type: "Event",
             date: {
                 $gte: startDate,
                 $lte: endDate
             },
             status: "published"
         })
-        .select("title description date time location highlight url")
+        .select("title description date time location highlight url type")
         .sort({ date: 1 });
 
         return eventsRaw.map(item => {

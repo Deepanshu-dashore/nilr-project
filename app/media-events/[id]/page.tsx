@@ -8,7 +8,8 @@ import {
   ClockIcon, 
   ArrowLeftIcon,
   TagIcon,
-  ShareIcon
+  ShareIcon,
+  CheckIcon
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import Image from "next/image";
@@ -31,6 +32,37 @@ export default function EventDetailPage() {
   const [event, setEvent] = useState<Event | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isShared, setIsShared] = useState(false);
+
+  const handleShare = async () => {
+    const shareData = {
+      title: event?.title || "Event Details",
+      text: event?.description?.substring(0, 100) + "...",
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        setIsShared(true);
+        setTimeout(() => setIsShared(false), 2000);
+      }
+    } catch (err) {
+      if ((err as Error).name !== 'AbortError') {
+        console.error("Error sharing:", err);
+        // Fallback to copy if share fails
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          setIsShared(true);
+          setTimeout(() => setIsShared(false), 2000);
+        } catch (copyErr) {
+          console.error("Failed to copy link:", copyErr);
+        }
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -74,7 +106,7 @@ export default function EventDetailPage() {
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Event Not Found</h2>
         <p className="text-gray-500 mb-8 max-w-md">{error || "The event you are looking for does not exist or has been removed."}</p>
         <button 
-          onClick={() => router.push("/media-events")}
+          onClick={() => router.back()}
           className="px-8 py-3 bg-gray-900 text-white font-bold rounded-2xl hover:bg-gray-800 transition-all active:scale-95"
         >
           Back to Events
@@ -94,76 +126,76 @@ export default function EventDetailPage() {
       {/* Background Decorative Element */}
       <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-gray-50 to-white -z-10" />
       
-      <div className="container-wide py-12 px-4">
+      <div className="container-wide pt-8 py-12 px-4">
         {/* Breadcrumbs & Actions */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 animate-in fade-in slide-in-from-top-4 duration-700">
-          <Link 
-            href="/media-events"
-            className="inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-primary transition-colors group"
+        <div className="flex mb-10 items-center justify-between">
+        {/* Header Area */}
+            <div>
+              <h1 className="text-3xl md:text-4xl font-semibold! font-heading text-gray-800 leading-tight mb-3">
+                {event.title}
+              </h1>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 w-fit">
+                <div className="flex items-center gap-2">
+                  <div className="text-primary/40">
+                    <CalendarIcon className="w-4 h-4" />
+                  </div>                  
+                    <span className="text-xs font-medium text-gray-500/50">{formattedDate}</span>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <div className="text-primary/40">
+                    <ClockIcon className="w-4 h-4" />
+                  </div>                  
+                    <span className="text-xs font-medium text-gray-500/50">{event.time || "Not specified"}</span>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <div className="text-primary/40">
+                    <MapPinIcon className="w-4 h-4" />
+                  </div>                  
+                    <span className="text-xs font-medium text-gray-500/50 line-clamp-1">{event.location || "Online"}</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 animate-in fade-in slide-in-from-top-4 duration-700">
+           <button 
+          onClick={() => router.back()}
+            className="inline-flex cursor-pointer items-center gap-2 text-sm font-bold text-gray-500 hover:text-primary transition-colors group"
           >
             <div className="p-2 bg-gray-100 rounded-lg group-hover:bg-primary/10 transition-colors">
               <ArrowLeftIcon className="w-4 h-4" />
             </div>
             Back to All Events
-          </Link>
+        </button>
           
           <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 px-6 py-2.5 bg-white border border-gray-200 rounded-xl text-sm font-bold text-gray-700 hover:bg-gray-50 transition-all shadow-sm active:scale-95">
-              <ShareIcon className="w-4 h-4" />
-              Share Event
+            <button 
+              onClick={handleShare}
+              className="flex items-center gap-2 px-6 py-2.5 bg-white border border-gray-200 rounded-xl text-sm font-bold text-gray-700 hover:bg-gray-50 transition-all cursor-pointer active:scale-95"
+            >
+              {isShared ? (
+                <>
+                  <CheckIcon className="w-4 h-4 text-green-600" />
+                  <span className="text-green-600">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <ShareIcon className="w-4 h-4" />
+                  Share
+                </>
+              )}
             </button>
           </div>
         </div>
-
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Main Content */}
+          
           <div className="lg:col-span-8 animate-in fade-in slide-in-from-left-4 duration-700">
-            {/* Header Area */}
-            <div className="mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-bold uppercase tracking-wider mb-6">
-                <TagIcon className="w-3.5 h-3.5" />
-                {event.type}
-              </div>
-              <h1 className="text-4xl md:text-5xl font-bold font-heading text-gray-900 leading-tight mb-8">
-                {event.title}
-              </h1>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 p-6 bg-gray-50 rounded-3xl border border-gray-100">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-white rounded-2xl shadow-sm text-primary">
-                    <CalendarIcon className="w-6 h-6" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-bold text-gray-400 uppercase tracking-wide">Date</span>
-                    <span className="text-sm font-bold text-gray-900">{formattedDate}</span>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-white rounded-2xl shadow-sm text-primary">
-                    <ClockIcon className="w-6 h-6" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-bold text-gray-400 uppercase tracking-wide">Time</span>
-                    <span className="text-sm font-bold text-gray-900">{event.time || "TBA"}</span>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-white rounded-2xl shadow-sm text-primary">
-                    <MapPinIcon className="w-6 h-6" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs font-bold text-gray-400 uppercase tracking-wide">Location</span>
-                    <span className="text-sm font-bold text-gray-900 line-clamp-1">{event.location || "Online"}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* Event Banner */}
             {event.url && (
-              <div className="relative aspect-video rounded-[32px] overflow-hidden shadow-2xl mb-12 border-8 border-white group">
+              <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl mb-12 group">
                 <Image 
                   src={event.url} 
                   alt={event.title}
@@ -176,7 +208,7 @@ export default function EventDetailPage() {
 
             {/* Description */}
             <div className="prose prose-lg max-w-none text-gray-600 font-medium leading-relaxed">
-              <div className="whitespace-pre-line text-lg selection:bg-primary/20">
+              <div className="whitespace-pre-line text-md selection:bg-primary/20">
                 {event.description}
               </div>
             </div>
@@ -184,34 +216,40 @@ export default function EventDetailPage() {
 
           {/* Sidebar / Register */}
           <div className="lg:col-span-4 self-start sticky top-24 animate-in fade-in slide-in-from-right-4 duration-700">
-            <div className="p-8 bg-gray-900 rounded-[32px] text-white shadow-xl hover:shadow-2xl transition-shadow duration-500">
-               <h3 className="text-xl font-bold mb-4">Event Details</h3>
-               <p className="text-gray-400 text-sm mb-8 leading-relaxed">
+            <div className="p-8 relative overflow-hidden bg-primary rounded-[32px] text-white shadow-xl hover:shadow-2xl transition-shadow duration-500">
+               <div 
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "url('/HeaderBg.png')" }}
+        />
+        <div className="relative z-10">
+               <h3 className="text-xl bg-white/10 py-1 pl-2 rounded-sm font-semibold! mb-4">Event Details</h3>
+               <p className="text-gray-300 text-sm mb-8 leading-relaxed">
                  Stay informed about the latest from CVRUK–NLRI. This {event.type.toLowerCase()} is part of our commitment to excellence.
                </p>
                
-               <div className="space-y-4 mb-8">
+               <div className="space-y-4 mb-8 text-gray-300">
                  <div className="flex justify-between items-center py-3 border-b border-white/10 text-sm">
-                   <span className="text-gray-400">Category</span>
-                   <span className="font-bold">{event.type}</span>
+                   <span className="text-gray-100 font-semibold">Type</span>
+                   <span className="">{event.type}</span>
                  </div>
                  <div className="flex justify-between items-center py-3 border-b border-white/10 text-sm">
-                   <span className="text-gray-400">Date</span>
-                   <span className="font-bold">{formattedDate}</span>
+                   <span className="text-gray-100 font-semibold">Date</span>
+                   <span className="">{formattedDate}</span>
                  </div>
-                 <div className="flex justify-between items-center py-3 text-sm">
-                   <span className="text-gray-400">Status</span>
-                   <span className="font-bold text-green-400">Available</span>
+                 <div className="flex justify-between items-center py-3 border-b border-white/10 text-sm">
+                   <span className="text-gray-100 font-semibold">Time</span>
+                   <span className="">{event.time||"Not specified"}</span>
+                 </div>
+                 <div className="flex justify-between items-center py-3 border-b border-white/10 text-sm">
+                   <span className="text-gray-100 font-semibold">Venue</span>
+                   <span className="">{event.location||"Not specified"}</span>
                  </div>
                </div>
-
-               <button className="w-full py-4 bg-white text-gray-900 font-bold rounded-2xl hover:bg-gray-100 transition-all active:scale-95 shadow-lg">
-                 Add to Calendar
-               </button>
                
-               <p className="mt-6 text-[11px] text-gray-500 text-center italic">
+               <p className="mt-6 text-[11px] text-gray-300 text-nowrap text-center italic">
                  Note: Event details are subject to change by the administration.
                </p>
+               </div>
             </div>
 
             {/* Need Help? */}

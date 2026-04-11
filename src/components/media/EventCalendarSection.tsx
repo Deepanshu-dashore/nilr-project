@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import Link from 'next/link';
 
 interface Event {
   _id: string;
@@ -11,12 +12,15 @@ interface Event {
   time: string;
   location: string;
   highlight: boolean;
+  type: "Event" | "News" | "Announcement";
 }
 
 export function EventCalendarSection() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(0);
+  const itemsPerPage = 4;
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -89,28 +93,59 @@ export function EventCalendarSection() {
               ))}
             </div>
             <div className="grid grid-cols-7 gap-1">
-              {Array.from({ length: firstDayOfMonth }).map((_, i) => (
-                <div key={`empty-${i}`} className="p-2" />
-              ))}
+              {/* Previous month's trailing days */}
+              {Array.from({ length: firstDayOfMonth }).map((_, i) => {
+                const prevMonthLastDay = new Date(year, month, 0).getDate();
+                const day = prevMonthLastDay - firstDayOfMonth + i + 1;
+                return (
+                  <div key={`prev-${i}`} className="aspect-square flex items-center justify-center text-xs font-medium text-slate-300">
+                    {day}
+                  </div>
+                );
+              })}
+
+              {/* Current month's days */}
               {Array.from({ length: daysInMonth }).map((_, i) => {
                 const day = i + 1;
-                const hasEvent = eventDays.includes(day);
+                const eventIdx = events.findIndex(e => {
+                  const eventDate = new Date(e.date);
+                  return eventDate.getDate() === day && eventDate.getMonth() === month && eventDate.getFullYear() === year;
+                });
+                
+                const eventColors = [
+                  'bg-violet-600 shadow-violet-600/20',
+                  'bg-rose-600 shadow-rose-600/20',
+                  'bg-amber-600 shadow-amber-600/20',
+                  'bg-emerald-600 shadow-emerald-600/20',
+                  'bg-sky-600 shadow-sky-600/20',
+                  'bg-orange-600 shadow-orange-600/20'
+                ];
+
+                const colorStyles = eventIdx !== -1 ? eventColors[eventIdx % eventColors.length] : '';
+
                 return (
                   <div 
                     key={day} 
                     className={`relative aspect-square flex items-center justify-center text-xs font-bold rounded-xl transition-all ${
-                      hasEvent 
-                        ? 'bg-primary text-white shadow-lg shadow-primary/20 cursor-pointer scale-110' 
-                        : 'text-slate-600 hover:bg-white'
+                      eventIdx !== -1 
+                        ? `${colorStyles} text-white shadow-lg cursor-pointer scale-110` 
+                        : 'text-slate-600 hover:bg-slate-100/50'
                     }`}
                   >
                     {day}
-                    {hasEvent && (
+                    {eventIdx !== -1 && (
                       <span className="absolute animate-pulse -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-accent border-2 border-white rounded-full" />
                     )}
                   </div>
                 );
               })}
+
+              {/* Next month's leading days */}
+              {Array.from({ length: (7 - ((firstDayOfMonth + daysInMonth) % 7)) % 7 }).map((_, i) => (
+                <div key={`next-${i}`} className="aspect-square flex items-center justify-center text-xs font-medium text-slate-300">
+                  {i + 1}
+                </div>
+              ))}
             </div>
           </div>
           
@@ -128,6 +163,24 @@ export function EventCalendarSection() {
         <div className="flex justify-between items-center">
           <h3 className="text-3xl font-bold text-slate-900 tracking-tight">Events Schedule</h3>
           <div className="h-[2px] flex-grow mx-8 bg-slate-100 rounded-full" />
+          {events.length > itemsPerPage && (
+            <div className="flex gap-2">
+              <button 
+                onClick={() => setPage(Math.max(0, page - 1))}
+                disabled={page === 0}
+                className={`p-2 rounded-lg border border-gray-200/70 bg-white transition-all ${page === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-primary hover:text-white hover:shadow-sm text-slate-600'}`}
+              >
+                <ChevronLeftIcon className="w-4 h-4" />
+              </button>
+              <button 
+                onClick={() => setPage(Math.min(Math.ceil(events.length / itemsPerPage) - 1, page + 1))}
+                disabled={(page + 1) * itemsPerPage >= events.length}
+                className={`p-2 rounded-lg border border-gray-200/70 bg-white transition-all ${(page + 1) * itemsPerPage >= events.length ? 'opacity-30 cursor-not-allowed' : 'hover:bg-primary hover:text-white hover:shadow-sm text-slate-600'}`}
+              >
+                <ChevronRightIcon className="w-4 h-4" />
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="space-y-4">
@@ -136,14 +189,16 @@ export function EventCalendarSection() {
                <div key={i} className="h-32 bg-slate-100 rounded-3xl animate-pulse" />
              ))
           ) : events.length > 0 ? (
-            events.map((event) => (
+            events.slice(page * itemsPerPage, (page + 1) * itemsPerPage).map((event, idx) => (
               <EventItem 
                 key={event._id}
+                id={event._id}
                 title={event.title}
                 description={event.description}
                 time={event.time}
                 venue={event.location}
                 date={event.date}
+                index={(page * itemsPerPage) + idx}
               />
             ))
           ) : (
@@ -159,29 +214,31 @@ export function EventCalendarSection() {
   );
 }
 
-function EventItem({ title, time, venue, date, description }: { title: string, time: string, venue: string, date: string, description: string }) {
+function EventItem({ id, title, time, venue, date, description, index }: { id: string, title: string, time: string, venue: string, date: string, description: string, index: number }) {
   const d = new Date(date);
   const day = d.getDate();
   const month = d.toLocaleDateString('en-US', { month: 'short',year: 'numeric' });
 
   return (
-    <div className="flex bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden group hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 transition-all">
+    <Link href={`/media-events/${id}`} className="block">
+      <div className="flex bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden group hover:border-primary/20 hover:shadow-xl hover:shadow-primary/5 transition-all">
       <div className="bg-primary px-10 flex flex-col items-center justify-center text-white min-w-[140px] transform group-hover:scale-105 transition-transform">
-        <span className="block text-4xl mb-2 font-semibold! text-white font-heading leading-none">
-          {day}
-        </span>
-        <span className="text-sm text-nowrap font-semibold! text-white capitalize tracking-widest">
-          {month}
-        </span>
+          <span className="block text-4xl mb-2 font-semibold! text-white font-heading leading-none">
+            {day}
+          </span>
+          <span className="text-sm text-nowrap font-semibold! text-white capitalize tracking-widest">
+            {month}
+          </span>
+        </div>
+        <div className="p-8 py-4 flex flex-col justify-center flex-grow">
+          <h4 className="text-xl font-bold mb-1 text-slate-900 group-hover:text-primary transition-colors tracking-tight">
+            {title}
+          </h4>
+          <p className="text-sm font-medium! text-slate-500 transition-colors tracking-tight">
+            {description}
+          </p>
+        </div>
       </div>
-      <div className="p-8 py-4 flex flex-col justify-center flex-grow">
-        <h4 className="text-xl font-bold mb-1 text-slate-900 group-hover:text-primary transition-colors tracking-tight">
-          {title}
-        </h4>
-        <p className="text-sm font-medium! text-slate-500 transition-colors tracking-tight">
-          {description}
-        </p>
-      </div>
-    </div>
+    </Link>
   );
 }
