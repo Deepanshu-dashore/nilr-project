@@ -15,7 +15,7 @@ export default function Home() {
       <CampusIntroduction />
       <NewsAnnouncements />
       <Admissions />
-      {/* <LatestHappenings /> */}
+      <LatestHappenings />
       <QuickLinks />
       <StudentTestimonials />
     </div>

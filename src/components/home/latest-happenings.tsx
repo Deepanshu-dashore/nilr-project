@@ -1,54 +1,165 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { ChevronLeftIcon, ChevronRightIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { EventCard } from "./home-ui";
+import Link from "next/link";
+
+interface EventItem {
+  _id: string;
+  title: string;
+  description: string;
+  date: string;
+  url?: string;
+}
 
 export default function LatestHappenings() {
-  return (
-    <section className="section-padding bg-bg-section">
-      <div className="container-wide">
-        <div className="mb-20">
-            <h2 className="academic-section-title">Latest Happenings</h2>
-            <p className="academic-section-subtitle">From intellectual debates to electrifying fests - there's never a dull moment on campus.</p>
+  const [items, setItems] = useState<EventItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [index, setIndex] = useState(0);
+  const [itemsToShow, setItemsToShow] = useState(3);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        // Limit 8 as requested
+        const response = await axios.get("/api/home/events?limit=8");
+        if (response.data.success) {
+          setItems(response.data.data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch happenings:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) setItemsToShow(1);
+      else if (window.innerWidth < 1024) setItemsToShow(2);
+      else setItemsToShow(3);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const next = () => {
+    if (items.length <= itemsToShow) return;
+    setIndex((prev) => (prev + 1) % (items.length - itemsToShow + 1));
+  };
+  
+  const prev = () => {
+    if (items.length <= itemsToShow) return;
+    setIndex((prev) => (prev - 1 + (items.length - itemsToShow + 1)) % (items.length - itemsToShow + 1));
+  };
+
+  const parseDate = (dateStr: string) => {
+    const d = new Date(dateStr);
+    const day = d.getDate().toString().padStart(2, '0');
+    const month = d.toLocaleDateString('en-US', { month: 'short' }).toUpperCase();
+    const year = d.getFullYear();
+    return { day, monthYear: `${month}' ${year}` };
+  };
+
+  if (isLoading) {
+    return (
+      <section className="section-padding bg-bg-section">
+        <div className="container-wide">
+          <div className="mb-20 animate-pulse">
+            <div className="h-10 bg-gray-200 rounded-lg w-64 mb-4"></div>
+            <div className="h-4 bg-gray-100 rounded w-full max-w-lg"></div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[1, 2, 3].map(i => (
+              <div key={i} className="aspect-square bg-gray-100 rounded-2xl animate-pulse"></div>
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-           <EventCard 
-             day="03" 
-             monthYear="FEB' 2026" 
-             title="22nd Bharat Asmita National Awards: Honouring India's Changemakers"
-             img="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80"
-           />
-           <EventCard 
-             day="26" 
-             monthYear="JAN' 2026" 
-             title="Honouring the Spirit of the Constitution: 77th Republic Day Celebration at MIT-WPU, Pune"
-             img="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80"
-           />
-           <EventCard 
-             day="24" 
-             monthYear="JAN' 2026" 
-             title="Global Immersion: Empowering CVRUK-NLRI Students with International Exposure"
-             img="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80"
-           />
-             <EventCard 
-               day="04" 
-               monthYear="OCT' 2026" 
-               title="Global Immersion: Empowering CVRUK-NLRI Students with International Exposure"
-               img="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80"
-             />
-           <EventCard 
-             day="10" 
-             monthYear="MAY' 2026" 
-             title="22nd Bharat Asmita National Awards: Honouring India's Changemakers"
-             img="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80"
-           />
-           <EventCard 
-             day="12" 
-             monthYear="DEC' 2026" 
-             title="Honouring the Spirit of the Constitution: 77th Republic Day Celebration at MIT-WPU, Pune"
-             img="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80"
-           />
+      </section>
+    );
+  }
+
+  if (items.length === 0) return null;
+
+  return (
+    <section className="section-padding bg-bg-section overflow-hidden">
+      <div className="container-wide">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+            <div className="max-w-2xl">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-text-dark mb-4 tracking-tight">Latest Happenings</h2>
+                <p className="text-sm md:text-base text-gray-600 font-medium leading-relaxed">From intellectual debates to electrifying fests - there's never a dull moment on campus.</p>
+            </div>
+            
+            <div className="flex items-center gap-4">
+              <button 
+                onClick={prev}
+                className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm cursor-pointer disabled:opacity-30"
+                disabled={items.length <= itemsToShow}
+              >
+                <ChevronLeftIcon className="h-5 w-5" />
+              </button>
+              <button 
+                onClick={next}
+                className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-sm cursor-pointer disabled:opacity-30"
+                disabled={items.length <= itemsToShow}
+              >
+                <ChevronRightIcon className="h-5 w-5" />
+              </button>
+            </div>
+        </div>
+
+        <div className="relative">
+          <div className="overflow-hidden">
+            <div 
+              className="flex transition-transform duration-700 ease-out gap-6"
+              style={{ transform: `translateX(-${index * (100 / itemsToShow)}%)` }}
+            >
+              {items.map((event) => {
+                const { day, monthYear } = parseDate(event.date);
+                return (
+                  <Link 
+                    href={`/media-events/${event._id}`}
+                    key={event._id} 
+                    className={`shrink-0 ${
+                      itemsToShow === 3 ? 'w-[calc(33.333%-16px)]' : 
+                      itemsToShow === 2 ? 'w-[calc(50%-12px)]' : 
+                      'w-full'
+                    }`}
+                  >
+                    <EventCard 
+                      day={day} 
+                      monthYear={monthYear} 
+                      title={event.title}
+                      desc={event.description}
+                      img={event.url || "/placeholder-event.png"} 
+                    />
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* View More Button */}
+        <div className="mt-20 flex justify-center">
+           <Link 
+            href="/media-events/events" 
+            className="group flex items-center gap-4 px-10 py-4 rounded-full text-xs font-semibold uppercase tracking-[0.1em] text-text-dark bg-primary text-white transition-all shadow-xl shadow-gray-200/50"
+           >
+             View All Happenings
+             <div className="w-6 h-6 rounded-full bg-gray-100/30 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+               <ArrowRightIcon className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+             </div>
+           </Link>
         </div>
       </div>
     </section>
   );
 }
+

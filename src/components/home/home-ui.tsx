@@ -34,26 +34,31 @@ export function NewsCard({ date, title, img, desc }: { date: string, title: stri
   );
 }
 
-export function EventCard({ day, monthYear, title, img }: { day: string, monthYear: string, title: string, img: string }) {
+export function EventCard({ day, monthYear, title, img,desc }: { day: string, monthYear: string, title: string, img: string,desc?: string }) {
   return (
     <div className="relative aspect-square overflow-hidden group cursor-pointer rounded-2xl shadow-xl">
        <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" />
        <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/20 to-transparent" />
        
        {/* Date Overlay */}
-       <div className="absolute top-8 left-8 text-white">
-          <div className="text-7xl font-light leading-none mb-1 -ml-1 flex items-start">
+       <div className="absolute top-8 left-8 text-white backdrop-blur-xs p-1 rounded-lg">
+          <div className="text-7xl font-medium! leading-none mb-1 -ml-1 flex items-start">
             {day}
           </div>
           <div className="text-[15px] font-medium uppercase tracking-[0.2em] opacity-90">{monthYear}</div>
        </div>
 
        {/* Title at Bottom */}
-       <div className="absolute bottom-0 left-0 right-0 p-8">
-          <div className="h-0.5 w-12 bg-accent mb-6 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700" />
-          <span className="text-xl md:text-xl font-normal text-white leading-tight group-hover:text-white transition-colors duration-300">
+       <div className="absolute bottom-0 left-0 right-0 p-8 transform transition-transform duration-700">
+          <span className="text-xl md:text-2xl font-bold text-white leading-tight mb-3 block">
             {title}
           </span>
+          <div className="h-0.5 w-12 bg-accent mb-4 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-700" />
+          {desc && (
+            <p className="text-sm text-gray-300 line-clamp-2 leading-relaxed  transition-opacity duration-700 delay-100">
+              {desc}
+            </p>
+          )}
        </div>
     </div>
   );
