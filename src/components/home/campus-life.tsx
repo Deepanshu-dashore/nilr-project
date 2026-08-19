@@ -119,7 +119,7 @@ export default function CampusLife() {
       <div className="container-wide relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-10">
           <div className="max-w-3xl">
-            <h2 className="academic-section-title">🌿 Life@NLRI–CVRU Campus, Ratlam</h2>
+            <h2 className="academic-section-title">Life@NLRI–CVRU Campus, Ratlam</h2>
             <p className="academic-section-subtitle">A Residential Learning Experience Rooted in the Field</p>
             <p className="academic-section-text">
               Experience a unique campus life that blends academics, field immersion, community engagement, and residential learning—designed to prepare professionals for real-world rural development challenges.

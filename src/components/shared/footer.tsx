@@ -1,3 +1,6 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Logo } from "./Logo";
@@ -6,6 +9,7 @@ import {
   PhoneIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 const footerLinks = [
   {
@@ -42,6 +46,42 @@ const footerLinks = [
 ];
 
 export default function Footer() {
+  const [siteInfo, setSiteInfo] = useState({
+    contactAddress: "Bhadwasa, Mhow-Neemuch Road, Ratlam (M.P.)",
+    contactEmail: "info@nlri-cvruk.ac.in",
+    contactPhone: "+91 91110 03000 / 07412 284300",
+    socialLinks: {
+      facebook: "#",
+      twitter: "#",
+      linkedin: "#",
+      instagram: "#",
+      youtube: "#"
+    }
+  });
+
+  useEffect(() => {
+    const fetchSiteInfo = async () => {
+      try {
+        const response = await fetch(API_ENDPOINTS.SITE_INFO.GET);
+        if (response.ok) {
+          const res = await response.json();
+          if (res.success && res.data) {
+            setSiteInfo((prev) => ({
+              ...prev,
+              contactAddress: res.data.contactAddress || prev.contactAddress,
+              contactEmail: res.data.generalEmail || res.data.contactEmail || prev.contactEmail,
+              contactPhone: res.data.helplinePhone || res.data.contactPhone || prev.contactPhone,
+              socialLinks: { ...prev.socialLinks, ...(res.data.socialLinks || {}) }
+            }));
+          }
+        }
+      } catch (err) {
+        // Fallback to initial values
+      }
+    };
+    fetchSiteInfo();
+  }, []);
+
   return (
     <footer className="bg-primary border-t border-white/20 text-white overflow-hidden relative">
 
@@ -61,19 +101,19 @@ export default function Footer() {
 
             {/* Social Icons */}
             <div className="flex gap-3 mt-auto">
-              <SocialLink href="#" label="Facebook">
+              <SocialLink href={siteInfo.socialLinks.facebook} label="Facebook">
                 <FacebookIcon />
               </SocialLink>
-              <SocialLink href="#" label="Twitter/X">
+              <SocialLink href={siteInfo.socialLinks.twitter} label="Twitter/X">
                 <TwitterIcon />
               </SocialLink>
-              <SocialLink href="#" label="LinkedIn">
+              <SocialLink href={siteInfo.socialLinks.linkedin} label="LinkedIn">
                 <LinkedInIcon />
               </SocialLink>
-              <SocialLink href="#" label="Instagram">
+              <SocialLink href={siteInfo.socialLinks.instagram} label="Instagram">
                 <InstagramIcon />
               </SocialLink>
-              <SocialLink href="#" label="YouTube">
+              <SocialLink href={siteInfo.socialLinks.youtube} label="YouTube">
                 <YouTubeIcon />
               </SocialLink>
             </div>
@@ -115,20 +155,20 @@ export default function Footer() {
               <ContactDetail 
                 icon={<MapPinIcon className="w-5 h-5"/>}
                 title="Office Location"
-                text="Bhadwasa, Mhow-Neemuch Road, Ratlam (M.P.)"
+                text={siteInfo.contactAddress}
                 href="/contact"
               />
               <ContactDetail 
                 icon={<PhoneIcon className="w-5 h-5"/>}
                 title="Admissions Helpline"
-                text="+91 91110 03000 / 07412 284300"
-                href="tel:+919111003000"
+                text={siteInfo.contactPhone}
+                href={`tel:${siteInfo.contactPhone.split('/')[0].trim()}`}
               />
               <ContactDetail 
                 icon={<EnvelopeIcon className="w-5 h-5"/>}
                 title="Official Email"
-                text="info@nlri-cvruk.ac.in"
-                href="mailto:info@nlri-cvruk.ac.in"
+                text={siteInfo.contactEmail}
+                href={`mailto:${siteInfo.contactEmail}`}
               />
             </div>
           </div>

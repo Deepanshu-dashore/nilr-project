@@ -1,13 +1,13 @@
 import { ProgramType } from "./programType.model";
 
 export class ProgramTypeService {
-    static async createProgramType(data: { name: string; description: string }) {
+    static async createProgramType(data: { name: string; description: string; order?: number }) {
         const programType = await ProgramType.create(data);
         return programType;
     }
 
     static async getAllProgramTypes() {
-        const programTypes = await ProgramType.find().sort({ name: 1 });
+        const programTypes = await ProgramType.find().sort({ order: 1, createdAt: 1 });
         return programTypes;
     }
 
@@ -16,7 +16,7 @@ export class ProgramTypeService {
         return programType;
     }
 
-    static async updateProgramType(id: string, data: Partial<{ name: string; description: string }>) {
+    static async updateProgramType(id: string, data: Partial<{ name: string; description: string; order?: number }>) {
         const programType = await ProgramType.findByIdAndUpdate(id, data, { returnDocument: 'after' });
         return programType;
     }

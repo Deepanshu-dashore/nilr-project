@@ -58,7 +58,7 @@ export const admissionsData = {
     {
       step: "Step 2",
       title: "Entrance Test / Screening",
-      description: "Shortlisted candidates may be called for an entrance test and/or personal interview."
+      description: "Shortlisted candidates may be called for an entrance test and personal interview."
     },
     {
       step: "Step 3",
@@ -86,10 +86,10 @@ export const admissionsData = {
     scholarship: "Scholarships are available based on merit and category norms."
   },
   dates: [
-    { event: "Admission Start Date", date: "15 May 2025" },
-    { event: "Last Date to Apply", date: "31 July 2025" },
-    { event: "Entrance Test (if applicable)", date: "10 August 2025" },
-    { event: "Course Commencement", date: "1 September 2025" }
+    { event: "Admission Start Date", date: "15 May 2026" },
+    { event: "Last Date to Apply", date: "31 July 2026" },
+    { event: "Entrance Test / Interview", date: "10 August 2026" },
+    { event: "Course Commencement", date: "1 September 2026" }
   ],
   contact: {
     phone: ["+91-12345-67890", "+91-12345-67890"],

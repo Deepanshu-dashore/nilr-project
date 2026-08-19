@@ -6,6 +6,7 @@ import { TrashIcon, EyeIcon, XMarkIcon, CheckCircleIcon } from "@heroicons/react
 import { DataTable, ColumnDef } from "@/src/components/shared/DataTable";
 import { PageHeader } from "@/src/components/shared/PageHeader";
 import { StatusBadge } from "@/src/components/shared/StatusBadge";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface Enquiry {
   _id: string;
@@ -29,8 +30,8 @@ export default function AdmissionPage() {
     setIsLoading(true);
     try {
       const url = tab === "all" 
-        ? "/api/enquiry?excludeSubject=Other/General Enquiry"
-        : `/api/enquiry?subject=${tab}`;
+        ? API_ENDPOINTS.ENQUIRY.GET_EXCLUDE_SUBJECT("Other/General Enquiry")
+        : API_ENDPOINTS.ENQUIRY.GET_BY_SUBJECT(tab);
         
       const response = await axios.get(url);
       if (response.data.success) {
@@ -51,7 +52,7 @@ export default function AdmissionPage() {
     if (!confirm("Are you sure you want to delete this enquiry?")) return;
     setIsDeleting(id);
     try {
-      const response = await axios.delete(`/api/enquiry/${id}`);
+      const response = await axios.delete(API_ENDPOINTS.ENQUIRY.DELETE(id));
       if (response.data.success) {
         setEnquiries((prev) => prev.filter((enq) => enq._id !== id));
       }
@@ -65,7 +66,7 @@ export default function AdmissionPage() {
 
   const handleResolveStatus = async (id: string) => {
     try {
-      const response = await axios.put(`/api/enquiry/status/${id}`);
+      const response = await axios.put(API_ENDPOINTS.ENQUIRY.UPDATE_STATUS(id));
       if (response.data.success) {
         setEnquiries((prev) => 
           prev.map((enq) => enq._id === id ? { ...enq, status: "resolved" } : enq)

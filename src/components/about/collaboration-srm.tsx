@@ -15,8 +15,8 @@ export default function CollaborationSRM() {
           <div className="w-full lg:w-1/2 relative">
              <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] w-full overflow-hidden rounded-2xl shadow-premium group">
                 <Image 
-                  src="/campus-img/campusDron-1.jpeg" 
-                  alt="University Collaboration Building" 
+                  src="/campus-img/srm-building.jpg" 
+                  alt="School of Rural Management Building" 
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-1000"
                 />

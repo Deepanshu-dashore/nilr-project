@@ -13,6 +13,7 @@ import {
   CheckCircleIcon,
 } from "@heroicons/react/24/outline";
 import { SemesterAccordion } from "@/src/components/programs/SemesterAccordion";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface ProgramStructureItem {
   sem: string;
@@ -73,8 +74,8 @@ export default function ProgramDetailPage({
     const fetchData = async () => {
       try {
         const [progRes, typesRes] = await Promise.all([
-          axios.get(`/api/program/slug/${slug}`),
-          axios.get("/api/program-type"),
+          axios.get(API_ENDPOINTS.PROGRAMS.GET_BY_SLUG(slug)),
+          axios.get(API_ENDPOINTS.PROGRAM_TYPES.GET_ALL),
         ]);
         if (progRes.data.success) setProgram(progRes.data.data);
         if (typesRes.data.success) setProgramTypes(typesRes.data.data);

@@ -77,11 +77,15 @@ export const aboutData = {
     title: "The NLRI Journey and Achievements",
     description: "Established in 2006 by Gramin Vikas Trust (GVT), the National Livelihood Resources Institute (NLRI) in Ratlam, Madhya Pradesh, has emerged as one of India’s leading institutions in the field of rural development, livelihood promotion, and skill training. From its early days as a knowledge and capacity-building hub, NLRI has grown into a nationally recognized center of excellence, now operating as the second campus of Dr. C.V. Raman University, Khandwa. Built on over 10 hectares of green, sustainable land, the campus stands as a living example of rural innovation and impact.",
     timeline: [
-      { year: "2006", event: "NLRI Ratlam established as a flagship rural development and training center of GVT" },
-      { year: "2010 onwards", event: "Implementation of large-scale watershed, livelihood, and CSR projects across MP, Gujarat, and Rajasthan" },
-      { year: "2014", event: "Launch of the AICTE-approved School of Rural Management (SRM)" },
-      { year: "2020s", event: "Expansion into seed production, organic farming, and field research" },
-      { year: "2025", event: "Official collaborating with Dr. C. V. Raman University Khandwa Madhya Pradesh, marking a new era in rural higher education" }
+      { year: "2006", event: "NLRI Ratlam established by Gramin Vikas Trust (GVT) as a national resource and capacity-building institute for rural development." },
+      { year: "2008", event: "Initiated large-scale capacity building for Panchayati Raj Institutions (PRIs), Self-Help Groups (SHGs), and grassroots development cadres." },
+      { year: "2010", event: "Implementation of major watershed development, participatory irrigation management, and corporate CSR projects across MP, Gujarat, and Rajasthan." },
+      { year: "2012", event: "Establishment of specialized GIS & Remote Sensing Laboratory for geo-spatial rural planning and natural resource management." },
+      { year: "2014", event: "Launch of the AICTE-approved School of Rural Management (SRM) offering postgraduate education in rural management." },
+      { year: "2017", event: "Expansion into seed multiplication, organic farming demonstration plots, and high-yield horticulture nurseries across 10+ hectares." },
+      { year: "2021", event: "Recognized by MANAGE Hyderabad as an official training and incubation center under the AC&ABC scheme for agri-entrepreneurs." },
+      { year: "2023", event: "Milestone achievement of conducting 1,200+ residential training programs and training over 41,000+ development professionals." },
+      { year: "2025–2026", event: "Official academic collaboration with CVRU (Dr. C. V. Raman University, Khandwa), establishing a university campus and pioneering higher education in rural management." }
     ],
     stats: [
       { value: "41,000+", label: "Individuals trained" },
@@ -115,8 +119,8 @@ export const aboutData = {
       icon: "users",
       desc: "Senior leadership driving campus management, academics, and compliance.",
       items: [
-        "Head of NLRI / In-charge Director, SRM",
-        "Deputy Head of NLRI & Institute Nodal Officer (SRM)",
+        "Head of NLRI / Director, SRM",
+        "Institute Nodal Officer (SRM)",
         "Training Director, NLRI",
         "Principal, School of Rural Management (SRM)"
       ]

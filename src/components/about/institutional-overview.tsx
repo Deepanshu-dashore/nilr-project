@@ -84,7 +84,7 @@ export default function InstitutionalOverview() {
                   Institutional Campus
                 </h3>
                 <p className="text-[10px] md:text-xs font-bold text-gray-500 uppercase tracking-widest">
-                  Lush 10-Hectare Learning Environment
+                  Lush, Green 10-Hectare Learning Environment
                 </p>
               </div>
             </div>
@@ -94,7 +94,7 @@ export default function InstitutionalOverview() {
             {/* Paragraphs */}
             <div className="space-y-6 text-base md:text-lg text-gray-700 leading-relaxed font-medium text-justify px-2 md:px-0">
               <p>
-                Located in the scenic surroundings of Bhadwasa village, Ratlam (Madhya Pradesh), the CVRU Khandwa – NLRI Campus offers a unique blend of academic excellence and hands-on rural innovation. Spread over more than <strong className="text-primary">10 hectares</strong> along the banks of the <strong className="text-primary">Maleni River</strong>, the campus stands as a model of sustainable development, combining modern education facilities with eco-friendly infrastructure.
+                Located in the scenic, lush green surroundings of Bhadwasa village, Ratlam (Madhya Pradesh), the CVRU Khandwa – NLRI Campus offers a unique blend of academic excellence and hands-on rural innovation. Spread over more than <strong className="text-primary">10 hectares of lush green landscape</strong> along the banks of the <strong className="text-primary">Maleni River</strong>, the campus stands as a model of sustainable development, combining modern education facilities with eco-friendly infrastructure.
               </p>
               <p className="hidden sm:block">
                 The campus houses the <strong className="text-primary">National Livelihood Resources Institute (NLRI)</strong> and the <strong className="text-primary">School of Rural Management (SRM)</strong>, both operated under the stewardship of Gramin Vikas Trust (GVT) — a national-level development organization with over three decades of field experience.

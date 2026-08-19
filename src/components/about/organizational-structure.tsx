@@ -37,76 +37,69 @@ export default function OrganizationalStructure() {
   return (
     <section
       id="structure"
-      className="section-padding bg-primary border-y border-white/5 relative overflow-hidden"
+      className="section-padding bg-bg-section border-y border-border-light relative overflow-hidden"
     >
-      
-      <div style={{backgroundImage:"url('/bg-svg.svg')"}} className="absolute top-0 left-0 w-full h-full opacity-5 bg-repeat-space"/>
-      {/* Subtle background texture */}
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-[0.06]"
-        style={{ backgroundImage: "url('/HeaderBg.png')" }}
-      />
-      <div className="pointer-events-none absolute -top-60 right-0 w-[700px] h-[700px] bg-accent/10 rounded-full blur-[180px] z-0" />
-      <div className="pointer-events-none absolute bottom-0 -left-40 w-[400px] h-[400px] bg-white/5 rounded-full blur-[120px] z-0" />
+      {/* Subtle background glow */}
+      <div className="pointer-events-none absolute -top-40 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px] z-0" />
+      <div className="pointer-events-none absolute bottom-0 -left-40 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px] z-0" />
 
       <div className="container-wide relative z-10">
 
         {/* ── Section Header ── */}
-        <div className="text-center mb-20 space-y-5">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-white/75 text-xs font-bold uppercase tracking-widest">
-            <BuildingOffice2Icon className="w-3.5 h-3.5" />
+        <div className="text-center mb-12 md:mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/15 text-primary text-xs font-bold uppercase tracking-widest">
+            <BuildingOffice2Icon className="w-4 h-4" />
             Organizational Framework
           </div>
-          <h2 className="academic-section-title text-white!">
-            Institutional <span className="text-accent">Ecosystem</span>
+          <h2 className="academic-section-title text-gray-900 text-3xl md:text-5xl font-extrabold tracking-tight">
+            Institutional <span className="text-primary">Ecosystem</span>
           </h2>
-          <div className="h-[3px] w-14 rounded-full bg-accent mx-auto" />
-          <p className="text-gray-300/90 text-base md:text-base leading-relaxed font-medium max-w-5xl mx-auto">
+          <div className="h-1 w-16 rounded-full bg-accent mx-auto" />
+          <p className="text-gray-600 text-sm md:text-base leading-relaxed font-medium max-w-3xl mx-auto pt-1">
             A dynamic, well-structured framework integrating leadership, academics, field research,
             and support functions to drive education, governance, and rural impact.
           </p>
         </div>
 
-        {/* ── Cards Grid ── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {/* ── Clean Cards Grid ── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {structure.map((block, index) => {
             const Icon = iconMap[block.icon] ?? ShieldCheckIcon;
-            const color = palette[index % palette.length];
 
             return (
               <div
                 key={index}
-                className={`group relative flex flex-col bg-white/10 border border-white/10 border-l-4 ${color.border} rounded-2xl overflow-hidden hover:bg-white/8 transition-all duration-300`}
+                className="group flex flex-col bg-white border border-gray-200/80 rounded-2xl p-6 shadow-xs hover:shadow-lg hover:border-primary/30 transition-all duration-300"
               >
-                {/* Card header row */}
-                <div className={`flex items-center gap-4 px-6 pt-6 pb-5 border-b border-white/8 ${color.bg}`}>
-                  <div className={`w-10 h-10 rounded-lg ${color.icon} text-white flex items-center justify-center shrink-0`}>
-                    <Icon className="w-5 h-5" />
+                {/* Header: Icon + Category */}
+                <div className="flex items-start gap-4 mb-4 pb-4 border-b border-gray-100">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white flex items-center justify-center shrink-0 transition-colors duration-300">
+                    <Icon className="w-6 h-6" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-white/70 block mb-0.5">
+                  <div className="flex-1 min-w-0 pt-0.5">
+                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest block mb-1">
                       0{index + 1}
                     </span>
-                    <h4 className="font-extrabold text-white text-[15px] leading-tight truncate">
+                    <h3 className="font-bold text-gray-900 text-base md:text-lg leading-snug">
                       {block.category}
-                    </h4>
+                    </h3>
                   </div>
                 </div>
 
-                {/* Desc */}
-                <p className="text-gray-400 text-xs font-medium leading-relaxed px-6 pt-4 pb-3">
+                {/* Description */}
+                <p className="text-gray-600 text-xs md:text-sm leading-relaxed font-medium mb-4">
                   {block.desc}
                 </p>
 
-                {/* Items */}
-                <ul className="px-6 pb-6 space-y-2.5 flex-1">
+                {/* List Items */}
+                <ul className="space-y-2.5 mt-auto pt-2">
                   {block.items.map((item, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-2.5 text-gray-300 hover:text-white transition-colors text-[13px] font-medium leading-snug group/item"
+                      className="flex items-start gap-2.5 text-gray-700 text-xs md:text-sm font-medium leading-snug"
                     >
-                      <span className="mt-[5px] w-1.5 h-1.5 rounded-full bg-accent/60 group-hover/item:bg-accent shrink-0 transition-colors" />
-                      {item}
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>

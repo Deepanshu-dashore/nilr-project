@@ -11,7 +11,9 @@ export async function GET(req: Request) {
         const data = await EventService.publicGetAllEvents({ limit, page });
         
         // Combine highlights and regular events for the home section if needed
-        const combined = [...data.highlights, ...data.regularEvents].slice(0, limit);
+        const highlights = data?.highlights || [];
+        const regularEvents = data?.regularEvents || [];
+        const combined = [...highlights, ...regularEvents].slice(0, limit);
         
         return ApiResponse(200, combined, "Home events fetched successfully");
     } catch (error: any) {

@@ -5,6 +5,7 @@ import axios from "axios";
 import { ArrowRightIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import { NewsCard } from "./home-ui";
 import Link from "next/link";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface NewsItem {
   _id: string;
@@ -14,6 +15,41 @@ interface NewsItem {
   url?: string;
   type: string;
 }
+
+const FALLBACK_IMAGES = [
+  "/home/NewsImage/news_admission.png",
+  "/home/NewsImage/news_mou.png",
+  "/home/NewsImage/news_events.png",
+  "/home/NewsImage/news_csr.png",
+  "/home/NewsImage/news_programs.png",
+];
+
+const DEFAULT_NEWS: NewsItem[] = [
+  {
+    _id: "default-news-1",
+    title: "Admissions Open 2026–28 for PGD-RM & Certificate Courses",
+    description: "Explore industry-tailored programs in Rural Management, Sustainable Agriculture, and Livelihood Development.",
+    date: new Date().toISOString(),
+    url: "/home/NewsImage/news_admission.png",
+    type: "announcement",
+  },
+  {
+    _id: "default-news-2",
+    title: "NLRI Ratlam Campus Partners with Leading Rural Enterprises",
+    description: "New partnership signed to bolster hands-on field internships and placement opportunities for students.",
+    date: new Date(Date.now() - 86400000 * 2).toISOString(),
+    url: "/home/NewsImage/news_mou.png",
+    type: "news",
+  },
+  {
+    _id: "default-news-3",
+    title: "National Conference on Good Agriculture Practices (GAP)",
+    description: "Scholars, policy makers, and community leaders gather at CVRUK-NLRI for sustainable farming dialogue.",
+    date: new Date(Date.now() - 86400000 * 5).toISOString(),
+    url: "/home/NewsImage/news_events.png",
+    type: "news",
+  },
+];
 
 export default function NewsAnnouncements() {
   const [index, setIndex] = useState(0);
@@ -27,17 +63,23 @@ export default function NewsAnnouncements() {
       try {
         setIsLoading(true);
         // Limit 8 as requested
-        const response = await axios.get("/api/home/news?limit=8");
-        if (response.data.success) {
-          const { news, announcements } = response.data.data;
+        const response = await axios.get(API_ENDPOINTS.HOME.NEWS(8), {
+          validateStatus: () => true,
+        });
+        if (response.status === 200 && response.data?.success && response.data?.data) {
+          const { news = [], announcements = [] } = response.data.data;
           // Combine and sort by date descending
-          const combined = [...news, ...announcements].sort((a, b) => 
-            new Date(b.date).getTime() - new Date(a.date).getTime()
-          );
-          setItems(combined);
+          const combined = [...(news || []), ...(announcements || [])].sort((a, b) => {
+            const dateA = a.date ? new Date(a.date).getTime() : 0;
+            const dateB = b.date ? new Date(b.date).getTime() : 0;
+            return dateB - dateA;
+          });
+          setItems(combined.length > 0 ? combined : DEFAULT_NEWS);
+        } else {
+          setItems(DEFAULT_NEWS);
         }
       } catch (error) {
-        console.error("Failed to fetch news:", error);
+        setItems(DEFAULT_NEWS);
       } finally {
         setIsLoading(false);
       }
@@ -79,6 +121,7 @@ export default function NewsAnnouncements() {
   const formatDate = (dateStr: string) => {
     if (!dateStr) return "Notification";
     const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return "Notification";
     return date.toLocaleDateString("en-US", {
       month: "long",
       year: "numeric"
@@ -150,7 +193,7 @@ export default function NewsAnnouncements() {
                      date={formatDate(item.date)} 
                      title={item.title} 
                      desc={item.description}
-                     img={item.url || "/placeholder.png"} 
+                     img={item.url && item.url.trim() !== "" ? item.url : FALLBACK_IMAGES[idx % FALLBACK_IMAGES.length]} 
                    />
                 </Link>
              ))}

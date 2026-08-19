@@ -6,6 +6,7 @@ import Header from "./header";
 import Footer from "./footer";
 import ApplyNowModal from "../modals/ApplyNowModal";
 import NavigationLinkModel from "../modals/NavigationLinkModel";
+import FloatingEnquiry from "./FloatingEnquiry";
 
 export default function MainLayoutWrapper({
   children,
@@ -26,6 +27,7 @@ export default function MainLayoutWrapper({
       <Suspense fallback={null}>
         <ApplyNowModal />
         <NavigationLinkModel />
+        {!isAuthPage && <FloatingEnquiry />}
       </Suspense>
       {!isAuthPage && <Footer />}
     </>

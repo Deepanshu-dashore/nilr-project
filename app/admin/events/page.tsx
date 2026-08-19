@@ -9,6 +9,7 @@ import { StatusBadge } from "@/src/components/shared/StatusBadge";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface Event {
   _id: string;
@@ -34,7 +35,7 @@ export default function EventsManagementPage() {
   const fetchEvents = async (type = activeTab, status = statusFilter) => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`/api/event?type=${type}&status=${status}`);
+      const response = await axios.get(API_ENDPOINTS.EVENTS.GET_ALL(type, status));
       if (response.data.success) {
         setEvents(response.data.data.items);
         setCounts(response.data.data.counts);
@@ -53,7 +54,7 @@ export default function EventsManagementPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this event?")) return;
     try {
-      const response = await axios.delete(`/api/event/${id}`);
+      const response = await axios.delete(API_ENDPOINTS.EVENTS.DELETE(id));
       if (response.data.success) {
         fetchEvents(activeTab);
       }

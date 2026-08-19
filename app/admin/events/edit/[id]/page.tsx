@@ -14,6 +14,7 @@ import {
   TagIcon
 } from "@heroicons/react/24/outline";
 import { PageHeader } from "@/src/components/shared/PageHeader";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 export default function EditEventPage() {
   const router = useRouter();
@@ -38,7 +39,7 @@ export default function EditEventPage() {
     const fetchEvent = async () => {
       if (!params.id) return;
       try {
-        const response = await axios.get(`/api/event/${params.id}`);
+        const response = await axios.get(API_ENDPOINTS.EVENTS.GET_BY_ID(params.id as string));
         if (response.data.success) {
           const event = response.data.data;
           setFormData({
@@ -97,7 +98,7 @@ export default function EditEventPage() {
         data.append("file", file);
       }
 
-      const response = await axios.put(`/api/event/${params.id}`, data, {
+      const response = await axios.put(API_ENDPOINTS.EVENTS.UPDATE(params.id as string), data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

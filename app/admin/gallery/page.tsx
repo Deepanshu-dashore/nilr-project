@@ -7,6 +7,7 @@ import { PageHeader } from "@/src/components/shared/PageHeader";
 import { DataTable, ColumnDef } from "@/src/components/shared/DataTable";
 import Image from "next/image";
 import { getUrls } from "@/app/lib/utils/geturl";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface GalleryItem {
   _id: string;
@@ -24,8 +25,8 @@ export default function GalleryPage() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [newName, setNewName] = useState("");
   const [newType, setNewType] = useState<"image" | "video">("image");
-  const [newUrl, setNewUrl] = useState("");
   const [newFile, setNewFile] = useState<File | null>(null);
+  const [newUrl, setNewUrl] = useState("");
   const [isAdding, setIsAdding] = useState(false);
 
   const [error, setError] = useState<string | null>(null);
@@ -33,7 +34,7 @@ export default function GalleryPage() {
   const fetchItems = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get("/api/gallery");
+      const res = await axios.get(API_ENDPOINTS.GALLERY.GET_ALL);
       if (res.data.success) setItems(res.data.data);
     } catch {
       setError("Failed to fetch gallery items");
@@ -64,7 +65,7 @@ export default function GalleryPage() {
         formData.append("url", newUrl.trim());
       }
 
-      const res = await axios.post("/api/gallery", formData, {
+      const res = await axios.post(API_ENDPOINTS.GALLERY.CREATE, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -82,7 +83,7 @@ export default function GalleryPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this item?")) return;
     try {
-      const res = await axios.delete(`/api/gallery/${id}`);
+      const res = await axios.delete(API_ENDPOINTS.GALLERY.DELETE(id));
       if (res.data.success) {
         setItems((prev) => prev.filter((item) => item._id !== id));
       }

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 export default function AdminRegisterPage() {
   const [name, setName] = useState("");
@@ -18,7 +19,7 @@ export default function AdminRegisterPage() {
     setError("");
 
     try {
-      const response = await fetch("/api/auth/register", {
+      const response = await fetch(API_ENDPOINTS.AUTH.REGISTER, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),

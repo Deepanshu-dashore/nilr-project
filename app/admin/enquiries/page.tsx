@@ -6,6 +6,7 @@ import { TrashIcon, EyeIcon, XMarkIcon, CheckCircleIcon } from "@heroicons/react
 import { DataTable, ColumnDef } from "@/src/components/shared/DataTable";
 import { PageHeader } from "@/src/components/shared/PageHeader";
 import { StatusBadge } from "@/src/components/shared/StatusBadge";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface Enquiry {
   _id: string;
@@ -27,7 +28,7 @@ export default function EnquiriesPage() {
   const fetchEnquiries = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`/api/enquiry?subject=Other/General Enquiry`);
+      const response = await axios.get(API_ENDPOINTS.ENQUIRY.GET_BY_SUBJECT("Other/General Enquiry"));
       if (response.data.success) {
         setEnquiries(response.data.data);
       }
@@ -47,7 +48,7 @@ export default function EnquiriesPage() {
     setIsDeleting(id);
     try {
       setEnquiries((prev) => prev.filter((enq) => enq._id !== id));
-      await axios.delete(`/api/enquiry/${id}`);
+      await axios.delete(API_ENDPOINTS.ENQUIRY.DELETE(id));
     } catch (error) {
       console.error("Failed to delete enquiry:", error);
       alert("Failed to delete enquiry");
@@ -58,7 +59,7 @@ export default function EnquiriesPage() {
 
   const handleResolveStatus = async (id: string) => {
     try {
-      const response = await axios.put(`/api/enquiry/status/${id}`);
+      const response = await axios.put(API_ENDPOINTS.ENQUIRY.UPDATE_STATUS(id));
       if (response.data.success) {
         setEnquiries((prev) => 
           prev.map((enq) => enq._id === id ? { ...enq, status: "resolved" } : enq)

@@ -23,7 +23,7 @@ export default function AdmissionsClient() {
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-linear-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 backdrop-blur-sm">
             <AcademicCapIcon className="w-4 h-4 md:w-5 md:h-5 text-indigo-400 inline-block" />
             <span className="text-xs md:text-sm font-medium bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Admissions 2025–26
+              Admissions 2026–28
             </span>
           </div>
           <h1 className="text-2xl md:text-5xl font-semibold! leading-tight text-white mb-6">
@@ -167,7 +167,7 @@ export default function AdmissionsClient() {
               },
               {
                 step: "02",
-                desc: "Appear for entrance test or personal screening / interview",
+                desc: "Appear for entrance test and personal screening / interview",
               },
               {
                 step: "03",
@@ -202,20 +202,20 @@ export default function AdmissionsClient() {
         <div className="container-wide px-12 md:px-0 max-w-6xl">
           <div className="text-center mb-10 md:mb-16">
             <h2 className="text-xl md:text-4xl academic-section-title font-bold">
-              Important Dates <span className="md:inline-block hidden">(2025–26)</span>
+              Important Dates <span className="md:inline-block hidden">(2026–28)</span>
             </h2>
             <div className="w-20 h-1 mb-2 bg-[#21325b]/20 mx-auto rounded-full" />
             <p className="academic-section-text text-sm md:text-base">
-              Key dates for the 2025–26 academic year
+              Key dates for the 2026–28 academic session
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
-              { label: "Application Opens", date: "15 May 2025", icon: ClockIcon },
-              { label: "Last Date to Apply", date: "31 July 2025", icon: CalendarIcon },
-              { label: "Entrance Test / Interview", date: "10 August 2025", icon: IdentificationIcon },
-              { label: "Admission Confirmation", date: "20 August 2025", icon: UserPlusIcon }
+              { label: "Application Opens", date: "15 May 2026", icon: ClockIcon },
+              { label: "Last Date to Apply", date: "31 July 2026", icon: CalendarIcon },
+              { label: "Entrance Test / Interview", date: "10 August 2026", icon: IdentificationIcon },
+              { label: "Admission Confirmation", date: "1 September 2026", icon: UserPlusIcon }
             ].map((item, index) => {
               const Icon = item.icon;
               return (
@@ -245,7 +245,7 @@ export default function AdmissionsClient() {
             </h2>
             <div className="w-24 h-1 bg-[#21325b]/20 mx-auto rounded-full mb-3" />
             <p className="academic-section-text text-sm md:text-base">
-              Complete details on requirements and session investment for 2025-26.
+              Complete details on requirements and session investment for 2026–28.
             </p>
           </div>
 
@@ -330,7 +330,7 @@ export default function AdmissionsClient() {
             <h2 className="text-2xl md:text-4xl academic-section-title">
               Admissions - Contact Us
             </h2>
-            <div className="w-20 h-1 bg-primary mt-4 rounded-full mx-auto md:ml-0 mb-4" />
+            <div className="w-20 h-1 bg-primary mt-4 rounded-full mx-auto lg:ml-0 mb-4" />
             <p className="academic-section-text text-sm md:text-base text-justify md:text-left">
               Have questions about the admission process, scholarships, or program details? Our team is here to help you every step of the way.
             </p>

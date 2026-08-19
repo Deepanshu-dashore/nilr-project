@@ -14,6 +14,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface Event {
   _id: string;
@@ -24,6 +25,7 @@ interface Event {
   location: string;
   type: string;
   url?: string;
+  highlight?: boolean;
 }
 
 export default function EventDetailPage() {
@@ -35,28 +37,22 @@ export default function EventDetailPage() {
   const [isShared, setIsShared] = useState(false);
 
   const handleShare = async () => {
-    const shareData = {
-      title: event?.title || "Event Details",
-      text: event?.description?.substring(0, 100) + "...",
-      url: window.location.href,
-    };
-
-    try {
-      if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-        await navigator.share(shareData);
+    if (typeof window !== "undefined") {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: event?.title || "Event Details",
+            text: event?.description?.slice(0, 100) || "",
+            url: window.location.href,
+          });
+        } catch (err) {
+          console.error("Error sharing:", err);
+        }
       } else {
-        await navigator.clipboard.writeText(window.location.href);
-        setIsShared(true);
-        setTimeout(() => setIsShared(false), 2000);
-      }
-    } catch (err) {
-      if ((err as Error).name !== 'AbortError') {
-        console.error("Error sharing:", err);
-        // Fallback to copy if share fails
         try {
           await navigator.clipboard.writeText(window.location.href);
           setIsShared(true);
-          setTimeout(() => setIsShared(false), 2000);
+          setTimeout(() => setIsShared(false), 2500);
         } catch (copyErr) {
           console.error("Failed to copy link:", copyErr);
         }
@@ -69,7 +65,7 @@ export default function EventDetailPage() {
       if (!params.id) return;
       setIsLoading(true);
       try {
-        const response = await axios.get(`/api/event/${params.id}`);
+        const response = await axios.get(API_ENDPOINTS.EVENTS.GET_BY_ID(params.id as string));
         if (response.data.success) {
           setEvent(response.data.data);
         } else {

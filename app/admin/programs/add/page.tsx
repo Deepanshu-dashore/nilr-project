@@ -22,6 +22,7 @@ import {
   PlusIcon,
   TrashIcon,
 } from "@heroicons/react/24/outline";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 type ProgramStructureRow = {
@@ -111,7 +112,7 @@ export default function AddProgramPage() {
   const [programTypes, setProgramTypes] = useState<{ _id: string; name: string }[]>([]);
 
   useEffect(() => {
-    axios.get("/api/program-type").then((res) => {
+    axios.get(API_ENDPOINTS.PROGRAM_TYPES.GET_ALL).then((res) => {
       if (res.data.success) setProgramTypes(res.data.data);
     }).catch(() => {});
   }, []);
@@ -212,7 +213,7 @@ export default function AddProgramPage() {
       if (file) data.append("feeStructureDoc", file);
       if (brochureFile) data.append("brochureDoc", brochureFile);
 
-      const response = await axios.post("/api/program", data);
+      const response = await axios.post(API_ENDPOINTS.PROGRAMS.CREATE, data);
 
       if (response.data.success) {
         setSuccess(true);

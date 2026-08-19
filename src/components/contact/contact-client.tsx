@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { contactData } from "@/src/data/contact-data";
 import { MapPinIcon, PhoneIcon, EnvelopeIcon, GlobeAltIcon, ClockIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 export default function ContactClient() {
   const { map } = contactData;
@@ -16,6 +17,44 @@ export default function ContactClient() {
   });
   const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = React.useState("");
+  const [siteInfo, setSiteInfo] = React.useState({
+    contactAddress: "CVRU Khandwa – NLRI Ratlam Campus, Near Maleni River, Village Bhadwasa, Namli, Ratlam, MP – 457222, India",
+    contactEmail: "admissions@nlri.cvruk.in",
+    generalEmail: "info@nlri-cvruk.ac.in",
+    contactPhone: "+91 91110 03000",
+    helplinePhone: "+91 91091 07361 / 07412 284300",
+    officeHours: "Monday – Saturday: 9:30 AM – 5:30 PM (Sunday: Closed)",
+    websiteUrl: "https://www.nlri.cvruk.in",
+    mapEmbedUrl: map.embedUrl,
+    socialLinks: {
+      facebook: "#",
+      twitter: "#",
+      linkedin: "#",
+      instagram: "#",
+      youtube: "#"
+    }
+  });
+
+  React.useEffect(() => {
+    const fetchSiteInfo = async () => {
+      try {
+        const response = await fetch(API_ENDPOINTS.SITE_INFO.GET);
+        if (response.ok) {
+          const res = await response.json();
+          if (res.success && res.data) {
+            setSiteInfo((prev) => ({
+              ...prev,
+              ...res.data,
+              socialLinks: { ...prev.socialLinks, ...(res.data.socialLinks || {}) }
+            }));
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching site info on contact page:", err);
+      }
+    };
+    fetchSiteInfo();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,7 +66,7 @@ export default function ContactClient() {
     setErrorMessage("");
 
     try {
-      const response = await fetch("/api/enquiry", {
+      const response = await fetch(API_ENDPOINTS.ENQUIRY.CREATE, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -66,7 +105,7 @@ export default function ContactClient() {
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-linear-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 backdrop-blur-sm">
             <GlobeAltIcon className="w-5 h-5 text-indigo-400 inline-block" />
             <span className="text-[10px] md:text-sm font-medium bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent uppercase tracking-wider">
-              Contact Us 2025–26
+              Contact Us 2026–28
             </span>
           </div>
           <h1 className="text-2xl md:text-5xl font-serif font-semibold! leading-tight text-white mb-8 px-4 md:px-0">
@@ -100,7 +139,7 @@ export default function ContactClient() {
             {/* Left Column: Google Map */}
             <div className="h-[300px] md:h-full md:min-h-[500px] rounded-2xl md:rounded-4xl overflow-hidden shadow-2xl border border-gray-100 ring-4 md:ring-8 ring-white/50 animate-in fade-in slide-in-from-left-8 duration-1000 mr-5 md:mr-0">
               <iframe
-                src={map.embedUrl}
+                src={siteInfo.mapEmbedUrl || map.embedUrl}
                 width="100%"
                 height="100%"
                 loading="lazy"
@@ -173,18 +212,6 @@ export default function ContactClient() {
                           className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-sm px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
                         />
                       </div>
-                      {/* <div className="space-y-1 md:space-y-2">
-                        <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 pl-1">Subject</label>
-                        <input
-                          type="text"
-                          name="subject"
-                          required
-                          value={formData.subject}
-                          onChange={handleChange}
-                          placeholder="Inquiry about Course"
-                          className="w-full bg-gray-50 border border-transparent border-b-gray-200 rounded-lg md:rounded-sm px-4 md:px-5 py-3 md:py-4 focus:outline-none focus:border-primary focus:bg-white focus:shadow-md transition-all font-medium text-xs md:text-sm"
-                        />
-                      </div> */}
                     </div>
 
                     <div className="space-y-1 md:space-y-2">
@@ -242,9 +269,7 @@ export default function ContactClient() {
               <div>
                 <h3 className="text-base md:text-lg font-medium text-gray-900">Campus Address</h3>
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed text-balance">
-                  CVRU Khandwa – NLRI Ratlam Campus<br />
-                  Near Maleni River, Village Bhadwasa, Namli<br />
-                  Ratlam, Madhya Pradesh – 457222, India
+                  {siteInfo.contactAddress}
                 </p>
               </div>
             </div>
@@ -257,9 +282,8 @@ export default function ContactClient() {
               <div>
                 <h3 className="text-base md:text-lg font-medium text-gray-900">Phone</h3>
                 <ul className="mt-2 space-y-1 text-sm text-gray-600">
-                  <li>General: +91-12345-67890</li>
-                  <li>Admissions: +91-12345-67890</li>
-                  <li>Reception: 070000-111111</li>
+                  <li>General: {siteInfo.contactPhone}</li>
+                  <li>Admissions: {siteInfo.helplinePhone}</li>
                 </ul>
               </div>
             </div>
@@ -272,8 +296,8 @@ export default function ContactClient() {
               <div>
                 <h3 className="text-base md:text-lg font-medium text-gray-900">Email</h3>
                 <ul className="mt-2 space-y-1 text-sm text-gray-600">
-                  <li className="break-all md:break-normal">test@nlri.com</li>
-                  <li className="break-all md:break-normal">admissions@nlri.cvruk.in</li>
+                  <li className="break-all md:break-normal">Admissions: {siteInfo.contactEmail}</li>
+                  <li className="break-all md:break-normal">General: {siteInfo.generalEmail}</li>
                 </ul>
               </div>
             </div>
@@ -285,9 +309,8 @@ export default function ContactClient() {
               </div>
               <div>
                 <h3 className="text-base md:text-lg font-medium text-gray-900">Office Hours</h3>
-                <p className="mt-2 text-sm text-gray-600">
-                  Monday – Saturday: 9:30 AM – 5:30 PM<br />
-                  Sunday: Closed
+                <p className="mt-2 text-sm text-gray-600 whitespace-pre-line">
+                  {siteInfo.officeHours}
                 </p>
               </div>
             </div>
@@ -300,10 +323,12 @@ export default function ContactClient() {
               <div>
                 <h3 className="text-base md:text-lg font-medium text-gray-900">Website</h3>
                 <a
-                  href="https://www.nlri.cvruk.in"
+                  href={siteInfo.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mt-2 inline-block text-sm text-gray-600 hover:text-primary transition"
                 >
-                  www.nlri.cvruk.in
+                  {siteInfo.websiteUrl.replace(/^https?:\/\//, '')}
                 </a>
               </div>
             </div>
@@ -312,16 +337,16 @@ export default function ContactClient() {
             <div className="flex flex-col gap-4">
               <h3 className="text-base md:text-lg font-medium text-gray-900">Connect</h3>
               <div className="flex items-center gap-6">
-                <a href="#" className="text-gray-500 hover:text-primary transition-colors">
+                <a href={siteInfo.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary transition-colors">
                   <FacebookIcon />
                 </a>
-                <a href="#" className="text-gray-500 hover:text-primary transition-colors">
+                <a href={siteInfo.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary transition-colors">
                   <LinkedInIcon />
                 </a>
-                <a href="#" className="text-gray-500 hover:text-primary transition-colors">
+                <a href={siteInfo.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary transition-colors">
                   <InstagramIcon />
                 </a>
-                <a href="#" className="text-gray-500 hover:text-primary transition-colors">
+                <a href={siteInfo.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary transition-colors">
                   <TwitterIcon />
                 </a>
               </div>

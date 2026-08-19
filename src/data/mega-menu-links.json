@@ -17,9 +17,9 @@
   {
     "title": "Specialized Units",
     "links": [
-      { "name": "ACBC (Agri-Clinics & Agri-Business)", "href": "/about#strengths" },
-      { "name": "SMU (Seed Manufacturing Unit)", "href": "/about#strengths" },
-      { "name": "Mission Happy Ratlam", "href": "/about#journey" }
+      { "name": "AC&ABC (Agri-Clinics & Agri-Business Centres)", "href": "/specialized-units/acbc" },
+      { "name": "SMU (Seed Manufacturing Unit)", "href": "/specialized-units/smu" },
+      { "name": "Mission Happy Ratlam", "href": "/specialized-units/mission-happy-ratlam" }
     ]
   },
   {

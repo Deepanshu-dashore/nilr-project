@@ -19,6 +19,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 const sidebarLinks = [
   { name: "Enquiries", href: "/admin/enquiries", icon: ({className}: {className: string}) => (<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24">
@@ -34,7 +35,7 @@ const sidebarLinks = [
   { name: "Program Types", href: "/admin/program-types", icon: ({className}: {className: string}) => (<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24"><path fill="currentColor" d="M4 6a1 1 0 1 0 0 2a1 1 0 0 0 0-2m3.5 0a1 1 0 0 0 0 2h10a1 1 0 1 0 0-2zm.1 5a1.1 1.1 0 0 0 0 2.2h5.8a1.1 1.1 0 0 0 0-2.2zm-1.1 6a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1M3 12a1 1 0 1 1 2 0a1 1 0 0 1-2 0m1 4a1 1 0 1 0 0 2a1 1 0 0 0 0-2"/><path fill="currentColor" d="M19.5 13.5a1 1 0 1 0-2 0v2.05h-2a1 1 0 1 0 0 2h2v1.95a1 1 0 1 0 2 0v-1.95h2a1 1 0 1 0 0-2h-2z" opacity="0.5"/></svg>) },
   { name: "Events", href: "/admin/events", icon: ({className}: {className: string}) => (<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 36 36"><path fill="currentColor" d="M10 10a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1" className="clr-i-solid--badged clr-i-solid-path-1--badged"></path><path fill="currentColor" d="M30 13.5A7.5 7.5 0 0 1 22.5 6H12.2v3a2.2 2.2 0 0 1-4.4 0V6h-4A1.78 1.78 0 0 0 2 7.81v22.38A1.78 1.78 0 0 0 3.75 32h28.5A1.78 1.78 0 0 0 34 30.19V12.34a7.45 7.45 0 0 1-4 1.16M10 26H8v-2h2Zm0-5H8v-2h2Zm0-5H8v-2h2Zm6 10h-2v-2h2Zm0-5h-2v-2h2Zm0-5h-2v-2h2Zm6 10h-2v-2h2Zm0-5h-2v-2h2Zm0-5h-2v-2h2Zm6 10h-2v-2h2Zm0-5h-2v-2h2Zm0-5h-2v-2h2Z" className="clr-i-solid--badged clr-i-solid-path-2--badged"></path><circle cx={30} cy={6} r={5} fill="currentColor" className="clr-i-solid--badged clr-i-solid-path-3--badged clr-i-badge"></circle><path fill="none" d="M0 0h36v36H0z"></path></svg>) },
   { name: "Gallery", href: "/admin/gallery", icon: ({className}: {className: string})=>(<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24"><path fill="currentColor" d="M19 2H5a3.01 3.01 0 0 0-3 3v8.86l3.88-3.88a3.075 3.075 0 0 1 4.24 0l2.871 2.887l.888-.888a3.01 3.01 0 0 1 4.242 0L22 15.86V5a3.01 3.01 0 0 0-3-3" opacity="0.5"/><path fill="currentColor" d="M10.12 9.98a3.075 3.075 0 0 0-4.24 0L2 13.86V19a3.01 3.01 0 0 0 3 3h14a3 3 0 0 0 2.16-.92z"/><path fill="currentColor" d="m22 15.858l-3.879-3.879a3.01 3.01 0 0 0-4.242 0l-.888.888l8.165 8.209c.542-.555.845-1.3.844-2.076z" opacity="0.25"/></svg>) },
-  { name: "Settings", href: "/admin/settings", icon: Cog6ToothIcon },
+  { name: "Site Info & Settings", href: "/admin/settings", icon: Cog6ToothIcon },
 ];
 
 export default function AdminLayout({
@@ -50,7 +51,7 @@ export default function AdminLayout({
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch("/api/auth/verify");
+        const response = await fetch(API_ENDPOINTS.AUTH.VERIFY);
         const data = await response.json();
         if (!data.success) {
           router.push("/admin-login");
@@ -165,7 +166,7 @@ export default function AdminLayout({
               <button 
                 onClick={async () => {
                   try {
-                    await fetch("/api/auth/logout", { method: "POST" });
+                    await fetch(API_ENDPOINTS.AUTH.LOGOUT, { method: "POST" });
                     router.push("/admin-login");
                   } catch (err) {
                     console.error("Logout failed:", err);

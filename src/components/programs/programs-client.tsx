@@ -12,6 +12,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 export default function ProgramsClient() {
   const router = useRouter();
@@ -24,7 +25,7 @@ export default function ProgramsClient() {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const res = await axios.get("/api/program-type");
+        const res = await axios.get(API_ENDPOINTS.PROGRAM_TYPES.GET_ALL);
         if (res.data.success) {
           setProgramTypes(res.data.data);
           
@@ -69,7 +70,7 @@ export default function ProgramsClient() {
       if (!typeObj) return;
 
       try {
-        const res = await axios.get(`/api/program/type/${typeObj._id}`);
+        const res = await axios.get(API_ENDPOINTS.PROGRAMS.GET_BY_TYPE(typeObj._id));
         if (res.data.success) {
           setPrograms(res.data.data);
         }

@@ -79,7 +79,7 @@ export default function ResearchPapers() {
                       >
                         {/* <ArrowDownTrayIcon className="w-4 h-4" /> */}
                         <span>View Paper</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 rotate-90 transition-all duration-300 group-hover:rotate-45" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M24 6v36M12 18L24 6l12 12"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 rotate-90 transition-all duration-300 group-hover:rotate-45" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M24 6v36M12 18L24 6l12 12"/></svg>
                       </a>
                     </td>
                   </tr>

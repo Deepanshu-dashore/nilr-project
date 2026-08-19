@@ -12,6 +12,6 @@ const eventSchema = new Schema({
     type :{type:String,required:true,enum:["Announcement","Event","News"]}
 });
 
-const Event = models.Event || model("Event", eventSchema);
+export const Event = models.Event || model("Event", eventSchema);
 
 export default Event;

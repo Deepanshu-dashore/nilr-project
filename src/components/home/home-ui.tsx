@@ -17,7 +17,14 @@ export function NewsCard({ date, title, img, desc }: { date: string, title: stri
   return (
     <div className="bg-white group cursor-pointer h-full flex flex-col shadow-lg hover:shadow-2xl transition-all duration-500 rounded-sm overflow-hidden">
        <div className="aspect-4/3 overflow-hidden border-b border-gray-100">
-          <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+          <img 
+            src={img || "/home/NewsImage/news_admission.png"} 
+            alt={title} 
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src = "/home/NewsImage/news_admission.png";
+            }}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
+          />
        </div>
        <div className="p-6 flex flex-col grow">
          <div className="text-[14px] font-medium text-primary mb-3">{date}</div>
@@ -37,7 +44,14 @@ export function NewsCard({ date, title, img, desc }: { date: string, title: stri
 export function EventCard({ day, monthYear, title, img,desc }: { day: string, monthYear: string, title: string, img: string,desc?: string }) {
   return (
     <div className="relative aspect-square overflow-hidden group cursor-pointer rounded-2xl shadow-xl">
-       <img src={img} alt={title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" />
+       <img 
+         src={img || "/home/NewsImage/news_events.png"} 
+         alt={title} 
+         onError={(e) => {
+           (e.currentTarget as HTMLImageElement).src = "/home/NewsImage/news_events.png";
+         }}
+         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" 
+       />
        <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/20 to-transparent" />
        
        {/* Date Overlay */}

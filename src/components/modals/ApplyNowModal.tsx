@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 const COURSES = [
   "Vocational training",
@@ -72,7 +73,7 @@ export default function ApplyNowModal() {
     setErrorMessage("");
 
     try {
-      const response = await fetch("/api/enquiry", {
+      const response = await fetch(API_ENDPOINTS.ENQUIRY.CREATE, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

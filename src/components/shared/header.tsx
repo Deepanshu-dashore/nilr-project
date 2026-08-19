@@ -113,6 +113,7 @@ const mainNavigation = [
 ];
 
 import TopBar from "./TopBar";
+import AnnouncementBar from "./AnnouncementBar";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -132,18 +133,17 @@ export default function Header() {
 
   return (
     <div className="flex flex-col">
+      {/* Top Action Bar */}
       <div className={`overflow-hidden transition-all duration-500 ease-in-out ${scrolled ? "max-h-0 opacity-0 shadow-none" : "max-h-10 opacity-100"}`}>
         <TopBar />
       </div>
       <header
-        className={`md:sticky border-t border-gray-200/80 top-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-white backdrop-blur-xl shadow-premium border-b border-border-light/50 py-2"
-            : "bg-white py-4"
+        className={`md:sticky top-0 z-50 bg-white transition-all duration-300 ${
+          scrolled ? "shadow-md" : "shadow-xs"
         }`}
       >
-      <nav className="px-4 md:px-12" aria-label="Global">
-        <div className="flex justify-between items-center h-16">
+      <nav className="px-4 md:px-12 py-2" aria-label="Global">
+        <div className="flex justify-between items-center h-14 md:h-16">
 
           {/* Logo */}
           <div className="flex md:flex-none items-center">
@@ -158,7 +158,7 @@ export default function Header() {
             {mainNavigation.map((item) => (
               <div
                 key={item.name}
-                className="relative h-full"
+                className={`relative h-full flex items-center ${activeDropdown === item.name ? "z-50" : "z-20"}`}
                 onMouseEnter={() => setActiveDropdown(item.name)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
@@ -184,9 +184,9 @@ export default function Header() {
                   )}
                 </div>
 
-                {/* Dropdown Menu - Styled better than reference */}
+                {/* Dropdown Menu */}
                 {item.submenu && activeDropdown === item.name && (
-                  <div className="absolute top-[calc(100%+2px)] left-1/2 z-20 -translate-x-1/2 w-64 bg-white/95 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-lg border border-gray-200 p-2 overflow-hidden animate-in fade-in zoom-in-95 slide-in-from-top-2 duration-200">
+                  <div className="absolute top-[calc(100%+2px)] left-1/2 z-50 -translate-x-1/2 w-64 bg-white/98 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] rounded-lg border border-gray-200 p-2 overflow-hidden animate-in fade-in zoom-in-95 slide-in-from-top-2 duration-200">
                     <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-accent/5 pointer-events-none" />
                     {item.submenu.map((sub) => (
                       <Link
@@ -218,14 +218,6 @@ export default function Header() {
           </div>
 
           {/* Call to Action */}
-          {/* <div className="hidden md:flex items-center ml-auto">
-            <Link 
-              href="/apply-now" 
-              className="bg-primary text-white xl:text-[13px] text-xs font-semibold capitalize tracking-wider xl:px-7 xl:py-3 px-5 py-2 rounded-full shadow-premium hover:bg-primary-dark transition-all duration-300 hover:shadow-[0_8px_30px_rgb(13,26,99,0.3)] active:scale-95 whitespace-nowrap"
-            >
-              Apply <span className="xl:inline hidden">Now</span>
-            </Link>
-          </div> */}
           {/* Menu Trigger CTA - Desktop */}
           <div className="hidden md:flex items-center shrink-0">
             <Link
@@ -257,7 +249,7 @@ export default function Header() {
       </nav>
 
       {/* Colorful Bottom Line */}
-      <div className="absolute bottom-0 left-0 right-0 h-[3px] w-full overflow-hidden">
+      <div className="relative h-[3px] w-full overflow-hidden">
         <Image 
           src="/header-line.png" 
           alt="" 
@@ -267,6 +259,8 @@ export default function Header() {
         />
       </div>
 
+      {/* Announcement Marquee Ticker - Directly attached below header divider */}
+      <AnnouncementBar />
       </header>
     </div>
   );

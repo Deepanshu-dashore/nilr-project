@@ -71,8 +71,7 @@ export default function SRMClient() {
                   "In-house placement opportunities – KRIBHCO, GVT, NLRI, and SRM are the part of in-house institutions.",
                   "27+ Corporate connect sessions & Master classes with companies like KRIBHCO, Amazon, Axis Bank, P&G, Pushpanjali, AKRSP, Nestle, NABARD, IPCA, KVK, The Institute of Cost Accountants of India & many more.",
                   "Along with specialization in Rural Management, SRM offers one additional major specialization in HR/Marketing/ Finance/ Business Analytics, with the first year consisting of theoretical learning and final year consisting of practical application-based 3-month internships.",
-                  "Hostel & Mess facility is available.",
-                  "SRM is now in advance stage of process of approvals to offers certificate program leading you to the Global M.B.A. programs of University of South Wales and International MBA Degree from University of New Haven (USA)"
+                  "Hostel & Mess facility is available."
                 ].map((highlight, idx) => (
                     <li key={idx} className="flex items-start gap-3 text-gray-700 leading-relaxed md:text-[17px]">
                         <span className="mt-2 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
@@ -100,7 +99,7 @@ export default function SRMClient() {
                             2 Years | AICTE Approved
                         </div>
                         <h3 className="text-xl md:text-2xl font-bold text-gray-900 leading-tight">
-                            Post Graduate Diploma Program in Rural Management (PGDM-RM)
+                            Post Graduate Diploma Program in Rural Management (PGD-RM)
                         </h3>
                         <p className="text-gray-600 font-medium text-lg leading-relaxed">
                             With Specialization in <span className="text-primary">Rural Enterprise Management & Entrepreneurship</span>
@@ -121,8 +120,8 @@ export default function SRMClient() {
                     </div>
                     
                     <div className="flex flex-col gap-4 w-full md:w-auto">
-                        <Link href="/apply-now?program=PGDM-RM" className="bg-primary text-white text-center px-10 py-4 rounded-full font-bold shadow-xl hover:bg-primary/90 hover:-translate-y-1 transition-all active:scale-95">
-                            Apply for now
+                        <Link href="/apply-now?program=PGD-RM" className="bg-primary text-white text-center px-10 py-4 rounded-full font-bold shadow-xl hover:bg-primary/90 hover:-translate-y-1 transition-all active:scale-95">
+                            Apply Now
                         </Link>
                         <p className="text-[10px] text-center text-gray-400 font-bold uppercase tracking-widest">Limited Seats Available</p>
                     </div>

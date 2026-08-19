@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { TrashIcon, EyeIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface Enquiry {
   _id: string;
@@ -22,7 +23,7 @@ export default function EnquiriesPage() {
 
   const fetchEnquiries = async () => {
     try {
-      const response = await axios.get("/api/enquiry");
+      const response = await axios.get(API_ENDPOINTS.ENQUIRY.GET_ALL);
       if (response.data.success) {
         setEnquiries(response.data.data);
       }
@@ -41,7 +42,7 @@ export default function EnquiriesPage() {
     if (!confirm("Are you sure you want to delete this enquiry?")) return;
     setIsDeleting(id);
     try {
-      const response = await axios.delete(`/api/enquiry/${id}`);
+      const response = await axios.delete(API_ENDPOINTS.ENQUIRY.DELETE(id));
       if (response.data.success) {
         setEnquiries((prev) => prev.filter((enq) => enq._id !== id));
       }

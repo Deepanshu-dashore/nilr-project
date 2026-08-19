@@ -17,6 +17,7 @@ import {
   ArrowTopRightOnSquareIcon,
   ListBulletIcon
 } from "@heroicons/react/24/outline";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 export default function ViewProgramPage() {
   const router = useRouter();
@@ -30,7 +31,7 @@ export default function ViewProgramPage() {
     const fetchProgram = async () => {
       setIsLoading(true);
       try {
-        const { data } = await axios.get(`/api/program/${programId}`);
+        const { data } = await axios.get(API_ENDPOINTS.PROGRAMS.GET_BY_ID(programId));
         if (data.success) {
           setProgram(data.data);
         } else {

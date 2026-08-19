@@ -14,6 +14,7 @@ import {
   TagIcon
 } from "@heroicons/react/24/outline";
 import { PageHeader } from "@/src/components/shared/PageHeader";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 export default function AddEventPage() {
   const router = useRouter();
@@ -71,7 +72,7 @@ export default function AddEventPage() {
       // Or if we must use the current controller, we'd have to convert to base64, 
       // but the controller expects a File-like object with .arrayBuffer()
       
-      const response = await axios.post("/api/event", data, {
+      const response = await axios.post(API_ENDPOINTS.EVENTS.CREATE, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

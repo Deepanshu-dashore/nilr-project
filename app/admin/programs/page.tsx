@@ -6,6 +6,7 @@ import { PlusIcon, TrashIcon, PencilIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { DataTable, ColumnDef } from "@/src/components/shared/DataTable";
 import { PageHeader } from "@/src/components/shared/PageHeader";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface Program {
   _id: string;
@@ -29,7 +30,7 @@ export default function ProgramsPage() {
   const fetchPrograms = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get("/api/program");
+      const response = await axios.get(API_ENDPOINTS.PROGRAMS.GET_ALL);
       const data = response.data.success ? response.data.data : response.data;
       setPrograms(Array.isArray(data) ? data : []);
     } catch (error) {
@@ -46,7 +47,7 @@ export default function ProgramsPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this program?")) return;
     try {
-      const response = await axios.delete(`/api/program/${id}`);
+      const response = await axios.delete(API_ENDPOINTS.PROGRAMS.DELETE(id));
       if (response.data.success) {
         setPrograms((prev) => prev.filter((p) => p._id !== id));
       }

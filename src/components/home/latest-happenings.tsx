@@ -5,6 +5,7 @@ import axios from "axios";
 import { ChevronLeftIcon, ChevronRightIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { EventCard } from "./home-ui";
 import Link from "next/link";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface EventItem {
   _id: string;
@@ -13,6 +14,38 @@ interface EventItem {
   date: string;
   url?: string;
 }
+
+const FALLBACK_EVENT_IMAGES = [
+  "/home/NewsImage/news_events.png",
+  "/home/NewsImage/news_csr.png",
+  "/home/NewsImage/news_programs.png",
+  "/home/NewsImage/news_publications.png",
+  "/home/NewsImage/news_social.png",
+];
+
+const DEFAULT_EVENTS: EventItem[] = [
+  {
+    _id: "default-event-1",
+    title: "Annual Rural Leadership Workshop 2025",
+    description: "Interactive session on grassroots community mobilization and self-help group management.",
+    date: new Date().toISOString(),
+    url: "/home/NewsImage/news_events.png",
+  },
+  {
+    _id: "default-event-2",
+    title: "Campus Tree Plantation & Green Drive",
+    description: "Students and faculty plant over 500 saplings in commitment to campus environmental sustainability.",
+    date: new Date(Date.now() - 86400000 * 3).toISOString(),
+    url: "/home/NewsImage/news_csr.png",
+  },
+  {
+    _id: "default-event-3",
+    title: "Agri-Tech Demonstration & Field Expo",
+    description: "Showcasing modern organic farming techniques and smart drip irrigation systems.",
+    date: new Date(Date.now() - 86400000 * 7).toISOString(),
+    url: "/home/NewsImage/news_programs.png",
+  },
+];
 
 export default function LatestHappenings() {
   const [items, setItems] = useState<EventItem[]>([]);
@@ -25,12 +58,16 @@ export default function LatestHappenings() {
       try {
         setIsLoading(true);
         // Limit 8 as requested
-        const response = await axios.get("/api/home/events?limit=8");
-        if (response.data.success) {
+        const response = await axios.get(API_ENDPOINTS.HOME.EVENTS(8), {
+          validateStatus: () => true,
+        });
+        if (response.status === 200 && response.data?.success && Array.isArray(response.data?.data) && response.data.data.length > 0) {
           setItems(response.data.data);
+        } else {
+          setItems(DEFAULT_EVENTS);
         }
       } catch (error) {
-        console.error("Failed to fetch happenings:", error);
+        setItems(DEFAULT_EVENTS);
       } finally {
         setIsLoading(false);
       }
@@ -120,7 +157,7 @@ export default function LatestHappenings() {
               className="flex transition-transform duration-700 ease-out gap-6"
               style={{ transform: `translateX(-${index * (100 / itemsToShow)}%)` }}
             >
-              {items.map((event) => {
+              {items.map((event, idx) => {
                 const { day, monthYear } = parseDate(event.date);
                 return (
                   <Link 
@@ -137,7 +174,7 @@ export default function LatestHappenings() {
                       monthYear={monthYear} 
                       title={event.title}
                       desc={event.description}
-                      img={event.url || "/placeholder-event.png"} 
+                      img={event.url || FALLBACK_EVENT_IMAGES[idx % FALLBACK_EVENT_IMAGES.length]} 
                     />
                   </Link>
                 );

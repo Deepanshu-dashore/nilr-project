@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
@@ -17,7 +18,7 @@ export default function AdminLoginPage() {
     setError("");
 
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch(API_ENDPOINTS.AUTH.LOGIN, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),

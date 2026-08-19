@@ -6,6 +6,7 @@ import Image from "next/image";
 import { PhotoIcon, VideoCameraIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { getUrls } from "@/app/lib/utils/geturl";
 import { useSearchParams } from "next/navigation";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface GalleryItem {
   _id: string;
@@ -23,7 +24,7 @@ function GalleryContent() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get("/api/gallery");
+        const res = await axios.get(API_ENDPOINTS.GALLERY.GET_ALL);
         if (res.data.success) {
           // Filter to only include images for the public gallery
           const onlyImages = res.data.data.filter((item: GalleryItem) => item.type === "image");

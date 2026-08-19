@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import Link from 'next/link';
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface Event {
   _id: string;
@@ -29,9 +30,9 @@ export function EventCalendarSection() {
     async function fetchEvents() {
       setLoading(true);
       try {
-        const res = await fetch(`/api/event/monthly?year=${year}&month=${month}`);
+        const res = await fetch(API_ENDPOINTS.EVENTS.GET_MONTHLY(year, month));
         const data = await res.json();
-        setEvents(data);
+        setEvents(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Failed to fetch events", error);
       } finally {

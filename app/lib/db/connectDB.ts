@@ -1,4 +1,16 @@
 import mongoose from "mongoose";
+import dns from "dns";
+
+const setPublicDns = () => {
+  try {
+    dns.setServers(["8.8.8.8", "8.8.4.4", "1.1.1.1"]);
+  } catch (e) {
+    // Ignore in environments where setting DNS servers is not allowed
+  }
+};
+
+// Set initially on module load
+setPublicDns();
 
 type ConnectionObject = {
   isConnected?: number;
@@ -7,10 +19,14 @@ type ConnectionObject = {
 const connection: ConnectionObject = {};
 
 export const connectDB = async (): Promise<void> => {
-    if (connection.isConnected) {
+    // Always re-apply DNS configuration before connecting to prevent ECONNREFUSED SRV lookups on Windows
+    setPublicDns();
+
+    if (connection.isConnected && mongoose.connection.readyState >= 1) {
         return;
     }
     if (mongoose.connection.readyState >= 1) {
+        connection.isConnected = mongoose.connection.readyState;
         return;
     }
     const connectionString = process.env.MONGODB_URI;
@@ -18,10 +34,13 @@ export const connectDB = async (): Promise<void> => {
         throw new Error("MongoDB URI is not defined");
     }
     try {
-        const db = await mongoose.connect(connectionString);
+        const db = await mongoose.connect(connectionString, {
+            serverSelectionTimeoutMS: 10000,
+        });
         connection.isConnected = db.connections[0].readyState;
         console.log("NLRI-Database connected");
     } catch (error) {
+        connection.isConnected = 0;
         console.error("NLRI-Database connection error:", error);
         throw error;
     }

@@ -17,6 +17,7 @@ import { useParams, useRouter } from "next/navigation";
 import { PageHeader } from "@/src/components/shared/PageHeader";
 import Image from "next/image";
 import { StatusBadge } from "@/src/components/shared/StatusBadge";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface Event {
   _id: string;
@@ -40,7 +41,7 @@ export default function AdminEventViewPage() {
     const fetchEvent = async () => {
       if (!params.id) return;
       try {
-        const response = await axios.get(`/api/event/${params.id}`);
+        const response = await axios.get(API_ENDPOINTS.EVENTS.GET_BY_ID(params.id as string));
         if (response.data.success) {
           setEvent(response.data.data);
         }

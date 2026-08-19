@@ -2,14 +2,16 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { PlusIcon, CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { PlusIcon, CheckIcon, XMarkIcon, Bars3Icon } from "@heroicons/react/24/outline";
 import { PageHeader } from "@/src/components/shared/PageHeader";
 import { DataTable, ColumnDef } from "@/src/components/shared/DataTable";
+import { API_ENDPOINTS } from "@/src/config/api.config";
 
 interface ProgramType {
   _id: string;
   name: string;
   description: string;
+  order?: number;
   createdAt: string;
 }
 
@@ -21,12 +23,14 @@ export default function ProgramTypesPage() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [newName, setNewName] = useState("");
   const [newDescription, setNewDescription] = useState("");
+  const [newOrder, setNewOrder] = useState<number>(0);
   const [isAdding, setIsAdding] = useState(false);
 
   // Edit state
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editName, setEditName] = useState("");
   const [editDescription, setEditDescription] = useState("");
+  const [editOrder, setEditOrder] = useState<number>(0);
   const [isSaving, setIsSaving] = useState(false);
 
   const [error, setError] = useState<string | null>(null);
@@ -34,8 +38,15 @@ export default function ProgramTypesPage() {
   const fetchProgramTypes = async () => {
     setIsLoading(true);
     try {
-      const res = await axios.get("/api/program-type");
-      if (res.data.success) setProgramTypes(res.data.data);
+      const res = await axios.get(API_ENDPOINTS.PROGRAM_TYPES.GET_ALL);
+      if (res.data.success) {
+        setProgramTypes(res.data.data);
+        // Automatically suggest next order index for add form
+        if (Array.isArray(res.data.data) && res.data.data.length > 0) {
+          const maxOrder = Math.max(...res.data.data.map((pt: ProgramType) => pt.order ?? 0));
+          setNewOrder(maxOrder + 1);
+        }
+      }
     } catch {
       setError("Failed to fetch program types");
     } finally {
@@ -53,14 +64,19 @@ export default function ProgramTypesPage() {
     setIsAdding(true);
     setError(null);
     try {
-      const res = await axios.post("/api/program-type", {
+      const res = await axios.post(API_ENDPOINTS.PROGRAM_TYPES.CREATE, {
         name: newName.trim(),
         description: newDescription.trim(),
+        order: Number(newOrder) || 0,
       });
       if (res.data.success) {
-        setProgramTypes((prev) => [...prev, res.data.data]);
+        setProgramTypes((prev) => {
+          const updated = [...prev, res.data.data];
+          return updated.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        });
         setNewName("");
         setNewDescription("");
+        setNewOrder((prev) => prev + 1);
         setShowAddForm(false);
       }
     } catch {
@@ -74,12 +90,14 @@ export default function ProgramTypesPage() {
     setEditingId(pt._id);
     setEditName(pt.name);
     setEditDescription(pt.description);
+    setEditOrder(pt.order ?? 0);
   };
 
   const cancelEdit = () => {
     setEditingId(null);
     setEditName("");
     setEditDescription("");
+    setEditOrder(0);
   };
 
   const handleSaveEdit = async (id: string) => {
@@ -87,14 +105,16 @@ export default function ProgramTypesPage() {
     setIsSaving(true);
     setError(null);
     try {
-      const res = await axios.put(`/api/program-type/${id}`, {
+      const res = await axios.put(API_ENDPOINTS.PROGRAM_TYPES.UPDATE(id), {
         name: editName.trim(),
         description: editDescription.trim(),
+        order: Number(editOrder) || 0,
       });
       if (res.data.success) {
-        setProgramTypes((prev) =>
-          prev.map((pt) => (pt._id === id ? res.data.data : pt))
-        );
+        setProgramTypes((prev) => {
+          const updated = prev.map((pt) => (pt._id === id ? res.data.data : pt));
+          return updated.sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        });
         cancelEdit();
       }
     } catch {
@@ -107,7 +127,7 @@ export default function ProgramTypesPage() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this program type?")) return;
     try {
-      const res = await axios.delete(`/api/program-type/${id}`);
+      const res = await axios.delete(API_ENDPOINTS.PROGRAM_TYPES.DELETE(id));
       if (res.data.success) {
         setProgramTypes((prev) => prev.filter((pt) => pt._id !== id));
       }
@@ -118,13 +138,24 @@ export default function ProgramTypesPage() {
 
   const columns: ColumnDef<ProgramType>[] = [
     {
-      key: "index",
-      label: "#",
+      key: "order",
+      label: "Order",
       type: "custom",
+      sortable: true,
       render: (row) => (
-        <span className="text-xs text-gray-400 font-medium">
-          {programTypes.findIndex(pt => pt._id === row._id) + 1}
-        </span>
+        editingId === row._id ? (
+          <input
+            type="number"
+            value={editOrder}
+            onChange={(e) => setEditOrder(parseInt(e.target.value) || 0)}
+            className="w-16 px-2 py-1 rounded-lg bg-white border border-indigo-300 text-xs font-bold text-center text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+          />
+        ) : (
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-indigo-50 border border-indigo-100 text-indigo-700 text-xs font-extrabold">
+            <Bars3Icon className="w-3.5 h-3.5 text-indigo-400" />
+            {row.order ?? 0}
+          </span>
+        )
       )
     },
     {
@@ -248,7 +279,16 @@ export default function ProgramTypesPage() {
             <PlusIcon className="w-6 h-6 text-indigo-800 bg-indigo-200 p-1 rounded-lg" />
             Add New Program Type
           </h3>
-          <form onSubmit={handleAdd} className="flex flex-col sm:flex-row gap-4 px-2">
+          <form onSubmit={handleAdd} className="flex flex-col md:flex-row gap-4 px-2">
+            <div className="w-full md:w-28">
+              <label className="text-xs font-bold text-gray-600 mb-1.5 block">Sequence Order</label>
+              <input
+                type="number"
+                value={newOrder}
+                onChange={(e) => setNewOrder(parseInt(e.target.value) || 0)}
+                className="w-full px-3.5 py-2.5 rounded-xl bg-gray-50 border border-gray-200 text-sm font-bold text-indigo-900 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition-all text-center"
+              />
+            </div>
             <div className="flex-1">
               <label className="text-xs font-bold text-gray-600 mb-1.5 block">Name <span className="text-red-500">*</span></label>
               <input

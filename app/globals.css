@@ -111,3 +111,24 @@ h6 {
 .academic-section-text {
   @apply text-sm md:text-base text-center text-gray-600 leading-relaxed max-w-5xl mx-auto block;
 }
+
+/* Infinite Announcement Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+

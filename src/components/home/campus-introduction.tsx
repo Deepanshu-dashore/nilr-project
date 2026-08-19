@@ -105,10 +105,10 @@ export default function CampusIntroduction() {
       
       <div className="container-wide relative z-10">
         <div className="mb-10 md:mb-16 text-center flex flex-col items-center">
-            <h2 className="academic-section-title text-center text-2xl md:text-3xl lg:text-4xl">🌿 Campus Introduction</h2>
+            <h2 className="academic-section-title text-center text-2xl md:text-3xl lg:text-4xl">Campus Introduction</h2>
             <div className="max-w-7xl mx-auto space-y-4 text-gray-700 text-sm md:text-base px-2">
               <p className="text-center">
-                Located in the scenic surroundings of Bhadwasa village, Ratlam (Madhya Pradesh), the CVRU Khandwa – NLRI Campus offers a unique blend of academic excellence and hands-on rural innovation. Spread over more than 10 hectares along the banks of the Maleni River, the campus stands as a model of sustainable development, combining modern education facilities with eco-friendly infrastructure.
+                Located in the scenic, lush green surroundings of Bhadwasa village, Ratlam (Madhya Pradesh), the CVRU Khandwa – NLRI Campus offers a unique blend of academic excellence and hands-on rural innovation. Spread over more than 10 hectares of lush green landscape along the banks of the Maleni River, the campus stands as a model of sustainable development, combining modern education facilities with eco-friendly infrastructure.
               </p>
               <p className="text-center hidden sm:block">
                 The campus houses the National Livelihood Resources Institute (NLRI) and the School of Rural Management (SRM), both operated under the stewardship of Gramin Vikas Trust (GVT) — a national-level development organization with over three decades of field experience.
