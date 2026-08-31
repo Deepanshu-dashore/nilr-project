@@ -62,41 +62,46 @@ export default function OrganizationalStructure() {
         </div>
 
         {/* ── Clean Cards Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {structure.map((block, index) => {
             const Icon = iconMap[block.icon] ?? ShieldCheckIcon;
 
             return (
               <div
                 key={index}
-                className="group flex flex-col bg-white border border-gray-200/80 rounded-2xl p-6 shadow-xs hover:shadow-lg hover:border-primary/30 transition-all duration-300"
+                className="group flex flex-col justify-between bg-white border border-gray-200/80 rounded-2xl p-5 sm:p-6 shadow-xs hover:shadow-xl hover:border-primary/30 transition-all duration-300 relative overflow-hidden"
               >
-                {/* Header: Icon + Category */}
-                <div className="flex items-start gap-4 mb-4 pb-4 border-b border-gray-100">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white flex items-center justify-center shrink-0 transition-colors duration-300">
-                    <Icon className="w-6 h-6" />
+                {/* Top highlight bar on hover */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-indigo-500 to-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+
+                <div>
+                  {/* Header: Icon + Category */}
+                  <div className="flex items-start gap-3.5 mb-3.5 pb-3.5 border-b border-gray-100">
+                    <div className="w-11 h-11 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white flex items-center justify-center shrink-0 transition-colors duration-300 shadow-xs">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1 min-w-0 pt-0.5">
+                      <span className="text-[10px] font-extrabold text-primary/70 uppercase tracking-widest block mb-0.5">
+                        Pillar 0{index + 1}
+                      </span>
+                      <h3 className="font-extrabold text-gray-900 text-base md:text-[17px] leading-snug">
+                        {block.category}
+                      </h3>
+                    </div>
                   </div>
-                  <div className="flex-1 min-w-0 pt-0.5">
-                    <span className="text-[11px] font-bold text-gray-400 uppercase tracking-widest block mb-1">
-                      0{index + 1}
-                    </span>
-                    <h3 className="font-bold text-gray-900 text-base md:text-lg leading-snug">
-                      {block.category}
-                    </h3>
-                  </div>
+
+                  {/* Description */}
+                  <p className="text-gray-600 text-xs sm:text-[13px] leading-relaxed font-medium mb-4">
+                    {block.desc}
+                  </p>
                 </div>
 
-                {/* Description */}
-                <p className="text-gray-600 text-xs md:text-sm leading-relaxed font-medium mb-4">
-                  {block.desc}
-                </p>
-
                 {/* List Items */}
-                <ul className="space-y-2.5 mt-auto pt-2">
+                <ul className="space-y-2 pt-3 border-t border-dashed border-gray-100 mt-2">
                   {block.items.map((item, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-2.5 text-gray-700 text-xs md:text-sm font-medium leading-snug"
+                      className="flex items-start gap-2.5 text-gray-700 text-xs sm:text-[13px] font-medium leading-snug"
                     >
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
                       <span>{item}</span>

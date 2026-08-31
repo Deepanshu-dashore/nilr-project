@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { AcademicCapIcon, GlobeAsiaAustraliaIcon } from "@heroicons/react/24/outline";
+import GeometricAccent from "@/src/components/shared/GeometricAccent";
 
 export default function PartnershipOverview() {
   const [index, setIndex] = useState(0);
@@ -111,17 +112,22 @@ export default function PartnershipOverview() {
               <div className="absolute inset-0 bg-linear-to-t from-primary/30 to-transparent" />
             </div>
             
-            <div className="w-full px-4 md:px-8 py-6 md:py-10 flex justify-end absolute bottom-0 right-0 pointer-events-none">
-              <div className="bg-white/95 border-indigo-400 border-b-[3px] rounded-lg shadow-lg p-4 text-left w-full max-w-[280px] sm:max-w-md overflow-hidden backdrop-blur-sm pointer-events-auto">
-                <div
-                  className={`transition-all duration-700 ease-in-out transform ${
-                    animate ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"
-                  }`}
-                >
-                  <h3 className="text-base md:text-lg font-bold text-[#1a237e] mb-1 md:mb-2">
-                    {content[index].title}
-                  </h3>
-                  <p className="text-xs md:text-sm text-gray-600 leading-relaxed">{content[index].desc}</p>
+            <div className="w-full px-4 md:px-6 py-6 md:py-8 flex justify-center items-end absolute bottom-0 right-0 pointer-events-none">
+              <div className="flex items-end gap-0 w-full max-w-[320px] sm:max-w-md pointer-events-auto">
+                <GeometricAccent className="h-28 mr-1 w-24 border-b-[3px] border-indigo-500" />
+                <div className="bg-white/95 border-indigo-500 border-b-[3px] shadow-2xl p-4 md:p-5 md:py-4 text-left w-full overflow-hidden backdrop-blur-md">
+                  <div
+                    className={`transition-all duration-700 ease-in-out transform ${
+                      animate ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"
+                    }`}
+                  >
+                    <h3 className="text-base md:text-lg font-bold text-[#1a237e] mb-1">
+                      {content[index].title}
+                    </h3>
+                    <p className="text-xs md:text-sm text-gray-600 leading-relaxed font-medium">
+                      {content[index].desc}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

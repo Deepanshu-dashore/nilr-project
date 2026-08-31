@@ -8,7 +8,6 @@ import {
   FolderOpenIcon,
   BeakerIcon,
   StarIcon,
-  GlobeAltIcon,
   CpuChipIcon,
 } from "@heroicons/react/24/outline";
 
@@ -70,7 +69,7 @@ function StatCard({ value, label, index }: { value: string; label: string; index
 const achievementDetails: { title: string; desc: string; icon: React.ElementType }[] = [
   {
     title: "41,000+ Individuals Trained",
-    desc: "Over 41,000 individuals have been trained through 1,200+ residential training events spanning 17 years, covering farmers, NGO workers, government functionaries, and rural entrepreneurs across India.",
+    desc: "Over 41,000 individuals have been trained through 1,200+ residential training events spanning 17 years, covering farmers, NGO workers, PRI members, and rural entrepreneurs across India.",
     icon: UserGroupIcon,
   },
   {
@@ -82,11 +81,6 @@ const achievementDetails: { title: string; desc: string; icon: React.ElementType
     title: "4,500+ Quintals Seed Distributed",
     desc: "Produced and distributed over 4,500 quintals of certified soybean seed annually under the Seed Multiplication Program, supporting hundreds of farming families in improving crop yield and income.",
     icon: BeakerIcon,
-  },
-  {
-    title: "Pan-India Training Outreach",
-    desc: "Hosted specialized training for Patwaries, Panchayati Raj Institution (PRI) members, Self Help Groups (SHGs), NGOs, and Farmer Producer Organizations (FPOs) from across the country.",
-    icon: GlobeAltIcon,
   },
   {
     title: "Pioneered Rural Development Models",

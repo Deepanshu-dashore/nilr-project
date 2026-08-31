@@ -77,15 +77,15 @@ export const aboutData = {
     title: "The NIRM Journey and Achievements",
     description: "Established in 2006 by Gramin Vikas Trust (GVT), the National Institute of Rural Management (NIRM) in Ratlam, Madhya Pradesh, has emerged as one of India’s leading institutions in the field of rural development, livelihood promotion, and skill training. From its early days as a knowledge and capacity-building hub, NIRM has grown into a nationally recognized center of excellence, now operating as the second campus of Dr. C.V. Raman University, Khandwa. Built on over 10 hectares of green, sustainable land, the campus stands as a living example of rural innovation and impact.",
     timeline: [
-      { year: "2006", event: "NIRM Ratlam established by Gramin Vikas Trust (GVT) as a national resource and capacity-building institute for rural development." },
-      { year: "2008", event: "Initiated large-scale capacity building for Panchayati Raj Institutions (PRIs), Self-Help Groups (SHGs), and grassroots development cadres." },
-      { year: "2010", event: "Implementation of major watershed development, participatory irrigation management, and corporate CSR projects across MP, Gujarat, and Rajasthan." },
-      { year: "2012", event: "Establishment of specialized GIS & Remote Sensing Laboratory for geo-spatial rural planning and natural resource management." },
-      { year: "2014", event: "Launch of the AICTE-approved School of Rural Management (SRM) offering postgraduate education in rural management." },
-      { year: "2017", event: "Expansion into seed multiplication, organic farming demonstration plots, and high-yield horticulture nurseries across 10+ hectares." },
-      { year: "2021", event: "Recognized by MANAGE Hyderabad as an official training and incubation center under the AC&ABC scheme for agri-entrepreneurs." },
-      { year: "2023", event: "Milestone achievement of conducting 1,200+ residential training programs and training over 41,000+ development professionals." },
-      { year: "2025–2026", event: "Official academic collaboration with CVRU (Dr. C. V. Raman University, Khandwa), establishing a university campus and pioneering higher education in rural management." }
+      { year: "2006", title: "Foundation by Gramin Vikas Trust", event: "NIRM Ratlam established by Gramin Vikas Trust (GVT) as a national resource and capacity-building institute for rural development." },
+      { year: "2008", title: "Grassroots PRI & SHG Capacity Building", event: "Initiated large-scale capacity building for Panchayati Raj Institutions (PRIs), Self-Help Groups (SHGs), and grassroots development cadres." },
+      { year: "2010", title: "Multi-State Watershed & CSR Projects", event: "Implementation of major watershed development, participatory irrigation management, and corporate CSR projects across MP, Gujarat, and Rajasthan." },
+      { year: "2012", title: "GIS & Remote Sensing Laboratory", event: "Establishment of specialized GIS & Remote Sensing Laboratory for geo-spatial rural planning and natural resource management." },
+      { year: "2014", title: "School of Rural Management (SRM)", event: "Launch of the AICTE-approved School of Rural Management (SRM) offering postgraduate education in rural management." },
+      { year: "2017", title: "Agro-Farms & Seed Demonstration", event: "Expansion into seed multiplication, organic farming demonstration plots, and high-yield horticulture nurseries across 10+ hectares." },
+      { year: "2021", title: "MANAGE Hyderabad Incubation Cell", event: "Recognized by MANAGE Hyderabad as an official training and incubation center under the AC&ABC scheme for agri-entrepreneurs." },
+      { year: "2023", title: "41,000+ Development Cadres Trained", event: "Milestone achievement of conducting 1,200+ residential training programs and training over 41,000+ development professionals." },
+      { year: "2025–26", title: "CVRUK University Campus Partnership", event: "Official academic collaboration with Dr. C.V. Raman University (CVRUK), establishing the university campus and pioneering higher education in rural management." }
     ],
     stats: [
       { value: "41,000+", label: "Individuals trained" },
@@ -108,69 +108,67 @@ export const aboutData = {
     {
       category: "Governing & Advisory Bodies",
       icon: "shield",
-      desc: "Strategic oversight and institutional governance at the highest level.",
+      desc: "Strategic oversight, policy guidance, and institutional governance at the apex level.",
       items: [
-        "Board of Trustees – Gramin Vikas Trust",
-        "National Advisory Committee for strategic guidance"
+        "Board of Trustees – Gramin Vikas Trust (GVT)",
+        "National Strategic Advisory Council",
+        "Academic & Governance Review Board",
+        "Statutory Compliance & Audit Committee"
       ]
     },
     {
       category: "Institutional Leadership",
       icon: "users",
-      desc: "Senior leadership driving campus management, academics, and compliance.",
+      desc: "Senior management steering campus administration, academic quality, and compliance.",
       items: [
         "Head of NIRM / Director, SRM",
         "Institute Nodal Officer (SRM)",
-        "Training Director, NIRM",
-        "Principal, School of Rural Management (SRM)"
+        "Director of Training & Livelihoods",
+        "Academic Principal & Program Deans"
       ]
     },
     {
       category: "Academic & Training Divisions",
       icon: "academic",
-      desc: "Faculty teams and guest experts delivering multi-disciplinary rural education.",
+      desc: "Multi-disciplinary faculty teams delivering specialized grassroots management education.",
       items: [
-        "Rural Development and Livelihoods",
-        "Social Work and Community Management",
-        "Agriculture and Natural Resource Management",
-        "Financial Management and Entrepreneurship",
-        "Information and Communication Technology (ICT)",
-        "Guest Faculty: NGOs, CSR leaders & Govt. advisors"
+        "Rural Management & Livelihoods Promotion",
+        "Social Work & Community Governance",
+        "Sustainable Agribusiness & Resource Management",
+        "Development Economics & Rural ICT"
       ]
     },
     {
       category: "Specialized Departments",
       icon: "beaker",
-      desc: "Technology-driven and knowledge-focused units for advanced learning.",
+      desc: "Knowledge-driven and technology-enabled infrastructure supporting advanced studies.",
       items: [
-        "Knowledge Centre and Library Unit",
-        "GIS and Remote Sensing Lab",
-        "Development Communication and Media Lab",
-        "Skill Development and Vocational Training Cell",
-        "Placement and Career Guidance Cell"
+        "Knowledge Resource Centre & Library Unit",
+        "GIS & Remote Sensing Planning Laboratory",
+        "Development Media & Virtual Studio",
+        "Placement, Training & Career Guidance Cell"
       ]
     },
     {
-      category: "Administrative & Support Units",
+      category: "Administrative & Operations",
       icon: "building",
-      desc: "Operations, finance, admissions, and campus facilities management.",
+      desc: "Institutional logistics, student services, finance, and campus facilities management.",
       items: [
-        "Accounts and Finance Department",
-        "Human Resource Management Unit",
-        "Admission and Scholarship Cell",
-        "Field Project Management Office",
-        "IT and E-learning Support Team",
-        "Campus Facilities and Hostel Management"
+        "Accounts, Finance & Budgeting Wing",
+        "Admissions, Scholarships & Student Welfare",
+        "Campus Operations & Meerashray Hostels",
+        "IT Infrastructure & Smart Campus Team"
       ]
     },
     {
-      category: "Field & Research Units",
+      category: "Field Research & Impact Units",
       icon: "globe",
-      desc: "On-ground research, consultancy, and monitoring for real-world impact.",
+      desc: "On-ground research initiatives, consultancy projects, and grassroots monitoring units.",
       items: [
-        "Seed Production and Organic Farming Cell",
-        "Research and Consultancy Division",
-        "Monitoring, Evaluation & Learning Documentation (MELD) Team"
+        "Seed Multiplication & Organic Farming Cell",
+        "Applied Research & Consultancy Division",
+        "Monitoring, Evaluation & Learning (MEL) Unit",
+        "Watershed & Village Immersion Network"
       ]
     }
   ],

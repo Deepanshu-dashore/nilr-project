@@ -2,95 +2,105 @@
 
 import React from "react";
 import Image from "next/image";
-import { aboutData } from "@/src/data/about-data";
-import { ArrowLongRightIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export default function CollaborationSRM() {
   return (
-    <section id="collaboration" className="section-padding bg-gray-100 border-y border-gray-100 overflow-hidden">
+    <section id="collaboration" className="py-16 md:py-24 bg-white border-y border-gray-100 overflow-hidden">
       <div className="container-wide">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Image with Decorative Elements */}
-          <div className="w-full lg:w-1/2 relative">
-             <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] w-full overflow-hidden rounded-2xl shadow-premium group">
-                <Image 
-                  src="/campus-img/srm-building.jpg" 
-                  alt="School of Rural Management Building" 
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-1000"
-                />
-                <div className="absolute inset-0 bg-primary/5 group-hover:bg-transparent transition-colors duration-500" />
-             </div>
-             {/* Decorative element (blue/red lines) - hidden on very small screens */}
-             <div className="absolute top-8 -right-4 hidden md:flex items-center gap-1 z-20">
-                <div className="h-1.5 w-32 md:w-44 bg-primary shadow-sm" /> 
-                <div className="h-1.5 w-10 md:w-12 bg-accent shadow-sm" /> 
-             </div>
+          {/* ── Left Column: Featured Campus & Academic Building Photo ── */}
+          <div className="lg:col-span-6 relative">
+            <div className="relative h-[320px] sm:h-[420px] md:h-[480px] lg:h-[540px] w-full overflow-hidden rounded-2xl shadow-xl group border border-gray-100 bg-gray-50">
+              <Image 
+                src="/campus-img/srm-building.jpg" 
+                alt="School of Rural Management (SRM) Academic Building" 
+                fill
+                priority
+                className="object-cover object-center group-hover:scale-105 transition-transform duration-1000"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+            </div>
           </div>
 
-          {/* Right Column: Text Content */}
-          <div className="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-left">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
-              Academics & <span className="text-primary">School of Rural Management</span>
+          {/* ── Right Column: Text & Academic Overview ── */}
+          <div className="lg:col-span-6 flex flex-col justify-center text-left">
+            {/* Dual-Tone Horizontal Accent Bar (Blue + Maroon/Red) */}
+            <div className="flex items-center gap-0 mb-6 w-fit">
+              <div className="h-[3.5px] w-24 md:w-36 bg-[#0d1a63]" />
+              <div className="h-[3.5px] w-12 md:w-16 bg-[#B34141]" />
+            </div>
+
+            {/* Section Title */}
+            <h2 className="text-2xl sm:text-3xl md:text-[2.2rem] font-bold text-gray-900 mb-5 leading-tight tracking-tight">
+              Academics &amp; School of Rural Management
             </h2>
             
-            <div className="space-y-4 md:space-y-6 text-gray-600 leading-relaxed text-sm md:text-base px-2 md:px-0">
-              <p className="font-medium">
-                {aboutData.collaboration.content}
+            {/* Rich Detailed Paragraphs */}
+            <div className="space-y-4 text-gray-600 leading-relaxed text-sm md:text-[15px] font-normal">
+              <p>
+                CVRUK–NIRM is the natural meeting ground for high-octane academic-industry partnerships. Our School of Rural Management (SRM) and strategic academic bodies are actively involved in organizing, research, training, and education activities in collaboration with leading institutions, government missions, and corporate CSR entities.
               </p>
               
-              <p className="font-medium hidden sm:block">
-                {aboutData.srm.content}
+              <p>
+                Through our diverse collaborations, we ensure that our students are exposed to national standards of education and real-life field environments. These partnerships provide our faculty and scholars with the opportunity to participate in cutting-edge grassroots research, furthering the institute’s objective of promoting indigenous rural innovation.
               </p>
 
-              {/* Added Points List - Responsive Grid */}
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mt-4">
-                 {[
-                    "University-recognized academic programs",
-                    "AICTE-approved postgraduate education",
-                    "Structured academic governance",
-                    "Quality assurance & higher education standards"
-                 ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-xs md:text-sm font-bold text-gray-700 text-left">
-                       <span className="h-2 w-2 mt-1.5 rounded-full bg-accent shrink-0" />
-                       {item}
-                    </li>
-                 ))}
-              </ul>
-              
-              {/* Preparing Impact Leaders Tags */}
-              <div className="pt-4">
-                 <h4 className="text-[10px] md:text-xs font-black uppercase tracking-widest text-gray-400 mb-4">Preparing Industry Leaders For:</h4>
-                 <div className="flex flex-wrap justify-center lg:justify-start gap-2">
-                    {[
-                       "Rural development organizations",
-                       "CSR initiatives", 
-                       "Government programs",
-                       "Development consulting"
-                    ].map((tag, i) => (
-                       <span key={i} className="px-3 py-1.5 bg-white border border-gray-200 shadow-sm text-gray-700 text-[10px] md:text-xs font-bold rounded-lg hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 cursor-default">
-                          {tag}
-                       </span>
-                    ))}
-                 </div>
-              </div>
+              {/* ── Key Academic Pillars ── */}
+              {/* <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
+                {[
+                  "University-recognized academic programs",
+                  "AICTE-approved postgraduate education",
+                  "Structured academic governance",
+                  "Quality assurance & higher education standards"
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-xs md:text-[13px] font-bold text-gray-700">
+                    <span className="h-1.5 w-1.5 mt-1.5 rounded-full bg-[#B34141] shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul> */}
 
-              <blockquote className="italic text-primary font-bold border-l-4 border-accent pl-4 mt-6 text-left bg-primary/5 py-4 pr-4 rounded-r-xl">
-                 "The curriculum emphasizes classroom learning, field immersion, internships, and applied research."
+              {/* ── Emphasis Blockquote Callout ── */}
+              <blockquote className="italic text-primary font-bold border-l-[3px] border-[#B34141] pl-4 mt-4 bg-primary/5 py-3 pr-4 rounded-r-xl text-xs sm:text-sm">
+                &ldquo;The curriculum emphasizes classroom learning, field immersion, internships, and applied research.&rdquo;
               </blockquote>
             </div>
 
-            <div className="mt-8 md:mt-12 flex flex-wrap justify-center lg:justify-start gap-6 md:gap-10">
-              <button className="group flex items-center gap-2 text-primary font-black text-xs md:text-sm tracking-widest uppercase hover:text-accent transition-colors">
-                Academics 
-                <ArrowLongRightIcon className="h-5 w-5 group-hover:translate-x-2 transition-transform" />
-              </button>
+            {/* ── Bottom Action Links with Dashed Underline ── */}
+            <div className="mt-8 pt-2 flex flex-wrap items-center gap-8 md:gap-12">
+              <Link 
+                href="/programs"
+                className="inline-flex flex-col items-start group cursor-pointer"
+              >
+                <span className="text-sm md:text-base font-bold text-[#0d1a63] group-hover:text-[#B34141] flex items-center gap-1.5 transition-colors">
+                  Academics <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <div className="w-full border-b border-dashed border-[#B34141] mt-1 group-hover:border-[#0d1a63] transition-colors" />
+              </Link>
               
-              <button className="group flex items-center gap-2 text-accent font-black text-xs md:text-sm tracking-widest uppercase hover:text-primary transition-colors">
-                Collaboration
-                <ArrowLongRightIcon className="h-5 w-5 group-hover:translate-x-2 transition-transform" />
-              </button>
+              <Link 
+                href="/programs/srm"
+                className="inline-flex flex-col items-start group cursor-pointer"
+              >
+                <span className="text-sm md:text-base font-bold text-[#0d1a63] group-hover:text-[#B34141] flex items-center gap-1.5 transition-colors">
+                  School of Rural Management <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <div className="w-full border-b border-dashed border-[#B34141] mt-1 group-hover:border-[#0d1a63] transition-colors" />
+              </Link>
+
+              <Link 
+                href="/csr-partnerships"
+                className="inline-flex flex-col items-start group cursor-pointer"
+              >
+                <span className="text-sm md:text-base font-bold text-[#0d1a63] group-hover:text-[#B34141] flex items-center gap-1.5 transition-colors">
+                  Collaboration <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <div className="w-full border-b border-dashed border-[#B34141] mt-1 group-hover:border-[#0d1a63] transition-colors" />
+              </Link>
             </div>
           </div>
 
