@@ -35,7 +35,7 @@ export default function InstitutionalGovernance() {
           </h2>
           <div className="h-[3px] w-14 rounded-full bg-secondary" />
           <p className="text-gray-500 text-base leading-relaxed font-medium text-center">
-            The CVRU Khandwa – NLRI Campus operates under the leadership of Gramin Vikas Trust (GVT) — ensuring transparent, accountable, and impact-oriented institutional governance since 1992.
+            The CVRU Khandwa – NIRM Campus operates under the leadership of Gramin Vikas Trust (GVT) — ensuring transparent, accountable, and impact-oriented institutional governance since 1992.
           </p>
         </div>
 
@@ -62,7 +62,7 @@ export default function InstitutionalGovernance() {
               </div>
               <div>
                 <h3 className="text-lg font-extrabold text-gray-900">Board Composition</h3>
-                <p className="text-xs text-gray-400 font-medium">Apex policy-making body for NLRI</p>
+                <p className="text-xs text-gray-400 font-medium">Apex policy-making body for NIRM</p>
               </div>
             </div>
 

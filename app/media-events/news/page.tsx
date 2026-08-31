@@ -4,6 +4,8 @@ import { EventService } from "@/app/lib/featuers/event/event.service";
 import Link from 'next/link';
 import { HighlightSlider } from "@/src/components/media/HighlightSlider";
 
+import Hero from "@/src/components/shared/hero";
+
 export default async function NewsPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
   const params = await searchParams;
   const page = parseInt(params.page || '1');
@@ -12,28 +14,12 @@ export default async function NewsPage({ searchParams }: { searchParams: Promise
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-text-dark relative text-white py-14 md:py-24 overflow-hidden">
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "url('/HeaderBg.png')" }}
-        />
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 -skew-x-12 translate-x-32" />
-        
-        <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-linear-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 backdrop-blur-sm">
-            <NewspaperIcon className="w-4 h-4 md:w-5 md:h-5 text-indigo-400 inline-block" />
-            <span className="text-xs md:text-sm font-medium bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent uppercase tracking-widest">
-              Press & Updates
-            </span>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold font-heading mb-8 max-w-4xl mx-auto tracking-tight">
-            News & <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Announcements</span>
-          </h1>
-          <p className="text-gray-300 max-w-2xl mx-auto text-base md:text-xl font-medium leading-relaxed">
-            Stay informed with the latest breakthroughs, policy changes, and institutional milestones shaping the future of rural leadership.
-          </p>
-        </div>
-      </section>
+      <Hero
+        tag="Press & Updates"
+        tagIcon={NewspaperIcon}
+        title="News & Announcements"
+        subtitle="Stay informed with the latest breakthroughs, policy changes, and institutional milestones shaping the future of rural leadership."
+      />
 
       <div className="max-w-7xl mx-auto px-4 w-full mt-10 pb-20 space-y-24 relative z-20">
         <div>

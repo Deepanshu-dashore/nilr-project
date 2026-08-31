@@ -108,15 +108,15 @@ export default function CampusIntroduction() {
             <h2 className="academic-section-title text-center text-2xl md:text-3xl lg:text-4xl">Campus Introduction</h2>
             <div className="max-w-7xl mx-auto space-y-4 text-gray-700 text-sm md:text-base px-2">
               <p className="text-center">
-                Located in the scenic, lush green surroundings of Bhadwasa village, Ratlam (Madhya Pradesh), the CVRU Khandwa – NLRI Campus offers a unique blend of academic excellence and hands-on rural innovation. Spread over more than 10 hectares of lush green landscape along the banks of the Maleni River, the campus stands as a model of sustainable development, combining modern education facilities with eco-friendly infrastructure.
+                Located in the scenic, lush green surroundings of Bhadwasa village, Ratlam (Madhya Pradesh), the CVRU Khandwa – NIRM Campus offers a unique blend of academic excellence and hands-on rural innovation. Spread over more than 10 hectares of lush green landscape along the banks of the Maleni River, the campus stands as a model of sustainable development, combining modern education facilities with eco-friendly infrastructure.
               </p>
               <p className="text-center hidden sm:block">
-                The campus houses the National Livelihood Resources Institute (NLRI) and the School of Rural Management (SRM), both operated under the stewardship of Gramin Vikas Trust (GVT) — a national-level development organization with over three decades of field experience.
+                The campus houses the National Institute of Rural Management (NIRM) and the School of Rural Management (SRM), both operated under the stewardship of Gramin Vikas Trust (GVT) — a national-level development organization with over three decades of field experience.
               </p>
               <p className="text-center">
                 Designed by experts from the Delhi School of Planning and Architecture, the earthquake-resistant structures, green landscapes, and water conservation systems make the campus a practical learning ground for rural development.
               </p>
-              <h3 className="text-lg md:text-2xl font-bold mt-6 text-primary">Key features of the CVRUK-NLRI Campus include:</h3>
+              <h3 className="text-lg md:text-2xl font-bold mt-6 text-primary">Key features of the CVRUK-NIRM Campus include:</h3>
             </div>
         </div>
 
@@ -195,7 +195,7 @@ export default function CampusIntroduction() {
         {/* Closing Paragraph */}
         <div className="mt-20 max-w-7xl mx-auto border-l-4 border-accent pl-6 py-4 bg-accent/5 rounded-r-2xl animate-in fade-in slide-in-from-bottom-4 duration-1000">
           <p className="text-sm md:text-base text-text-dark font-medium leading-relaxed italic">
-            "The CVRUK-NLRI campus is not just a place for education — it’s a living ecosystem where theory meets practice, and where students, researchers, and rural communities collaborate to create lasting impact."
+            "The CVRUK-NIRM campus is not just a place for education — it’s a living ecosystem where theory meets practice, and where students, researchers, and rural communities collaborate to create lasting impact."
           </p>
         </div>
       </div>

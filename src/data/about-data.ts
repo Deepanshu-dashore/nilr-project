@@ -1,8 +1,8 @@
 export const aboutData = {
   intro: {
     title: "About the Institution",
-    subtitle: "The National Livelihood Resources Institute (NLRI), Ratlam",
-    content: "The National Livelihood Resources Institute (NLRI), Ratlam, managed by the Gramin Vikas Trust (GVT), is a nationally recognized institution dedicated to rural development, livelihood enhancement, skill training, and sustainable agriculture.\n\nIn academic collaboration with Dr. C. V. Raman University (CVRU), Khandwa, NLRI functions as a center for education, research, training, and field-based learning, with a strong focus on participatory and community-driven development approaches.",
+    subtitle: "The National Institute of Rural Management (NIRM), Ratlam",
+    content: "The National Institute of Rural Management (NIRM), Ratlam, managed by the Gramin Vikas Trust (GVT), is a nationally recognized institution dedicated to rural development, livelihood enhancement, skill training, and sustainable agriculture.\n\nIn academic collaboration with Dr. C. V. Raman University (CVRU), Khandwa, NIRM functions as a center for education, research, training, and field-based learning, with a strong focus on participatory and community-driven development approaches.",
     highlights: [
       "Education, Research & Training Hub",
       "Participatory & Community-Driven Focus",
@@ -12,7 +12,7 @@ export const aboutData = {
   
   legacy: {
     title: "Institutional Legacy & Background",
-    content: "NLRI has evolved as a resource and capacity-building institution supporting development initiatives across India. Backed by the long-standing experience of Gramin Vikas Trust (GVT), the institute has worked extensively in bridging theory with real-world rural challenges.",
+    content: "NIRM has evolved as a resource and capacity-building institution supporting development initiatives across India. Backed by the long-standing experience of Gramin Vikas Trust (GVT), the institute has worked extensively in bridging theory with real-world rural challenges.",
     focusAreas: [
       "Natural Resource Management",
       "Watershed Development",
@@ -33,7 +33,7 @@ export const aboutData = {
   },
   collaboration: {
     title: "Academic Collaboration with CVRU",
-    content: "The CVRU–NLRI campus operates under academic affiliation with Dr. C. V. Raman University, Khandwa, ensuring high standards of higher education.",
+    content: "The CVRU–NIRM campus operates under academic affiliation with Dr. C. V. Raman University, Khandwa, ensuring high standards of higher education.",
     features: [
       "University-recognized academic programs",
       "AICTE-approved postgraduate education through SRM",
@@ -43,7 +43,7 @@ export const aboutData = {
   },
   srm: {
     title: "School of Rural Management (SRM)",
-    content: "The School of Rural Management (SRM) is a flagship academic unit at the NLRI campus. It offers the AICTE-approved Post Graduate Diploma in Rural Management (PGD-RM).",
+    content: "The School of Rural Management (SRM) is a flagship academic unit at the NIRM campus. It offers the AICTE-approved Post Graduate Diploma in Rural Management (PGD-RM).",
     careerPaths: [
       "Rural development organizations",
       "CSR initiatives",
@@ -54,7 +54,7 @@ export const aboutData = {
   },
   campus: {
     title: "Campus & Learning Environment",
-    content: "The NLRI–CVRU campus is spread across over 10 hectares in Ratlam, providing a fully residential and learning-focused environment designed for discipline and immersive learning.",
+    content: "The NIRM–CVRU campus is spread across over 10 hectares in Ratlam, providing a fully residential and learning-focused environment designed for discipline and immersive learning.",
     features: [
       "Academic and training blocks",
       "GIS and Computer Laboratories",
@@ -65,7 +65,7 @@ export const aboutData = {
   },
   approach: {
     title: "Approach to Learning & Development",
-    content: "NLRI follows a participatory and experiential learning approach, ensuring learners gain practical exposure and professional competence.",
+    content: "NIRM follows a participatory and experiential learning approach, ensuring learners gain practical exposure and professional competence.",
     methods: [
       "Classroom instruction",
       "Field immersion and community engagement",
@@ -74,10 +74,10 @@ export const aboutData = {
     ]
   },
   journey: {
-    title: "The NLRI Journey and Achievements",
-    description: "Established in 2006 by Gramin Vikas Trust (GVT), the National Livelihood Resources Institute (NLRI) in Ratlam, Madhya Pradesh, has emerged as one of India’s leading institutions in the field of rural development, livelihood promotion, and skill training. From its early days as a knowledge and capacity-building hub, NLRI has grown into a nationally recognized center of excellence, now operating as the second campus of Dr. C.V. Raman University, Khandwa. Built on over 10 hectares of green, sustainable land, the campus stands as a living example of rural innovation and impact.",
+    title: "The NIRM Journey and Achievements",
+    description: "Established in 2006 by Gramin Vikas Trust (GVT), the National Institute of Rural Management (NIRM) in Ratlam, Madhya Pradesh, has emerged as one of India’s leading institutions in the field of rural development, livelihood promotion, and skill training. From its early days as a knowledge and capacity-building hub, NIRM has grown into a nationally recognized center of excellence, now operating as the second campus of Dr. C.V. Raman University, Khandwa. Built on over 10 hectares of green, sustainable land, the campus stands as a living example of rural innovation and impact.",
     timeline: [
-      { year: "2006", event: "NLRI Ratlam established by Gramin Vikas Trust (GVT) as a national resource and capacity-building institute for rural development." },
+      { year: "2006", event: "NIRM Ratlam established by Gramin Vikas Trust (GVT) as a national resource and capacity-building institute for rural development." },
       { year: "2008", event: "Initiated large-scale capacity building for Panchayati Raj Institutions (PRIs), Self-Help Groups (SHGs), and grassroots development cadres." },
       { year: "2010", event: "Implementation of major watershed development, participatory irrigation management, and corporate CSR projects across MP, Gujarat, and Rajasthan." },
       { year: "2012", event: "Establishment of specialized GIS & Remote Sensing Laboratory for geo-spatial rural planning and natural resource management." },
@@ -119,9 +119,9 @@ export const aboutData = {
       icon: "users",
       desc: "Senior leadership driving campus management, academics, and compliance.",
       items: [
-        "Head of NLRI / Director, SRM",
+        "Head of NIRM / Director, SRM",
         "Institute Nodal Officer (SRM)",
-        "Training Director, NLRI",
+        "Training Director, NIRM",
         "Principal, School of Rural Management (SRM)"
       ]
     },
@@ -196,5 +196,5 @@ export const aboutData = {
     "National-level training experience",
     "Residential campus supporting immersive education"
   ],
-  closing: "NLRI remains committed to strengthening rural livelihoods, promoting sustainable natural resource management, and building skilled professionals for the development sector."
+  closing: "NIRM remains committed to strengthening rural livelihoods, promoting sustainable natural resource management, and building skilled professionals for the development sector."
 };

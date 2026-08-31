@@ -8,34 +8,19 @@ import {
   GlobeAltIcon
 } from "@heroicons/react/24/outline";
 
+import Hero from "@/src/components/shared/hero";
+
 export default function SRMClient() {
 
   return (
     <div className="flex flex-col bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="bg-text-dark relative text-white py-14 md:py-24 overflow-hidden">
-        {/* Subtle background element */}
-        <div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-        style={{ 
-          backgroundImage: "url('/HeaderBg.png')",
-        }}
-        />
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 -skew-x-12 translate-x-32" />
-        <div className="container-wide pl-5 md:pl-0 text-center max-w-4xl relative z-10">
-        <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-linear-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 backdrop-blur-sm">
-            <AcademicCapIcon className="w-4 h-4 md:w-5 md:h-5 text-indigo-400 inline-block" />
-            <span className="text-xs md:text-sm font-medium bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              School of Rural Management
-            </span>
-          </div>
-          <h1 className="text-2xl md:text-4xl lg:text-5xl font-semibold! leading-tight text-white mb-6">
-            School of Rural Management (SRM)
-          </h1>
-          <p className="max-w-3xl mx-auto pr-5 md:pr-0 text-sm md:text-lg text-gray-300 leading-relaxed text-justify md:text-center">
-            Established in 2014 | AICTE & MoHRD Recognized  </p>
-        </div>
-      </section>
+      <Hero
+        tag="School of Rural Management"
+        tagIcon={AcademicCapIcon}
+        title="School of Rural Management (SRM)"
+        subtitle="Established in 2014 | AICTE & MoHRD Recognized"
+      />
 
       {/* About Section */}
       <section className="py-16 md:py-24 bg-white">
@@ -68,7 +53,7 @@ export default function SRMClient() {
 
             <ul className="space-y-6">
                 {[
-                  "In-house placement opportunities – KRIBHCO, GVT, NLRI, and SRM are the part of in-house institutions.",
+                  "In-house placement opportunities – KRIBHCO, GVT, NIRM, and SRM are the part of in-house institutions.",
                   "27+ Corporate connect sessions & Master classes with companies like KRIBHCO, Amazon, Axis Bank, P&G, Pushpanjali, AKRSP, Nestle, NABARD, IPCA, KVK, The Institute of Cost Accountants of India & many more.",
                   "Along with specialization in Rural Management, SRM offers one additional major specialization in HR/Marketing/ Finance/ Business Analytics, with the first year consisting of theoretical learning and final year consisting of practical application-based 3-month internships.",
                   "Hostel & Mess facility is available."

@@ -7,8 +7,8 @@ import { specializedUnitsData } from "@/src/data/specialized-units-data";
 import { BuildingLibraryIcon, ArrowRightIcon, SparklesIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 
 export const metadata = {
-  title: "Specialized Units | NLRI Ratlam – CVRU Khandwa Campus",
-  description: "Explore NLRI Ratlam's specialized operational units: AC&ABC (Agri-Clinics & Agri-Business Centres), SMU (Seed Manufacturing Unit), and Mission Happy Ratlam.",
+  title: "Specialized Units | NIRM Ratlam – CVRU Khandwa Campus",
+  description: "Explore NIRM Ratlam's specialized operational units: AC&ABC (Agri-Clinics & Agri-Business Centres), SMU (Seed Manufacturing Unit), and Mission Happy Ratlam.",
 };
 
 export default function SpecializedUnitsHubPage() {
@@ -36,7 +36,7 @@ export default function SpecializedUnitsHubPage() {
             Driving Innovation, Livelihoods & Community Well-being
           </h2>
           <p className="text-gray-600 text-xs md:text-base font-medium leading-relaxed">
-            NLRI Ratlam operates three dedicated specialized units designed to deliver targeted impact—from training certified agripreneurs under Ministry of Agriculture guidelines to producing 4,500+ quintals of seeds annually and empowering model villages.
+            NIRM Ratlam operates three dedicated specialized units designed to deliver targeted impact—from training certified agripreneurs under Ministry of Agriculture guidelines to producing 4,500+ quintals of seeds annually and empowering model villages.
           </p>
         </div>
 
@@ -109,8 +109,8 @@ export default function SpecializedUnitsHubPage() {
 
       {/* Shared Unified CTA Banner */}
       <SharedCtaBanner
-        title="Collaborate with NLRI Specialized Units"
-        subtitle="Whether you are an aspiring agripreneur, progressive farmer, research institution, or development partner, connect with our team at NLRI Ratlam Campus."
+        title="Collaborate with NIRM Specialized Units"
+        subtitle="Whether you are an aspiring agripreneur, progressive farmer, research institution, or development partner, connect with our team at NIRM Ratlam Campus."
         primaryBtnText="Contact Nodal Desk"
         primaryBtnHref="/contact"
         secondaryBtnText="Explore Campus Infrastructure"

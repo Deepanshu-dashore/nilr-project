@@ -4,7 +4,7 @@ import { DocumentTextIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | CVRU Khandwa - NLRI Campus",
+  title: "Privacy Policy | CVRU Khandwa - NIRM Campus",
   description: "Privacy Policy for Dr. C. V. Raman University, Khandwa.",
 };
 
@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
     <main className="bg-gray-50 min-h-screen">
       <Hero
         title="Privacy Policy"
-        subtitle="Understand how we collect, use, and protect your information at CVRUK-NLRI Campus."
+        subtitle="Understand how we collect, use, and protect your information at CVRUK-NIRM Campus."
         tag="Policies"
         className="py-16 md:py-18"
         tagIcon={DocumentTextIcon}
@@ -38,7 +38,7 @@ export default function PrivacyPolicy() {
 
           <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
             <p className="leading-relaxed">
-              Thank you for visiting the official web portal of <strong>Dr. C. V. Raman University, Khandwa (CVRUK)</strong> and the <strong>National Livelihood Resources Institute (NLRI), Ratlam Campus</strong>, managed under the stewardship of the <strong>Gramin Vikas Trust (GVT)</strong>.
+              Thank you for visiting the official web portal of <strong>Dr. C. V. Raman University, Khandwa (CVRUK)</strong> and the <strong>National Institute of Rural Management (NIRM), Ratlam Campus</strong>, managed under the stewardship of the <strong>Gramin Vikas Trust (GVT)</strong>.
             </p>
             <p className="leading-relaxed">
               We highly value your privacy. As per our core institutional policy, we do not collect personal information about you unless you voluntarily choose to provide that information to us (e.g., through inquiry forms, admission portals, or email communications). We do not give, share, sell, or transfer any personal information to a third party.
@@ -65,14 +65,14 @@ export default function PrivacyPolicy() {
               <li className="leading-relaxed">The address of the previous website you were visiting, if you linked to us directly from another domain.</li>
             </ul>
             <p className="leading-relaxed">
-              We exclusively use this information for statistical analysis—to measure site traffic to different sections of our portal and to help us make the CVRUK-NLRI site more useful for prospective students, researchers, and visitors. This tracking system strictly <strong>does not</strong> record information about identifiable individuals.
+              We exclusively use this information for statistical analysis—to measure site traffic to different sections of our portal and to help us make the CVRUK-NIRM site more useful for prospective students, researchers, and visitors. This tracking system strictly <strong>does not</strong> record information about identifiable individuals.
             </p>
 
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mt-10 mb-4 border-l-4 border-primary pl-4">
               Use of Cookies
             </h2>
             <p className="leading-relaxed">
-              On certain CVRUK-NLRI web pages, we may use &quot;cookies&quot; to help you use our website interactively. A cookie is a minuscule text file that a website transfers to your computer&apos;s hard disk, generally to keep track of your session while you are connected to an admission or portal function. You may configure your browser to reject cookies, though some interactive features may not function precisely as intended.
+              On certain CVRUK-NIRM web pages, we may use &quot;cookies&quot; to help you use our website interactively. A cookie is a minuscule text file that a website transfers to your computer&apos;s hard disk, generally to keep track of your session while you are connected to an admission or portal function. You may configure your browser to reject cookies, though some interactive features may not function precisely as intended.
             </p>
 
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mt-10 mb-4 border-l-4 border-primary pl-4">

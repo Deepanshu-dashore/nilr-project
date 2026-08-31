@@ -214,7 +214,7 @@ export default function ApplyNowModal() {
                   className="mt-1"
                 />
                 <label htmlFor="agree" className="text-[10px] text-gray-500 leading-tight">
-                  I agree to receive information regarding my submitted enquiry by signing up on CVRU Khandwa - NLRI RATLAM *
+                  I agree to receive information regarding my submitted enquiry by signing up on CVRU Khandwa - NIRM RATLAM *
                 </label>
               </div>
 

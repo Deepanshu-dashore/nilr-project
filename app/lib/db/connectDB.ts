@@ -38,10 +38,10 @@ export const connectDB = async (): Promise<void> => {
             serverSelectionTimeoutMS: 10000,
         });
         connection.isConnected = db.connections[0].readyState;
-        console.log("NLRI-Database connected");
+        console.log("NIRM-Database connected");
     } catch (error) {
         connection.isConnected = 0;
-        console.error("NLRI-Database connection error:", error);
+        console.error("NIRM-Database connection error:", error);
         throw error;
     }
 }

@@ -1,19 +1,17 @@
 import { RocketLaunchIcon, SparklesIcon, UserGroupIcon, TrophyIcon, LightBulbIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import Hero from "@/src/components/shared/hero";
 
 export default function InnovationPage() {
   return (
     <div className="flex flex-col">
       {/* 1. Innovation Overview */}
-      <section className="bg-text-main text-white py-24 px-4 relative overflow-hidden">
-        <div className="container-wide relative z-10 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold font-heading mb-6 tracking-tight">Innovation & Entrepreneurship</h1>
-          <p className="text-gray-400 max-w-3xl mx-auto text-lg md:text-xl font-light leading-relaxed">
-            Fostering a culture of creativity and social entrepreneurship to drive sustainable rural transformation.
-          </p>
-        </div>
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -mr-48 -mt-48" />
-      </section>
+      <Hero
+        tag="INCUBATION & STARTUPS"
+        tagIcon={RocketLaunchIcon}
+        title="Innovation & Entrepreneurship"
+        subtitle="Fostering a culture of creativity and social entrepreneurship to drive sustainable rural transformation."
+      />
 
       {/* 2. Incubation Center */}
       <section id="incubation" className="section-padding bg-white">

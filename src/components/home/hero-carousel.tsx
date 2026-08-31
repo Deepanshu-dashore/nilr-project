@@ -39,7 +39,7 @@ const slides = [
     color: "from-red-900/60 to-red-600/30",
   },
   {
-    image: "/campus-img/last.jpg",
+    image: "/campus-img/last.png",
     title: "",
     subtitle: "",
     stat: "",

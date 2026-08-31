@@ -57,7 +57,7 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
     tag: "MANAGE AUTHORIZED NODAL TRAINING INSTITUTE",
     tagline: "Empowering Agri-Graduates to Become Self-Reliant Agripreneurs & Rural Extension Leaders",
     heroDescription:
-      "NLRI Ratlam is an officially designated Nodal Training Institute (NTI) under the AC&ABC scheme by MANAGE Hyderabad (Ministry of Agriculture & Farmers Welfare, Govt. of India). We deliver 45 days of residential training and financial linkage mentorship for establishing viable agri-ventures.",
+      "NIRM Ratlam is an officially designated Nodal Training Institute (NTI) under the AC&ABC scheme by MANAGE Hyderabad (Ministry of Agriculture & Farmers Welfare, Govt. of India). We deliver 45 days of residential training and financial linkage mentorship for establishing viable agri-ventures.",
     heroImage: "https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1600&q=80",
     affiliation: "Implemented by MANAGE Hyderabad | Supported by Ministry of Agriculture & Farmers Welfare & NABARD",
     stats: [
@@ -71,7 +71,7 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
       paragraph1:
         "The Agri-Clinics & Agri-Business Centres (AC&ABC) scheme was launched by the Ministry of Agriculture & Farmers Welfare, Government of India, in association with MANAGE Hyderabad and NABARD. It aims to supplement public extension services while generating sustainable self-employment opportunities for agriculture graduates.",
       paragraph2:
-        "As a recognized Nodal Training Institute (NTI), NLRI Ratlam provides 45 days of intensive residential training covering market identification, business plan formulation, managerial skills, banking norms, and field exposures. Graduates gain eligibility to access bank loans with attractive NABARD subsidy components.",
+        "As a recognized Nodal Training Institute (NTI), NIRM Ratlam provides 45 days of intensive residential training covering market identification, business plan formulation, managerial skills, banking norms, and field exposures. Graduates gain eligibility to access bank loans with attractive NABARD subsidy components.",
       keyPoints: [
         "Government-backed 45-day residential training with free boarding & lodging facilities",
         "Comprehensive guidance on project report preparation and bank loan approvals",
@@ -135,7 +135,7 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
       ],
     },
     benefits: {
-      title: "Why Choose AC&ABC Training at NLRI Ratlam?",
+      title: "Why Choose AC&ABC Training at NIRM Ratlam?",
       items: [
         {
           title: "MANAGE Certification",
@@ -156,9 +156,9 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
       ],
     },
     contactInfo: {
-      email: "acbc@nlri.edu.in",
+      email: "acbc@nirm.edu.in",
       phone: "+91 94251 00000",
-      location: "AC&ABC Nodal Cell, NLRI Campus, Bhadwasa, Ratlam (M.P.)",
+      location: "AC&ABC Nodal Cell, NIRM Campus, Bhadwasa, Ratlam (M.P.)",
     },
   },
 
@@ -170,7 +170,7 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
     tag: "QUALITY SEED & PRODUCTION CELL",
     tagline: "Enhancing Agricultural Yield Through Superior Certified Seeds & Sustainable Seed Systems",
     heroDescription:
-      "The Seed Manufacturing & Multiplication Unit (SMU) at NLRI Ratlam produces and distributes over 4,500 quintals of high-yield certified soybean and crop seeds annually, supporting thousands of small and marginal farmers across Madhya Pradesh.",
+      "The Seed Manufacturing & Multiplication Unit (SMU) at NIRM Ratlam produces and distributes over 4,500 quintals of high-yield certified soybean and crop seeds annually, supporting thousands of small and marginal farmers across Madhya Pradesh.",
     heroImage: "https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=1600&q=80",
     affiliation: "Supported by Gramin Vikas Trust (GVT) & MP State Seed Certification Agency",
     stats: [
@@ -182,7 +182,7 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
     overview: {
       title: "Powering Seed Sovereignty & High Crop Productivity",
       paragraph1:
-        "Quality seed is the foundation of profitable agriculture. The Seed Manufacturing Unit (SMU) was established at NLRI Ratlam to address the regional shortage of high-germination, disease-resistant certified seeds suited for the agro-climatic conditions of Malwa and Central India.",
+        "Quality seed is the foundation of profitable agriculture. The Seed Manufacturing Unit (SMU) was established at NIRM Ratlam to address the regional shortage of high-germination, disease-resistant certified seeds suited for the agro-climatic conditions of Malwa and Central India.",
       paragraph2:
         "Operating on over 10 hectares of dedicated seed multiplication plots, SMU engages in seed breeder selection, foundation seed multiplication, rigorous rogueing, seed processing, treatment, and certified distribution to farmers and FPOs.",
       keyPoints: [
@@ -239,7 +239,7 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
     eligibilityOrProcess: {
       title: "SMU Services & Farmer Support",
       description:
-        "Farmers, seed producers, and rural institutions can access a wide spectrum of specialized seed services at SMU NLRI Ratlam.",
+        "Farmers, seed producers, and rural institutions can access a wide spectrum of specialized seed services at SMU NIRM Ratlam.",
       items: [
         "Procurement of Certified Soybean, Wheat, and Gram seeds at government-subsidized rates",
         "Custom seed processing, cleaning, grading, and chemical/bio-treatment for local growers",
@@ -248,7 +248,7 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
       ],
     },
     benefits: {
-      title: "Key Highlights of SMU NLRI Ratlam",
+      title: "Key Highlights of SMU NIRM Ratlam",
       items: [
         {
           title: "Certified Yield Boost",
@@ -269,9 +269,9 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
       ],
     },
     contactInfo: {
-      email: "smu@nlri.edu.in",
+      email: "smu@nirm.edu.in",
       phone: "+91 94251 00001",
-      location: "Seed Manufacturing Unit, NLRI Campus, Ratlam (M.P.)",
+      location: "Seed Manufacturing Unit, NIRM Campus, Ratlam (M.P.)",
     },
   },
 
@@ -283,9 +283,9 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
     tag: "GRAMIN VIKAS TRUST (GVT) & KRIBHCO INITIATIVE",
     tagline: "Building Resilient, Empowered & Happy Rural Communities Through Integrated Livelihood Models",
     heroDescription:
-      "Mission Happy Ratlam is the flagship rural transformation campaign spearheaded by Gramin Vikas Trust (GVT) — established by KRIBHCO — and administered from NLRI Ratlam. It integrates water security, women empowerment, sustainable farming, health, and smart education.",
+      "Mission Happy Ratlam is the flagship rural transformation campaign spearheaded by Gramin Vikas Trust (GVT) — established by KRIBHCO — and administered from NIRM Ratlam. It integrates water security, women empowerment, sustainable farming, health, and smart education.",
     heroImage: "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=1600&q=80",
-    affiliation: "Pioneered by Gramin Vikas Trust (GVT - Established by KRIBHCO) | Executed by NLRI Ratlam",
+    affiliation: "Pioneered by Gramin Vikas Trust (GVT - Established by KRIBHCO) | Executed by NIRM Ratlam",
     stats: [
       { value: "50+", label: "Model Happy Villages", detail: "Across Ratlam & Malwa Region" },
       { value: "12,000+", label: "Women Empowered", detail: "Through 950+ Active SHGs" },
@@ -295,13 +295,13 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
     overview: {
       title: "Creating Self-Sustaining, Prosperous & Happy Villages in Central India",
       paragraph1:
-        "Mission Happy Ratlam is the flagship rural transformation campaign spearheaded by Gramin Vikas Trust (GVT) — an organization established in 1999 by KRIBHCO (Krishak Bharati Cooperative Limited) — and headquartered at the National Livelihood Resource Institute (NLRI) in Bhadwasa, Ratlam.",
+        "Mission Happy Ratlam is the flagship rural transformation campaign spearheaded by Gramin Vikas Trust (GVT) — an organization established in 1999 by KRIBHCO (Krishak Bharati Cooperative Limited) — and headquartered at the National Institute of Rural Management (NIRM) in Bhadwasa, Ratlam.",
       paragraph2:
         "The mission adopts a holistic 360-degree village development framework targeting 5 core dimensions: watershed water security, women empowerment SHGs, sustainable natural farming, community health & sanitation, and smart education. By establishing active Village Development Committees (VDCs), the mission ensures long-term community ownership.",
       keyPoints: [
         "Government & CSR partnership model backed by KRIBHCO and local district administration",
         "Community-first participatory planning through Village Development Committees (VDCs)",
-        "Full integration with NLRI Ratlam campus demonstration plots and field research labs",
+        "Full integration with NIRM Ratlam campus demonstration plots and field research labs",
         "Long-term sustainability framework ensuring villages self-manage projects after 36 months",
       ],
     },
@@ -342,7 +342,7 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
         highlights: [
           "5,000+ farmers trained in bio-fertilizers",
           "200+ organic farming demonstration plots",
-          "Seed bank support linked with NLRI Ratlam plots",
+          "Seed bank support linked with NIRM Ratlam plots",
         ],
         image: "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80",
         category: "Sustainable Agriculture",
@@ -369,7 +369,7 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
           desc: "Backed by national-level cooperative leadership and 25+ years of rural development expertise.",
         },
         {
-          title: "NLRI Ratlam Campus Hub",
+          title: "NIRM Ratlam Campus Hub",
           desc: "Direct research, capacity building, and technical supervision from our Bhadwasa Ratlam campus.",
         },
         {
@@ -383,9 +383,9 @@ export const specializedUnitsData: Record<string, SpecializedUnitData> = {
       ],
     },
     contactInfo: {
-      email: "happyratlam@nlri.edu.in",
+      email: "happyratlam@nirm.edu.in",
       phone: "+91 94251 00002",
-      location: "Mission Happy Ratlam Secretariat, NLRI Campus, Bhadwasa, Ratlam (M.P.)",
+      location: "Mission Happy Ratlam Secretariat, NIRM Campus, Bhadwasa, Ratlam (M.P.)",
     },
   },
 };

@@ -45,7 +45,7 @@ export default function InstitutionalOverview() {
           <div className="relative w-full mt-8 md:mt-12 group overflow-hidden rounded-2xl md:rounded-none">
             <img
               src="/campus-img/campusDron-2.jpeg"
-              alt="CVRUK NLRI Campus – Aerial View"
+              alt="CVRUK NIRM Campus – Aerial View"
               className="w-full h-[300px] sm:h-[400px] md:h-[550px] lg:h-[650px] object-cover object-center transform group-hover:scale-105 transition-transform duration-1000"
             />
             {/* Dark gradient overlay */}
@@ -94,10 +94,10 @@ export default function InstitutionalOverview() {
             {/* Paragraphs */}
             <div className="space-y-6 text-base md:text-lg text-gray-700 leading-relaxed font-medium text-justify px-2 md:px-0">
               <p>
-                Located in the scenic, lush green surroundings of Bhadwasa village, Ratlam (Madhya Pradesh), the CVRU Khandwa – NLRI Campus offers a unique blend of academic excellence and hands-on rural innovation. Spread over more than <strong className="text-primary">10 hectares of lush green landscape</strong> along the banks of the <strong className="text-primary">Maleni River</strong>, the campus stands as a model of sustainable development, combining modern education facilities with eco-friendly infrastructure.
+                Located in the scenic, lush green surroundings of Bhadwasa village, Ratlam (Madhya Pradesh), the CVRU Khandwa – NIRM Campus offers a unique blend of academic excellence and hands-on rural innovation. Spread over more than <strong className="text-primary">10 hectares of lush green landscape</strong> along the banks of the <strong className="text-primary">Maleni River</strong>, the campus stands as a model of sustainable development, combining modern education facilities with eco-friendly infrastructure.
               </p>
               <p className="hidden sm:block">
-                The campus houses the <strong className="text-primary">National Livelihood Resources Institute (NLRI)</strong> and the <strong className="text-primary">School of Rural Management (SRM)</strong>, both operated under the stewardship of Gramin Vikas Trust (GVT) — a national-level development organization with over three decades of field experience.
+                The campus houses the <strong className="text-primary">National Institute of Rural Management (NIRM)</strong> and the <strong className="text-primary">School of Rural Management (SRM)</strong>, both operated under the stewardship of Gramin Vikas Trust (GVT) — a national-level development organization with over three decades of field experience.
               </p>
             </div>
 
@@ -105,7 +105,7 @@ export default function InstitutionalOverview() {
             <div className="pt-4 px-2 md:px-0">
               <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
                 <span className="w-1.5 h-7 rounded-full bg-secondary inline-block shrink-0" />
-                Key Features of the CVRUK-NLRI Campus
+                Key Features of the CVRUK-NIRM Campus
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {keyFeatures.map((feature, index) => (
@@ -127,7 +127,7 @@ export default function InstitutionalOverview() {
             {/* Closing quote */}
             <blockquote className="bg-primary/5 border-l-4 border-primary px-6 md:px-8 py-6 md:py-8 rounded-r-2xl mx-2 md:mx-0">
               <p className="text-base md:text-xl text-primary font-semibold leading-relaxed italic">
-                "The CVRUK-NLRI campus is not just a place for education — it's a living ecosystem where theory meets practice, and where students, researchers, and rural communities collaborate to create lasting impact."
+                "The CVRUK-NIRM campus is not just a place for education — it's a living ecosystem where theory meets practice, and where students, researchers, and rural communities collaborate to create lasting impact."
               </p>
             </blockquote>
 

@@ -130,7 +130,7 @@ export default function AdminPage() {
               Welcome back 👋 <span className="text-emerald-400">Admin</span>
             </h1>
             <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-normal">
-              Monitoring real-time student enquiries, academic sessions, program enrollments, and campus activities at NLRI Ratlam.
+              Monitoring real-time student enquiries, academic sessions, program enrollments, and campus activities at NIRM Ratlam.
             </p>
             <div className="pt-2">
               <Link

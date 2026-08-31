@@ -21,7 +21,7 @@ export default function PlacementsPage() {
                 <span className="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">Dedicated Support</span>
                 <h2 className="text-3xl font-bold font-heading">Career Guidance Cell</h2>
                 <p className="text-text-muted leading-relaxed">
-                   The Placement Cell at CVRUK–NLRI works tirelessly to provide students with the right platform to launch their careers. From resume building workshops to mock interviews, we ensure every student is industry-ready.
+                   The Placement Cell at CVRUK–NIRM works tirelessly to provide students with the right platform to launch their careers. From resume building workshops to mock interviews, we ensure every student is industry-ready.
                 </p>
                 <div className="space-y-4">
                    <div className="flex gap-4 p-4 bg-surface rounded-2xl border border-surface">
@@ -121,7 +121,7 @@ export default function PlacementsPage() {
                 name="Deepak Sharma"
                 batch="Batch of 2022"
                 position="CSR Manager, Agri-Tech Corp"
-                quote="The field-oriented approach at NLRI gave me the practical insights I needed to lead large-scale rural interventions."
+                quote="The field-oriented approach at NIRM gave me the practical insights I needed to lead large-scale rural interventions."
              />
              <AlumniCard 
                 name="Priya Patel"

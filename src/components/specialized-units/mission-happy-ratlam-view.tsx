@@ -75,7 +75,7 @@ export default function MissionHappyRatlamView() {
       bullets: [
         "Certified organic inputs & vermicompost production units",
         "High-density fruit orchards (Guava, Mango, Citrus)",
-        "Seed multiplication plots linked with NLRI Ratlam campus"
+        "Seed multiplication plots linked with NIRM Ratlam campus"
       ]
     },
     {
@@ -110,7 +110,7 @@ export default function MissionHappyRatlamView() {
       ],
       bullets: [
         "30+ village primary schools upgraded with Smart Classrooms & Solar Power",
-        "Vocational skill training in tractor repair, solar technician, and IT at NLRI",
+        "Vocational skill training in tractor repair, solar technician, and IT at NIRM",
         "Scholarships & computer literacy programs for rural children"
       ]
     }
@@ -136,7 +136,7 @@ export default function MissionHappyRatlamView() {
           <div className="flex justify-center">
             <div className="inline-flex items-center gap-2 text-xs md:text-sm font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-200/80 px-4 py-1.5 rounded-full shadow-xs">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-              <span>Initiated by Gramin Vikas Trust (GVT) & KRIBHCO | Executed by NLRI Ratlam</span>
+              <span>Initiated by Gramin Vikas Trust (GVT) & KRIBHCO | Executed by NIRM Ratlam</span>
             </div>
           </div>
 
@@ -180,7 +180,7 @@ export default function MissionHappyRatlamView() {
             <p className="text-gray-600 text-sm md:text-base font-medium leading-relaxed">
               <strong>Mission Happy Ratlam</strong> is the flagship rural transformation campaign spearheaded by 
               <strong> Gramin Vikas Trust (GVT)</strong> — an organization established by <strong>KRIBHCO</strong> — 
-              and headquartered at the <strong>National Livelihood Resource Institute (NLRI)</strong> in Bhadwasa, Ratlam.
+              and headquartered at the <strong>National Institute of Rural Management (NIRM)</strong> in Bhadwasa, Ratlam.
             </p>
 
             <p className="text-gray-600 text-sm md:text-base font-medium leading-relaxed">
@@ -198,7 +198,7 @@ export default function MissionHappyRatlamView() {
               {[
                 "Government & CSR partnership model backed by KRIBHCO and local district administration",
                 "Community-first participatory planning through Village Development Committees (VDCs)",
-                "Full integration with NLRI Ratlam campus demonstration plots and field research labs",
+                "Full integration with NIRM Ratlam campus demonstration plots and field research labs",
                 "Long-term sustainability framework ensuring villages self-manage projects after 36 months"
               ].map((point, idx) => (
                 <div key={idx} className="flex items-start gap-3 bg-slate-50 p-4 rounded-2xl border border-gray-100 text-xs md:text-sm font-semibold text-gray-800">
@@ -381,7 +381,7 @@ export default function MissionHappyRatlamView() {
       {/* ── 5. FINAL CALL TO ACTION BANNER ── */}
       <SharedCtaBanner
         title="Partner with Mission Happy Ratlam"
-        subtitle="Join hands with NLRI Ratlam and Gramin Vikas Trust (GVT) to adopt a village, sponsor CSR initiatives, or participate in rural development projects."
+        subtitle="Join hands with NIRM Ratlam and Gramin Vikas Trust (GVT) to adopt a village, sponsor CSR initiatives, or participate in rural development projects."
         primaryBtnText="CSR & Partner Contact"
         primaryBtnHref="/contact"
         secondaryBtnText="Explore Specialized Units"

@@ -6,8 +6,8 @@ import { UserGroupIcon } from "@heroicons/react/24/outline";
 import { notFound } from "next/navigation";
 
 export const metadata = {
-  title: "Mission Happy Ratlam | NLRI Ratlam & Gramin Vikas Trust",
-  description: "Flagship rural development initiative by NLRI and Gramin Vikas Trust (GVT) transforming villages through women empowerment, water security, health, and sustainable livelihoods.",
+  title: "Mission Happy Ratlam | NIRM Ratlam & Gramin Vikas Trust",
+  description: "Flagship rural development initiative by NIRM and Gramin Vikas Trust (GVT) transforming villages through women empowerment, water security, health, and sustainable livelihoods.",
 };
 
 export default function MissionHappyRatlamUnitPage() {

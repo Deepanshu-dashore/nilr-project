@@ -113,7 +113,6 @@ const mainNavigation = [
 ];
 
 import TopBar from "./TopBar";
-import AnnouncementBar from "./AnnouncementBar";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -142,7 +141,7 @@ export default function Header() {
           scrolled ? "shadow-md" : "shadow-xs"
         }`}
       >
-      <nav className="px-4 md:px-12 py-2" aria-label="Global">
+      <nav className="px-4 md:px-12 py-2 border-gray-200/80 border-y" aria-label="Global">
         <div className="flex justify-between items-center h-14 md:h-16">
 
           {/* Logo */}
@@ -258,9 +257,6 @@ export default function Header() {
           aria-hidden="true"
         />
       </div>
-
-      {/* Announcement Marquee Ticker - Directly attached below header divider */}
-      <AnnouncementBar />
       </header>
     </div>
   );

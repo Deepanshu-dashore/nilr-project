@@ -87,7 +87,7 @@ export default function Admissions() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-2xl md:text-3xl font-extrabold text-text-dark mb-3 leading-snug">
             <span className="text-primary">Academic &amp; Skill Development Programs</span>{" "}
-            at CVRU Khandwa &ndash; NLRI Campus
+            at CVRU Khandwa &ndash; NIRM Campus
           </h2>
           <p className="text-sm md:text-base text-gray-600 leading-relaxed">
             We deliver academically strong and field-oriented programs designed to build leadership,

@@ -1,9 +1,9 @@
 export const campusData = {
   introduction: {
-    title: "The Campus – CVRU Khandwa – NLRI Ratlam",
+    title: "The Campus – CVRU Khandwa – NIRM Ratlam",
     paragraphs: [
-      "The CVRUK – NLRI Campus, located in Bhadwasa, Ratlam (Madhya Pradesh), offers an ideal blend of academic infrastructure, real-world training environments, and sustainable practices — making it a model rural campus in India.",
-      "The CVRUK-NLRI campus is not just an academic facility — it’s a hands-on innovation hub where students, professionals, and rural communities collaborate to solve real-world challenges in agriculture, livelihood, and sustainable development."
+      "The CVRUK – NIRM Campus, located in Bhadwasa, Ratlam (Madhya Pradesh), offers an ideal blend of academic infrastructure, real-world training environments, and sustainable practices — making it a model rural campus in India.",
+      "The CVRUK-NIRM campus is not just an academic facility — it’s a hands-on innovation hub where students, professionals, and rural communities collaborate to solve real-world challenges in agriculture, livelihood, and sustainable development."
     ],
     features: [
       "State-of-the-art academic blocks with smart classrooms and laboratories",
@@ -22,8 +22,8 @@ export const campusData = {
     title: "Campus Location",
     description: "Situated on the Mhow–Neemuch State Highway-31, just off the Delhi–Mumbai Expressway, the campus lies along the scenic Maleni River, surrounded by over 10 hectares of green land in Bhadwasa village, Namli block, Ratlam district. This strategic location provides both urban connectivity and a peaceful, immersive learning environment close to rural communities.",
     addressLines: [
-      "CVRU Khandwa – NLRI Ratlam Campus",
-      "National Livelihood Resources Institute (NLRI)",
+      "CVRU Khandwa – NIRM Ratlam Campus",
+      "National Institute of Rural Management (NIRM)",
       "Near Maleni River, Village Bhadwasa, Namli,",
       "Mhow-Neemuch State Highway-31,",
       "Ratlam, Madhya Pradesh – 457222, India"
@@ -43,7 +43,7 @@ export const campusData = {
       title: "Administrative & Academic Buildings",
       features: [
         "Three-story SRM academic block with dedicated offices",
-        "Executive cabins for Head NLRI, SRM Principal, and Training Director",
+        "Executive cabins for Head NIRM, SRM Principal, and Training Director",
         "Workspace for faculty, project staff, accounts, HR, placement, and field teams"
       ]
     },
@@ -122,7 +122,7 @@ export const campusData = {
   },
   greenInitiatives: {
     title: "Green Campus Initiatives",
-    description: "The CVRUK-NLRI Campus is a living example of sustainable design and environmental stewardship.",
+    description: "The CVRUK-NIRM Campus is a living example of sustainable design and environmental stewardship.",
     points: [
       "10.49 hectares of eco-restored land with over 5,000 trees (fruit, forest, and medicinal)",
       "On-campus nurseries and shade houses producing 10,000+ saplings annually",

@@ -48,7 +48,7 @@ const footerLinks = [
 export default function Footer() {
   const [siteInfo, setSiteInfo] = useState({
     contactAddress: "Bhadwasa, Mhow-Neemuch Road, Ratlam (M.P.)",
-    contactEmail: "info@nlri-cvruk.ac.in",
+    contactEmail: "info@nirm-cvruk.ac.in",
     contactPhone: "+91 91110 03000 / 07412 284300",
     socialLinks: {
       facebook: "#",
@@ -178,7 +178,7 @@ export default function Footer() {
         <div className="border-t border-white/5 pt-10 mt-10">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-8 text-[11px] font-medium tracking-wide text-gray-500 text-center lg:text-left">
             <div className="space-y-2 lg:space-y-0 lg:flex lg:items-center lg:gap-6">
-               <p className="border-b lg:border-b-0 border-white/5 pb-2 lg:pb-0">© {new Date().getFullYear()} CVRUK – NLRI Partnership. All Rights Reserved.</p>
+               <p className="border-b lg:border-b-0 border-white/5 pb-2 lg:pb-0">© {new Date().getFullYear()} CVRUK – NIRM Partnership. All Rights Reserved.</p>
                <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-gray-400 uppercase tracking-widest text-[10px]">
                 {[
                   { name: "Privacy Policy", href: "/privacy-policy" },

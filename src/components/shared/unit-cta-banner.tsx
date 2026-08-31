@@ -13,7 +13,7 @@ interface SharedCtaBannerProps {
 
 export default function SharedCtaBanner({
   title,
-  subtitle = "Reach out to our Nodal Cell at NLRI Ratlam Campus for enrollment details, batch schedules, project partnerships, or seed availability.",
+  subtitle = "Reach out to our Nodal Cell at NIRM Ratlam Campus for enrollment details, batch schedules, project partnerships, or seed availability.",
   primaryBtnText = "Apply / Enquire Online",
   primaryBtnHref = "/contact",
   secondaryBtnText = "View All Specialized Units",

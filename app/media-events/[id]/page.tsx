@@ -220,7 +220,7 @@ export default function EventDetailPage() {
         <div className="relative z-10">
                <h3 className="text-xl bg-white/10 py-1 pl-2 rounded-sm font-semibold! mb-4">Event Details</h3>
                <p className="text-gray-300 text-sm mb-8 leading-relaxed">
-                 Stay informed about the latest from CVRUK–NLRI. This {event.type.toLowerCase()} is part of our commitment to excellence.
+                 Stay informed about the latest from CVRUK–NIRM. This {event.type.toLowerCase()} is part of our commitment to excellence.
                </p>
                
                <div className="space-y-4 mb-8 text-gray-300">

@@ -68,7 +68,7 @@ export function Logo({
       <div className="relative shrink-0">
         <Image
           src="/NLRILOGO.png"
-          alt="CVRUK-NLRI Logo"
+          alt="CVRUK-NIRM Logo"
           width={320}
           height={60}
           className={imageClasses}
@@ -87,7 +87,7 @@ export function Logo({
             ${style.hindiText}
             ${variant === "white" ? "text-white/70" : ""}
           `}>
-            राष्ट्रीय आजीविका संसाधन संस्थान
+            राष्ट्रीय ग्रामीण प्रबंधन संस्थान
           </h1>
           <div className={`
             border-b transition-all duration-300 w-full
@@ -99,7 +99,7 @@ export function Logo({
             ${style.englishText}
             ${variant === "white" ? "text-white/90" : "text-[#0302fc]"}
           `}>
-            National Livelihood Resources Institute
+            National Institute of Rural Management
           </h1>
           {/* <p className={`
             font-normal leading-tight transition-all duration-300 whitespace-nowrap

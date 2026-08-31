@@ -3,6 +3,7 @@
 import React, { useEffect, useState, Suspense } from "react";
 import axios from "axios";
 import Image from "next/image";
+import Hero from "@/src/components/shared/hero";
 import { PhotoIcon, VideoCameraIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { getUrls } from "@/app/lib/utils/geturl";
 import { useSearchParams } from "next/navigation";
@@ -45,24 +46,12 @@ function GalleryContent() {
     <div className="min-h-screen bg-slate-50">
       {/* Hero Section - Only show if data exists or loading */}
       {(isLoading || items.length > 0) && (
-        <section className="bg-slate-900 relative text-white py-12 md:py-16 overflow-hidden">
-          <div 
-            className="absolute inset-0 z-0 bg-cover bg-center  "
-            style={{ backgroundImage: "url('/HeaderBg.png')" }}
-          />
-          <div className="container mx-auto px-4 relative z-10 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-              <PhotoIcon className="w-4 h-4 text-indigo-400" />
-              <span className="text-[10px] font-bold tracking-widest text-indigo-300 capitalize">
-                CAMPUS VISUALS
-              </span>
-            </div>
-            <h1 className="text-3xl md:text-5xl font-bold mb-4">Our Campus Gallery</h1>
-            <p className="text-gray-300 max-w-2xl mx-auto text-sm md:text-base">
-              Explore the vibrant life and infrastructure of the National Livelihood Research Institute.
-            </p>
-          </div>
-        </section>
+        <Hero
+          tag="CAMPUS VISUALS"
+          tagIcon={PhotoIcon}
+          title="Our Campus Gallery"
+          subtitle="Explore the vibrant life and infrastructure of the National Institute of Rural Management (NIRM)."
+        />
       )}
 
 

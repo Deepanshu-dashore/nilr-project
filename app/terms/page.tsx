@@ -4,7 +4,7 @@ import { DocumentTextIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | CVRU Khandwa - NLRI Campus",
+  title: "Terms & Conditions | CVRU Khandwa - NIRM Campus",
   description: "Terms and Conditions for Dr. C. V. Raman University, Khandwa.",
 };
 
@@ -13,7 +13,7 @@ export default function TermsConditions() {
     <main className="bg-gray-50 min-h-screen">
       <Hero
         title="Terms & Conditions"
-        subtitle="Review the rules, guidelines, and agreements for using the CVRUK-NLRI web portal."
+        subtitle="Review the rules, guidelines, and agreements for using the CVRUK-NIRM web portal."
         tag="Policies"
         className="py-16 md:py-18"
         tagIcon={DocumentTextIcon}
@@ -38,10 +38,10 @@ export default function TermsConditions() {
 
           <div className="prose prose-lg max-w-none text-gray-700 space-y-6">
             <p className="leading-relaxed">
-              Welcome to the official web portal of the <strong>Dr. C. V. Raman University, Khandwa (CVRUK)</strong> and <strong>National Livelihood Resources Institute (NLRI), Ratlam Campus</strong>. By accessing and utilizing this website, you explicitly agree to comply with and be bound by the following terms and conditions of use.
+              Welcome to the official web portal of the <strong>Dr. C. V. Raman University, Khandwa (CVRUK)</strong> and <strong>National Institute of Rural Management (NIRM), Ratlam Campus</strong>. By accessing and utilizing this website, you explicitly agree to comply with and be bound by the following terms and conditions of use.
             </p>
             <p className="leading-relaxed">
-              These terms, together with our privacy policy, govern the CVRUK-NLRI campus relationship with you in relation to this digital platform. This campus operates under the strategic partnership of CVRUK and the <strong>Gramin Vikas Trust (GVT)</strong>.
+              These terms, together with our privacy policy, govern the CVRUK-NIRM campus relationship with you in relation to this digital platform. This campus operates under the strategic partnership of CVRUK and the <strong>Gramin Vikas Trust (GVT)</strong>.
             </p>
 
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mt-10 mb-4 border-l-4 border-primary pl-4">
@@ -55,7 +55,7 @@ export default function TermsConditions() {
               Use of Content & Intellectual Property
             </h2>
             <p className="leading-relaxed">
-              All materials hosted on this website—including but not limited to texts, dynamic imagery, institutional logos, campus photographs, and academic curriculum structures—are the intellectual property of CVRUK, NLRI, or their respective licensors. You may access, view, and download structural materials exclusively for personal, non-commercial, and educational reference purposes. Reproduction, modification, or unauthorized commercial distribution of these materials is strictly prohibited.
+              All materials hosted on this website—including but not limited to texts, dynamic imagery, institutional logos, campus photographs, and academic curriculum structures—are the intellectual property of CVRUK, NIRM, or their respective licensors. You may access, view, and download structural materials exclusively for personal, non-commercial, and educational reference purposes. Reproduction, modification, or unauthorized commercial distribution of these materials is strictly prohibited.
             </p>
 
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mt-10 mb-4 border-l-4 border-primary pl-4">
@@ -71,7 +71,7 @@ export default function TermsConditions() {
               Amendments to Terms
             </h2>
             <p className="leading-relaxed">
-              The administration of CVRUK and NLRI reserves the absolute right to revise, modify, or rewrite these terms and conditions at any given time without prior external notice. Any updated versions will immediately be made available on this particular page. Your continued use of the site following such modifications constitutes your formal acceptance of the revised terms.
+              The administration of CVRUK and NIRM reserves the absolute right to revise, modify, or rewrite these terms and conditions at any given time without prior external notice. Any updated versions will immediately be made available on this particular page. Your continued use of the site following such modifications constitutes your formal acceptance of the revised terms.
             </p>
           </div>
         </div>

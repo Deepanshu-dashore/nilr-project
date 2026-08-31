@@ -8,7 +8,7 @@ export default function ResearchExcellence() {
           <h2 className="academic-section-title">Research</h2>
           <p className="academic-section-subtitle">Pushing the frontiers of knowledge to create real-world impact.</p>
           <p className="academic-section-text">
-            CVRUK-NLRI encourages research in practically every domain, and endeavours to develop human knowledge through insight driven investigations, inventions and understanding to create solutions for critical world problems. Fostering the spirit of curiosity and building world-class research ecosystems.
+            CVRUK-NIRM encourages research in practically every domain, and endeavours to develop human knowledge through insight driven investigations, inventions and understanding to create solutions for critical world problems. Fostering the spirit of curiosity and building world-class research ecosystems.
           </p>
         </div>
 

@@ -31,7 +31,7 @@ export default function AdmissionsClient() {
           </h1>
           <p className="max-w-3xl md:pr-0 pr-5 mx-auto text-sm md:text-lg text-gray-300 leading-relaxed text-justify md:text-center">
             Begin your journey in rural management, sustainable agriculture, and livelihood development 
-            through AICTE-approved and skill-oriented programs at CVRU Khandwa – NLRI Campus.
+            through AICTE-approved and skill-oriented programs at CVRU Khandwa – NIRM Campus.
           </p>
         </div>
       </section>
@@ -42,7 +42,7 @@ export default function AdmissionsClient() {
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             <div className="lg:w-1/2 space-y-6">
               <span className="text-accent font-bold uppercase tracking-widest text-xs">
-                Welcome to NLRI
+                Welcome to NIRM
               </span>
               <h2 className="text-3xl md:text-4xl font-bold text-[#21325b] leading-tight">
                 {admissionsData.intro.title}
@@ -354,7 +354,7 @@ export default function AdmissionsClient() {
             <div className="space-y-8 px-5 md:px-0">
               <div>
                 <h3 className="text-2xl font-black text-gray-900 mb-2 tracking-tight">
-                  CVRU Khandwa – NLRI Campus
+                  CVRU Khandwa – NIRM Campus
                 </h3>
                 <p className="text-gray-600 font-medium">Bhadwasa, Ratlam, Madhya Pradesh 457222</p>
               </div>
@@ -381,7 +381,7 @@ export default function AdmissionsClient() {
                     </div>
                     <div>
                       <span className="font-bold text-gray-800 block mb-1">Campus Location:</span>
-                      <p className="text-gray-600 leading-relaxed">Centrally located at the NLRI Campus, Bhadwasa, Ratlam, ideal for hands-on rural immersion.</p>
+                      <p className="text-gray-600 leading-relaxed">Centrally located at the NIRM Campus, Bhadwasa, Ratlam, ideal for hands-on rural immersion.</p>
                     </div>
                   </div>
 
@@ -405,8 +405,8 @@ export default function AdmissionsClient() {
                     <div>
                       <span className="font-bold text-gray-800 block mb-1">Email Enquiries:</span>
                       <p className="text-gray-600 mb-1">For general admissions and course-related queries, please write to:</p>
-                      <a href="mailto:admissions@nlri.com" className="text-primary hover:underline font-bold">
-                        admissions@nlri.com
+                      <a href="mailto:admissions@nirm.cvruk.in" className="text-primary hover:underline font-bold">
+                        admissions@nirm.cvruk.in
                       </a>
                     </div>
                   </div>

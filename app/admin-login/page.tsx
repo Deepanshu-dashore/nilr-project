@@ -53,7 +53,7 @@ export default function AdminLoginPage() {
               Admin Login
             </h1>
             <p className="text-text-muted font-medium text-xs">
-              NLRI-CVRUK Campus Panel
+              NIRM-CVRUK Campus Panel
             </p>
           </div>
 
@@ -68,7 +68,7 @@ export default function AdminLoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2.5 bg-white/50 border border-border-light rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-sm outline-none"
-                placeholder="admin@nlri-cvruk.ac.in"
+                placeholder="admin@nirm-cvruk.ac.in"
               />
             </div>
 
@@ -116,7 +116,7 @@ export default function AdminLoginPage() {
         </div>
         
         <p className="mt-6 text-center text-white/60 text-[10px] font-bold tracking-widest uppercase cursor-pointer hover:text-white transition-colors">
-          <Link href="/">&copy; {new Date().getFullYear()} CVRU NLRI</Link>
+          <Link href="/">&copy; {new Date().getFullYear()} CVRU NIRM</Link>
         </p>
       </div>
     </div>

@@ -63,13 +63,13 @@ export default function SiteInfoSettingsPage() {
       { event: "Entrance Test / Interview", date: "10 August 2026", icon: "IdentificationIcon" },
       { event: "Course Commencement", date: "1 September 2026", icon: "UserPlusIcon" }
     ],
-    contactAddress: "CVRU Khandwa – NLRI Ratlam Campus, Near Maleni River, Village Bhadwasa, Namli, Ratlam, MP – 457222, India",
-    contactEmail: "admissions@nlri.cvruk.in",
-    generalEmail: "info@nlri-cvruk.ac.in",
+    contactAddress: "CVRU Khandwa – NIRM Ratlam Campus, Near Maleni River, Village Bhadwasa, Namli, Ratlam, MP – 457222, India",
+    contactEmail: "admissions@nirm.cvruk.in",
+    generalEmail: "info@nirm-cvruk.ac.in",
     contactPhone: "+91 91110 03000",
     helplinePhone: "+91 91091 07361 / 07412 284300",
     officeHours: "Monday – Saturday: 9:30 AM – 5:30 PM (Sunday: Closed)",
-    websiteUrl: "https://www.nlri.cvruk.in",
+    websiteUrl: "https://www.nirm.cvruk.in",
     mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.255252157876!2d75.07872367512006!3d23.523320078826014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39640419d441a225%3A0x53063056acb1832d!2sNational%20Livelihood%20Resource%20Institute!5e0!3m2!1sen!2sin!4v171567929771!5m2!1sen!2sin",
     socialLinks: {
       facebook: "https://facebook.com",
@@ -97,13 +97,13 @@ export default function SiteInfoSettingsPage() {
           academicSession: data.academicSession || "2026–28",
           admissionCycle: data.admissionCycle || "2026–27",
           importantDates: data.importantDates || [],
-          contactAddress: data.contactAddress || "CVRU Khandwa – NLRI Ratlam Campus, Near Maleni River, Village Bhadwasa, Namli, Ratlam, MP – 457222, India",
-          contactEmail: data.contactEmail || "admissions@nlri.cvruk.in",
-          generalEmail: data.generalEmail || "info@nlri-cvruk.ac.in",
+          contactAddress: data.contactAddress || "CVRU Khandwa – NIRM Ratlam Campus, Near Maleni River, Village Bhadwasa, Namli, Ratlam, MP – 457222, India",
+          contactEmail: data.contactEmail || "admissions@nirm.cvruk.in",
+          generalEmail: data.generalEmail || "info@nirm-cvruk.ac.in",
           contactPhone: data.contactPhone || "+91 91110 03000",
           helplinePhone: data.helplinePhone || "+91 91091 07361 / 07412 284300",
           officeHours: data.officeHours || "Monday – Saturday: 9:30 AM – 5:30 PM (Sunday: Closed)",
-          websiteUrl: data.websiteUrl || "https://www.nlri.cvruk.in",
+          websiteUrl: data.websiteUrl || "https://www.nirm.cvruk.in",
           mapEmbedUrl: data.mapEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.255252157876!2d75.07872367512006!3d23.523320078826014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39640419d441a225%3A0x53063056acb1832d!2sNational%20Livelihood%20Resource%20Institute!5e0!3m2!1sen!2sin!4v171567929771!5m2!1sen!2sin",
           socialLinks: {
             facebook: data.socialLinks?.facebook || "https://facebook.com",
@@ -184,13 +184,13 @@ export default function SiteInfoSettingsPage() {
             academicSession: data.academicSession || "2026–28",
             admissionCycle: data.admissionCycle || "2026–27",
             importantDates: data.importantDates || [],
-            contactAddress: data.contactAddress || "CVRU Khandwa – NLRI Ratlam Campus, Near Maleni River, Village Bhadwasa, Namli, Ratlam, MP – 457222, India",
-            contactEmail: data.contactEmail || "admissions@nlri.cvruk.in",
-            generalEmail: data.generalEmail || "info@nlri-cvruk.ac.in",
+            contactAddress: data.contactAddress || "CVRU Khandwa – NIRM Ratlam Campus, Near Maleni River, Village Bhadwasa, Namli, Ratlam, MP – 457222, India",
+            contactEmail: data.contactEmail || "admissions@nirm.cvruk.in",
+            generalEmail: data.generalEmail || "info@nirm-cvruk.ac.in",
             contactPhone: data.contactPhone || "+91 91110 03000",
             helplinePhone: data.helplinePhone || "+91 91091 07361 / 07412 284300",
             officeHours: data.officeHours || "Monday – Saturday: 9:30 AM – 5:30 PM (Sunday: Closed)",
-            websiteUrl: data.websiteUrl || "https://www.nlri.cvruk.in",
+            websiteUrl: data.websiteUrl || "https://www.nirm.cvruk.in",
             mapEmbedUrl: data.mapEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.255252157876!2d75.07872367512006!3d23.523320078826014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39640419d441a225%3A0x53063056acb1832d!2sNational%20Livelihood%20Resource%20Institute!5e0!3m2!1sen!2sin!4v171567929771!5m2!1sen!2sin",
             socialLinks: {
               facebook: data.socialLinks?.facebook || "https://facebook.com",
@@ -531,7 +531,7 @@ export default function SiteInfoSettingsPage() {
                   value={formData.websiteUrl}
                   onChange={(e) => setFormData({ ...formData, websiteUrl: e.target.value })}
                   className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-gray-900 text-sm font-medium"
-                  placeholder="e.g. https://www.nlri.cvruk.in"
+                  placeholder="e.g. https://www.nirm.cvruk.in"
                   required
                 />
               </div>

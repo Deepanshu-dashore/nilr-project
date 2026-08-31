@@ -32,9 +32,23 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-5px); }
   }
-
   --animate-float: float 3s ease-in-out infinite;
   --animate-bounce-slow: bounce-slow 4s ease-in-out infinite;
+}
+
+@keyframes pulse-maroon {
+  0%, 100% { 
+    background-color: #B34141; 
+    filter: brightness(1);
+  }
+  50% { 
+    background-color: #782323; 
+    filter: brightness(0.8);
+  }
+}
+
+.animate-pulse-maroon {
+  animation: pulse-maroon 2.5s ease-in-out infinite;
 }
 
 :root {

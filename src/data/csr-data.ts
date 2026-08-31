@@ -1,7 +1,7 @@
 export const csrData = {
   overview: {
     title: "CSR & Partnerships",
-    content: "NLRI serves as a specialized capacity-building and implementation partner for Government agencies, Corporate CSR foundations, and International NGOs. We bridge the gap between academic research and grassroots implementation through field-tested participatory models.",
+    content: "NIRM serves as a specialized capacity-building and implementation partner for Government agencies, Corporate CSR foundations, and International NGOs. We bridge the gap between academic research and grassroots implementation through field-tested participatory models.",
     subtitle: "Empowering Rural Landscapes through Strategic Collaboration."
   },
   background: {
@@ -65,7 +65,7 @@ export const csrData = {
   ],
   contact: {
     cell: "CSR & Partnerships Cell",
-    email: "partnerships@nlri.cvruk.in",
+    email: "partnerships@nirm.cvruk.in",
     phone: "+91-12345-67890",
     support: "Strategic Partnership Support Desk"
   }

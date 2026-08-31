@@ -9,7 +9,7 @@ export default function AboutHero() {
         <div className="max-w-4xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
           <div className="h-1.5 w-24 bg-[#F3BE34] mb-10" />
           <h1 className="text-5xl md:text-8xl font-black font-heading mb-8 tracking-tighter leading-tight">
-            About <span className="text-primary italic font-serif serif-italic">CVRUK–NLRI</span>
+            About <span className="text-primary italic font-serif serif-italic">CVRUK–NIRM</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 font-medium leading-relaxed max-w-2xl opacity-90 transition-all duration-700 delay-300">
             A unique synergy of academic excellence and grassroots transformation, building leaders for the rural landscape.

@@ -64,7 +64,7 @@ export default function JourneyImpact() {
             Est. 2006 · Gramin Vikas Trust
           </div>
           <h2 className="academic-section-title text-white!">
-            The Journey of <span className="text-accent">NLRI</span>
+            The Journey of <span className="text-accent">NIRM</span>
           </h2>
           <p className="text-gray-300 text-base leading-relaxed font-medium">
             {aboutData.journey.description}

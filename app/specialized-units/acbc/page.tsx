@@ -6,7 +6,7 @@ import { BuildingLibraryIcon } from "@heroicons/react/24/outline";
 import { notFound } from "next/navigation";
 
 export const metadata = {
-  title: "AC&ABC (Agri-Clinics & Agri-Business Centres) | NLRI Ratlam",
+  title: "AC&ABC (Agri-Clinics & Agri-Business Centres) | NIRM Ratlam",
   description: "Official Nodal Training Institute (NTI) under MANAGE Hyderabad & Ministry of Agriculture for 45-day Agri-Clinics & Agri-Business residential training and NABARD loan guidance.",
 };
 

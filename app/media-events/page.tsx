@@ -1,34 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
+import Hero from "@/src/components/shared/hero";
 import { CalendarIcon, NewspaperIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 
 export default function MediaHubPage() {
   return (
     <div className="min-h-screen bg-slate-50">
-      {/* Premium Hero Section */}
-      <section className="bg-text-dark relative text-white py-14 md:py-24 overflow-hidden">
-             <div 
-               className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
-               style={{ backgroundImage: "url('/HeaderBg.png')" }}
-             />
-             <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/10 -skew-x-12 translate-x-32" />
-             
-             <div className="container-wide pl-5 md:pl-0 text-center max-w-4xl relative z-10">
-               <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-linear-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 border border-indigo-500/20 backdrop-blur-sm">
-                 <CalendarIcon className="w-4 h-4 md:w-5 md:h-5 text-indigo-400 inline-block" />
-                 <span className="text-xs md:text-sm font-medium bg-linear-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent uppercase tracking-wider">
-                   Campus Life & Gatherings
-                 </span>
-               </div>
-               <h1 className="text-3xl md:text-5xl font-bold font-heading mb-6 tracking-tight">
-                 University <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Media & Events</span>
-               </h1>
-               <p className="max-w-3xl md:pr-0 pr-5 mx-auto text-sm md:text-lg text-gray-300 leading-relaxed text-justify md:text-center font-medium">
-                 Experience the vibrant life at NLRI through our workshops, seminars, 
-                 and cultural celebrations that bring our community together.
-               </p>
-             </div>
-           </section>
+      {/* Hero Section */}
+      <Hero
+        tag="Campus Life & Gatherings"
+        tagIcon={CalendarIcon}
+        title="University Media & Events"
+        subtitle="Experience the vibrant life at NIRM through our workshops, seminars, and cultural celebrations that bring our community together."
+      />
 
       {/* Category Selection */}
       <div className="max-w-7xl mx-auto px-4 py-22">

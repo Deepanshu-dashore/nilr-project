@@ -131,7 +131,7 @@ export default function ApprovalsContent() {
                 <span className="text-primary italic">Recognition</span>
               </h2>
               <p className="text-base text-gray-600 leading-relaxed mb-8">
-                Over the years, NILR has been honored with numerous accolades for its contribution to sustainable rural transformation and excellence in academic-industry collaborations.
+                Over the years, NIRM has been honored with numerous accolades for its contribution to sustainable rural transformation and excellence in academic-industry collaborations.
               </p>
               <div className="flex flex-wrap gap-4">
                  <div className="px-6 py-3 rounded-full bg-white border border-slate-200 text-xs font-bold text-slate-700 shadow-sm hover:border-primary/30 transition-colors">

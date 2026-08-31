@@ -18,7 +18,7 @@ export default function AboutUsPage() {
       {/* 🏛️ Main Page Title / Banner */}
       <Hero 
         tag="ABOUT US" 
-        title="CVRU Khandwa – NLRI Ratlam Campus" 
+        title="CVRU Khandwa – NIRM Ratlam Campus" 
         subtitle="A unique synergy of academic excellence and grassroots transformation, building leaders for the rural landscape through innovation and sustainable growth."
         tagIcon={BuildingLibraryIcon}
       />

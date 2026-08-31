@@ -72,13 +72,13 @@ export default function PartnershipOverview() {
               Empowering Rural India <br />
               <span className="text-primary font-heading text-xl sm:text-2xl md:text-[2.5rem]">Building the Future Together</span>
             </h2>
-            <p className="text-base md:text-lg text-gray-800 font-semibold mb-4 md:mb-5 capitalize">CVRU Khandwa & NLRI Ratlam</p>
+            <p className="text-base md:text-lg text-gray-800 font-semibold mb-4 md:mb-5 capitalize">CVRU Khandwa & NIRM Ratlam</p>
             <div className="space-y-4 md:space-y-6 text-sm md:text-lg text-text-muted font-medium leading-relaxed mb-8">
               <p>
-                Dr. C.V. Raman University, Khandwa (CVRUK) has officially partnered with the National Livelihood Resources Institute (NLRI), Ratlam to expand its academic and training ecosystem. Through this strategic MoU, we've created a center of excellence that opens new opportunities for students across India.
+                Dr. C.V. Raman University, Khandwa (CVRUK) has officially partnered with the National Institute of Rural Management (NIRM), Ratlam to expand its academic and training ecosystem. Through this strategic MoU, we've created a center of excellence that opens new opportunities for students across India.
               </p>
               <p className="hidden sm:block">
-                NLRI, managed by the <strong>Gramin Vikas Trust (GVT)</strong>, is a nationally recognized institution with a legacy of excellence in rural development, sustainable agriculture, and livelihood enhancement. The campus spans over 10 hectares and features the AICTE-approved School of Rural Management (SRM).
+                NIRM, managed by the <strong>Gramin Vikas Trust (GVT)</strong>, is a nationally recognized institution with a legacy of excellence in rural development, sustainable agriculture, and livelihood enhancement. The campus spans over 10 hectares and features the AICTE-approved School of Rural Management (SRM).
               </p>
             </div>
             
@@ -105,7 +105,7 @@ export default function PartnershipOverview() {
             <div className="aspect-square md:aspect-4/5 rounded-2xl overflow-hidden shadow-premium border-4 md:border-8 border-white relative">
               <img 
                 src="/campus-img/campusDron-2.jpeg" 
-                alt="CVRUK-NLRI Campus Aerial View" 
+                alt="CVRUK-NIRM Campus Aerial View" 
                 className="w-full h-full object-cover object-left"
               />
               <div className="absolute inset-0 bg-linear-to-t from-primary/30 to-transparent" />

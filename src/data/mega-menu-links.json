@@ -2,7 +2,7 @@
   {
     "title": "Why Us?",
     "links": [
-      { "name": "Why Choose NLRI?", "href": "/about#excellence" },
+      { "name": "Why Choose NIRM?", "href": "/about#excellence" },
       { "name": "Faculty & Experts", "href": "/about#faculty" }
     ]
   },
@@ -38,7 +38,7 @@
   {
     "title": "Media",
     "links": [
-      { "name": "NLRI Media", "href": "/media-events" },
+      { "name": "NIRM Media", "href": "/media-events" },
       { "name": "Latest Events", "href": "/media-events/events" },
       { "name": "News & Announcements", "href": "/media-events/news" }
     ]

@@ -95,7 +95,7 @@ export default function AdminLayout({
                   <div className="relative shrink-0">
                         <Image
                           src="/NLRILOGO.png"
-                          alt="CVRUK-NLRI Logo"
+                          alt="CVRUK-NIRM Logo"
                           width={50}
                           height={50}
                           className="h-6 md:h-8 xl:h-10"

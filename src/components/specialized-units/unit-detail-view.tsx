@@ -165,7 +165,7 @@ export default function UnitDetailView({ unit }: UnitDetailViewProps) {
             {unit.benefits.title}
           </h2>
           <p className="text-gray-500 text-xs md:text-sm font-medium">
-            Key impact factors and institutional advantages at NLRI Ratlam.
+            Key impact factors and institutional advantages at NIRM Ratlam.
           </p>
         </div>
 
@@ -192,7 +192,7 @@ export default function UnitDetailView({ unit }: UnitDetailViewProps) {
       {/* ── 5. FINAL CALL TO ACTION BAR ── */}
       <SharedCtaBanner
         title={unit.ctaTitle || `Ready to Connect with ${unit.shortTitle}?`}
-        subtitle={`Reach out to our Nodal Cell at NLRI Ratlam Campus for enrollment details, batch schedules, project partnerships, or seed availability.`}
+        subtitle={`Reach out to our Nodal Cell at NIRM Ratlam Campus for enrollment details, batch schedules, project partnerships, or seed availability.`}
         primaryBtnText="Contact Nodal Cell"
         primaryBtnHref="/contact"
         secondaryBtnText="Explore All Specialized Units"

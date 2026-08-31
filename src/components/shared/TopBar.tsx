@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import AnnouncementBar from "./AnnouncementBar";
 
 const topLinks = [
   { 
@@ -25,12 +26,18 @@ const topLinks = [
 
 export default function TopBar() {
   return (
-    <div className="hidden md:flex justify-end w-full overflow-hidden">
-      <div className="flex items-stretch h-8 w-fit">
+    <div className="flex items-center justify-between w-full bg-white border-b border-gray-200/80 overflow-hidden h-8">
+      {/* Left side: Scrolling Announcement Marquee */}
+      <div className="flex-1 min-w-0 h-full">
+        <AnnouncementBar />
+      </div>
+
+      {/* Right side: Top Action Buttons */}
+      <div className="hidden md:flex items-stretch h-full shrink-0">
         {topLinks.map((link) => (
           <div
             key={link.name}
-            className={`${link.bgColor} flex items-center px-6 transition-all hover:brightness-110 group cursor-pointer`}
+            className={`${link.bgColor} flex items-center px-4 lg:px-6 transition-all hover:brightness-110 group cursor-pointer h-full`}
           >
             <Link
               href={link.href}

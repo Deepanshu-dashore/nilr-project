@@ -5,7 +5,7 @@ export const programsData = {
     subtitle: "Empowering Rural Transformation"
   },
   intro: {
-    title: "At CVRU Khandwa – NLRI Campus",
+    title: "At CVRU Khandwa – NIRM Campus",
     description: "We are committed to delivering programs that combine academic knowledge with practical field exposure. Our courses are designed to empower students with the skills, leadership qualities, and hands-on experience needed to create sustainable solutions for rural and urban development challenges."
   },
   pgProgram: {
@@ -70,7 +70,7 @@ export const programsData = {
     ]
   },
   whyStudy: {
-    title: "Why Study at CVRUK-NLRI Campus?",
+    title: "Why Study at CVRUK-NIRM Campus?",
     points: [
       { title: "Practical Learning Model", desc: "Field labs, Live Projects, and Community Engagement" },
       { title: "National Recognition", desc: "AICTE Approved and National Development Networks" },

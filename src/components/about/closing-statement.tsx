@@ -23,7 +23,7 @@ export default function ClosingStatement() {
           <div className="flex justify-center items-center gap-4 opacity-50">
              <div className="h-px bg-white/20 w-12" />
              <span className="text-[10px] font-bold uppercase tracking-widest text-white/60">
-                The CVRUK–NLRI Promise
+                The CVRUK–NIRM Promise
              </span>
              <div className="h-px bg-white/20 w-12" />
           </div>

@@ -2,13 +2,13 @@ export const admissionsData = {
   hero: {
     tag: "Admissions",
     title: "Start Your Journey",
-    subtitle: "Welcome to the Admissions Portal of CVRU Khandwa – NLRI Campus!"
+    subtitle: "Welcome to the Admissions Portal of CVRU Khandwa – NIRM Campus!"
   },
   intro: {
-    title: "Welcome to CVRUK – NLRI Admissions",
+    title: "Welcome to CVRUK – NIRM Admissions",
     description: [
       "Start your journey towards a meaningful career in rural management, sustainable development, and livelihood innovation.",
-      "At NLRI, we offer a wide range of AICTE-approved postgraduate programs, diploma courses, and specialized certificate courses designed to meet the evolving needs of society and industry."
+      "At NIRM, we offer a wide range of AICTE-approved postgraduate programs, diploma courses, and specialized certificate courses designed to meet the evolving needs of society and industry."
     ]
   },
   programs: {
@@ -93,7 +93,7 @@ export const admissionsData = {
   ],
   contact: {
     phone: ["+91-12345-67890", "+91-12345-67890"],
-    email: ["test@nlri.com", "test@nlri.com"],
-    address: "CVRUK-NLRI Campus, Near Maleni River, Bhadwasa, Ratlam, Madhya Pradesh – 457222."
+    email: ["admissions@nirm.cvruk.in", "info@nirm-cvruk.ac.in"],
+    address: "CVRUK-NIRM Campus, Near Maleni River, Bhadwasa, Ratlam, Madhya Pradesh – 457222."
   }
 };

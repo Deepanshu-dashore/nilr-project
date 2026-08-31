@@ -18,13 +18,13 @@ export default function ContactClient() {
   const [status, setStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = React.useState("");
   const [siteInfo, setSiteInfo] = React.useState({
-    contactAddress: "CVRU Khandwa – NLRI Ratlam Campus, Near Maleni River, Village Bhadwasa, Namli, Ratlam, MP – 457222, India",
-    contactEmail: "admissions@nlri.cvruk.in",
-    generalEmail: "info@nlri-cvruk.ac.in",
+    contactAddress: "CVRU Khandwa – NIRM Ratlam Campus, Near Maleni River, Village Bhadwasa, Namli, Ratlam, MP – 457222, India",
+    contactEmail: "admissions@nirm.cvruk.in",
+    generalEmail: "info@nirm-cvruk.ac.in",
     contactPhone: "+91 91110 03000",
     helplinePhone: "+91 91091 07361 / 07412 284300",
     officeHours: "Monday – Saturday: 9:30 AM – 5:30 PM (Sunday: Closed)",
-    websiteUrl: "https://www.nlri.cvruk.in",
+    websiteUrl: "https://www.nirm.cvruk.in",
     mapEmbedUrl: map.embedUrl,
     socialLinks: {
       facebook: "#",
@@ -143,7 +143,7 @@ export default function ContactClient() {
                 width="100%"
                 height="100%"
                 loading="lazy"
-                title="NLRI Campus Map"
+                title="NIRM Campus Map"
                 className="border-0 grayscale-[0.1] hover:grayscale-0 transition-all duration-700 h-full"
               ></iframe>
             </div>
@@ -379,8 +379,8 @@ export default function ContactClient() {
           <div className="space-y-0 divide-y divide-gray-100">
             {[
               {
-                q: "Is NLRI Ratlam Campus recognised and approved?",
-                a: "Yes. NLRI Ratlam Campus is part of Dr. C.V. Raman University (CVRU) Khandwa, which is approved by the University Grants Commission (UGC). Our specialized vocational and rural management programs are designed in alignment with national skill development frameworks."
+                q: "Is NIRM Ratlam Campus recognised and approved?",
+                a: "Yes. NIRM Ratlam Campus is part of Dr. C.V. Raman University (CVRU) Khandwa, which is approved by the University Grants Commission (UGC). Our specialized vocational and rural management programs are designed in alignment with national skill development frameworks."
               },
               {
                 q: "What are the key career prospects after Rural Management?",

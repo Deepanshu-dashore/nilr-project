@@ -194,7 +194,7 @@ export default function CSRPartnershipsPage() {
         </div>
       </section>
 
-      {/* 8. Why Partner with CVRU–NLRI */}
+      {/* 8. Why Partner with CVRU–NIRM */}
       <section className="section-padding bg-white">
         <div className="container-wide">
            <div className="text-center mb-16 px-4">
@@ -252,7 +252,7 @@ export default function CSRPartnershipsPage() {
                            </div>
                        <div>
                           <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-1">Strategic Liaison</p>
-                          <p className="text-2xl font-bold">NLRI Corporate Desk</p>
+                          <p className="text-2xl font-bold">NIRM Corporate Desk</p>
                        </div>
                     </div>
                  </div>

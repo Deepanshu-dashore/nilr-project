@@ -6,8 +6,8 @@ import { BeakerIcon } from "@heroicons/react/24/outline";
 import { notFound } from "next/navigation";
 
 export const metadata = {
-  title: "SMU (Seed Manufacturing Unit) | NLRI Ratlam",
-  description: "Certified seed production and multiplication program at NLRI Ratlam producing 4,500+ quintals of soybean and crop seeds annually.",
+  title: "SMU (Seed Manufacturing Unit) | NIRM Ratlam",
+  description: "Certified seed production and multiplication program at NIRM Ratlam producing 4,500+ quintals of soybean and crop seeds annually.",
 };
 
 export default function SMUUnitPage() {

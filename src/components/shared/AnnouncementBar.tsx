@@ -48,7 +48,7 @@ export default function AnnouncementBar() {
     },
     {
       _id: "default-2",
-      title: "National Livelihood Resources Institute (NLRI) Collaboration with Dr. C.V. Raman University",
+      title: "National Institute of Rural Management (NIRM) Collaboration with Dr. C.V. Raman University",
     },
     {
       _id: "default-3",
@@ -60,42 +60,38 @@ export default function AnnouncementBar() {
   const tickerItems = [...displayItems, ...displayItems];
 
   return (
-    <div className="bg-white text-slate-800 border-b border-gray-200/80 relative z-10 overflow-hidden text-xs">
-      <div className="flex items-center h-8.5">
+    <div className="bg-white text-slate-800 relative z-10 overflow-hidden text-xs h-full w-full">
+      <div className="flex items-center h-full">
         
-        {/* Left Badge */}
-        <div className="shrink-0 flex items-center gap-1.5 bg-[#ba303b] text-white font-bold uppercase tracking-wider px-3 md:px-4 h-full z-10 shadow-xs">
+        {/* Left Button / Link to Announcements */}
+        <Link
+          href="/media-events/news"
+          className="shrink-0 flex items-center gap-1.5 bg-[#B34141] text-white font-bold uppercase tracking-wider px-3 md:px-4 h-full z-10 shadow-xs transition-all hover:brightness-125 active:scale-95 group cursor-pointer animate-pulse-maroon"
+          title="View All Announcements & News"
+        >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
           </span>
-          <MegaphoneIcon className="h-3.5 w-3.5" />
-          <span className="hidden sm:inline font-heading text-[11px] font-bold">Announcements</span>
-        </div>
+          <MegaphoneIcon className="h-3.5 w-3.5 text-white group-hover:scale-110 transition-transform" />
+          <span className="font-heading text-[11px] font-bold text-white tracking-wide">Announcements</span>
+        </Link>
 
         {/* Scrolling Ticker Track */}
-        <div className="flex-1 overflow-hidden relative h-full flex items-center">
+        <div className="flex-1 overflow-hidden relative h-full flex items-center min-w-0">
           <div className="animate-marquee whitespace-nowrap flex items-center gap-8 pl-4">
             {tickerItems.map((item, index) => (
               <Link
                 key={`${item._id}-${index}`}
                 href={item._id.startsWith("default") ? "/media-events/news" : `/media-events/${item._id}`}
-                className="inline-flex items-center gap-2 text-slate-700 hover:text-[#ba303b] font-medium transition-colors cursor-pointer group"
+                className="inline-flex items-center gap-2 text-slate-700 hover:text-[#B34141] font-medium transition-colors cursor-pointer group"
               >
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#ba303b]"></span>
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#B34141]"></span>
                 <span className="group-hover:underline tracking-wide text-xs">{item.title}</span>
               </Link>
             ))}
           </div>
         </div>
-
-        {/* Right CTA / View All */}
-        <Link 
-          href="/media-events/news" 
-          className="shrink-0 hidden lg:flex items-center px-3.5 h-full bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-[#ba303b] font-semibold text-[10px] uppercase tracking-wider transition-colors z-10 border-l border-gray-200"
-        >
-          View All
-        </Link>
       </div>
     </div>
   );

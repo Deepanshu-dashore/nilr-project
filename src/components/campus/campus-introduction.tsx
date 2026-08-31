@@ -22,16 +22,16 @@ export default function CampusIntroduction() {
         <h1 className="text-2xl md:text-4xl lg:text-5xl text-white leading-tight tracking-tight font-extrabold md:font-normal">
           Experience Life and Learning at
           <br className="hidden md:block" />
-          CVRU Khandwa – NLRI Ratlam
+          CVRU Khandwa – NIRM Ratlam
         </h1>
         
         <p className="text-white/80 text-sm md:text-base lg:text-lg leading-relaxed font-medium max-w-3xl mx-auto">
-          The CVRUK – NLRI Campus, located in Bhadwasa, Ratlam (Madhya Pradesh), features top-notch academic and training infrastructure amid a sustainable, green environment.
+          The CVRUK – NIRM Campus, located in Bhadwasa, Ratlam (Madhya Pradesh), features top-notch academic and training infrastructure amid a sustainable, green environment.
         </p>
       </div>
         <Image
           src="/campus-img/campusDron-2.jpeg"
-          alt="CVRUK NLRI campus panoramic aerial view"
+          alt="CVRUK NIRM campus panoramic aerial view"
           fill
           priority
           className="object-cover object-center group-hover:scale-110 transition-transform duration-[5000ms] ease-out"

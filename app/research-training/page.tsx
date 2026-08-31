@@ -1,17 +1,16 @@
 import { MagnifyingGlassIcon, RocketLaunchIcon, CheckCircleIcon, CircleStackIcon, Cog6ToothIcon, ChartBarIcon } from "@heroicons/react/24/outline";
+import Hero from "@/src/components/shared/hero";
 
 export default function ResearchTrainingPage() {
   return (
     <div className="flex flex-col">
       {/* Header Section */}
-      <section className="bg-text-main text-white py-20 px-4">
-        <div className="container-wide text-center">
-          <h1 className="text-4xl md:text-5xl font-bold font-heading mb-6">Research & Training</h1>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            Advancing rural communities through data-driven research, innovative training modules, and expert consultancy services.
-          </p>
-        </div>
-      </section>
+      <Hero
+        tag="DATA-DRIVEN INNOVATION"
+        tagIcon={MagnifyingGlassIcon}
+        title="Research & Training"
+        subtitle="Advancing rural communities through data-driven research, innovative training modules, and expert consultancy services."
+      />
 
       {/* Research Areas */}
       <section id="areas" className="section-padding bg-white">

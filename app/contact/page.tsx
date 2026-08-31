@@ -1,8 +1,8 @@
 import ContactClient from "@/src/components/contact/contact-client";
 
 export const metadata = {
-  title: "Contact Us | CVRU Khandwa – NLRI Ratlam Campus",
-  description: "Get in touch with CVRU Khandwa – NLRI Ratlam Campus for university admissions, administration, and campus queries.",
+  title: "Contact Us | CVRU Khandwa – NIRM Ratlam Campus",
+  description: "Get in touch with CVRU Khandwa – NIRM Ratlam Campus for university admissions, administration, and campus queries.",
 };
 
 export default function ContactPage() {

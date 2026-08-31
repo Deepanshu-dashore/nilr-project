@@ -35,7 +35,7 @@ const DEFAULT_NEWS: NewsItem[] = [
   },
   {
     _id: "default-news-2",
-    title: "NLRI Ratlam Campus Partners with Leading Rural Enterprises",
+    title: "NIRM Ratlam Campus Partners with Leading Rural Enterprises",
     description: "New partnership signed to bolster hands-on field internships and placement opportunities for students.",
     date: new Date(Date.now() - 86400000 * 2).toISOString(),
     url: "/home/NewsImage/news_mou.png",
@@ -44,7 +44,7 @@ const DEFAULT_NEWS: NewsItem[] = [
   {
     _id: "default-news-3",
     title: "National Conference on Good Agriculture Practices (GAP)",
-    description: "Scholars, policy makers, and community leaders gather at CVRUK-NLRI for sustainable farming dialogue.",
+    description: "Scholars, policy makers, and community leaders gather at CVRUK-NIRM for sustainable farming dialogue.",
     date: new Date(Date.now() - 86400000 * 5).toISOString(),
     url: "/home/NewsImage/news_events.png",
     type: "news",
@@ -163,7 +163,7 @@ export default function NewsAnnouncements() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-20 gap-6 md:gap-10">
             <div className="max-w-2xl px-2 md:px-0">
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-text-dark mb-4 tracking-tight">News & Announcements</h2>
-                <p className="text-sm md:text-base text-gray-600 font-medium leading-relaxed">Keep up with the latest updates, conferences, and achievements from the CVRUK-NLRI community.</p>
+                <p className="text-sm md:text-base text-gray-600 font-medium leading-relaxed">Keep up with the latest updates, conferences, and achievements from the CVRUK-NIRM community.</p>
             </div>
             <div className="flex items-center gap-4 px-2 md:px-0">
               <button 

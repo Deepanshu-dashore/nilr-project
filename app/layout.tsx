@@ -20,8 +20,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "CVRUK–NLRI Campus Portal | Education, Training & Rural Development",
-  description: "Official portal for CVRU Khandwa – NLRI Ratlam Campus. Providing excellence in rural development, academic programs, and CSR initiatives.",
+  title: "CVRUK–NIRM Campus Portal | Education, Training & Rural Development",
+  description: "Official portal for CVRU Khandwa – NIRM Ratlam Campus. Providing excellence in rural development, academic programs, and CSR initiatives.",
 };
 
 export default function RootLayout({

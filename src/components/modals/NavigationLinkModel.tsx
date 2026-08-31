@@ -59,7 +59,7 @@ export default function EnquiryModal() {
           <div className="flex items-center gap-3">
             <div className="w-1 h-6 rounded-full bg-[#ba303b]" />
             <span className="text-white font-bold text-sm uppercase tracking-widest">
-              National Livelihood Resources Institute Navigation
+              National Institute of Rural Management Navigation
             </span>
           </div>
           <div className="relative">
@@ -160,7 +160,7 @@ export default function EnquiryModal() {
             </Link>
           </div>
           <p className="text-white/30 text-[10px] hidden md:block">
-            CVRU Khandwa – NLRI Ratlam Campus
+            CVRU Khandwa – NIRM Ratlam Campus
           </p>
         </div>
       </div>
