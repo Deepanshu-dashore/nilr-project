@@ -5,17 +5,23 @@ import Link from "next/link";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import AnnouncementBar from "./AnnouncementBar";
 
-const topLinks = [
+interface TopLink {
+  name: string;
+  href: string;
+  bgColor: string;
+  hasDropdown?: boolean;
+}
+
+const topLinks: TopLink[] = [
   { 
     name: "Approval & Recognition", 
     href: "/approvals", 
     bgColor: "bg-[#B34141]" 
   },
   { 
-    name: "Admissions", 
-    href: "/admissions", 
-    bgColor: "bg-[#4C61A1]",
-    hasDropdown: true 
+    name: "Research", 
+    href: "/research", 
+    bgColor: "bg-[#0d1a63]" 
   },
   { 
     name: "Apply Now", 

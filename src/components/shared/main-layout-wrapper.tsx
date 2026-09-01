@@ -7,6 +7,7 @@ import Footer from "./footer";
 import ApplyNowModal from "../modals/ApplyNowModal";
 import NavigationLinkModel from "../modals/NavigationLinkModel";
 import FloatingEnquiry from "./FloatingEnquiry";
+import ScrollToTop from "./ScrollToTop";
 
 export default function MainLayoutWrapper({
   children,
@@ -28,6 +29,7 @@ export default function MainLayoutWrapper({
         <ApplyNowModal />
         <NavigationLinkModel />
         {!isAuthPage && <FloatingEnquiry />}
+        {!isAuthPage && <ScrollToTop />}
       </Suspense>
       {!isAuthPage && <Footer />}
     </>

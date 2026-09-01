@@ -56,6 +56,10 @@
   --foreground: #2d3142;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -126,7 +130,7 @@ h6 {
   @apply text-sm md:text-base text-center text-gray-600 leading-relaxed max-w-5xl mx-auto block;
 }
 
-/* Infinite Announcement Marquee */
+/* Infinite Announcement Marquee - Continuous Smooth Scroll */
 @keyframes marquee {
   0% {
     transform: translateX(0%);
@@ -139,11 +143,8 @@ h6 {
 .animate-marquee {
   display: inline-flex;
   width: max-content;
-  animation: marquee 30s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
+  animation: marquee 35s linear infinite;
+  will-change: transform;
 }
 
 /* CTA Banner Typography */

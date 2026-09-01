@@ -14,7 +14,6 @@ import {
   BuildingLibraryIcon,
   BookOpenIcon,
   EnvelopeIcon,
-  BeakerIcon,
   Square3Stack3DIcon,
   ChatBubbleLeftEllipsisIcon,
 } from "@heroicons/react/24/outline";
@@ -70,11 +69,6 @@ const mainNavigation = [
       { name: "Apply Now (Online Application)", href: "/admissions#apply" },
     ],
   },
-  {
-    name: "Research",
-    icon: BeakerIcon,
-    href: "/research",
-  },
   // {
   //   name: "Gallery",
   //   icon: Square3Stack3DIcon,
@@ -116,6 +110,7 @@ import TopBar from "./TopBar";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const [showTopBar, setShowTopBar] = useState(true);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -123,21 +118,45 @@ export default function Header() {
   const enquiryHref = `${pathname}?${(() => { const p = new URLSearchParams(searchParams.toString()); p.set("modal", "enquiry"); return p.toString(); })()}`;
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+
+      // Shadow & logo scale state
+      setScrolled(currentScrollY > 20);
+
+      // Scroll direction handling
+      if (currentScrollY <= 20) {
+        // At the top of the page -> always show TopBar
+        setShowTopBar(true);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling UP -> show TopBar
+        setShowTopBar(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 60) {
+        // Scrolling DOWN -> hide TopBar to keep compact main nav sticky
+        setShowTopBar(false);
+      }
+
+      lastScrollY = currentScrollY;
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="sticky top-0 z-50 w-full bg-white flex flex-col transition-all duration-300">
       {/* Top Action Bar */}
-      <div className={`overflow-hidden transition-all duration-500 ease-in-out ${scrolled ? "max-h-0 opacity-0 shadow-none" : "max-h-10 opacity-100"}`}>
+      <div
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+          showTopBar ? "max-h-10 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
+        }`}
+      >
         <TopBar />
       </div>
       <header
-        className={`md:sticky top-0 z-50 bg-white transition-all duration-300 ${
+        className={`w-full bg-white transition-all duration-300 ${
           scrolled ? "shadow-md" : "shadow-xs"
         }`}
       >
@@ -223,7 +242,7 @@ export default function Header() {
               href={enquiryHref}
               scroll={false}
               id="mega-menu-trigger"
-              className="inline-flex items-center justify-center w-11 h-11 rounded-full text-[#1a2849] hover:shadow-lg active:scale-95 transition-all duration-200"
+              className="inline-flex items-center justify-center w-9 h-9 rounded-md text-[#1a2849] shadow-sm border border-[#0e214e16] hover:shadow-md active:scale-95 transition-all duration-200"
               title="Open Menu"
             >
               <Bars3Icon className="h-6 w-6" />
