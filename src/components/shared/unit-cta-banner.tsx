@@ -23,17 +23,17 @@ export default function SharedCtaBanner({
     <section className="bg-linear-to-r from-primary to-accent relative overflow-hidden text-white py-12 md:py-16 border-t border-white/10">
       
       {/* Admissions Pattern Overlay */}
-      <div className="absolute w-full h-full bg-contain bg-no-repeat bg-right bg-full top-0 bg-[url('/patternSvg.svg')] opacity-20 pointer-events-none z-0" />
+      <div className="absolute w-full h-full bg-contain bg-no-repeat bg-right bg-full top-0 bg-[url('/patternSvg.svg')] opacity-45 pointer-events-none z-0" />
       
       <div className="container-wide px-6 md:px-8 flex flex-col md:flex-row justify-between items-center relative z-10 max-w-6xl mx-auto gap-6 md:gap-10">
         
         {/* Left Side Info (Increased Text Size) */}
         <div className="text-center md:text-left space-y-3">
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+          <h3 className="cta-title">
             {title}
           </h3>
           {subtitle && (
-            <p className="text-lg md:text-xl text-white/95 max-w-3xl font-medium leading-relaxed">
+            <p className="cta-subtitle">
               {subtitle}
             </p>
           )}

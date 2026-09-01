@@ -37,7 +37,7 @@ export default function CampusLocation() {
             </p>
 
             {/* Info Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
               
               {/* Address Card */}
               <div className="p-5 md:p-6 bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-lg transition-all duration-300 group">

@@ -37,7 +37,7 @@ const facilityCards = [
   {
     icon: BuildingOffice2Icon,
     title: "Administrative and Academic Buildings",
-    img: "/campus-img/campusImg.jpeg",
+    img: "/campus-img/srm-building.jpg",
     items: [
       "Three-story SRM academic block with dedicated offices and meeting spaces",
       "Executive cabins for Head NIRM, SRM Principal, and Training Director",
@@ -47,7 +47,7 @@ const facilityCards = [
   {
     icon: BeakerIcon,
     title: "Laboratories",
-    img: null,
+    img: "/campus-img/IMG_3587.JPG",
     badge: "Smart",
     items: [
       "GIS Laboratory: RVYS 10.1 for watershed mapping and planning",
@@ -58,7 +58,7 @@ const facilityCards = [
   {
     icon: PresentationChartBarIcon,
     title: "Auditorium and Classrooms",
-    img: null,
+    img: "/campus-img/campusImg.jpeg",
     items: [
       "Upcoming 250-seat auditorium for academic and cultural events",
       "Smart classrooms with projectors, whiteboards, and audio-visual tools",
@@ -67,7 +67,7 @@ const facilityCards = [
   {
     icon: TrophyIcon,
     title: "Sports Facilities",
-    img: null,
+    img: "/campus-img/green-bg.png",
     items: [
       "Football and cricket ground (4,500 sqm)",
       "Volleyball court (2,000 sqm)",
@@ -77,7 +77,7 @@ const facilityCards = [
   {
     icon: BookOpenIcon,
     title: "Knowledge Centre and Library",
-    img: null,
+    img: "/campus-img/last.jpg",
     items: [
       "6,000+ books and journals in English and Hindi",
       "Topics include: rural development, agriculture, management, gender studies",

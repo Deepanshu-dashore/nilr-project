@@ -424,10 +424,10 @@ export default function AdmissionsClient() {
         
         <div className="container-wide pl-5 md:pl-0 flex flex-col md:flex-row justify-between items-center relative z-10 max-w-6xl mx-auto gap-8 md:gap-14">
           <div className="text-center md:text-left">
-            <h3 className="text-2xl md:text-4xl font-bold tracking-tight mb-4 leading-tight">
+            <h3 className="cta-title mb-4">
               Take the First Step <br className="hidden md:block"/> Toward Your Future
             </h3>
-            <p className="text-base md:text-lg text-white/90 max-w-2xl px-5 md:px-0">
+            <p className="cta-subtitle px-5 md:px-0">
               Build a career in sustainable development, grassroots leadership, and social innovation.
             </p>
           </div>

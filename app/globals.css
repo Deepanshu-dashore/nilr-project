@@ -146,3 +146,19 @@ h6 {
   animation-play-state: paused;
 }
 
+/* CTA Banner Typography */
+.cta-title {
+  @apply text-xl md:text-2xl lg:text-3xl font-black tracking-tight text-white leading-tight;
+}
+
+.cta-subtitle {
+  @apply text-sm md:text-base text-white/95 font-medium leading-relaxed max-w-3xl;
+}
+
+.cta-btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 bg-white text-primary font-extrabold px-6 py-3 text-sm shadow-lg hover:bg-white/90 hover:scale-105 transition-all duration-200 active:scale-95 whitespace-nowrap cursor-pointer;
+}
+
+.cta-btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/10 backdrop-blur-md text-white font-bold px-6 py-3 text-sm shadow-md hover:bg-white hover:text-primary transition-all duration-200 active:scale-95 whitespace-nowrap cursor-pointer;
+}
