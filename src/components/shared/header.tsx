@@ -110,7 +110,6 @@ import TopBar from "./TopBar";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [showTopBar, setShowTopBar] = useState(true);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -118,45 +117,32 @@ export default function Header() {
   const enquiryHref = `${pathname}?${(() => { const p = new URLSearchParams(searchParams.toString()); p.set("modal", "enquiry"); return p.toString(); })()}`;
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
+    let ticking = false;
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Shadow & logo scale state
-      setScrolled(currentScrollY > 20);
-
-      // Scroll direction handling
-      if (currentScrollY <= 20) {
-        // At the top of the page -> always show TopBar
-        setShowTopBar(true);
-      } else if (currentScrollY < lastScrollY) {
-        // Scrolling UP -> show TopBar
-        setShowTopBar(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 60) {
-        // Scrolling DOWN -> hide TopBar to keep compact main nav sticky
-        setShowTopBar(false);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 30);
+          ticking = false;
+        });
+        ticking = true;
       }
-
-      lastScrollY = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="sticky top-0 z-50 w-full bg-white flex flex-col transition-all duration-300">
+    <>
       {/* Top Action Bar */}
-      <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${
-          showTopBar ? "max-h-10 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
-        }`}
-      >
-        <TopBar />
-      </div>
+      <TopBar />
+
+      {/* Main Sticky Header */}
       <header
-        className={`w-full bg-white transition-all duration-300 ${
+        className={`sticky top-0 z-50 w-full bg-white transition-all duration-200 ${
           scrolled ? "shadow-md" : "shadow-xs"
         }`}
       >
@@ -277,6 +263,6 @@ export default function Header() {
         />
       </div>
       </header>
-    </div>
+    </>
   );
 }

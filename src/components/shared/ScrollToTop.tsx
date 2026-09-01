@@ -51,7 +51,7 @@ export default function ScrollToTop() {
     >
       {/* Floating Tooltip Label */}
       <div
-        className={`hidden sm:flex items-center bg-slate-900 text-white text-xs font-semibold px-3.5 py-1.5 rounded-full shadow-2xl border border-slate-700 pointer-events-none transition-all duration-200 ${
+        className={`hidden sm:flex items-center bg-white/95 backdrop-blur-md text-slate-800 text-xs font-semibold px-3.5 py-1.5 rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] border border-slate-200/90 pointer-events-none transition-all duration-200 ${
           isHovered && isVisible
             ? "opacity-100 translate-x-0"
             : "opacity-0 translate-x-2"

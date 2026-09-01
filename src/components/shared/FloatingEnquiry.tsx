@@ -24,11 +24,11 @@ export default function FloatingEnquiry() {
     >
       {/* Floating Tooltip / Label */}
       <div 
-        className={`hidden sm:flex items-center gap-2 bg-slate-900 text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-2xl transition-all duration-300 border border-slate-700 pointer-events-none ${
+        className={`hidden sm:flex items-center gap-2 bg-white/95 backdrop-blur-md text-slate-800 text-xs font-semibold px-4 py-2 rounded-full shadow-[0_8px_30px_rgba(0,0,0,0.12)] transition-all duration-300 border border-slate-200/90 pointer-events-none ${
           isHovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-3"
         }`}
       >
-        <SparklesIcon className="w-4 h-4 text-amber-400 animate-spin" style={{ animationDuration: "3s" }} />
+        <SparklesIcon className="w-4 h-4 text-amber-500 animate-spin" style={{ animationDuration: "3s" }} />
         <span>Admission & General Enquiry</span>
       </div>
 

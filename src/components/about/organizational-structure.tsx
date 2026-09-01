@@ -47,10 +47,10 @@ export default function OrganizationalStructure() {
 
         {/* ── Section Header ── */}
         <div className="text-center mb-12 md:mb-16 space-y-3">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/15 text-primary text-xs font-bold uppercase tracking-widest">
-            <BuildingOffice2Icon className="w-4 h-4" />
+          <span className="text-gray-600 inline-flex items-center gap-1.5 border-gray-300 font-medium capitalize border w-fit px-3 py-1.5 rounded-full text-[10px] md:text-xs mb-3 shadow-xs mx-auto">
+            <BuildingOffice2Icon className="w-4 h-4 inline-block text-primary" />
             Organizational Framework
-          </div>
+          </span>
           <h2 className="academic-section-title text-gray-900 text-3xl md:text-5xl font-extrabold tracking-tight">
             Institutional <span className="text-primary">Ecosystem</span>
           </h2>

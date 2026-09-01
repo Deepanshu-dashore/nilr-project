@@ -86,7 +86,7 @@ h6 {
 }
 
 .section-padding {
-  @apply py-16 px-6 md:py-24 md:px-12 lg:px-24;
+  @apply py-16 px-6 md:py-16 md:px-12 lg:px-24;
 }
 
 .container-wide {

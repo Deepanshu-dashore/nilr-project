@@ -23,6 +23,15 @@
     ]
   },
   {
+    "title": "Student Life & Placements",
+    "links": [
+      { "name": "Placements & Career Cell", "href": "/placements" },
+      { "name": "Student Life", "href": "/student-life" },
+      { "name": "Campus & Infrastructure", "href": "/campus" },
+      { "name": "Alumni Success Stories", "href": "/success-stories" }
+    ]
+  },
+  {
     "title": "Admissions",
     "links": [
       { "name": "Admission Procedure", "href": "/admissions" },

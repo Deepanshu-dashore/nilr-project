@@ -24,11 +24,11 @@ export default function InstitutionalGovernance() {
       <div className="container-wide relative z-10 space-y-16">
 
         {/* ── Section Header ── */}
-        <div className="max-w-5xl space-y-4 mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/15 text-primary text-xs font-bold uppercase tracking-widest ">
-            <BuildingLibraryIcon className="w-4 h-4" />
+        <div className="max-w-5xl space-y-3 mx-auto text-center">
+          <span className="text-gray-600 inline-flex items-center gap-1.5 border-gray-300 font-medium capitalize border w-fit px-3 py-1.5 rounded-full text-[10px] md:text-xs mb-3 shadow-xs mx-auto">
+            <BuildingLibraryIcon className="w-4 h-4 inline-block text-primary" />
             GVT · Est. 1992
-          </div>
+          </span>
           <h2 className="academic-section-title">
             Governance &{" "}
             <span className="text-primary">Board of Trustees</span>

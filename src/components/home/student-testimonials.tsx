@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence, Variants } from "framer-motion";
+import { motion, AnimatePresence, Variants, PanInfo } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { 
@@ -91,7 +91,17 @@ export default function StudentTestimonials() {
     setShowFullStory(false);
   }, [total]);
 
-  // Auto-scroll left (forward) every 6 seconds
+  // Touch / Swipe handler for mobile devices
+  const handleDragEnd = (_e: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    const swipeThreshold = 50;
+    if (info.offset.x < -swipeThreshold) {
+      nextSlide();
+    } else if (info.offset.x > swipeThreshold) {
+      prevSlide();
+    }
+  };
+
+  // Auto-scroll forward every 6 seconds
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
@@ -105,36 +115,38 @@ export default function StudentTestimonials() {
   // Motion variants for smooth slide + scale + fade transitions
   const slideVariants: Variants = {
     enter: (dir: number) => ({
-      x: dir > 0 ? 80 : -80,
+      x: dir > 0 ? 60 : -60,
       opacity: 0,
-      scale: 0.96,
+      scale: 0.98,
     }),
     center: {
       x: 0,
       opacity: 1,
       scale: 1,
       transition: {
-        x: { type: "spring" as const, stiffness: 240, damping: 26 },
-        opacity: { duration: 0.45 },
-        scale: { duration: 0.45 },
+        x: { type: "spring" as const, stiffness: 260, damping: 28 },
+        opacity: { duration: 0.35 },
+        scale: { duration: 0.35 },
       },
     },
     exit: (dir: number) => ({
-      x: dir > 0 ? -80 : 80,
+      x: dir > 0 ? -60 : 60,
       opacity: 0,
-      scale: 0.96,
+      scale: 0.98,
       transition: {
-        x: { type: "spring" as const, stiffness: 240, damping: 26 },
-        opacity: { duration: 0.35 },
+        x: { type: "spring" as const, stiffness: 260, damping: 28 },
+        opacity: { duration: 0.25 },
       },
     }),
   };
 
   return (
     <section 
-      className="relative overflow-hidden py-16 md:py-18 bg-gradient-to-r from-[#0a122c] via-[#1b1540] to-[#3a1332] text-white"
+      className="relative overflow-hidden py-12 sm:py-16 md:py-20 bg-gradient-to-r from-[#0a122c] via-[#1b1540] to-[#3a1332] text-white select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
     >
       {/* ── Low-Poly Polygonal Facet Geometric Background Overlay ── */}
       <div className="absolute inset-0 pointer-events-none opacity-25 mix-blend-overlay">
@@ -168,19 +180,22 @@ export default function StudentTestimonials() {
       </div>
 
       {/* Ambient Lighting Flares */}
-      <div className="absolute top-1/4 left-10 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-fuchsia-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 left-5 sm:left-10 w-64 sm:w-96 h-64 sm:h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-5 sm:right-10 w-64 sm:w-96 h-64 sm:h-96 bg-fuchsia-600/15 rounded-full blur-3xl pointer-events-none" />
 
       {/* ── Top Header ── */}
-      <div className="container mx-auto px-4 relative z-20 text-center mb-10 md:mb-14">
-        <h2 className="text-xl md:text-2xl font-bold tracking-tight text-white/90">
-          Testimonials
+      <div className="container mx-auto px-4 relative z-20 text-center mb-8 sm:mb-10 md:mb-12">
+        <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white/95 font-heading">
+          Student Voices & Testimonials
         </h2>
+        <p className="text-xs sm:text-sm text-indigo-200/80 mt-1 max-w-md mx-auto">
+          Hear real experiences from scholars driving rural impact
+        </p>
       </div>
 
       {/* ── Main Split View Container ── */}
-      <div className="container mx-auto px-6 sm:px-12 md:px-16 lg:px-24 relative z-20 max-w-6xl">
-        <div className="relative min-h-[350px] sm:min-h-[380px] md:min-h-[420px] flex items-center justify-center">
+      <div className="container mx-auto px-4 sm:px-8 md:px-14 lg:px-20 relative z-20 max-w-6xl">
+        <div className="relative min-h-[460px] sm:min-h-[420px] md:min-h-[400px] flex items-center justify-center">
           <AnimatePresence mode="wait" custom={direction} initial={false}>
             <motion.div
               key={currentItem.id}
@@ -189,24 +204,28 @@ export default function StudentTestimonials() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={handleDragEnd}
+              className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center cursor-grab active:cursor-grabbing"
             >
-              {/* ── Left Column: Headline Quote & Author Tag ── */}
-              <div className="lg:col-span-7 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
+              {/* ── Left Column: Headline Quote, Details & Author ── */}
+              <div className="lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1">
                 {/* Rating & Category Tag */}
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3">
                   <div className="flex items-center gap-1">
                     {Array.from({ length: currentItem.rating }).map((_, i) => (
                       <StarIcon key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
                     ))}
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-white/10 border border-white/15 text-indigo-200">
+                  <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-white/10 border border-white/15 text-indigo-200">
                     {currentItem.tag}
                   </span>
                 </div>
 
                 {/* Big Statement Headline */}
-                <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-[2.2rem] font-bold text-white leading-[1.25] tracking-tight max-w-2xl">
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-[2rem] font-bold text-white leading-snug sm:leading-tight tracking-tight max-w-2xl">
                   &ldquo;{currentItem.headline}&rdquo;
                 </h3>
 
@@ -218,16 +237,16 @@ export default function StudentTestimonials() {
                 {/* Interactive Author Badge with Plus (+) icon */}
                 <div 
                   onClick={() => setShowFullStory(!showFullStory)}
-                  className="inline-flex items-center gap-3 pt-2 cursor-pointer group select-none"
+                  className="inline-flex items-center gap-3 pt-1 sm:pt-2 cursor-pointer group select-none"
                 >
-                  <div className="w-7 h-7 rounded-full border border-white/40 flex items-center justify-center text-white text-xs group-hover:border-white group-hover:bg-white/20 transition-all">
+                  <div className="w-8 h-8 sm:w-7 sm:h-7 rounded-full border border-white/40 flex items-center justify-center text-white text-xs group-hover:border-white group-hover:bg-white/20 transition-all">
                     <PlusIcon className="w-4 h-4 transition-transform group-hover:rotate-90 duration-300" />
                   </div>
                   <div className="flex flex-col items-start text-left">
-                    <span className="text-base md:text-lg font-bold text-white group-hover:text-indigo-200 transition-colors">
+                    <span className="text-base sm:text-lg font-bold text-white group-hover:text-indigo-200 transition-colors">
                       {currentItem.name}
                     </span>
-                    <span className="text-xs text-white/60 font-medium">
+                    <span className="text-xs text-white/70 font-medium">
                       {currentItem.role} • {currentItem.batch}
                     </span>
                   </div>
@@ -235,24 +254,24 @@ export default function StudentTestimonials() {
               </div>
 
               {/* ── Right Column: Featured Arch Shaped Student Photo ── */}
-              <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <div className="lg:col-span-5 flex justify-center lg:justify-end order-1 lg:order-2">
                 <div className="relative">
                   {/* Subtle Glowing Ring behind the Arch */}
-                  <div className="absolute -inset-2 bg-gradient-to-t from-fuchsia-500/20 to-indigo-500/20 rounded-t-[170px] rounded-b-4xl blur-lg pointer-events-none" />
+                  <div className="absolute -inset-2 bg-gradient-to-t from-fuchsia-500/25 to-indigo-500/25 rounded-t-[120px] sm:rounded-t-[160px] lg:rounded-t-[170px] rounded-b-3xl sm:rounded-b-4xl blur-md pointer-events-none" />
 
-                  {/* Arch Image Frame Container */}
-                  <div className="relative w-60 h-76 sm:w-68 sm:h-88 md:w-76 md:h-96 lg:w-[320px] lg:h-[400px] rounded-t-[160px] md:rounded-t-[170px] rounded-b-4xl overflow-hidden border-2 border-white/20 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] bg-[#1e1335]">
+                  {/* Responsive Arch Image Frame Container */}
+                  <div className="relative w-44 h-56 sm:w-56 sm:h-72 md:w-68 md:h-84 lg:w-[300px] lg:h-[380px] rounded-t-[110px] sm:rounded-t-[150px] lg:rounded-t-[160px] rounded-b-3xl sm:rounded-b-4xl overflow-hidden border-2 border-white/25 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.7)] bg-[#1e1335]">
                     <Image
                       src={currentItem.avatar}
                       alt={currentItem.name}
                       fill
                       priority
                       className="object-cover object-top transition-transform duration-700 hover:scale-105"
-                      sizes="(max-width: 768px) 260px, 340px"
+                      sizes="(max-width: 640px) 180px, (max-width: 1024px) 270px, 320px"
                     />
                     
                     {/* Subtle bottom gradient shadow inside frame */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
                   </div>
                 </div>
               </div>
@@ -260,10 +279,10 @@ export default function StudentTestimonials() {
           </AnimatePresence>
         </div>
 
-        {/* ── Left & Right Nav Chevron Buttons ── */}
+        {/* ── Desktop Left & Right Nav Chevron Buttons (Hidden on mobile to prevent overlay clipping) ── */}
         <button
           onClick={prevSlide}
-          className="absolute -left-2 sm:left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/30 text-white/80 hover:text-white hover:border-white hover:bg-white/10 flex items-center justify-center transition-all duration-300 shadow-lg active:scale-90 cursor-pointer z-30"
+          className="hidden md:flex absolute md:-left-3 lg:-left-5 top-1/2 -translate-y-1/2 w-11 h-11 lg:w-12 lg:h-12 rounded-full border border-white/30 text-white/80 hover:text-white hover:border-white hover:bg-white/10 items-center justify-center transition-all duration-300 shadow-lg active:scale-90 cursor-pointer z-30"
           aria-label="Previous testimonial"
           title="Previous testimonial"
         >
@@ -272,7 +291,7 @@ export default function StudentTestimonials() {
 
         <button
           onClick={nextSlide}
-          className="absolute -right-2 sm:right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/30 text-white/80 hover:text-white hover:border-white hover:bg-white/10 flex items-center justify-center transition-all duration-300 shadow-lg active:scale-90 cursor-pointer z-30"
+          className="hidden md:flex absolute md:-right-3 lg:-right-5 top-1/2 -translate-y-1/2 w-11 h-11 lg:w-12 lg:h-12 rounded-full border border-white/30 text-white/80 hover:text-white hover:border-white hover:bg-white/10 items-center justify-center transition-all duration-300 shadow-lg active:scale-90 cursor-pointer z-30"
           aria-label="Next testimonial"
           title="Next testimonial"
         >
@@ -280,37 +299,58 @@ export default function StudentTestimonials() {
         </button>
       </div>
 
-      {/* ── Bottom Section: View All Link with Dashed Line & Dots ── */}
-      <div className="container mx-auto px-4 relative z-20 mt-10 md:mt-14 flex flex-col items-center gap-4">
+      {/* ── Bottom Section: Mobile Navigation, Dots & View All Link ── */}
+      <div className="container mx-auto px-4 relative z-20 mt-8 sm:mt-10 md:mt-12 flex flex-col items-center gap-3.5 sm:gap-4">
+        {/* Mobile Swipe / Arrow Controls & Dots */}
+        <div className="flex items-center gap-4">
+          {/* Mobile Prev Button */}
+          <button
+            onClick={prevSlide}
+            className="flex md:hidden w-8 h-8 rounded-full border border-white/30 text-white/80 hover:text-white hover:border-white hover:bg-white/10 items-center justify-center active:scale-90 cursor-pointer transition-all"
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeftIcon className="w-4 h-4 stroke-[2.5]" />
+          </button>
+
+          {/* Carousel Pagination Indicator Dots */}
+          <div className="flex items-center gap-2">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  setDirection(i > current ? 1 : -1);
+                  setCurrent(i);
+                }}
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  current === i
+                    ? "w-7 bg-white shadow-xs"
+                    : "w-2 bg-white/30 hover:bg-white/60"
+                }`}
+                aria-label={`Go to testimonial ${i + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* Mobile Next Button */}
+          <button
+            onClick={nextSlide}
+            className="flex md:hidden w-8 h-8 rounded-full border border-white/30 text-white/80 hover:text-white hover:border-white hover:bg-white/10 items-center justify-center active:scale-90 cursor-pointer transition-all"
+            aria-label="Next testimonial"
+          >
+            <ChevronRightIcon className="w-4 h-4 stroke-[2.5]" />
+          </button>
+        </div>
+
         {/* View All Link */}
         <Link
           href="/success-stories"
-          className="inline-flex flex-col items-center group cursor-pointer"
+          className="inline-flex flex-col items-center group cursor-pointer mt-1"
         >
-          <span className="text-sm font-semibold text-white/90 group-hover:text-white flex items-center gap-1.5 transition-colors tracking-wide">
-            View All <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+          <span className="text-xs sm:text-sm font-semibold text-white/90 group-hover:text-white flex items-center gap-1.5 transition-colors tracking-wide">
+            View All Stories <ArrowRightIcon className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </span>
           <div className="w-24 border-b border-dashed border-white/40 mt-1 group-hover:border-white transition-colors" />
         </Link>
-
-        {/* Carousel Pagination Indicator Dots */}
-        <div className="flex items-center gap-2 mt-2">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => {
-                setDirection(i > current ? 1 : -1);
-                setCurrent(i);
-              }}
-              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                current === i
-                  ? "w-7 bg-white shadow-xs"
-                  : "w-2 bg-white/30 hover:bg-white/60"
-              }`}
-              aria-label={`Go to testimonial ${i + 1}`}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );
