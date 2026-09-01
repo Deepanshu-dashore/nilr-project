@@ -1,10 +1,44 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { admissionsData } from "@/src/data/admissions-data";
-import { MapPinIcon, PhoneIcon, EnvelopeIcon, AcademicCapIcon, CheckCircleIcon, ClockIcon, CalendarIcon, IdentificationIcon, UserPlusIcon, ClipboardDocumentCheckIcon, DocumentTextIcon, BriefcaseIcon } from "@heroicons/react/24/outline";
+import { MapPinIcon, PhoneIcon, EnvelopeIcon, AcademicCapIcon, CheckCircleIcon, ClockIcon, CalendarIcon, IdentificationIcon, UserPlusIcon, ClipboardDocumentCheckIcon, DocumentTextIcon, BriefcaseIcon, DocumentArrowDownIcon, XMarkIcon, ArrowPathIcon, ChevronLeftIcon, ChevronRightIcon, SparklesIcon, BuildingLibraryIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
+
+type Program = {
+  _id: string;
+  name: string;
+  description?: string;
+  duration: number;
+  fee: number;
+  eligibility: string[];
+  feeStructureDoc?: string;
+  programType?: { name: string };
+};
+
+const PAGE_LIMIT = 6;
 
 export default function AdmissionsClient() {
+  const [programs, setPrograms]         = useState<Program[]>([]);
+  const [loadingPrograms, setLoading]   = useState(true);
+  const [openPdfId, setOpenPdfId]       = useState<string | null>(null);
+  const [page, setPage]                 = useState(1);
+  const [totalPages, setTotalPages]     = useState(1);
+  const [total, setTotal]               = useState(0);
+
+  useEffect(() => {
+    setLoading(true);
+    setOpenPdfId(null);
+    fetch(`/api/admissions/eligibility-fees?page=${page}&limit=${PAGE_LIMIT}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setPrograms(data.programs ?? []);
+        setTotalPages(data.totalPages ?? 1);
+        setTotal(data.total ?? 0);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [page]);
+
   return (
     <div className="flex flex-col bg-white">
       
@@ -37,115 +71,71 @@ export default function AdmissionsClient() {
       </section>
 
       {/* 2. WELCOME / INTRODUCTION SECTION */}
-      <section className="py-12 md:py-24 bg-white">
-        <div className="container-wide pl-5 md:pl-0 max-w-6xl">
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
-            <div className="lg:w-1/2 space-y-6">
-              <span className="text-accent font-bold uppercase tracking-widest text-xs">
+      <section className="py-14 md:py-24 bg-white relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="pointer-events-none absolute -top-40 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px] z-0" />
+
+        <div className="container-wide pl-5 md:pl-0 max-w-6xl relative z-10">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-14 items-center">
+            
+            {/* Left Column: Heading & Content */}
+            <div className="lg:w-1/2 space-y-5">
+              <span className="text-gray-600 inline-flex items-center gap-1.5 border-gray-300 font-medium capitalize border w-fit px-3 py-1.5 rounded-full text-[10px] md:text-xs shadow-xs">
+                <SparklesIcon className="w-4 h-4 inline-block text-primary" />
                 Welcome to NIRM
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#21325b] leading-tight">
-                {admissionsData.intro.title}
+
+              <h2 className="academic-section-title text-gray-900 text-3xl md:text-4xl lg:text-[42px] font-extrabold tracking-tight leading-tight">
+                Welcome to <span className="text-primary">CVRUK – NIRM</span> Admissions
               </h2>
-              <div className="w-20 h-1.5 bg-accent rounded-full" />
-              <div className="space-y-4 text-gray-600 font-medium leading-relaxed text-sm md:text-base text-justify md:text-left">
-                {admissionsData.intro.description.map((para, i) => (
-                  <p key={i}>{para}</p>
+
+              <div className="space-y-4 text-gray-600 leading-relaxed text-sm md:text-base text-justify md:text-left">
+                <p className="text-gray-800 font-medium text-base md:text-lg leading-relaxed">
+                  Start your journey towards a meaningful career in rural management, sustainable development, and livelihood innovation.
+                </p>
+                <p className="text-gray-600">
+                  At NIRM, we offer a wide range of AICTE-approved postgraduate programs, diploma courses, and specialized certificate courses designed to meet the evolving needs of society and industry.
+                </p>
+              </div>
+
+              {/* Quick Feature Badges */}
+              <div className="pt-2 flex flex-wrap gap-2.5">
+                {[
+                  "AICTE Approved Programs",
+                  "Experiential Field Learning",
+                  "100% Placement Support"
+                ].map((feat, idx) => (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-50 border border-slate-200/70 text-xs font-semibold text-slate-700"
+                  >
+                    <CheckCircleIcon className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    {feat}
+                  </span>
                 ))}
               </div>
             </div>
-            <div className="lg:w-1/2 relative">
-               <div className="aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-2xl relative group">
+
+            {/* Right Column: Campus Image Frame */}
+            <div className="lg:w-1/2 relative w-full">
+               <div className="aspect-[4/3] sm:aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-2xl relative group border border-gray-100">
                   <img 
-                    src="/addmision.jpeg" 
-                    alt="Campus Life" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                    src="/srm-campus-building.jpg" 
+                    alt="School of Rural Management Campus Building" 
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700" 
                   />
-                  <div className="absolute inset-0 bg-primary/10 mix-blend-overlay" />
-                  <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent/20 rounded-full blur-3xl" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent/20 rounded-full blur-3xl pointer-events-none" />
                </div>
                <div className="absolute -top-4 -left-4 bg-white p-4 shadow-xl rounded-xl z-10 border border-gray-100 hidden md:block">
                   <p className="text-primary font-bold text-base leading-tight">Build your <br/>Future here</p>
                </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* 2. PROGRAMS OPEN FOR ADMISSION */}
-      <section id="programs" className="py-12 md:py-24 bg-white">
-        <div className="container-wide pl-5 md:pl-0 max-w-6xl">
-
-          <div className="text-center md:text-center mb-10 md:mb-16">
-            <span className="text-gray-600 flex items-center gap-1 border-gray-300 font-medium capitalize border w-fit px-3 py-1.5 rounded-full mx-auto text-[10px] md:text-xs mb-3">
-            <AcademicCapIcon className="w-4 h-4 inline-block mr-1" />
-            Academic Opportunity
-            </span>
-            <h2 className="text-2xl md:text-4xl academic-section-title">
-              Programs Open for Admission
-            </h2>
-            <div className="w-32 h-1 bg-linear-to-r from-[#21325b] to-[#9b2928] rounded-md mb-6 mx-auto" />
-            <p className="text-gray-600 academic-section-text text-sm md:text-lg max-w-5xl leading-relaxed font-medium mx-auto text-justify md:text-center">
-              We offer specialized programs that bridge the gap between academic theory and practical field implementation. Choose the path that fits your career goals.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-6">
-            {[
-              { 
-                title: "PGD – Rural Management", 
-                type: "2 Years | AICTE Approved", 
-                desc: "A comprehensive program designed to build competent rural development professionals through 60 intensive seats and fieldwork.",
-                color: "#21325b",
-                link: "/programs#postgraduate"
-              },
-              { 
-                title: "Diploma Programs", 
-                type: "1 Year | Skill-based", 
-                desc: "Intensive 1-year programs in Organic Farming and Community Driven Development focused on sustainable grassroots practices.",
-                color: "#9b2928",
-                link: "/programs#diploma"
-              },
-              { 
-                title: "Certificate Courses", 
-                type: "3 Months | Professional", 
-                desc: "14+ specialized training modules for rural professionals, engineers, and entrepreneurs seeking quick skill upgrades.",
-                color: "#16a34a",
-                link: "/programs#certificate"
-              }
-            ].map((program, idx) => (
-              <div key={idx} className="group flex flex-col md:flex-row md:items-center justify-between bg-white border border-gray-100 rounded-sm hover:shadow-[0_10px_40px_rgba(0,0,0,0.06)] transition-all duration-300 p-6 md:px-10 md:py-8 relative overflow-hidden">
-                <div 
-                  className="absolute left-0 top-0 bottom-0 w-[5px]" 
-                  style={{ backgroundColor: program.color }}
-                />
-                
-                <div className="max-w-2xl mb-6 md:mb-0">
-                  <h3 className="text-xl md:text-2xl font-bold text-[#21325b] mb-2 group-hover:text-[#9b2928] transition-colors duration-300">
-                    {program.title}
-                  </h3>
-                  <p className="text-[#9b2928] font-bold text-xs md:text-sm mb-3 uppercase tracking-wide">
-                    {program.type}
-                  </p>
-                  <p className="text-sm md:text-base text-gray-600 leading-relaxed font-medium text-justify md:text-left">
-                    {program.desc}
-                  </p>
-                </div>
-
-                <a 
-                  href={program.link} 
-                  className="inline-flex items-center justify-center gap-2 bg-[#21325b] text-white px-8 py-3 font-bold text-sm rounded-sm hover:bg-[#9b2928] transition-all transform hover:-translate-y-1 shadow-md active:scale-95 whitespace-nowrap"
-                >
-                  Apply Now
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 3. ADMISSION PROCEDURE (Step Layout based on Reference Image) */}
       <section id="process" className="py-12 md:py-24 bg-primary/5">
@@ -236,12 +226,12 @@ export default function AdmissionsClient() {
         </div>
       </section>
 
-      {/* 5. COURSE ELIGIBILITY & FEES SECTION (Unified Format) */}
+      {/* 5. COURSE ELIGIBILITY & FEES SECTION — API Driven */}
       <section id="fees" className="py-12 md:py-24 bg-white border-t border-gray-100">
         <div className="container-wide px-5 md:px-0 max-w-6xl">
           <div className="text-center mb-10 md:mb-16">
             <h2 className="text-2xl md:text-4xl academic-section-title">
-              Course Eligibility & Fees
+              Course Eligibility &amp; Fees
             </h2>
             <div className="w-24 h-1 bg-[#21325b]/20 mx-auto rounded-full mb-3" />
             <p className="academic-section-text text-sm md:text-base">
@@ -249,69 +239,127 @@ export default function AdmissionsClient() {
             </p>
           </div>
 
-          <div className="overflow-x-auto border border-gray-200 no-scrollbar">
-            <table className="w-full text-left border min-w-[700px]">
-              <thead className="bg-[#21325b]">
-                <tr className="text-white font-bold uppercase text-[10px] md:text-sm tracking-wider">
-                  <th className="p-4 md:p-6 w-1/4">Branch</th>
-                  <th className="p-4 md:p-6">Essential Qualification</th>
-                  <th className="p-4 md:p-6">Duration</th>
-                  <th className="p-4 md:p-6">Fees</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 bg-[#f8f9fa]">
-                <tr className="hover:bg-gray-50 transition-colors">
-                  <td className="p-4 md:p-6 border border-gray-200">
-                    <p className="font-bold text-gray-900 text-sm md:text-base">PGD-Rural Management</p>
-                  </td>
-                  <td className="p-4 md:p-6 border border-gray-200 max-w-[300px]">
-                    <p className="text-gray-700 text-xs md:text-[14px] leading-relaxed font-medium">Graduation in any discipline with min 50% marks (45% for SC/ST).</p>
-                  </td>
-                  <td className="p-4 md:p-6 border border-gray-200">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] md:text-sm font-bold uppercase tracking-wider">2 Years</span>
-                  </td>
-                  <td className="p-4 md:p-6 border border-gray-200">
-                    <p className="font-bold text-[#21325b] text-base md:text-lg">₹65,000 <span className="text-gray-400 text-[10px] md:text-xs font-medium">/ year</span></p>
-                    <p className="text-[10px] md:text-[11px] text-gray-500 font-medium mt-1 italic leading-tight">(inclusive of tuition & facilities)</p>
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50 transition-colors">
-                  <td className="p-4 md:p-6 border border-gray-200">
-                    <p className="font-bold text-gray-900 text-sm md:text-base md:text-lg">Diploma Courses</p>
-                  </td>
-                  <td className="p-4 md:p-6 border border-gray-200 max-w-[300px]">
-                    <p className="text-gray-700 text-xs md:text-[14px] leading-relaxed font-medium">Minimum 12th pass from a recognized board.</p>
-                  </td>
-                  <td className="p-4 md:p-6 border border-gray-200">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] md:text-sm font-bold uppercase tracking-wider">1 Year</span>
-                  </td>
-                  <td className="p-4 md:p-6 border border-gray-200">
-                    <p className="font-bold text-[#21325b] text-base md:text-lg">₹30,000 <span className="text-gray-400 text-[10px] md:text-xs font-medium">/ total</span></p>
-                    <p className="text-[10px] md:text-[11px] text-gray-500 font-medium mt-1 italic leading-tight">(inclusive of training & field visits)</p>
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50 transition-colors">
-                  <td className="p-4 md:p-6 border border-gray-200">
-                    <p className="font-bold text-gray-900 text-sm md:text-base md:text-lg">Certificate Courses</p>
-                  </td>
-                  <td className="p-4 md:p-6 border border-gray-200 max-w-[300px]">
-                    <p className="text-gray-700 text-xs md:text-[14px] leading-relaxed font-medium">10th pass / Rural professionals seeking skill upgrade.</p>
-                  </td>
-                  <td className="p-4 md:p-6 border border-gray-200">
-                    <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] md:text-sm font-bold uppercase tracking-wider">3 Months</span>
-                  </td>
-                  <td className="p-4 md:p-6 border border-gray-200">
-                    <p className="font-bold text-[#21325b] text-base md:text-lg">₹10k – ₹15k</p>
-                    <p className="text-[10px] md:text-[11px] text-gray-500 font-medium mt-1 italic leading-tight">(depending on specialization)</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          {/* 6-Card Grid Layout (matching reference design) */}
+          {loadingPrograms ? (
+            <div className="flex items-center justify-center py-20 gap-3 text-gray-400">
+              <ArrowPathIcon className="w-5 h-5 animate-spin text-primary" />
+              <span className="text-sm font-medium">Loading programs…</span>
+            </div>
+          ) : programs.length === 0 ? (
+            <div className="text-center py-16 text-gray-400 text-sm bg-gray-50 rounded-lg border border-dashed border-gray-200">
+              No programs found.
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {programs.map((prog) => (
+                <div
+                  key={prog._id}
+                  className="bg-white border border-gray-200 rounded-sm shadow-2xs hover:shadow-md transition-shadow duration-300 flex flex-col justify-between overflow-hidden group"
+                >
+                  {/* Top Card Body */}
+                  <div className="p-6 flex-1 flex flex-col">
+                    {prog.programType && (
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-primary bg-primary/5 px-2.5 py-0.5 rounded-full w-fit mb-3">
+                        {prog.programType.name}
+                      </span>
+                    )}
+                    <h3 className="text-base md:text-lg font-bold text-gray-900 leading-snug tracking-tight mb-2 group-hover:text-primary transition-colors">
+                      {prog.name}
+                    </h3>
+                    <p className="text-xs md:text-[13px] text-gray-600 leading-relaxed font-normal line-clamp-3 mb-4">
+                      {prog.description || (prog.eligibility && prog.eligibility.length > 0 ? prog.eligibility.join(". ") : "Comprehensive career-oriented program with hands-on grassroots immersion.")}
+                    </p>
+                  </div>
+
+                  {/* Bottom Info & Action Bar (Duration + Annual Fee + Fee Structure Button) */}
+                  <div className="border-t border-gray-100 bg-gray-50/70 px-5 py-3.5 flex items-center justify-between gap-3 mt-auto">
+                    <div className="flex items-center gap-3 sm:gap-4 divide-x divide-gray-200 min-w-0">
+                      {/* Duration */}
+                      <div className="flex items-center gap-1.5">
+                        <ClockIcon className="w-4 h-4 text-gray-400 shrink-0" />
+                        <div>
+                          <span className="text-[10px] text-gray-400 uppercase tracking-wider block font-medium leading-none mb-1">Duration</span>
+                          <span className="text-xs font-bold text-gray-800 leading-none">
+                            {prog.duration} {prog.duration === 1 ? 'Year' : 'Years'}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Annual Fee */}
+                      <div className="pl-3 sm:pl-4">
+                        <span className="text-[10px] text-gray-400 uppercase tracking-wider block font-medium leading-none mb-1">Annual Fee</span>
+                        <span className="text-xs font-bold text-[#21325b] leading-none">
+                          ₹{prog.fee.toLocaleString('en-IN')}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Fee Structure Action */}
+                    {prog.feeStructureDoc ? (
+                      <button
+                        onClick={() => setOpenPdfId(prog._id)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#21325b] text-white text-xs font-bold hover:bg-[#9b2928] transition-colors cursor-pointer shadow-2xs shrink-0"
+                      >
+                        <DocumentArrowDownIcon className="w-3.5 h-3.5" />
+                        <span>Fee Structure</span>
+                      </button>
+                    ) : (
+                      <span className="text-[11px] text-gray-400 italic shrink-0">No PDF attached</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Pagination */}
+          {!loadingPrograms && total > 0 && (
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gray-100">
+              <p className="text-xs text-gray-400 font-medium tracking-wide">
+                Showing <span className="font-bold text-gray-700">{(page - 1) * PAGE_LIMIT + 1}</span>–<span className="font-bold text-gray-700">{Math.min(page * PAGE_LIMIT, total)}</span> of{" "}
+                <span className="font-bold text-gray-900">{total}</span>
+              </p>
+              <div className="inline-flex items-center gap-1.5 p-1 bg-gray-50/80 rounded-lg border border-gray-200/60 shadow-2xs">
+                <button
+                  onClick={() => setPage((p) => Math.max(1, p - 1))}
+                  disabled={page === 1}
+                  className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold text-gray-600 hover:text-gray-900 hover:bg-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-600 disabled:cursor-not-allowed transition-all cursor-pointer"
+                >
+                  <ChevronLeftIcon className="w-3.5 h-3.5 stroke-[2.5]" />
+                  <span>Prev</span>
+                </button>
+                <div className="h-4 w-px bg-gray-200" />
+                <div className="flex items-center gap-1 px-1">
+                  {Array.from({ length: Math.max(1, totalPages) }, (_, i) => i + 1).map((p) => (
+                    <button
+                      key={p}
+                      onClick={() => setPage(p)}
+                      className={`min-w-7 h-7 px-2 flex items-center justify-center rounded-md text-xs font-bold transition-all cursor-pointer ${
+                        p === page
+                          ? "bg-[#21325b] text-white shadow-xs"
+                          : "text-gray-500 hover:text-gray-900 hover:bg-white"
+                      }`}
+                    >
+                      {p}
+                    </button>
+                  ))}
+                </div>
+                <div className="h-4 w-px bg-gray-200" />
+                <button
+                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                  disabled={page === totalPages || totalPages <= 1}
+                  className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md text-xs font-semibold text-gray-600 hover:text-gray-900 hover:bg-white disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-gray-600 disabled:cursor-not-allowed transition-all cursor-pointer"
+                >
+                  <span>Next</span>
+                  <ChevronRightIcon className="w-3.5 h-3.5 stroke-[2.5]" />
+                </button>
+              </div>
+            </div>
+          )}
 
           <div className="mt-8 md:mt-12 space-y-4 max-w-7xl mx-auto">
-            <div className="flex gap-4 p-4 md:p-5 items-center rounded-sm bg-orange-50/50 border-l-2 border-accent shadow-sm group hover:border-orange-200 transition-all duration-300">
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+            <div className="flex gap-4 p-4 md:p-5 items-center rounded-sm bg-orange-50/50 border-l-2 border-accent shadow-sm">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
                 <AcademicCapIcon className="w-5 h-5 md:w-6 md:h-6 text-accent" />
               </div>
               <p className="text-accent text-xs md:text-sm font-medium leading-relaxed italic">
@@ -321,6 +369,95 @@ export default function AdmissionsClient() {
           </div>
         </div>
       </section>
+
+      {/* ── PDF MODAL (Refined & crisp styling) ── */}
+      {(() => {
+        const activeProg = programs.find((p) => p._id === openPdfId);
+        if (!activeProg?.feeStructureDoc) return null;
+        
+        const fileName = activeProg.feeStructureDoc.split("/").pop() || "fee-structure.pdf";
+
+        return (
+          <div
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Fee Structure — ${activeProg.name}`}
+          >
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-slate-900/75 backdrop-blur-xs transition-opacity"
+              onClick={() => setOpenPdfId(null)}
+            />
+
+            {/* Modal Panel */}
+            <div className="relative z-10 bg-white rounded-lg shadow-2xl w-full max-w-5xl flex flex-col overflow-hidden" style={{ height: '88vh' }}>
+
+              {/* Header */}
+              <div className="flex items-center justify-between px-5 py-3.5 bg-slate-50 gap-3 shrink-0">
+                <div className="flex items-center gap-2.5 min-w-0 pr-2">
+                  <span className="p-1.5 rounded-md bg-[#21325b]/10 text-[#21325b] shrink-0">
+                    <DocumentArrowDownIcon className="w-4 h-4" />
+                  </span>
+                  <div className="truncate">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Fee Structure Document</span>
+                    <h3 className="text-sm md:text-base font-bold text-slate-900 truncate leading-snug">{activeProg.name}</h3>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-2 shrink-0">
+                  <a
+                    href={activeProg.feeStructureDoc}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#21325b] text-white text-xs font-semibold hover:bg-[#9b2928] transition-colors"
+                  >
+                    <span>Open in New Tab</span>
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                  <button
+                    onClick={() => setOpenPdfId(null)}
+                    className="p-1.5 rounded-md text-slate-400 hover:bg-slate-200 hover:text-slate-700 transition-colors cursor-pointer"
+                    aria-label="Close modal"
+                  >
+                    <XMarkIcon className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* PDF Viewer Container */}
+              <div className="flex-1 w-full h-full bg-slate-100 relative">
+                <object
+                  data={`${activeProg.feeStructureDoc}#toolbar=1&navpanes=0`}
+                  type="application/pdf"
+                  className="w-full h-full"
+                >
+                  <iframe
+                    src={`${activeProg.feeStructureDoc}#toolbar=1&navpanes=0`}
+                    className="w-full h-full border-0"
+                    title={`Fee Structure — ${activeProg.name}`}
+                  >
+                    <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+                      <p className="text-slate-600 text-sm font-medium mb-3">Your browser does not support inline PDF viewing.</p>
+                      <a
+                        href={activeProg.feeStructureDoc}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 bg-[#21325b] text-white text-xs font-bold rounded-md"
+                      >
+                        Download / View Document
+                      </a>
+                    </div>
+                  </iframe>
+                </object>
+              </div>
+
+            </div>
+          </div>
+        );
+      })()}
 
       {/* 6. ADMISSIONS - CONTACT US (Based on provided Map Image Layout) */}
       <section id="contact-admissions" className="py-12 md:py-24 bg-white border-t border-gray-100">
