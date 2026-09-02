@@ -90,7 +90,7 @@ export default function HeroCarousel() {
   const CurrentBadgeIcon = slides[current]?.icon;
 
   return (
-    <section className="relative h-[85vh] sm:h-[90vh] md:h-screen w-full overflow-hidden bg-slate-950 select-none">
+    <section className="relative h-[85dvh] sm:h-[90dvh] md:h-[88dvh] w-full overflow-hidden bg-slate-950 select-none">
       
       {/* Background Slides — Seamless Cross-Fade Layering (No Blackout) */}
       <div className="absolute inset-0 w-full h-full">
