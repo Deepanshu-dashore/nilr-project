@@ -4,6 +4,8 @@ interface LogoProps {
   scrolled?: boolean;
   variant?: "default" | "white" | "admin";
   size?: "sm" | "md" | "lg" | "xs";
+  orientation?: "horizontal" | "vertical";
+  align?: "left" | "center";
   className?: string;
   showText?: boolean;
 }
@@ -12,12 +14,16 @@ export function Logo({
   scrolled = false, 
   variant = "default", 
   size = "md",
+  orientation = "horizontal",
+  align = "left",
   className = "",
   showText = true
 }: LogoProps) {
   
   // Decide actual size based on prop and scrolled state
   const effectiveSize = scrolled ? "sm" : size;
+  const isVertical = orientation === "vertical";
+  const isCentered = align === "center";
 
   const sizeStyles = {
     sm: {
@@ -56,21 +62,28 @@ export function Logo({
 
   const style = sizeStyles[effectiveSize];
 
+  const verticalImageStyles = {
+    xs: "h-10 md:h-12",
+    sm: "h-14 md:h-16 xl:h-20",
+    md: "h-16 md:h-20 xl:h-24",
+    lg: "h-20 md:h-24 xl:h-28",
+  };
+
   const imageClasses = `
     w-auto object-contain group-hover:scale-[1.02] transition-all duration-300 shrink-0
-    ${style.image}
+    ${isVertical ? verticalImageStyles[effectiveSize] : style.image}
     ${variant === "white" ? "brightness-0 invert opacity-90" : ""}
     ${variant === "admin" ? "h-8 md:h-9" : ""}
   `.trim();
 
   return (
-    <div className={`flex items-center group transition-all duration-300 ${className}`}>
-      <div className="relative shrink-0">
+    <div className={`flex ${isVertical ? (isCentered ? "flex-col items-center text-center gap-2" : "flex-col items-start text-left gap-2") : "items-center"} group transition-all duration-300 ${className}`}>
+      <div className={`relative shrink-0 flex ${isVertical && isCentered ? "justify-center" : "justify-start"}`}>
         <Image
           src="/NLRILOGO.png"
           alt="CVRUK-NIRM Logo"
           width={320}
-          height={60}
+          height={isVertical ? 160 : 60}
           className={imageClasses}
           priority
         />
@@ -78,7 +91,8 @@ export function Logo({
       
       {showText && (
         <div className={`
-          flex flex-col ml-2 md:ml-3 transition-all duration-300 
+          flex flex-col transition-all duration-300 
+          ${isVertical ? (isCentered ? "mt-1.5 items-center text-center" : "mt-1.5 items-start text-left") : "ml-2 md:ml-3"}
           ${variant === "admin" ? "hidden lg:flex" : "flex"}
           ${style.gap}
         `}>
@@ -101,13 +115,6 @@ export function Logo({
           `}>
             National Institute of Rural Management
           </h1>
-          {/* <p className={`
-            font-normal leading-tight transition-all duration-300 whitespace-nowrap
-            ${style.subText}
-            ${variant === "white" ? "text-white/80" : "text-primary"}
-          `}>
-            Empowered gains livelihood
-          </p> */}
         </div>
       )}
     </div>

@@ -66,7 +66,7 @@ export default function ScrollToTop() {
         onClick={scrollToTop}
         id="scroll-to-top-button"
         aria-label="Scroll to top of page"
-        className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#0d1a63] hover:bg-[#ba303b] text-white shadow-[0_8px_25px_rgba(13,26,99,0.4)] hover:shadow-[0_12px_30px_rgba(186,48,59,0.65)] border-2 border-white/30 active:scale-90 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group"
+        className="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#223366] hover:bg-[#D6333D] text-white shadow-[0_8px_25px_rgba(34,51,102,0.45)] hover:shadow-[0_12px_30px_rgba(214,51,61,0.65)] border-2 border-white/30 active:scale-90 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
