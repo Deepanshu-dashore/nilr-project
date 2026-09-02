@@ -1,42 +1,38 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import { Logo } from "@/src/components/shared/Logo";
-import { usePathname } from "next/navigation";
 import {
   HomeIcon,
-  UsersIcon,
-  Cog6ToothIcon,
-  ArrowLeftOnRectangleIcon,
-  ChartBarIcon,
-  DocumentTextIcon,
-  AcademicCapIcon,
   ChatBubbleBottomCenterTextIcon,
+  UserGroupIcon,
+  CalendarDaysIcon,
+  AcademicCapIcon,
+  BookOpenIcon,
+  RectangleStackIcon,
+  MegaphoneIcon,
   PhotoIcon,
-  CalendarIcon,
+  Cog6ToothIcon,
+  ChevronDownIcon,
+  ArrowLeftOnRectangleIcon,
+  ChevronRightIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { API_ENDPOINTS } from "@/src/config/api.config";
 
-const sidebarLinks = [
-  { name: "Enquiries", href: "/admin/enquiries", icon: ({className}: {className: string}) => (<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24">
-	<path fill="currentColor" d="M15 11V4H4v8.17l.59-.58l.58-.59H6z" opacity={0.3}></path>
-	<path fill="currentColor" d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1m-5 7c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4zM4.59 11.59l-.59.58V4h11v7H5.17z"></path>
-</svg>) },
-  { name: "Admission", href: "/admin/admission", icon: ({className}: {className: string}) => (<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 640 640"><path fill="currentColor" d="M288 32h64c17.7 0 32 14.3 32 32v64H256V64c0-17.7 14.3-32 32-32M96 96h112v32c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V96h112c35.3 0 64 28.7 64 64v320c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64m112 368c0 8.8 7.2 16 16 16h192c8.8 0 16-7.2 16-16c0-44.2-35.8-80-80-80h-64c-44.2 0-80 35.8-80 80m112-120c30.9 0 56-25.1 56-56s-25.1-56-56-56s-56 25.1-56 56s25.1 56 56 56"/></svg>) },
-  { name: "Programs", href: "/admin/programs", icon: ({className}: {className: string}) => (<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24">
-	<path fill="currentColor" d="M14.217 3.5a5.17 5.17 0 0 0-4.434 0L5.489 5.512a2.25 2.25 0 0 1 .647 4.306l-1.076.461c-.534.23-.837.362-1.042.467l-.003.05L9.783 13.5a5.17 5.17 0 0 0 4.434 0l6.691-3.137c1.456-.682 1.456-3.044 0-3.726z"></path>
-	<path fill="currentColor" d="M5.545 8.44a.75.75 0 0 0-.59-1.38l-1.112.477c-.557.239-1.03.441-1.4.65c-.395.222-.734.482-.989.868c-.254.386-.36.8-.408 1.25C1 10.729 1 11.243 1 11.85v2.901a.75.75 0 0 0 1.5 0v-2.862c0-.656.001-1.088.037-1.421c.034-.315.093-.47.17-.586c.075-.115.195-.231.471-.387c.292-.164.689-.335 1.292-.593z"></path>
-	<path fill="currentColor" d="M5 11.258L9.783 13.5a5.17 5.17 0 0 0 4.434 0L19 11.258v5.367c0 1.008-.503 1.952-1.385 2.44C16.146 19.88 13.796 21 12 21s-4.146-1.121-5.615-1.935C5.504 18.577 5 17.633 5 16.625z" opacity={0.5}></path>
-</svg>)  },
-  { name: "Program Types", href: "/admin/program-types", icon: ({className}: {className: string}) => (<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24"><path fill="currentColor" d="M4 6a1 1 0 1 0 0 2a1 1 0 0 0 0-2m3.5 0a1 1 0 0 0 0 2h10a1 1 0 1 0 0-2zm.1 5a1.1 1.1 0 0 0 0 2.2h5.8a1.1 1.1 0 0 0 0-2.2zm-1.1 6a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1M3 12a1 1 0 1 1 2 0a1 1 0 0 1-2 0m1 4a1 1 0 1 0 0 2a1 1 0 0 0 0-2"/><path fill="currentColor" d="M19.5 13.5a1 1 0 1 0-2 0v2.05h-2a1 1 0 1 0 0 2h2v1.95a1 1 0 1 0 2 0v-1.95h2a1 1 0 1 0 0-2h-2z" opacity="0.5"/></svg>) },
-  { name: "Events", href: "/admin/events", icon: ({className}: {className: string}) => (<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 36 36"><path fill="currentColor" d="M10 10a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1" className="clr-i-solid--badged clr-i-solid-path-1--badged"></path><path fill="currentColor" d="M30 13.5A7.5 7.5 0 0 1 22.5 6H12.2v3a2.2 2.2 0 0 1-4.4 0V6h-4A1.78 1.78 0 0 0 2 7.81v22.38A1.78 1.78 0 0 0 3.75 32h28.5A1.78 1.78 0 0 0 34 30.19V12.34a7.45 7.45 0 0 1-4 1.16M10 26H8v-2h2Zm0-5H8v-2h2Zm0-5H8v-2h2Zm6 10h-2v-2h2Zm0-5h-2v-2h2Zm0-5h-2v-2h2Zm6 10h-2v-2h2Zm0-5h-2v-2h2Zm0-5h-2v-2h2Zm6 10h-2v-2h2Zm0-5h-2v-2h2Zm0-5h-2v-2h2Z" className="clr-i-solid--badged clr-i-solid-path-2--badged"></path><circle cx={30} cy={6} r={5} fill="currentColor" className="clr-i-solid--badged clr-i-solid-path-3--badged clr-i-badge"></circle><path fill="none" d="M0 0h36v36H0z"></path></svg>) },
-  { name: "Gallery", href: "/admin/gallery", icon: ({className}: {className: string})=>(<svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 24 24"><path fill="currentColor" d="M19 2H5a3.01 3.01 0 0 0-3 3v8.86l3.88-3.88a3.075 3.075 0 0 1 4.24 0l2.871 2.887l.888-.888a3.01 3.01 0 0 1 4.242 0L22 15.86V5a3.01 3.01 0 0 0-3-3" opacity="0.5"/><path fill="currentColor" d="M10.12 9.98a3.075 3.075 0 0 0-4.24 0L2 13.86V19a3.01 3.01 0 0 0 3 3h14a3 3 0 0 0 2.16-.92z"/><path fill="currentColor" d="m22 15.858l-3.879-3.879a3.01 3.01 0 0 0-4.242 0l-.888.888l8.165 8.209c.542-.555.845-1.3.844-2.076z" opacity="0.25"/></svg>) },
-  { name: "Site Info & Settings", href: "/admin/settings", icon: Cog6ToothIcon },
-];
+interface NavItem {
+  name: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
+
+interface NavSection {
+  id: string;
+  title: string;
+  links: NavItem[];
+}
 
 export default function AdminLayout({
   children,
@@ -47,6 +43,23 @@ export default function AdminLayout({
   const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Logout Confirmation Modal State
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  // Collapsible sections state
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({
+    admissions: true,
+    academics: true,
+    media: true,
+    settings: true,
+  });
+
+  const toggleSection = (sectionId: string) => {
+    setOpenSections((prev) => ({ ...prev, [sectionId]: !prev[sectionId] }));
+  };
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -65,13 +78,90 @@ export default function AdminLayout({
     checkAuth();
   }, [router]);
 
+  // Handle Logout Confirmation
+  const handleConfirmLogout = async () => {
+    setIsLoggingOut(true);
+    try {
+      await fetch(API_ENDPOINTS.AUTH.LOGOUT, { method: "POST" });
+      router.push("/admin-login");
+    } catch (err) {
+      console.error("Logout failed:", err);
+      router.push("/admin-login");
+    } finally {
+      setIsLoggingOut(false);
+      setIsLogoutModalOpen(false);
+    }
+  };
+
+  // Top Priority Daily Operations
+  const primaryDailyItems: NavItem[] = [
+    { name: "Overview", href: "/admin", icon: HomeIcon },
+    { name: "Student Enquiries", href: "/admin/enquiries", icon: ChatBubbleBottomCenterTextIcon },
+    { name: "Admissions & Leads", href: "/admin/admission", icon: UserGroupIcon },
+  ];
+
+  // Grouped Navigation Sections ordered by administrative priority
+  const navSections: NavSection[] = [
+    {
+      id: "admissions",
+      title: "Admissions & Schedule",
+      links: [
+        { name: "Academic Session & Cycle", href: "/admin/academic-session", icon: AcademicCapIcon },
+        { name: "Important Dates", href: "/admin/important-dates", icon: CalendarDaysIcon },
+      ],
+    },
+    {
+      id: "academics",
+      title: "Course Catalog",
+      links: [
+        { name: "Academic Programs", href: "/admin/programs", icon: BookOpenIcon },
+        { name: "Program Types", href: "/admin/program-types", icon: RectangleStackIcon },
+      ],
+    },
+    {
+      id: "media",
+      title: "Media & Broadcasts",
+      links: [
+        { name: "News & Events", href: "/admin/events", icon: MegaphoneIcon },
+        { name: "Photo Gallery", href: "/admin/gallery", icon: PhotoIcon },
+      ],
+    },
+    {
+      id: "settings",
+      title: "System & Info",
+      links: [
+        { name: "Site Info & Settings", href: "/admin/settings", icon: Cog6ToothIcon },
+      ],
+    },
+  ];
+
+  const allNavLinks = [...primaryDailyItems, ...navSections.flatMap((s) => s.links)];
+
+  // Filtered links when searching
+  const filteredSections = useMemo(() => {
+    if (!searchQuery.trim()) return navSections;
+    const q = searchQuery.toLowerCase();
+    return navSections
+      .map((section) => ({
+        ...section,
+        links: section.links.filter((l) => l.name.toLowerCase().includes(q)),
+      }))
+      .filter((section) => section.links.length > 0);
+  }, [searchQuery, navSections]);
+
+  const filteredPrimaryItems = useMemo(() => {
+    if (!searchQuery.trim()) return primaryDailyItems;
+    const q = searchQuery.toLowerCase();
+    return primaryDailyItems.filter((item) => item.name.toLowerCase().includes(q));
+  }, [searchQuery, primaryDailyItems]);
+
   if (isLoading) {
     return (
-      <div className="flex h-screen w-full items-center justify-center bg-bg-section">
-        <div className="flex flex-col items-center gap-4">
-          <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
-          <p className="font-heading font-black text-primary animate-pulse uppercase tracking-widest text-sm">
-            Verifying Admin Access...
+      <div className="flex h-screen w-full items-center justify-center bg-slate-50">
+        <div className="flex flex-col items-center gap-2.5">
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-800 border-t-transparent" />
+          <p className="font-sans font-semibold text-slate-600 text-xs tracking-wide">
+            Loading Workspace...
           </p>
         </div>
       </div>
@@ -79,116 +169,294 @@ export default function AdminLayout({
   }
 
   return (
-    <div className="flex h-screen overflow-hidden bg-bg-section font-sans">
-      {/* Admin Sidebar */}
-      <aside 
+    <div className="flex h-screen overflow-hidden bg-[#FBFBFC] font-sans antialiased text-slate-800">
+      {/* Clean Compact SaaS Sidebar */}
+      <aside
         className={`${
-          isSidebarOpen ? "w-[280px]" : "w-24"
-        } transition-all duration-300 bg-white border-r border-dashed border-gray-200 flex flex-col z-50 relative shrink-0`}
+          isSidebarOpen ? "w-[248px]" : "w-[64px]"
+        } transition-all duration-200 bg-white border-r border-slate-200/70 flex flex-col z-40 relative shrink-0 select-none`}
       >
-        <div className="px-6 py-6 flex flex-col gap-1 items-center bg-gray-50 border-b border-dashed border-gray-200">
+        {/* Workspace Brand / Header */}
+        <div className={`h-13 px-3 flex items-center ${isSidebarOpen ? "justify-between" : "justify-center"} border-b border-slate-100`}>
+          {isSidebarOpen ? (
+            <>
+              <Link
+                href="/admin"
+                className="flex items-center gap-2 min-w-0 group hover:opacity-90 transition-opacity"
+              >
+                {/* Small Logo Component (Without Text) */}
+                <div className="relative shrink-0 flex items-center justify-center">
+                  <Logo size="xs" showText={false} />
+                </div>
 
-          <Link href="/admin" className="flex items-end gap-2.5">
-             {isSidebarOpen ? (
-               <Logo variant="admin" size="xs" />
-             ) : (
-                  <div className="relative shrink-0">
-                        <Image
-                          src="/NLRILOGO.png"
-                          alt="CVRUK-NIRM Logo"
-                          width={50}
-                          height={50}
-                          className="h-6 md:h-8 xl:h-10"
-                          priority
-                        />
-                      </div>
-             )}
-          </Link>
+                <div className="flex flex-col items-left min-w-0 mt-1">
+                  <span className="font-bold text-[13px] text-slate-900 truncate block">
+                    NIRM Admin Panel
+                  </span>
+                  <p className="text-[10px] text-slate-500">Management Dashboard</p>
+                </div>
+              </Link>
+
+              {/* Sidebar Collapse Button */}
+              <button
+                type="button"
+                onClick={() => setIsSidebarOpen(false)}
+                className="w-6 h-6 rounded-md hover:bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-700 transition-colors cursor-pointer shrink-0"
+                title="Collapse sidebar"
+              >
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <line x1="9" y1="3" x2="9" y2="21" />
+                </svg>
+              </button>
+            </>
+          ) : (
+            /* When Sidebar is Closed: Show Open/Expand Button in place of logo */
+            <button
+              type="button"
+              onClick={() => setIsSidebarOpen(true)}
+              className="w-8 h-8 rounded-md hover:bg-slate-100 flex items-center justify-center text-slate-500 hover:text-slate-900 transition-colors cursor-pointer"
+              title="Expand sidebar"
+            >
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                <line x1="9" y1="3" x2="9" y2="21" />
+              </svg>
+            </button>
+          )}
         </div>
 
-        {/* Floating Toggle Button */}
-        <button 
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="absolute top-8 -right-3.5 w-7 h-7 bg-white border border-gray-200 border-dashed rounded-full shadow-sm hidden md:flex items-center justify-center text-gray-400 hover:text-gray-900 hover:bg-gray-50 transition-all z-50 cursor-pointer"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 24 24" className={`transition-transform duration-300 ${!isSidebarOpen && "rotate-180"}`}>
-            <path fill="currentColor" d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6l1.41-1.41z"/>
-          </svg>
-        </button>
+        {/* Quick Actions Search Bar */}
+        {isSidebarOpen && (
+          <div className="px-2.5 pt-2.5 pb-1">
+            <div className="relative flex items-center bg-slate-50 border border-slate-200/70 rounded-lg px-2.5 py-1.5 focus-within:border-slate-400 focus-within:bg-white transition-all shadow-2xs">
+              <span className="w-3.5 h-3.5 border border-slate-300 rounded text-[9px] font-mono text-slate-500 flex items-center justify-center mr-1.5 shrink-0">
+                ⌘
+              </span>
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-transparent text-[12px] text-slate-800 placeholder-slate-400 focus:outline-hidden"
+              />
+              <div className="flex items-center gap-0.5 text-[9.5px] text-slate-400 font-mono ml-1 shrink-0">
+                <span>⌘K</span>
+              </div>
+            </div>
+          </div>
+        )}
 
-        <nav className="flex-1 py-4 px-4 space-y-2 overflow-y-auto custom-scrollbar">
-          {isSidebarOpen && (
-             <div className="px-4 py-3 text-[11px] font-bold tracking-widest text-slate-400 uppercase mt-2 mb-1">
-                Management Menu
-             </div>
-          )}
-          {sidebarLinks.map((link) => {
-            const isActive = pathname === link.href || pathname.startsWith(link.href + '/');
+        {/* Navigation Scrollable Body */}
+        <nav className="flex-1 py-2 px-2 space-y-2.5 overflow-y-auto custom-scrollbar">
+          {/* Top Priority Items */}
+          <div className="space-y-0.5">
+            {filteredPrimaryItems.map((item) => {
+              const isActive = pathname === item.href;
+              const Icon = item.icon;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-[13px] font-medium transition-colors group ${
+                    isActive
+                      ? "bg-slate-100 text-slate-950 font-semibold"
+                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                  }`}
+                  title={!isSidebarOpen ? item.name : undefined}
+                >
+                  <Icon
+                    className={`w-4 h-4 shrink-0 transition-colors ${
+                      isActive ? "text-slate-950" : "text-slate-400 group-hover:text-slate-700"
+                    }`}
+                  />
+                  {isSidebarOpen && <span className="truncate">{item.name}</span>}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Grouped Hierarchical Sections */}
+          {filteredSections.map((section) => {
+            const isOpen = openSections[section.id] !== false;
             return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`flex items-center gap-4 px-4 py-2.5 rounded-lg transition-all duration-200 group ${
-                  isActive 
-                    ? "bg-[#00A76F]/10 text-[#00A76F] font-semibold" 
-                    : "text-slate-600 hover:bg-gray-50 hover:text-gray-900 font-medium"
-                }`}
-              >
-                <link.icon className={`h-6 w-6 shrink-0 ${isActive ? "text-[#00A76F]" : "text-slate-400 group-hover:text-gray-600 transition-colors"}`} strokeWidth={isActive ? 2 : 1.5} />
+              <div key={section.id} className="pt-1">
+                {/* Section Header with Chevron */}
                 {isSidebarOpen && (
-                  <span className="text-[14px]">
-                    {link.name}
-                  </span>
+                  <button
+                    type="button"
+                    onClick={() => toggleSection(section.id)}
+                    className="w-full flex items-center justify-between px-2 py-1 text-[10.5px] font-bold text-slate-400 hover:text-slate-700 uppercase tracking-wider transition-colors cursor-pointer group"
+                  >
+                    <div className="flex items-center gap-1.5">
+                      <ChevronRightIcon
+                        className={`w-3 h-3 transition-transform duration-150 ${
+                          isOpen ? "rotate-90 text-slate-600" : "text-slate-400"
+                        }`}
+                      />
+                      <span>{section.title}</span>
+                    </div>
+                  </button>
                 )}
-              </Link>
+
+                {/* Sub-items list with clean indentation */}
+                {(isOpen || !isSidebarOpen) && (
+                  <div className={`space-y-0.5 ${isSidebarOpen ? "mt-0.5 pl-2" : ""}`}>
+                    {section.links.map((link) => {
+                      const isActive =
+                        pathname === link.href ||
+                        (link.href !== "/admin" && pathname.startsWith(link.href + "/"));
+                      const Icon = link.icon;
+                      return (
+                        <Link
+                          key={link.name}
+                          href={link.href}
+                          className={`flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg text-[13px] font-medium transition-colors group ${
+                            isActive
+                              ? "bg-slate-100 text-slate-950 font-semibold"
+                              : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                          }`}
+                          title={!isSidebarOpen ? link.name : undefined}
+                        >
+                          <Icon
+                            className={`w-4 h-4 shrink-0 transition-colors ${
+                              isActive
+                                ? "text-slate-950"
+                                : "text-slate-400 group-hover:text-slate-700"
+                            }`}
+                          />
+                          {isSidebarOpen && (
+                            <span className="truncate tracking-tight">{link.name}</span>
+                          )}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             );
           })}
         </nav>
+
+        {/* Footer Admin User Profile Bar */}
+        <div className="p-2.5 border-t border-slate-100 flex items-center justify-between bg-slate-50/50">
+          <div className="flex items-center gap-2 min-w-0">
+            <div className="w-7 h-7 rounded-lg bg-slate-200 text-slate-700 font-bold text-[11px] flex items-center justify-center shrink-0 border border-slate-300/60">
+              A
+            </div>
+            {isSidebarOpen && (
+              <div className="min-w-0">
+                <p className="text-[12px] font-semibold text-slate-800 truncate leading-tight">
+                  Administrator
+                </p>
+                <p className="text-[10px] text-slate-400 truncate leading-tight">
+                  admin@nirm.in
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
       </aside>
 
-      {/* Main Content Area */}
+      {/* Main Content Viewport */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Top Header for Admin Panel */}
-        <header className="h-16 bg-white border-b border-border-light flex items-center justify-between px-8 z-40">
-           <h2 className="text-xl font-heading font-black text-primary">
-              {sidebarLinks.find(l => pathname.startsWith(l.href))?.name || "Overview"}
-           </h2>
-           <div className="flex items-center gap-4">
-              <div className="text-right hidden sm:block">
-                <p className="text-xs font-extrabold text-primary uppercase tracking-widest">Administrator</p>
-                <p className="text-[10px] text-text-muted">Account Management</p>
-              </div>
+        {/* Minimalist Topbar Header */}
+        <header className="h-13 bg-white border-b border-slate-200/70 flex items-center justify-between px-6 z-30 shrink-0">
+          <div className="flex items-center gap-2 text-[13px] text-slate-500">
+            <span className="font-semibold text-slate-900">
+              {allNavLinks.find(
+                (l) => pathname === l.href || (l.href !== "/admin" && pathname.startsWith(l.href + "/"))
+              )?.name || "Overview"}
+            </span>
+          </div>
 
-              {/* Header Separator */}
-              <div className="w-px h-6 bg-gray-300 mx-2 hidden sm:block" />
+          <div className="flex items-center gap-2.5">
+            {/* View Public Site */}
+            <Link
+              href="/"
+              target="_blank"
+              className="text-[12px] font-medium text-slate-600 hover:text-slate-900 px-2.5 py-1 rounded-md border border-slate-200 hover:bg-slate-50 transition-colors flex items-center gap-1.5 shadow-2xs"
+            >
+              <span>View Public Site</span>
+              <svg className="w-3 h-3 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" strokeWidth="2" strokeLinecap="round" />
+                <polyline points="15 3 21 3 21 9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <line x1="10" y1="14" x2="21" y2="3" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </Link>
 
-              {/* Logout TopBar Button */}
-              <button 
-                onClick={async () => {
-                  try {
-                    await fetch(API_ENDPOINTS.AUTH.LOGOUT, { method: "POST" });
-                    router.push("/admin-login");
-                  } catch (err) {
-                    console.error("Logout failed:", err);
-                    router.push("/admin-login"); // fallback redirect
-                  }
-                }}
-                className="p-2 py-1.5 flex text-xs font-medium items-center gap-2 bg-red-600 text-red-200 rounded-lg transition-colors group cursor-pointer"
-                title="Logout"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width={22} height={22} className="bg-red-100 text-red-600 rounded-full p-0.5" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M12 20a8 8 0 1 1 0-16z" opacity={0.5} />
-                  <path fill="currentColor" fillRule="evenodd" d="M16.47 8.47a.75.75 0 0 0 0 1.06l1.72 1.72H10a.75.75 0 0 0 0 1.5h8.19l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 0 0-1.06 0" clipRule="evenodd" />
-                </svg>
-                Logout
-              </button>
-           </div>
+            {/* Topbar Separator */}
+            <div className="w-px h-4 bg-slate-200 mx-0.5" />
+
+            {/* Logout Topbar Button */}
+            <button
+              type="button"
+              onClick={() => setIsLogoutModalOpen(true)}
+              className="text-[12px] font-medium text-slate-600 hover:text-rose-600 hover:bg-rose-50 px-2.5 py-1 rounded-md border border-slate-200 hover:border-rose-200 transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
+              title="Sign out"
+            >
+              <ArrowLeftOnRectangleIcon className="w-3.5 h-3.5 text-slate-400 group-hover:text-rose-600" />
+              <span>Sign Out</span>
+            </button>
+          </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-8 bg-bg-section custom-scrollbar">
+        {/* Content Area */}
+        <main className="flex-1 overflow-y-auto p-6 md:p-8 bg-[#FBFBFC] custom-scrollbar">
           {children}
         </main>
       </div>
+
+      {/* Logout Confirmation Modal */}
+      {isLogoutModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+          <div className="bg-white rounded-xl w-full max-w-sm shadow-2xl border border-slate-200/80 overflow-hidden transform transition-all">
+            {/* Modal Header */}
+            <div className="p-5 pb-4">
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center shrink-0 border border-rose-100">
+                  <ArrowLeftOnRectangleIcon className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="font-bold text-slate-900 text-sm">
+                    Confirm Sign Out
+                  </h3>
+                  <p className="text-slate-500 text-xs mt-1 leading-relaxed">
+                    Are you sure you want to log out of the admin panel? You will need to sign back in with your administrator credentials.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Modal Actions */}
+            <div className="px-5 py-3.5 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-2.5">
+              <button
+                type="button"
+                onClick={() => setIsLogoutModalOpen(false)}
+                disabled={isLoggingOut}
+                className="px-3.5 py-1.5 rounded-md border border-slate-200 text-slate-700 text-xs font-semibold hover:bg-white transition-colors cursor-pointer disabled:opacity-50"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={handleConfirmLogout}
+                disabled={isLoggingOut}
+                className="px-4 py-1.5 rounded-md bg-rose-600 text-white text-xs font-semibold hover:bg-rose-700 transition-colors shadow-xs cursor-pointer flex items-center gap-1.5 disabled:opacity-50"
+              >
+                {isLoggingOut ? (
+                  <>
+                    <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>Signing out...</span>
+                  </>
+                ) : (
+                  <span>Sign Out</span>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
