@@ -2,49 +2,68 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  Lightbulb,
+  Globe,
+  Compass,
+  GraduationCap,
+  type LucideIcon,
+} from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
-const slides = [
+interface SlideItem {
+  image: string;
+  tag?: string;
+  icon?: LucideIcon;
+  title?: string;
+  subtitle?: string;
+  stat?: string;
+  statText?: string;
+}
+
+const slides: SlideItem[] = [
   {
     image: "/campus-img/campusDron-1.jpeg",
+    tag: "RESEARCH & INNOVATION",
+    icon: Lightbulb,
     title: "Innovating Rural Future",
-    subtitle: "Excellence in Research & Development",
+    subtitle: "Pioneering sustainable technologies, grassroots leadership, and high-impact research for national transformation.",
     stat: "5000+",
     statText: "Research Publications",
-    color: "from-blue-900/60 to-blue-600/30",
   },
   {
     image: "/campus-img/campusDron-2.jpeg",
-    title: "Empowering Next Gen",
-    subtitle: "Global Standards of Education",
+    tag: "GLOBAL PERSPECTIVE",
+    icon: Globe,
+    title: "Empowering Next-Gen Leaders",
+    subtitle: "World-class education fostering innovation, ethical leadership, and extensive strategic industry partnerships.",
     stat: "100+",
     statText: "Strategic Partnerships",
-    color: "from-green-900/60 to-green-600/30",
   },
   {
     image: "/campus-img/campusImg.jpeg",
+    tag: "CAMPUS EXPERIENCE",
+    icon: Compass,
     title: "Vibrant Campus Life",
-    subtitle: "A Hub for Innovation",
+    subtitle: "Modern infrastructure, green eco-friendly grounds, and dynamic student communities designed for holistic growth.",
     stat: "10k+",
     statText: "Active Community",
-    color: "from-purple-900/60 to-purple-600/30",
   },
   {
     image: "/campus-img/IMG_3587.jpg",
-    title: "A Grade Accreditation",
-    subtitle: "Recognized for Academic Excellence",
+    tag: "ACADEMIC EXCELLENCE",
+    icon: GraduationCap,
+    title: "National Center of Excellence",
+    subtitle: "Setting the gold standard in rural management education, enterprise incubation, and grassroots development.",
     stat: "#1",
     statText: "in Rural Management",
-    color: "from-red-900/60 to-red-600/30",
   },
   {
     image: "/campus-img/last.png",
-    title: "",
-    subtitle: "",
-    stat: "",
-    statText: "",
-    color: "from-gray-900/60 to-gray-600/30",
   },
 ];
 
@@ -60,163 +79,173 @@ export default function HeroCarousel() {
   };
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 6000);
+    const timer = setInterval(nextSlide, 6500);
     return () => clearInterval(timer);
   }, [nextSlide]);
 
-  return (
-    <section className="relative h-[90vh] md:h-screen w-full overflow-hidden bg-bg-dark">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={current}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeInOut" }}
-          className="absolute inset-0 h-full w-full"
-        >
-          {/* Background Image */}
-          <motion.div 
-            initial={{ scale: 1.15 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 6, ease: "easeOut" }}
-            className="relative h-full w-full"
-          >
-            <Image
-              src={slides[current].image}
-              alt={slides[current].title}
-              fill
-              priority
-              className="object-cover"
-            />
-            {/* Overlay Effect for Light */}
-            <div className={`absolute inset-0 bg-linear-to-r ${slides[current].color} mix-blend-multiply opacity-50`} />
-            {/* Gradient Dark to Transparent for Image Visibility */}
-            {slides?.length-1!==current&&<div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/20 to-transparent" />}
-          </motion.div>
+  const hasContent = Boolean(
+    slides[current]?.title || slides[current]?.subtitle || slides[current]?.tag
+  );
 
-          {/* Content */}
-          <div className="absolute inset-0 flex items-center justify-center md:justify-start px-6 md:px-20 lg:px-32">
-            <div className="max-w-4xl text-white">
-              {slides[current].subtitle && (
-                <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
-                  className="flex items-center gap-4 mb-4"
-                >
-                  <div className="bg-accent-soft p-1 rounded-full text-primary flex items-center justify-center">
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                    >
-                      <Plus size={20} />
-                    </motion.div>
+  const CurrentBadgeIcon = slides[current]?.icon;
+
+  return (
+    <section className="relative h-[85vh] sm:h-[90vh] md:h-screen w-full overflow-hidden bg-slate-950 select-none">
+      
+      {/* Background Slides — Seamless Cross-Fade Layering (No Blackout) */}
+      <div className="absolute inset-0 w-full h-full">
+        {slides.map((slide, idx) => {
+          const isActive = idx === current;
+          return (
+            <motion.div
+              key={slide.image}
+              initial={false}
+              animate={{
+                opacity: isActive ? 1 : 0,
+                scale: isActive ? 1 : 1.06,
+              }}
+              transition={{
+                opacity: { duration: 1.4, ease: "easeInOut" },
+                scale: { duration: 7, ease: "easeOut" },
+              }}
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              style={{ zIndex: isActive ? 1 : 0 }}
+            >
+              <Image
+                src={slide.image}
+                alt={slide.title || "Campus Slide"}
+                fill
+                priority={idx === 0}
+                className="object-cover"
+              />
+            </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Cinematic Lighting Overlays — Softened & Balanced for Natural Vibrancy */}
+      <div
+        className={`absolute inset-0 transition-opacity duration-700 z-[2] pointer-events-none ${
+          hasContent
+            ? "bg-gradient-to-r from-slate-950/75 via-slate-950/40 to-transparent/10"
+            : "bg-slate-950/20"
+        }`}
+      />
+      <div
+        className={`absolute inset-0 transition-opacity duration-700 z-[2] pointer-events-none ${
+          hasContent
+            ? "bg-gradient-to-t from-slate-950/70 via-transparent to-slate-950/25"
+            : "bg-gradient-to-t from-slate-950/35 via-transparent to-slate-950/15"
+        }`}
+      />
+
+      {/* Slide Content */}
+      {hasContent && (
+        <div className="relative z-10 h-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 flex items-center">
+          <div className="max-w-3xl pt-12 sm:pt-0">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="space-y-6"
+              >
+                {/* Category Pill Tag */}
+                {slides[current].tag && (
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 shadow-sm">
+                    {CurrentBadgeIcon && (
+                      <CurrentBadgeIcon className="w-3.5 h-3.5 text-white/80 shrink-0" />
+                    )}
+                    <span className="text-[10px] sm:text-[11px] font-medium tracking-wider text-white/95 uppercase">
+                      {slides[current].tag}
+                    </span>
                   </div>
-                  <p className="text-lg md:text-xl font-medium tracking-wide uppercase font-heading text-accent-soft whitespace-nowrap">
+                )}
+
+                {/* Slide Heading */}
+                {slides[current].title && (
+                  <h1 className="text-3.5xl sm:text-5xl lg:text-6xl font-extrabold text-white font-heading tracking-tight leading-[1.12] drop-shadow-md">
+                    {slides[current].title}
+                  </h1>
+                )}
+
+                {/* Subtitle */}
+                {slides[current].subtitle && (
+                  <p className="text-base sm:text-lg lg:text-xl text-[#F0F4F8]/90 font-normal leading-relaxed max-w-2xl drop-shadow-sm">
                     {slides[current].subtitle}
                   </p>
-                  <div className="flex items-center gap-2 grow max-w-[100px] md:max-w-[150px]">
-                    <div className="h-[2px] w-full bg-accent-soft/70 rounded-full"></div>
-                    <motion.div
-                      animate={{ rotate: 180 }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                      className="text-accent-soft shrink-0"
-                    >
-                      <Plus size={16} />
-                    </motion.div>
-                  </div>
-                </motion.div>
-              )}
+                )}
 
-              {slides[current].title && (
-                <motion.h1
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading leading-tight mb-8"
-                >
-                  {slides[current].title}
-                </motion.h1>
-              )}
+                {/* Action Buttons & Stat Counter */}
+                <div className="pt-2 flex flex-wrap items-center gap-4 sm:gap-6">
+                  <Link
+                    href="/programs"
+                    className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg bg-primary hover:bg-primary/90 active:scale-[0.98] text-white font-bold text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-primary/30 transition-all duration-200 group"
+                  >
+                    <span>Explore Programs</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
 
-              {slides[current].stat && (
-                <motion.div
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.6, type: "spring", stiffness: 100 }}
-                  className="flex items-center gap-6"
-                >
-                    <div className="relative group">
-                      <motion.div
-                          animate={{ rotate: -360 }}
-                          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                          className="absolute -inset-10 opacity-20 transition-opacity flex items-center justify-center"
-                      >
-                          <Plus className="text-white w-16 h-16" />
-                      </motion.div>
-                      <div className="flex items-baseline gap-2 relative z-10">
-                          <span className="text-4xl md:text-5xl lg:text-4xl font-extrabold text-white drop-shadow-2xl">
-                          {slides[current].stat}
-                          </span>
-                          <span className="text-lg md:text-xl font-medium text-white/90 font-sans opacity-80">
-                          {slides[current].statText}
-                          </span>
-                      </div>
+                  <Link
+                    href="/admissions"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg bg-white/10 hover:bg-white/20 active:scale-[0.98] text-white font-semibold text-xs sm:text-sm tracking-wide border border-white/25 backdrop-blur-md transition-all duration-200"
+                  >
+                    <span>Admissions Info</span>
+                  </Link>
+
+                  {/* Highlight Metric Badge */}
+                  {slides[current].stat && (
+                    <div className="hidden sm:flex items-center gap-3 pl-2 border-l border-white/20">
+                      <span className="text-2xl sm:text-3xl font-extrabold text-white">
+                        {slides[current].stat}
+                      </span>
+                      <span className="text-xs text-white/80 font-medium leading-tight max-w-[100px]">
+                        {slides[current].statText}
+                      </span>
                     </div>
-                </motion.div>
-              )}
-            </div>
+                  )}
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
-        </motion.div>
-      </AnimatePresence>
-
-      {/* Controls */}
-      <div className="absolute bottom-12 left-6 md:left-20 flex items-center gap-4 z-20">
-        <button
-          onClick={prevSlide}
-          className="p-3 border border-white/20 rounded-full hover:bg-white/10 text-white transition-all active:scale-90"
-        >
-          <ChevronLeft size={24} />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="p-3 border border-white/20 rounded-full hover:bg-white/10 text-white transition-all active:scale-90"
-        >
-          <ChevronRight size={24} />
-        </button>
-        
-        {/* Indicators */}
-        <div className="flex gap-2 ml-4">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrent(idx)}
-              className={`h-1 transition-all duration-300 rounded-full ${
-                current === idx ? "w-8 bg-accent-soft" : "w-2 bg-white/30"
-              }`}
-            />
-          ))}
         </div>
+      )}
+
+      {/* Previous & Next Navigation Arrows (Left & Right) */}
+      <button
+        onClick={prevSlide}
+        aria-label="Previous slide"
+        className="absolute left-4 sm:left-6 md:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/40 hover:bg-slate-950/80 text-white/90 hover:text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer shadow-lg"
+      >
+        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+      </button>
+
+      <button
+        onClick={nextSlide}
+        aria-label="Next slide"
+        className="absolute right-4 sm:right-6 md:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-950/40 hover:bg-slate-950/80 text-white/90 hover:text-white border border-white/20 backdrop-blur-md flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95 cursor-pointer shadow-lg"
+      >
+        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+      </button>
+
+      {/* Pagination Indicators (Bottom Center) */}
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 sm:gap-2.5 px-3 py-1.5 rounded-full bg-slate-950/40 backdrop-blur-md border border-white/15 shadow-md">
+        {slides.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrent(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
+            className={`h-2 transition-all duration-300 rounded-full cursor-pointer ${
+              current === idx
+                ? "w-8 bg-white shadow-sm"
+                : "w-2 bg-white/40 hover:bg-white/70"
+            }`}
+          />
+        ))}
       </div>
 
-      {/* Extra rotating plus symbols scattered */}
-      <div className="absolute top-1/4 right-1/4 opacity-10 pointer-events-none">
-        <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        >
-            <Plus size={120} className="text-white" />
-        </motion.div>
-      </div>
-      <div className="absolute bottom-1/4 right-[40%] opacity-5 pointer-events-none">
-        <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-        >
-            <Plus size={80} className="text-white" />
-        </motion.div>
-      </div>
     </section>
   );
 }
