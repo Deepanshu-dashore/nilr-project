@@ -149,7 +149,12 @@ h6 {
 
 /* CTA Banner Typography */
 .cta-title {
-  @apply text-xl md:text-2xl lg:text-3xl font-black tracking-tight text-white leading-tight;
+  @apply text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-white leading-tight;
+}
+
+.cta-title span,
+.cta-title strong {
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-sky-200 via-purple-200 to-pink-200 inline-block;
 }
 
 .cta-subtitle {

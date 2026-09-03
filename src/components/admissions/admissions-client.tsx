@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import SharedCtaBanner from "@/src/components/shared/unit-cta-banner";
 import { admissionsData } from "@/src/data/admissions-data";
 import { MapPinIcon, PhoneIcon, EnvelopeIcon, AcademicCapIcon, CheckCircleIcon, ClockIcon, CalendarIcon, IdentificationIcon, UserPlusIcon, ClipboardDocumentCheckIcon, DocumentTextIcon, BriefcaseIcon, DocumentArrowDownIcon, XMarkIcon, ArrowPathIcon, ChevronLeftIcon, ChevronRightIcon, SparklesIcon, BuildingLibraryIcon, CurrencyRupeeIcon } from "@heroicons/react/24/outline";
 
@@ -24,6 +25,29 @@ export default function AdmissionsClient() {
   const [page, setPage]                 = useState(1);
   const [totalPages, setTotalPages]     = useState(1);
   const [total, setTotal]               = useState(0);
+
+  const [siteInfo, setSiteInfo]         = useState({
+    contactAddress: "CVRU Khandwa – NIRM Campus, Bhadwasa, Mhow-Neemuch Road, Ratlam, Madhya Pradesh 457222",
+    contactEmail: "admissions@nirm.cvruk.in",
+    contactPhone: "+91 12345-67890",
+    helplinePhone: "+91 09876-54321",
+    officeHours: "Monday to Saturday: 10:00 AM – 6:00 PM (Closed Sundays & Holidays)",
+    mapEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.255252157876!2d75.07872367512006!3d23.523320078826014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39640419d441a225%3A0x53063056acb1832d!2sNational%20Livelihood%20Resource%20Institute!5e0!3m2!1sen!2sin!4v171567929771!5m2!1sen!2sin"
+  });
+
+  useEffect(() => {
+    fetch("/api/site-info")
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success && res.data) {
+          setSiteInfo((prev) => ({
+            ...prev,
+            ...res.data,
+          }));
+        }
+      })
+      .catch((err) => console.error("Error fetching site info on admissions page:", err));
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -460,24 +484,24 @@ export default function AdmissionsClient() {
       })()}
 
       {/* 6. ADMISSIONS - CONTACT US (Based on provided Map Image Layout) */}
-      <section id="contact-admissions" className="py-12 md:py-24 bg-white border-t border-gray-100">
-        <div className="container-wide pl-5 md:pl-0 max-w-6xl">
+      <section id="contact-admissions" className="py-12 md:py-20 bg-white border-t border-gray-100">
+        <div className="container-wide px-5 md:px-8 max-w-7xl mx-auto">
           
-          <div className="mb-10 md:mb-12 text-center lg:text-left">
+          <div className="text-center mb-10 md:mb-16">
             <h2 className="text-2xl md:text-4xl academic-section-title">
-              Admissions - Contact Us
+              Admissions – Contact Us
             </h2>
-            <div className="w-20 h-1 bg-primary mt-4 rounded-full mx-auto lg:ml-0 mb-4" />
-            <p className="academic-section-text text-sm md:text-base text-justify md:text-left">
+            <div className="w-20 h-1 mb-3 bg-[#21325b]/20 mx-auto rounded-full" />
+            <p className="academic-section-text text-sm md:text-base">
               Have questions about the admission process, scholarships, or program details? Our team is here to help you every step of the way.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-[1.5fr_1fr] gap-x-12 gap-y-10 items-start">
-            {/* Left side: Maps Iframe Simulation */}
-            <div className="w-full h-[300px] md:h-[600px] bg-gray-200 rounded-2xl overflow-hidden shadow-md border border-gray-200">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+            {/* Left side: Maps Iframe Container */}
+            <div className="lg:col-span-6 w-full h-[380px] md:h-[460px] lg:h-full bg-gray-100 rounded-2xl overflow-hidden shadow-md border border-gray-200/80 relative group">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.255252157876!2d75.07872367512006!3d23.523320078826014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39640419d441a225%3A0x53063056acb1832d!2sNational%20Livelihood%20Resource%20Institute!5e0!3m2!1sen!2sin!4v171567929771!5m2!1sen!2sin" 
+                src={siteInfo.mapEmbedUrl || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.255252157876!2d75.07872367512006!3d23.523320078826014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39640419d441a225%3A0x53063056acb1832d!2sNational%20Livelihood%20Resource%20Institute!5e0!3m2!1sen!2sin!4v171567929771!5m2!1sen!2sin"} 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
@@ -485,67 +509,87 @@ export default function AdmissionsClient() {
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
               />
+              <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3.5 py-2 rounded-xl text-xs font-semibold shadow-md border border-gray-100 text-gray-800 flex items-center gap-2 pointer-events-none">
+                <MapPinIcon className="w-4 h-4 text-primary" />
+                <span>NIRM Campus, Ratlam</span>
+              </div>
             </div>
 
-            {/* Right side: Contact Details */}
-            <div className="space-y-8 px-5 md:px-0">
-              <div>
-                <h3 className="text-2xl font-black text-gray-900 mb-2 tracking-tight">
+            {/* Right side: Contact Details Cards (Matching Map Height) */}
+            <div className="lg:col-span-6 flex flex-col justify-between space-y-3.5">
+              {/* Campus Address Box */}
+              <div className="p-4 md:p-5 rounded-2xl bg-gradient-to-r from-slate-50 to-gray-50/80 border border-gray-100 shadow-2xs">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary mb-1">
+                  <MapPinIcon className="w-4 h-4" />
+                  <span>Campus Address</span>
+                </div>
+                <h3 className="text-lg md:text-xl font-extrabold text-gray-900 tracking-tight">
                   CVRU Khandwa – NIRM Campus
                 </h3>
-                <p className="text-gray-600 font-medium">Bhadwasa, Ratlam, Madhya Pradesh 457222</p>
+                <p className="text-xs md:text-sm text-gray-600 font-medium mt-1 leading-relaxed">
+                  {siteInfo.contactAddress}
+                </p>
               </div>
 
-              <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-6 border-b border-gray-200 pb-3">
-                  Programme Enquiry:
-                </h4>
-                
-                <div className="space-y-6 text-[15px]">
-                  <div className="flex gap-4 items-start group">
-                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center shrink-0 group-hover:bg-primary/10 transition-colors">
-                      <AcademicCapIcon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <span className="font-bold text-gray-800 block mb-1">Office Hours:</span>
-                      <p className="text-gray-600">Monday to Saturday: 10:00 AM – 6:00 PM. We are closed on Sundays and National Holidays.</p>
-                    </div>
+              {/* Information Cards Stack */}
+              <div className="space-y-3 flex-1 flex flex-col justify-between">
+                {/* Office Hours */}
+                <div className="p-3.5 md:p-4 rounded-xl bg-white border border-gray-100 shadow-2xs flex gap-3.5 items-start">
+                  <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                    <ClockIcon className="w-5 h-5" />
                   </div>
-                  
-                  <div className="flex gap-4 items-start group">
-                    <div className="w-10 h-10 rounded-full bg-secondary/5 flex items-center justify-center shrink-0 group-hover:bg-secondary/10 transition-colors">
-                      <MapPinIcon className="w-5 h-5 text-secondary" />
-                    </div>
-                    <div>
-                      <span className="font-bold text-gray-800 block mb-1">Campus Location:</span>
-                      <p className="text-gray-600 leading-relaxed">Centrally located at the NIRM Campus, Bhadwasa, Ratlam, ideal for hands-on rural immersion.</p>
-                    </div>
+                  <div>
+                    <span className="text-xs md:text-sm font-bold text-gray-900 block mb-0.5">Office Hours</span>
+                    <p className="text-xs md:text-sm text-gray-600 leading-relaxed font-medium">
+                      {siteInfo.officeHours}
+                    </p>
                   </div>
+                </div>
 
-                  <div className="flex gap-4 items-start group">
-                    <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-blue-100 transition-colors">
-                      <PhoneIcon className="w-5 h-5 text-blue-600" />
-                    </div>
-                    <div>
-                      <span className="font-bold text-gray-800 block mb-1">Contact Numbers:</span>
-                      <div className="flex flex-col gap-1">
-                        <a href="tel:+911234567890" className="text-gray-600 hover:text-primary transition-colors font-medium">+91 12345-67890 (Main Office)</a>
-                        <a href="tel:+910987654321" className="text-gray-600 hover:text-primary transition-colors font-medium">+91 09876-54321 (Helpdesk)</a>
-                      </div>
-                    </div>
+                {/* Campus Location */}
+                <div className="p-3.5 md:p-4 rounded-xl bg-white border border-gray-100 shadow-2xs flex gap-3.5 items-start">
+                  <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <MapPinIcon className="w-5 h-5" />
                   </div>
+                  <div>
+                    <span className="text-xs md:text-sm font-bold text-gray-900 block mb-0.5">Campus Location</span>
+                    <p className="text-xs md:text-sm text-gray-600 leading-relaxed font-medium">
+                      Centrally located at the NIRM Campus, Bhadwasa, Ratlam, ideal for hands-on rural immersion.
+                    </p>
+                  </div>
+                </div>
 
-                  <div className="flex gap-4 items-start group">
-                    <div className="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center shrink-0 group-hover:bg-green-100 transition-colors">
-                      <EnvelopeIcon className="w-5 h-5 text-green-600" />
-                    </div>
-                    <div>
-                      <span className="font-bold text-gray-800 block mb-1">Email Enquiries:</span>
-                      <p className="text-gray-600 mb-1">For general admissions and course-related queries, please write to:</p>
-                      <a href="mailto:admissions@nirm.cvruk.in" className="text-primary hover:underline font-bold">
-                        admissions@nirm.cvruk.in
+                {/* Contact Numbers */}
+                <div className="p-3.5 md:p-4 rounded-xl bg-white border border-gray-100 shadow-2xs flex gap-3.5 items-start">
+                  <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-blue-500/10 text-blue-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <PhoneIcon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs md:text-sm font-bold text-gray-900 block mb-0.5">Contact Numbers</span>
+                    <div className="flex flex-col sm:flex-row gap-1.5 sm:gap-4 text-xs md:text-sm">
+                      <a href={`tel:${siteInfo.contactPhone.replace(/[^0-9+]/g, '')}`} className="text-gray-700 hover:text-primary font-semibold transition-colors">
+                        {siteInfo.contactPhone} <span className="font-normal text-gray-400">(Main Office)</span>
                       </a>
+                      {siteInfo.helplinePhone && (
+                        <a href={`tel:${siteInfo.helplinePhone.split("/")[0].replace(/[^0-9+]/g, '')}`} className="text-gray-700 hover:text-primary font-semibold transition-colors">
+                          {siteInfo.helplinePhone} <span className="font-normal text-gray-400">(Helpdesk)</span>
+                        </a>
+                      )}
                     </div>
+                  </div>
+                </div>
+
+                {/* Email Enquiries */}
+                <div className="p-3.5 md:p-4 rounded-xl bg-white border border-gray-100 shadow-2xs flex gap-3.5 items-start">
+                  <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <EnvelopeIcon className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs md:text-sm font-bold text-gray-900 block mb-0.5">Email Enquiries</span>
+                    <p className="text-xs text-gray-500 mb-0.5">For general admissions and course-related queries, write to:</p>
+                    <a href={`mailto:${siteInfo.contactEmail}`} className="text-xs md:text-sm text-primary hover:underline font-bold block">
+                      {siteInfo.contactEmail}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -556,24 +600,15 @@ export default function AdmissionsClient() {
       </section>
 
       {/* 7. FINAL APPLY CTA */}
-      <section id="apply" className="bg-linear-to-r from-primary to-accent relative overflow-hidden text-white py-14 md:py-20 text-center border-t border-white/10">
-        <div className="absolute w-full h-full bg-contain bg-no-repeat bg-right bg-full top-0 bg-[url('/patternSvg.svg')] opacity-20" />
-        
-        <div className="container-wide pl-5 md:pl-0 flex flex-col md:flex-row justify-between items-center relative z-10 max-w-6xl mx-auto gap-8 md:gap-14">
-          <div className="text-center md:text-left">
-            <h3 className="cta-title mb-4">
-              Take the First Step <br className="hidden md:block"/> Toward Your Future
-            </h3>
-            <p className="cta-subtitle px-5 md:px-0">
-              Build a career in sustainable development, grassroots leadership, and social innovation.
-            </p>
-          </div>
-          
-          <button className="w-all md:w-auto h-fit rounded-xl border-2 cursor-pointer border-white/20 bg-white/10 backdrop-blur-md text-white font-bold px-12 py-5 text-base md:text-lg shadow-2xl hover:bg-white hover:text-primary transition-all duration-300 active:scale-95 whitespace-nowrap">
-            Apply Online
-          </button>
-        </div>
-      </section>
+      <SharedCtaBanner
+        id="apply"
+        title="Take the First Step"
+        highlightText="Toward Your Future"
+        subtitle="Build a career in sustainable development, grassroots leadership, and social innovation."
+        primaryBtnText="Apply Online"
+        primaryBtnHref="/apply-now"
+        secondaryBtnText=""
+      />
 
     </div>
   );

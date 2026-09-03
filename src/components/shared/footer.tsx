@@ -53,36 +53,35 @@ export default function Footer() {
 
   const footerSections = [
     {
-      title: "ACADEMICS",
+      title: "ACADEMICS & RESEARCH",
       links: [
-        { name: "Undergraduate Programs", href: "/programs" },
-        { name: "Graduate Studies", href: "/programs" },
-        { name: "Colleges & Schools", href: "/about" },
-        { name: "Research Centers", href: "/research-training" },
-        { name: "Academic Calendar", href: "/media-events" },
-        { name: "Library", href: "/campus" },
+        { name: "Academic Programs", href: "/programs" },
+        { name: "About CVRUK - NIRM", href: "/about" },
+        { name: "Research & Training", href: "/research-training" },
+        { name: "Innovation & Incubation", href: "/innovation" },
+        { name: "Specialized Units", href: "/specialized-units" },
+        { name: "Approvals & Accreditations", href: "/approvals" },
       ],
     },
     {
-      title: "CAMPUS LIFE",
+      title: "CAMPUS & COMMUNITY",
       links: [
-        { name: "Housing & Residence Life", href: "/campus" },
-        { name: "Dining Services", href: "/campus" },
-        { name: "Student Clubs & Organizations", href: "/student-life" },
-        { name: "Athletics & Recreation", href: "/campus" },
-        { name: "Health & Wellness", href: "/campus" },
-        { name: "Campus Safety", href: "/contact" },
+        { name: "Campus & Infrastructure", href: "/campus" },
+        { name: "Student Life & Activities", href: "/student-life" },
+        { name: "Media & Event Updates", href: "/media-events" },
+        { name: "Photo & Video Gallery", href: "/gallery" },
+        { name: "Placements & Career", href: "/placements" },
+        { name: "Success Stories & Impact", href: "/success-stories" },
       ],
     },
     {
-      title: "ADMISSIONS & AID",
+      title: "ADMISSIONS & ENQUIRIES",
       links: [
-        { name: "How to Apply", href: "/admissions" },
-        { name: "Tuition & Fees", href: "/admissions" },
-        { name: "Financial Aid & Scholarships", href: "/admissions" },
-        { name: "International Students", href: "/admissions" },
-        { name: "Visit Campus", href: "/contact" },
-        { name: "Request Information", href: "/enquiry" },
+        { name: "Admissions 2026–28", href: "/admissions" },
+        { name: "Apply Online", href: "/apply-now" },
+        { name: "Programme Enquiry", href: "/enquiry" },
+        { name: "CSR Partnerships", href: "/csr-partnerships" },
+        { name: "Contact & Location", href: "/contact" },
       ],
     },
   ];
@@ -90,7 +89,7 @@ export default function Footer() {
   const legalLinks = [
     { name: "Privacy Policy", href: "/privacy-policy" },
     { name: "Terms of Use", href: "/terms" },
-    { name: "Sitemap", href: "/sitemap.xml" },
+    { name: "Disclaimer", href: "/disclaimer" },
   ];
 
   return (

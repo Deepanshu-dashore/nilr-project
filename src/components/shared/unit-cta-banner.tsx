@@ -3,43 +3,53 @@ import Link from "next/link";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 interface SharedCtaBannerProps {
-  title: string;
+  title: React.ReactNode | string;
+  highlightText?: string;
   subtitle?: string;
   primaryBtnText?: string;
   primaryBtnHref?: string;
   secondaryBtnText?: string;
   secondaryBtnHref?: string;
+  id?: string;
 }
 
 export default function SharedCtaBanner({
   title,
+  highlightText,
   subtitle = "Reach out to our Nodal Cell at NIRM Ratlam Campus for enrollment details, batch schedules, project partnerships, or seed availability.",
   primaryBtnText = "Apply / Enquire Online",
   primaryBtnHref = "/contact",
   secondaryBtnText = "View All Specialized Units",
   secondaryBtnHref = "/specialized-units",
+  id,
 }: SharedCtaBannerProps) {
   return (
-    <section className="bg-linear-to-r from-primary to-accent relative overflow-hidden text-white py-12 md:py-16 border-t border-white/10">
+    <section id={id} className="bg-linear-to-r from-primary to-accent relative overflow-hidden text-white py-12 md:py-16 border-t border-white/10">
       
-      {/* Admissions Pattern Overlay */}
-      <div className="absolute w-full h-full bg-contain bg-no-repeat bg-right bg-full top-0 bg-[url('/patternSvg.svg')] opacity-45 pointer-events-none z-0" />
+      {/* Background Pattern Overlay */}
+      <div className="absolute w-full h-full bg-contain bg-no-repeat bg-right bg-full top-0 bg-[url('/patternSvg.svg')] opacity-25 pointer-events-none z-0" />
       
-      <div className="container-wide px-6 md:px-8 flex flex-col md:flex-row justify-between items-center relative z-10 max-w-6xl mx-auto gap-6 md:gap-10">
+      <div className="container-wide px-6 md:px-8 flex flex-col md:flex-row justify-between items-center relative z-10 max-w-7xl mx-auto gap-6 md:gap-10">
         
-        {/* Left Side Info (Increased Text Size) */}
+        {/* Left Side Info */}
         <div className="text-center md:text-left space-y-3">
           <h3 className="cta-title">
-            {title}
+            {typeof title === "string" && highlightText ? (
+              <>
+                {title} <span>{highlightText}</span>
+              </>
+            ) : (
+              title
+            )}
           </h3>
           {subtitle && (
-            <p className="cta-subtitle">
+            <p className="cta-subtitle max-w-3xl">
               {subtitle}
             </p>
           )}
         </div>
 
-        {/* Right Side Action Buttons (Compact Button Size) */}
+        {/* Right Side Action Buttons */}
         <div className="flex flex-wrap items-center justify-center md:justify-end gap-3 shrink-0">
           {primaryBtnText && primaryBtnHref && (
             <Link

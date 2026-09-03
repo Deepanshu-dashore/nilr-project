@@ -94,8 +94,8 @@ export default function CampusLocation() {
 
           {/* Right Side - Premium Map */}
           <div className="relative group mt-6 lg:mt-0">
-            <div className="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 bg-white">
-              <div className="aspect-4/3 lg:aspect-square">
+            <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white">
+              <div className="w-full h-[320px] md:h-[400px]">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.255252157876!2d75.07872367512006!3d23.523320078826014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39640419d441a225%3A0x53063056acb1832d!2sNational%20Livelihood%20Resource%20Institute!5e0!3m2!1sen!2sin!4v171567929771!5m2!1sen!2sin"
                   className="w-full h-full"
