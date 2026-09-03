@@ -179,7 +179,8 @@ export default function WorkUnderProgress({
 
       {/* Unified Admissions-Style CTA Banner with Zero Gap to Footer */}
       <SharedCtaBanner
-        title={`Have Questions About ${title}?`}
+        title="Have Questions About"
+        highlightText={`${title}?`}
         subtitle="Reach out to our information desk at NIRM Ratlam Campus for assistance, course details, or campus visits."
         primaryBtnText="Contact Helpline"
         primaryBtnHref="/contact"
